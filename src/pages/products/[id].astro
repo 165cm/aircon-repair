@@ -6,6 +6,7 @@ import ProductGrid from "@components/ProductGrid.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { affiliate } from "@data/affiliate";
 import { categoryLabels, productCategories, type ProductCategory } from "@data/products";
+import { sitePath } from "@utils/paths";
 
 export function getStaticPaths() {
   return productCategories.map((product) => ({
@@ -105,7 +106,7 @@ const jsonLd = [{
 
   <section class="container section product-detail">
     <div class="panel">
-      {product.image && <img class="product-detail-image" src={product.image} alt={`${product.name}のイメージ画像`} />}
+      {product.image && <img class="product-detail-image" src={sitePath(product.image)} alt={`${product.name}のイメージ画像`} />}
       <p class="small">掲載画像は当サイトで生成したイメージです。実際の商品写真・仕様・価格・在庫はリンク先で確認してください。</p>
     </div>
     <div class="panel">
@@ -135,7 +136,7 @@ const jsonLd = [{
       )}
       <div class="button-row">
         <AmazonLink product={product} pageType="product-detail" linkPosition="hero" label="Amazonで価格・在庫を見る" />
-        <a class="button secondary" href="/products/">商品一覧へ戻る</a>
+        <a class="button secondary" href={sitePath("/products/")}>商品一覧へ戻る</a>
       </div>
     </div>
   </section>
@@ -159,8 +160,8 @@ const jsonLd = [{
           {stopChecks.map((check) => <li>{check}</li>)}
         </ul>
         <div class="button-row">
-          <a class="button warm" href="/diagnosis/">症状診断へ</a>
-          <a class="button secondary" href="/articles/call-contractor/">業者を呼ぶ目安</a>
+          <a class="button warm" href={sitePath("/diagnosis/")}>症状診断へ</a>
+          <a class="button secondary" href={sitePath("/articles/call-contractor/")}>業者を呼ぶ目安</a>
         </div>
       </div>
     </div>
