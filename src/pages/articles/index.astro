@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import ArticleCard from "@components/ArticleCard.astro";
 import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
+import { sitePath } from "@utils/paths";
 
 const articles = (await getCollection("articles")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -18,9 +19,9 @@ const articles = (await getCollection("articles")).sort(
     <h1>エアコンの困りごとガイド</h1>
     <p class="lead">症状別、掃除・予防、買い替え、求人・仕事入門までまとめています。</p>
     <div class="hero-actions">
-      <a class="button" href="/diagnosis/">症状診断</a>
-      <a class="button warm" href="/by-size/">畳数で買い替え比較</a>
-      <a class="button secondary" href="/products/">商品比較</a>
+      <a class="button" href={sitePath("/diagnosis/")}>症状診断</a>
+      <a class="button warm" href={sitePath("/by-size/")}>畳数で買い替え比較</a>
+      <a class="button secondary" href={sitePath("/products/")}>商品比較</a>
     </div>
   </section>
   <section class="container section">
