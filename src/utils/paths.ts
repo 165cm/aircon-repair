@@ -5,3 +5,7 @@ export function sitePath(path: string) {
   const normalized = path.startsWith("/") ? path : `/${path}`;
   return `${base}${normalized}`;
 }
+
+export function absoluteUrl(path: string, origin = "https://165cm.github.io") {
+  return new URL(sitePath(path), origin).toString();
+}
