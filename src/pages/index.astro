@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import ArticleCard from "@components/ArticleCard.astro";
 import DiagnosisWidget from "@components/DiagnosisWidget.astro";
+import GlossaryBox from "@components/GlossaryBox.astro";
 import ProductGrid from "@components/ProductGrid.astro";
 import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
@@ -40,11 +41,11 @@ const jsonLd = {
 >
   <section class="container hero">
     <div>
-      <p class="eyebrow">夏の繁忙期に、まず安全な判断を</p>
-      <h1>エアコンが壊れたかも、と思ったら触っていい場所から確認する</h1>
+      <p class="eyebrow">エアコン修理の放課後ノート</p>
+      <h1>エアコン修理高等学校で、壊れたかもを安全に学ぶ</h1>
       <p class="lead">
-        高校生レベルの基礎知識で、冷えない・水漏れ・異音・掃除の困りごとを整理。
-        自力でできる予防と、専門業者へ任せる境界線をはっきり分けます。
+        冷えない・水漏れ・異音・掃除の困りごとを、高校生でも分かる言葉で整理します。
+        自分で見てよい場所、買い替えを考える目安、専門業者へ任せる作業をはっきり分けます。
       </p>
       <div class="hero-actions">
         <a class="button" href={sitePath("/diagnosis/")}>症状診断を始める</a>
@@ -57,6 +58,10 @@ const jsonLd = {
 
   <section class="container section">
     <DiagnosisWidget />
+  </section>
+
+  <section class="container section">
+    <GlossaryBox limit={4} />
   </section>
 
   <section class="container section">
@@ -85,7 +90,7 @@ const jsonLd = {
       <div>
         <p class="eyebrow">安全な範囲の備え</p>
         <h2>分解しない補助用品から整える</h2>
-        <p>価格は固定表示せず、カテゴリ単位で候補へ誘導します。公開前にAmazonアソシエイトIDを設定してください。</p>
+        <p>価格は固定表示せず、個別の商品候補からAmazonの商品ページで仕様・在庫を確認できるようにしています。</p>
       </div>
       <a href={sitePath("/products/")}>商品比較へ</a>
     </div>
