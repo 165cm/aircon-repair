@@ -7,6 +7,7 @@ import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { affiliate } from "@data/affiliate";
 import { replacementProducts } from "@data/products";
+import { sitePath } from "@utils/paths";
 
 const articles = (await getCollection("articles")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -46,9 +47,9 @@ const jsonLd = {
         自力でできる予防と、専門業者へ任せる境界線をはっきり分けます。
       </p>
       <div class="hero-actions">
-        <a class="button" href="/diagnosis/">症状診断を始める</a>
-        <a class="button warm" href="/by-size/">畳数で買い替え比較</a>
-        <a class="button secondary" href="/basics/">仕組みを学ぶ</a>
+        <a class="button" href={sitePath("/diagnosis/")}>症状診断を始める</a>
+        <a class="button warm" href={sitePath("/by-size/")}>畳数で買い替え比較</a>
+        <a class="button secondary" href={sitePath("/basics/")}>仕組みを学ぶ</a>
       </div>
     </div>
     <div class="panel visual-panel" aria-label="エアコンの冷房サイクル図"></div>
@@ -65,7 +66,7 @@ const jsonLd = {
         <h2>畳数でエアコン本体を比較する</h2>
         <p>10年以上使っている、修理見積もりが高い、部屋の広さに合っていない時は、6畳・8畳・10畳・14畳の選び方から確認します。</p>
       </div>
-      <a href="/by-size/">畳数ガイドへ</a>
+      <a href={sitePath("/by-size/")}>畳数ガイドへ</a>
     </div>
     <div class="grid">
       {buyingArticles.map((article) => <ArticleCard article={article} />)}
@@ -86,7 +87,7 @@ const jsonLd = {
         <h2>分解しない補助用品から整える</h2>
         <p>価格は固定表示せず、カテゴリ単位で候補へ誘導します。公開前にAmazonアソシエイトIDを設定してください。</p>
       </div>
-      <a href="/products/">商品比較へ</a>
+      <a href={sitePath("/products/")}>商品比較へ</a>
     </div>
     <ProductGrid />
   </section>
@@ -104,7 +105,7 @@ const jsonLd = {
         <p class="eyebrow">初期記事</p>
         <h2>まず読んでほしい基礎と症状別ガイド</h2>
       </div>
-      <a href="/basics/">記事一覧へ</a>
+      <a href={sitePath("/basics/")}>記事一覧へ</a>
     </div>
     <div class="grid">
       {featured.map((article) => <ArticleCard article={article} />)}
