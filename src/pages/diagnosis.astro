@@ -1,22 +1,27 @@
 ---
 import DiagnosisWidget from "@components/DiagnosisWidget.astro";
+import GlossaryBox from "@components/GlossaryBox.astro";
 import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
   title="症状別診断"
-  description="冷えない、水漏れ、異音、リモコン不調、掃除の悩みを選び、安全にできる確認と専門業者へ相談する目安を確認できます。"
+  description="冷えない、水漏れ、異音、リモコン不調、掃除の悩みを選び、高校生でも分かる安全確認と修理・買い替えの目安を確認できます。"
 >
   <section class="container section">
     <div class="section-header">
       <div>
-        <p class="eyebrow">セルフチェック</p>
+        <p class="eyebrow">保健室みたいな症状チェック</p>
         <h1>症状別診断</h1>
-        <p>この診断は修理手順ではなく、安全な切り分けです。内部洗浄、電気配線、冷媒、分解作業は専門業者へ相談してください。</p>
+        <p>この診断は修理手順ではなく、安全な切り分けです。冷媒は熱を運ぶガス、基板は電子部品の板です。どちらも初心者が触る場所ではありません。</p>
       </div>
     </div>
     <DiagnosisWidget />
+  </section>
+
+  <section class="container section">
+    <GlossaryBox limit={6} />
   </section>
 
   <section class="container section">
