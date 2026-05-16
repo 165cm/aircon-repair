@@ -1,0 +1,45 @@
+---
+import ProductGrid from "@components/ProductGrid.astro";
+import RevenueCta from "@components/RevenueCta.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { isAmazonConfigured } from "@data/affiliate";
+import { replacementProducts, supportProducts } from "@data/products";
+---
+
+<BaseLayout
+  title="エアコン補助用品・商品比較"
+  description="温湿度計、フィルター掃除ブラシ、ドレンホース用ポンプ、室外機まわり用品、サーキュレーターなどを安全な用途別に紹介します。"
+>
+  <section class="container section">
+    <p class="eyebrow">Amazonアソシエイト</p>
+    <h1>分解しない範囲で使える補助用品</h1>
+    <p class="lead">商品は症状別に選びます。エアコン本体の分解、基板、冷媒、電気工事に関わる用品は初心者向け導線には入れません。</p>
+    <p class="small">掲載画像は当サイトで生成したイメージです。実際の商品写真・仕様・対応機種・価格はリンク先で確認してください。</p>
+    {!isAmazonConfigured && <p class="notice">公開前にsrc/data/affiliate.tsのamazonTrackingIdを実際のIDに変更してください。</p>}
+  </section>
+  <section class="container section" id="support">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">まずは低リスク</p>
+        <h2>分解しない補助用品</h2>
+      </div>
+    </div>
+    <ProductGrid products={supportProducts} pageType="products-index" linkPosition="support-grid" />
+  </section>
+  <section class="container section" id="replacement">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">高単価導線</p>
+        <h2>修理費が高い時の買い替え候補</h2>
+        <p>10年以上使用、複数症状、修理見積もりが高額、畳数不足、省エネ性能の古さが気になる場合は、本体購入も比較します。</p>
+      </div>
+    </div>
+    <div class="notice">
+      Amazonアソシエイトの家電カテゴリは料率が低めでも、エアコン本体は単価が高いため成約時の報酬額を狙いやすい導線です。購入前には標準工事、追加工事費、電源電圧、室外機置き場、対応畳数を必ず確認してください。
+    </div>
+    <ProductGrid products={replacementProducts} pageType="products-index" linkPosition="replacement-grid" />
+  </section>
+  <section class="container section">
+    <RevenueCta variant="contractor" />
+  </section>
+</BaseLayout>
