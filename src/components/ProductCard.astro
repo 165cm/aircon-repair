@@ -1,0 +1,38 @@
+---
+import { isAmazonConfigured } from "@data/affiliate";
+import type { ProductCategory } from "@data/products";
+import AmazonLink from "./AmazonLink.astro";
+
+type Props = {
+  product: ProductCategory;
+  pageType?: string;
+  linkPosition?: string;
+};
+
+const { product, pageType = "product-card", linkPosition = "card" } = Astro.props;
+---
+
+<article class="card product-card">
+  {
+    product.image && (
+      <img class="product-image" src={product.image} alt={`${product.name}のイメージ画像`} loading="lazy" />
+    )
+  }
+  <div>
+    {product.brand && <p class="eyebrow">{product.brand}</p>}
+    <h3>{product.name}</h3>
+    <p>{product.description}</p>
+  </div>
+  {product.whyPick && <p class="small"><strong>ピックアップ理由:</strong> {product.whyPick}</p>}
+  {product.reviewSummary && <p class="small"><strong>レビュー調査メモ:</strong> {product.reviewSummary}</p>}
+  <p class="small">{product.safetyNote}</p>
+  {
+    !isAmazonConfigured && (
+      <p class="notice">AmazonアソシエイトIDが未設定です。公開前にsrc/data/affiliate.tsを差し替えてください。</p>
+    )
+  }
+  <div class="button-row compact">
+    <a class="button secondary" href={`/products/${product.id}/`}>詳しく見る</a>
+    <AmazonLink product={product} pageType={pageType} linkPosition={linkPosition} label="Amazonで候補を見る" />
+  </div>
+</article>
