@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
+import GlossaryBox from "@components/GlossaryBox.astro";
 import ProductGrid from "@components/ProductGrid.astro";
 import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
@@ -89,9 +90,13 @@ const jsonLd = [
   </section>
   <section class="container article-body">
     <article class="article-content">
+      <div class="notice safe">
+        <strong>この授業の読み方:</strong> 難しい専門用語は下のミニ解説で確認できます。自力でできるのはフィルター、リモコン、室外機まわり、ドレンホース先端などの外側確認までです。
+      </div>
       <Content />
     </article>
     <aside class="sidebar">
+      <GlossaryBox title="この記事で出やすい用語" limit={4} />
       <RevenueCta variant={ctaVariant} />
       {sidebarProducts.length > 0 && <ProductGrid products={sidebarProducts} pageType={`article-${article.slug}`} linkPosition="sidebar" />}
     </aside>
