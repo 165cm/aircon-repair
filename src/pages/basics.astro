@@ -1,0 +1,32 @@
+---
+import { getCollection } from "astro:content";
+import ArticleCard from "@components/ArticleCard.astro";
+import RevenueCta from "@components/RevenueCta.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const articles = (await getCollection("articles"))
+  .filter((article) => ["basics", "symptom"].includes(article.data.category))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout
+  title="エアコンの基礎知識"
+  description="冷房の仕組み、冷えない原因、水漏れ、異音、修理を呼ぶ目安を初心者向けに学べます。"
+>
+  <section class="container section">
+    <p class="eyebrow">高校生レベルから分かる</p>
+    <h1>エアコンの基礎知識</h1>
+    <p class="lead">空気を冷やす仕組み、触っていい場所、触ってはいけない場所を分けて理解します。</p>
+  </section>
+  <section class="container section">
+    <div class="grid">
+      {articles.map((article) => <ArticleCard article={article} />)}
+    </div>
+  </section>
+  <section class="container section">
+    <div class="grid two">
+      <RevenueCta variant="products" />
+      <RevenueCta variant="jobs" />
+    </div>
+  </section>
+</BaseLayout>
