@@ -1,0 +1,25 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+type Props = {
+  article: CollectionEntry<"articles">;
+};
+
+const { article } = Astro.props;
+const riskLabel = {
+  low: "低リスク",
+  medium: "注意",
+  high: "危険サインあり"
+}[article.data.risk];
+---
+
+<article class="card">
+  <p class="eyebrow">{riskLabel}</p>
+  <h3><a href={`/articles/${article.slug}/`}>{article.data.title}</a></h3>
+  <p>{article.data.description}</p>
+  <div class="tag-list">
+    <span class="tag">{article.data.category}</span>
+    <span class="tag">{article.data.difficulty === "beginner" ? "初心者向け" : "一歩詳しく"}</span>
+    {article.data.symptoms.map((symptom) => <span class="tag">{symptom}</span>)}
+  </div>
+</article>
