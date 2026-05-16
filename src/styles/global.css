@@ -208,7 +208,7 @@ h3 {
   overflow: hidden;
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.24)),
-    url("/images/aircon-hero.png") center / cover no-repeat;
+    url("/aircon-repair/images/aircon-hero.png") center / cover no-repeat;
 }
 
 .section {
