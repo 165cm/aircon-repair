@@ -1,0 +1,52 @@
+---
+import { productUrl, type ProductCategory } from "@data/products";
+
+type Props = {
+  product: ProductCategory;
+  label?: string;
+  pageType?: string;
+  linkPosition?: string;
+  variant?: "button" | "inline";
+};
+
+const {
+  product,
+  label = "Amazonで価格・在庫を見る",
+  pageType = "unknown",
+  linkPosition = "inline",
+  variant = "button"
+} = Astro.props;
+---
+
+<a
+  class={variant === "button" ? "button" : "inline-link"}
+  href={productUrl(product)}
+  rel="sponsored nofollow noopener"
+  target="_blank"
+  data-amazon-link
+  data-item-id={product.id}
+  data-item-name={product.name}
+  data-page-type={pageType}
+  data-link-position={linkPosition}
+>
+  {label}
+</a>
+
+<script>
+  if (!window.__airconAmazonTrackingReady) {
+    window.__airconAmazonTrackingReady = true;
+    document.addEventListener("click", (event) => {
+      const target = event.target instanceof Element ? event.target.closest("[data-amazon-link]") : null;
+      if (!target) return;
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "outbound_click_amazon",
+        item_id: target.getAttribute("data-item-id"),
+        item_name: target.getAttribute("data-item-name"),
+        page_type: target.getAttribute("data-page-type"),
+        link_position: target.getAttribute("data-link-position")
+      });
+    });
+  }
+</script>
