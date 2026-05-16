@@ -6,6 +6,7 @@ import ProductGrid from "@components/ProductGrid.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { affiliate } from "@data/affiliate";
 import { productById, replacementProducts } from "@data/products";
+import { sitePath } from "@utils/paths";
 
 const articles = (await getCollection("articles"))
   .filter((article) => article.data.category === "buying")
@@ -188,8 +189,8 @@ const jsonLd = {
               <td>{guide.upgrade}</td>
               <td>
                 <div class="table-actions">
-                  <a href={guide.article}>記事</a>
-                  <a href={guide.product}>商品詳細</a>
+                  <a href={sitePath(guide.article)}>記事</a>
+                  <a href={sitePath(guide.product)}>商品詳細</a>
                   {guide.productData && (
                     <AmazonLink
                       product={guide.productData}
