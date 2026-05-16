@@ -6,7 +6,7 @@ import ProductGrid from "@components/ProductGrid.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { affiliate } from "@data/affiliate";
 import { productById, replacementProducts } from "@data/products";
-import { sitePath } from "@utils/paths";
+import { absoluteUrl, sitePath } from "@utils/paths";
 
 const articles = (await getCollection("articles"))
   .filter((article) => article.data.category === "buying")
@@ -101,7 +101,7 @@ const jsonLd = {
   itemListElement: articles.map((article, index) => ({
     "@type": "ListItem",
     position: index + 1,
-    url: new URL(`/articles/${article.slug}/`, affiliate.siteUrl).toString(),
+    url: absoluteUrl(`/articles/${article.slug}/`),
     name: article.data.title
   }))
 };
