@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { sitePath } from "@utils/paths";
 
 type Props = {
   article: CollectionEntry<"articles">;
@@ -15,7 +16,7 @@ const riskLabel = {
 
 <article class="card">
   <p class="eyebrow">{riskLabel}</p>
-  <h3><a href={`/articles/${article.slug}/`}>{article.data.title}</a></h3>
+  <h3><a href={sitePath(`/articles/${article.slug}/`)}>{article.data.title}</a></h3>
   <p>{article.data.description}</p>
   <div class="tag-list">
     <span class="tag">{article.data.category}</span>
