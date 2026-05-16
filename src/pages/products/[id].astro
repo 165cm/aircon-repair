@@ -6,7 +6,7 @@ import ProductGrid from "@components/ProductGrid.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { affiliate } from "@data/affiliate";
 import { categoryLabels, productCategories, type ProductCategory } from "@data/products";
-import { sitePath } from "@utils/paths";
+import { absoluteUrl, sitePath } from "@utils/paths";
 
 export function getStaticPaths() {
   return productCategories.map((product) => ({
@@ -24,7 +24,7 @@ const relatedArticles = (await getCollection("articles"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 const categoryLabel = product.category ? categoryLabels[product.category] : "商品候補";
-const canonical = new URL(`/products/${product.id}/`, affiliate.siteUrl).toString();
+const canonical = absoluteUrl(`/products/${product.id}/`);
 const isReplacement = product.type === "replacement";
 const purchaseChecks = isReplacement
   ? [
@@ -73,7 +73,7 @@ const jsonLd = [{
   brand: product.brand,
   category: categoryLabel,
   description: product.description,
-  image: product.image ? new URL(product.image, affiliate.siteUrl).toString() : undefined,
+  image: product.image ? absoluteUrl(product.image) : undefined,
   offers: {
     "@type": "Offer",
     url: canonical,
