@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import ArticleCard from "@components/ArticleCard.astro";
+import GlossaryBox from "@components/GlossaryBox.astro";
 import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
@@ -11,12 +12,15 @@ const articles = (await getCollection("articles"))
 
 <BaseLayout
   title="エアコンの基礎知識"
-  description="冷房の仕組み、冷えない原因、水漏れ、異音、修理を呼ぶ目安を初心者向けに学べます。"
+  description="冷房の仕組み、冷えない原因、水漏れ、異音、修理を呼ぶ目安を高校生でも分かる言葉で学べます。"
 >
   <section class="container section">
-    <p class="eyebrow">高校生レベルから分かる</p>
+    <p class="eyebrow">1時間目: 基礎</p>
     <h1>エアコンの基礎知識</h1>
-    <p class="lead">空気を冷やす仕組み、触っていい場所、触ってはいけない場所を分けて理解します。</p>
+    <p class="lead">空気を冷やす仕組みを、冷媒は「熱を運ぶガス」、ドレンホースは「水を外へ流す管」のように、身近な言葉へ置き換えて理解します。</p>
+  </section>
+  <section class="container section">
+    <GlossaryBox />
   </section>
   <section class="container section">
     <div class="grid">
