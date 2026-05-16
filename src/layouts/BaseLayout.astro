@@ -1,6 +1,6 @@
 ---
 import { affiliate } from "@data/affiliate";
-import { sitePath } from "@utils/paths";
+import { absoluteUrl, sitePath } from "@utils/paths";
 import "@styles/global.css";
 
 type Props = {
@@ -12,7 +12,7 @@ type Props = {
 
 const { title, description, canonical, jsonLd } = Astro.props;
 const pageTitle = title === affiliate.siteName ? title : `${title} | ${affiliate.siteName}`;
-const canonicalUrl = canonical ?? new URL(Astro.url.pathname, affiliate.siteUrl).toString();
+const canonicalUrl = canonical ?? absoluteUrl(Astro.url.pathname);
 ---
 
 <!doctype html>
@@ -28,7 +28,7 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, affiliate.siteUrl)
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:image" content={new URL("/images/aircon-hero.png", affiliate.siteUrl).toString()} />
+    <meta property="og:image" content={absoluteUrl("/images/aircon-hero.png")} />
     <meta name="twitter:card" content="summary_large_image" />
     {
       jsonLd && (
