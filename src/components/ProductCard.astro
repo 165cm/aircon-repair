@@ -34,6 +34,6 @@ const { product, pageType = "product-card", linkPosition = "card" } = Astro.prop
   }
   <div class="button-row compact">
     <a class="button secondary" href={sitePath(`/products/${product.id}/`)}>詳しく見る</a>
-    <AmazonLink product={product} pageType={pageType} linkPosition={linkPosition} label="Amazonで候補を見る" />
+    <AmazonLink product={product} pageType={pageType} linkPosition={linkPosition} label="Amazonの商品ページを見る" />
   </div>
 </article>
