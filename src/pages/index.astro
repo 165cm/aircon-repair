@@ -1,0 +1,113 @@
+---
+import { getCollection } from "astro:content";
+import ArticleCard from "@components/ArticleCard.astro";
+import DiagnosisWidget from "@components/DiagnosisWidget.astro";
+import ProductGrid from "@components/ProductGrid.astro";
+import RevenueCta from "@components/RevenueCta.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { affiliate } from "@data/affiliate";
+import { replacementProducts } from "@data/products";
+
+const articles = (await getCollection("articles")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+const featured = articles.slice(0, 6);
+const buyingArticles = articles
+  .filter((article) => article.data.category === "buying")
+  .sort((a, b) => {
+    const order = ["aircon-6jou-choose", "aircon-8jou-choose", "aircon-10jou-choose", "aircon-14jou-choose", "aircon-18jou-choose"];
+    return order.indexOf(a.slug) - order.indexOf(b.slug);
+  })
+  .slice(0, 3);
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: affiliate.siteName,
+  url: affiliate.siteUrl,
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${affiliate.siteUrl}/articles/?q={search_term_string}`,
+    "query-input": "required name=search_term_string"
+  }
+};
+---
+
+<BaseLayout
+  title={affiliate.siteName}
+  description="エアコンの冷えない、水漏れ、異音、掃除の悩みを安全に切り分け、補助用品・業者相談・求人情報へ案内する初心者向けサイト。"
+  jsonLd={jsonLd}
+>
+  <section class="container hero">
+    <div>
+      <p class="eyebrow">夏の繁忙期に、まず安全な判断を</p>
+      <h1>エアコンが壊れたかも、と思ったら触っていい場所から確認する</h1>
+      <p class="lead">
+        高校生レベルの基礎知識で、冷えない・水漏れ・異音・掃除の困りごとを整理。
+        自力でできる予防と、専門業者へ任せる境界線をはっきり分けます。
+      </p>
+      <div class="hero-actions">
+        <a class="button" href="/diagnosis/">症状診断を始める</a>
+        <a class="button warm" href="/by-size/">畳数で買い替え比較</a>
+        <a class="button secondary" href="/basics/">仕組みを学ぶ</a>
+      </div>
+    </div>
+    <div class="panel visual-panel" aria-label="エアコンの冷房サイクル図"></div>
+  </section>
+
+  <section class="container section">
+    <DiagnosisWidget />
+  </section>
+
+  <section class="container section">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">修理費が高い時の次の一手</p>
+        <h2>畳数でエアコン本体を比較する</h2>
+        <p>10年以上使っている、修理見積もりが高い、部屋の広さに合っていない時は、6畳・8畳・10畳・14畳の選び方から確認します。</p>
+      </div>
+      <a href="/by-size/">畳数ガイドへ</a>
+    </div>
+    <div class="grid">
+      {buyingArticles.map((article) => <ArticleCard article={article} />)}
+    </div>
+    <div class="section-header product-section-title">
+      <div>
+        <p class="eyebrow">本体候補</p>
+        <h2>まず比較したい買い替え候補</h2>
+      </div>
+    </div>
+    <ProductGrid products={replacementProducts} pageType="home" linkPosition="by-size-replacement" />
+  </section>
+
+  <section class="container section">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">安全な範囲の備え</p>
+        <h2>分解しない補助用品から整える</h2>
+        <p>価格は固定表示せず、カテゴリ単位で候補へ誘導します。公開前にAmazonアソシエイトIDを設定してください。</p>
+      </div>
+      <a href="/products/">商品比較へ</a>
+    </div>
+    <ProductGrid />
+  </section>
+
+  <section class="container section">
+    <div class="grid two">
+      <RevenueCta variant="contractor" />
+      <RevenueCta variant="jobs" />
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">初期記事</p>
+        <h2>まず読んでほしい基礎と症状別ガイド</h2>
+      </div>
+      <a href="/basics/">記事一覧へ</a>
+    </div>
+    <div class="grid">
+      {featured.map((article) => <ArticleCard article={article} />)}
+    </div>
+  </section>
+</BaseLayout>
