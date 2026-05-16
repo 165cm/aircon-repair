@@ -1,6 +1,7 @@
 ---
 import { isAmazonConfigured } from "@data/affiliate";
 import type { ProductCategory } from "@data/products";
+import { sitePath } from "@utils/paths";
 import AmazonLink from "./AmazonLink.astro";
 
 type Props = {
@@ -15,7 +16,7 @@ const { product, pageType = "product-card", linkPosition = "card" } = Astro.prop
 <article class="card product-card">
   {
     product.image && (
-      <img class="product-image" src={product.image} alt={`${product.name}のイメージ画像`} loading="lazy" />
+      <img class="product-image" src={sitePath(product.image)} alt={`${product.name}のイメージ画像`} loading="lazy" />
     )
   }
   <div>
@@ -32,7 +33,7 @@ const { product, pageType = "product-card", linkPosition = "card" } = Astro.prop
     )
   }
   <div class="button-row compact">
-    <a class="button secondary" href={`/products/${product.id}/`}>詳しく見る</a>
+    <a class="button secondary" href={sitePath(`/products/${product.id}/`)}>詳しく見る</a>
     <AmazonLink product={product} pageType={pageType} linkPosition={linkPosition} label="Amazonで候補を見る" />
   </div>
 </article>
