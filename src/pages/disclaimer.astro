@@ -1,0 +1,28 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { affiliate } from "@data/affiliate";
+---
+
+<BaseLayout
+  title="広告表記・免責事項"
+  description="エアコン難民レスキューの広告、アフィリエイト、Amazonアソシエイト、免責事項、安全方針を掲載しています。"
+>
+  <section class="container section">
+    <p class="eyebrow">運営情報</p>
+    <h1>広告表記・免責事項</h1>
+    <div class="article-content">
+      <h2>広告・アフィリエイトについて</h2>
+      <p>{affiliate.disclosure}</p>
+      <p>商品リンク、業者紹介リンク、求人サイトリンクには広告・アフィリエイトリンクが含まれる場合があります。</p>
+
+      <h2>安全方針</h2>
+      <p>当サイトは初心者向けの切り分け情報を提供するもので、分解修理、電気工事、冷媒作業、内部洗浄を推奨するものではありません。焦げ臭い、煙、火花、水漏れが電源まわりにかかるなどの危険サインがある場合は使用を中止し、メーカー、販売店、専門業者へ相談してください。</p>
+
+      <h2>収益目標について</h2>
+      <p>月10万円の収益は運営上の目標であり、成果を保証するものではありません。記事品質、検索流入、季節性、広告案件、成約率によって結果は変わります。</p>
+
+      <h2>連絡先</h2>
+      <p>掲載内容に関するお問い合わせは {affiliate.privacyContact} までお願いします。</p>
+    </div>
+  </section>
+</BaseLayout>
