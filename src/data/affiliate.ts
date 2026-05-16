@@ -1,6 +1,6 @@
 export const affiliate = {
   siteName: "エアコン難民レスキュー",
-  siteUrl: "https://aircon-refuge.example.com",
+  siteUrl: "https://165cm.github.io/aircon-repair",
   amazonTrackingId: "notestimatobe-22",
   disclosure:
     "当サイトは広告・アフィリエイトリンクを含みます。Amazonのアソシエイトとして、エアコン難民レスキューは適格販売により収入を得ています。",
