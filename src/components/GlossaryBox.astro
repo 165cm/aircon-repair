@@ -1,0 +1,32 @@
+---
+import { glossaryTerms } from "@data/glossary";
+
+type Props = {
+  title?: string;
+  limit?: number;
+};
+
+const { title = "専門用語ミニ解説", limit } = Astro.props;
+const terms = typeof limit === "number" ? glossaryTerms.slice(0, limit) : glossaryTerms;
+---
+
+<section class="glossary-box" aria-labelledby="glossary-title">
+  <div class="section-header compact-header">
+    <div>
+      <p class="eyebrow">高校生でも分かる用語</p>
+      <h2 id="glossary-title">{title}</h2>
+      <p>難しい言葉は、まず生活の言葉に置き換えてから読み進めます。</p>
+    </div>
+  </div>
+  <div class="glossary-grid">
+    {
+      terms.map((item) => (
+        <article class="glossary-card">
+          <h3>{item.term}</h3>
+          <p class="plain">{item.plain}</p>
+          <p>{item.note}</p>
+        </article>
+      ))
+    }
+  </div>
+</section>
