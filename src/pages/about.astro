@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import { sitePath } from "@utils/paths";
 
 const profilePoints = [
   "家庭用エアコンの修理・点検現場で学んだ基礎知識を、一般家庭向けに噛み砕いて整理します。",
@@ -81,8 +82,8 @@ const transparencyItems = [
         {transparencyItems.map((item) => <li>{item}</li>)}
       </ul>
       <div class="button-row">
-        <a class="button" href="/disclaimer/">広告表記・免責事項を見る</a>
-        <a class="button secondary" href="/products/">商品比較を見る</a>
+        <a class="button" href={sitePath("/disclaimer/")}>広告表記・免責事項を見る</a>
+        <a class="button secondary" href={sitePath("/products/")}>商品比較を見る</a>
       </div>
     </div>
   </section>
