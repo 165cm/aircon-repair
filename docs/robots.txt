@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://165cm.github.io/sitemap.xml
+Sitemap: https://165cm.github.io/aircon-repair/sitemap.xml
