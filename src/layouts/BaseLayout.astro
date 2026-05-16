@@ -1,5 +1,6 @@
 ---
 import { affiliate } from "@data/affiliate";
+import { sitePath } from "@utils/paths";
 import "@styles/global.css";
 
 type Props = {
@@ -38,18 +39,18 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, affiliate.siteUrl)
   <body>
     <header class="site-header">
       <div class="container nav">
-        <a class="brand" href="/">
+        <a class="brand" href={sitePath("/")}>
           <span class="brand-mark" aria-hidden="true">冷</span>
           <span>{affiliate.siteName}</span>
         </a>
         <nav class="nav-links" aria-label="主要ナビゲーション">
-          <a href="/diagnosis/">症状診断</a>
-          <a href="/by-size/">畳数で選ぶ</a>
-          <a href="/basics/">基礎知識</a>
-          <a href="/cleaning-prevention/">掃除・予防</a>
-          <a href="/products/">商品比較</a>
-          <a href="/jobs/">求人・副業</a>
-          <a href="/disclaimer/">広告表記</a>
+          <a href={sitePath("/diagnosis/")}>症状診断</a>
+          <a href={sitePath("/by-size/")}>畳数で選ぶ</a>
+          <a href={sitePath("/basics/")}>基礎知識</a>
+          <a href={sitePath("/cleaning-prevention/")}>掃除・予防</a>
+          <a href={sitePath("/products/")}>商品比較</a>
+          <a href={sitePath("/jobs/")}>求人・副業</a>
+          <a href={sitePath("/disclaimer/")}>広告表記</a>
         </nav>
       </div>
     </header>
@@ -67,16 +68,16 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, affiliate.siteUrl)
         </div>
         <div class="footer-links">
           <strong>コンテンツ</strong>
-          <a href="/diagnosis/">症状診断</a>
-          <a href="/by-size/">畳数で選ぶ</a>
-          <a href="/products/">商品比較</a>
-          <a href="/jobs/">求人・副業</a>
+          <a href={sitePath("/diagnosis/")}>症状診断</a>
+          <a href={sitePath("/by-size/")}>畳数で選ぶ</a>
+          <a href={sitePath("/products/")}>商品比較</a>
+          <a href={sitePath("/jobs/")}>求人・副業</a>
         </div>
         <div class="footer-links">
           <strong>運営情報</strong>
-          <a href="/disclaimer/">広告表記・免責</a>
-          <a href="/about/">運営者・編集方針</a>
-          <a href="/sitemap.xml">サイトマップ</a>
+          <a href={sitePath("/disclaimer/")}>広告表記・免責</a>
+          <a href={sitePath("/about/")}>運営者・編集方針</a>
+          <a href={sitePath("/sitemap.xml")}>サイトマップ</a>
         </div>
       </div>
     </footer>
