@@ -1,6 +1,7 @@
 import { getCollection } from "astro:content";
 import { affiliate } from "@data/affiliate";
 import { productCategories } from "@data/products";
+import { absoluteUrl } from "@utils/paths";
 
 export async function GET() {
   const articles = await getCollection("articles");
@@ -19,7 +20,7 @@ export async function GET() {
   const articlePaths = articles.map((article) => `/articles/${article.slug}/`);
   const productPaths = productCategories.map((product) => `/products/${product.id}/`);
   const urls = [...staticPaths, ...articlePaths, ...productPaths]
-    .map((path) => `<url><loc>${new URL(path, affiliate.siteUrl).toString()}</loc></url>`)
+    .map((path) => `<url><loc>${absoluteUrl(path)}</loc></url>`)
     .join("");
 
   return new Response(`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls}</urlset>`, {
