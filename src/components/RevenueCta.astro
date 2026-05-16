@@ -1,5 +1,6 @@
 ---
 import { affiliate } from "@data/affiliate";
+import { sitePath } from "@utils/paths";
 
 type Props = {
   variant?: "contractor" | "jobs" | "products";
@@ -32,7 +33,7 @@ const copy = {
 <aside class="panel">
   <h2>{copy.title}</h2>
   <p>{copy.body}</p>
-  <a class={`button ${variant === "jobs" ? "warm" : ""}`} href={copy.href} rel={copy.href.startsWith("http") ? "sponsored nofollow noopener" : undefined} target={copy.href.startsWith("http") ? "_blank" : undefined}>
+  <a class={`button ${variant === "jobs" ? "warm" : ""}`} href={sitePath(copy.href)} rel={copy.href.startsWith("http") ? "sponsored nofollow noopener" : undefined} target={copy.href.startsWith("http") ? "_blank" : undefined}>
     {copy.label}
   </a>
 </aside>
