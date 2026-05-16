@@ -1,0 +1,258 @@
+---
+import { getCollection } from "astro:content";
+import ArticleCard from "@components/ArticleCard.astro";
+import AmazonLink from "@components/AmazonLink.astro";
+import ProductGrid from "@components/ProductGrid.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { affiliate } from "@data/affiliate";
+import { productById, replacementProducts } from "@data/products";
+
+const articles = (await getCollection("articles"))
+  .filter((article) => article.data.category === "buying")
+  .sort((a, b) => {
+    const order = ["aircon-6jou-choose", "aircon-8jou-choose", "aircon-10jou-choose", "aircon-14jou-choose", "aircon-18jou-choose"];
+    return order.indexOf(a.slug) - order.indexOf(b.slug);
+  });
+
+const sizeGuides = [
+  {
+    label: "6畳",
+    room: "寝室・子供部屋・書斎",
+    base: "6畳用",
+    capacity: "2.2kW目安",
+    upgrade: "木造最上階、西日、日中の長時間利用なら8畳用も比較",
+    article: "/articles/aircon-6jou-choose/",
+    product: "/products/aircon-6tatami/",
+    productId: "aircon-6tatami"
+  },
+  {
+    label: "8畳",
+    room: "子供部屋・書斎・夫婦寝室",
+    base: "8畳用",
+    capacity: "2.5kW目安",
+    upgrade: "木造・大きな窓・在宅勤務なら10畳用も比較",
+    article: "/articles/aircon-8jou-choose/",
+    product: "/products/aircon-10tatami/",
+    productId: "aircon-10tatami"
+  },
+  {
+    label: "10畳",
+    room: "独立リビング・広めの寝室",
+    base: "10畳用",
+    capacity: "2.8kW目安",
+    upgrade: "LDK続き、キッチン熱、西日があるなら14畳用も比較",
+    article: "/articles/aircon-10jou-choose/",
+    product: "/products/aircon-10tatami/",
+    productId: "aircon-10tatami"
+  },
+  {
+    label: "14畳",
+    room: "LDK・家族の集まる部屋",
+    base: "14畳用",
+    capacity: "4.0kW目安",
+    upgrade: "吹き抜け・18畳以上・断熱弱めなら大型機や現地相談",
+    article: "/articles/aircon-14jou-choose/",
+    product: "/products/aircon-14tatami/",
+    productId: "aircon-14tatami"
+  },
+  {
+    label: "18畳以上",
+    room: "大きなLDK・吹き抜け・店舗併用",
+    base: "18畳以上",
+    capacity: "5.6kW以上目安",
+    upgrade: "200V、専用回路、室外機重量、業務用候補まで確認",
+    article: "/articles/aircon-18jou-choose/",
+    product: "/products/aircon-14tatami/",
+    productId: "aircon-14tatami"
+  }
+].map((guide) => ({
+  ...guide,
+  productData: productById(guide.productId)
+}));
+
+const replacementDecisionRows = [
+  {
+    check: "使用年数",
+    repair: "購入から5年以内で、単発の軽い不調",
+    replace: "10年以上使用、または同じ故障を繰り返す"
+  },
+  {
+    check: "修理見積もり",
+    repair: "数万円以内で、保証や部品供給が残っている",
+    replace: "新品本体と工事費の半額前後まで上がる"
+  },
+  {
+    check: "症状の数",
+    repair: "リモコン、フィルター、室外機周辺など原因が限定的",
+    replace: "冷えない、水漏れ、異音、電気代上昇が重なる"
+  },
+  {
+    check: "部屋との相性",
+    repair: "畳数・日当たり・断熱に対して能力が足りている",
+    replace: "能力不足で常に強運転、広いLDKに小さい機種を使っている"
+  }
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "畳数別エアコン選びガイド",
+  itemListElement: articles.map((article, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    url: new URL(`/articles/${article.slug}/`, affiliate.siteUrl).toString(),
+    name: article.data.title
+  }))
+};
+---
+
+<BaseLayout
+  title="畳数でエアコンを選ぶ"
+  description="6畳、8畳、10畳、14畳、18畳以上の部屋に合うエアコンの選び方と、購入前の工事・電源確認をまとめます。"
+  jsonLd={jsonLd}
+>
+  <section class="container section">
+    <p class="eyebrow">買い替え高単価導線</p>
+    <h1>畳数でエアコンを選ぶ</h1>
+    <p class="lead">修理費が高い時や10年以上使っている時は、部屋の広さに合うエアコン本体も比較しましょう。畳数、日当たり、断熱、電源、標準工事の範囲を確認します。</p>
+    <div class="hero-actions">
+      <a class="button" href="#size-guide">畳数早見表を見る</a>
+      <a class="button warm" href="#replacement">本体候補を見る</a>
+      <a class="button secondary" href="#repair-or-replace">修理との比較を見る</a>
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="notice">
+      畳数表示は住宅条件で変わります。木造、最上階、西日、大きな窓、LDK続きの部屋ではワンサイズ上を検討することがあります。14畳以上は200Vや専用回路が必要な場合があります。
+    </div>
+  </section>
+
+  <section id="repair-or-replace" class="container section">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">修理か買い替えか</p>
+        <h2>本体購入を検討する基準</h2>
+        <p>危険な分解修理は避けつつ、修理待ちの間に買い替え候補も比較できるようにします。</p>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>確認項目</th>
+            <th>修理寄り</th>
+            <th>買い替え寄り</th>
+          </tr>
+        </thead>
+        <tbody>
+          {replacementDecisionRows.map((row) => (
+            <tr>
+              <th>{row.check}</th>
+              <td>{row.repair}</td>
+              <td>{row.replace}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="size-guide" class="container section">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">最短で選ぶ</p>
+        <h2>畳数別の早見表</h2>
+        <p>まず部屋の広さで候補を決め、日当たり・断熱・LDK続きならワンサイズ上も比較します。</p>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>部屋</th>
+            <th>主な用途</th>
+            <th>基本候補</th>
+            <th>冷房能力</th>
+            <th>ワンサイズ上を考える条件</th>
+            <th>導線</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sizeGuides.map((guide) => (
+            <tr>
+              <th>{guide.label}</th>
+              <td>{guide.room}</td>
+              <td>{guide.base}</td>
+              <td>{guide.capacity}</td>
+              <td>{guide.upgrade}</td>
+              <td>
+                <div class="table-actions">
+                  <a href={guide.article}>記事</a>
+                  <a href={guide.product}>商品詳細</a>
+                  {guide.productData && (
+                    <AmazonLink
+                      product={guide.productData}
+                      pageType="by-size"
+                      linkPosition={`size-guide-${guide.productId}`}
+                      label="Amazonで見る"
+                      variant="inline"
+                    />
+                  )}
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="grid">
+      <div class="card">
+        <p class="eyebrow">サイズアップ</p>
+        <h3>能力不足は「故障ではない冷えない」原因</h3>
+        <p>部屋が広い、日当たりが強い、LDK続き、最上階、古い木造では、表示畳数どおりでも冷えにくいことがあります。</p>
+      </div>
+      <div class="card">
+        <p class="eyebrow">工事費</p>
+        <h3>本体価格だけで判断しない</h3>
+        <p>標準工事、配管延長、化粧カバー、室外機特殊設置、電源変更は追加費用になりやすい項目です。</p>
+      </div>
+      <div class="card">
+        <p class="eyebrow">高単価CV</p>
+        <h3>修理見積もりと同時に比較</h3>
+        <p>10年以上使用、複数症状、修理費が新品の半額前後なら、修理相談と本体候補の比較を並行します。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="notice safe">
+      購入前は「標準工事込み」の範囲、既存配管を使うか、配管穴、室外機置き場、コンセント形状、100V/200Vを確認してください。電源変更や専用回路の工事は資格者・販売店へ相談します。
+    </div>
+  </section>
+
+  <section id="replacement" class="container section">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">記事で比較</p>
+        <h2>部屋サイズ別の選び方</h2>
+      </div>
+    </div>
+    <div class="grid">
+      {articles.map((article) => <ArticleCard article={article} />)}
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">本体候補</p>
+        <h2>まず比較したいエアコン本体</h2>
+      </div>
+    </div>
+    <ProductGrid products={replacementProducts} pageType="by-size" linkPosition="replacement-grid" />
+  </section>
+</BaseLayout>
