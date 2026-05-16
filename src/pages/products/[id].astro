@@ -135,7 +135,7 @@ const jsonLd = [{
         </div>
       )}
       <div class="button-row">
-        <AmazonLink product={product} pageType="product-detail" linkPosition="hero" label="Amazonで価格・在庫を見る" />
+        <AmazonLink product={product} pageType="product-detail" linkPosition="hero" label="Amazonの商品ページを見る" />
         <a class="button secondary" href={sitePath("/products/")}>商品一覧へ戻る</a>
       </div>
     </div>
@@ -150,7 +150,7 @@ const jsonLd = [{
           {purchaseChecks.map((check) => <li>{check}</li>)}
         </ul>
         <div class="button-row">
-          <AmazonLink product={product} pageType="product-detail" linkPosition="checklist" label="Amazonで仕様を確認する" />
+          <AmazonLink product={product} pageType="product-detail" linkPosition="checklist" label="Amazonで仕様・在庫を確認する" />
         </div>
       </div>
       <div class="card">
