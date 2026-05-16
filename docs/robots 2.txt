@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://aircon-refuge.example.com/sitemap.xml
