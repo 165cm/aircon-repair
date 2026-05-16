@@ -1,0 +1,35 @@
+---
+import { getCollection } from "astro:content";
+import ArticleCard from "@components/ArticleCard.astro";
+import RevenueCta from "@components/RevenueCta.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const articles = (await getCollection("articles"))
+  .filter((article) => article.data.category === "career")
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout
+  title="エアコン修理・クリーニングの求人入門"
+  description="空調設備、エアコン修理、クリーニングスタッフの仕事を初心者向けに紹介し、求人サイトへの導線をまとめます。"
+>
+  <section class="container section">
+    <p class="eyebrow">繁忙期の仕事を知る</p>
+    <h1>エアコン修理・クリーニングの求人入門</h1>
+    <p class="lead">利用者として学んだ基礎知識を、仕事選びにもつなげます。未経験募集でも、資格が必要な作業と補助作業の違いは確認しましょう。</p>
+  </section>
+  <section class="container section">
+    <div class="grid two">
+      <RevenueCta variant="jobs" />
+      <div class="notice safe">
+        <h2>求人を見る時のチェック</h2>
+        <p>業務範囲、研修、資格取得支援、繁忙期の勤務時間、電気工事士資格が必要な作業を誰が担当するかを確認します。</p>
+      </div>
+    </div>
+  </section>
+  <section class="container section">
+    <div class="grid">
+      {articles.map((article) => <ArticleCard article={article} />)}
+    </div>
+  </section>
+</BaseLayout>
