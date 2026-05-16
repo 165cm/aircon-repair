@@ -5,6 +5,7 @@ import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { affiliate } from "@data/affiliate";
 import { productsByIds, productsForSymptom, replacementProducts } from "@data/products";
+import { absoluteUrl } from "@utils/paths";
 
 export async function getStaticPaths() {
   const articles = await getCollection("articles");
@@ -23,7 +24,7 @@ const products = [
 ];
 const sidebarProducts = frontmatterProducts.length > 0 ? frontmatterProducts.slice(0, 2) : products.slice(0, 2);
 const relatedProducts = frontmatterProducts.length > 0 ? frontmatterProducts : products.slice(0, 8);
-const canonical = new URL(`/articles/${article.slug}/`, affiliate.siteUrl).toString();
+const canonical = absoluteUrl(`/articles/${article.slug}/`);
 const ctaVariant = article.data.recommendedCta === "jobs" ? "jobs" : article.data.recommendedCta === "products" ? "products" : "contractor";
 const showReplacement = article.data.symptoms.includes("冷えない") || article.data.symptoms.includes("修理");
 const jsonLd = [
@@ -46,7 +47,7 @@ const jsonLd = [
       name: product.name,
       brand: product.brand,
       category: product.category,
-      url: new URL(`/products/${product.id}/`, affiliate.siteUrl).toString()
+      url: absoluteUrl(`/products/${product.id}/`)
     })),
     mainEntityOfPage: canonical
   },
