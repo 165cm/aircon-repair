@@ -193,6 +193,22 @@ export const productCategories: ProductCategory[] = [
     ]
   },
   {
+    id: "aircon-8tatami",
+    name: "8畳用 ルームエアコン 工事費込み候補",
+    brand: "買い替え候補",
+    type: "replacement",
+    category: "aircon-main",
+    description: "子供部屋・夫婦寝室・書斎向け。6畳では能力不足を感じる時や、木造・西日の部屋で比較したい候補です。",
+    symptoms: ["冷えない", "買い替え", "8畳", "修理比較"],
+    safetyNote: "本体購入時は標準工事の範囲、専用コンセント、配管穴、電圧、追加工事費を必ず確認してください。",
+    amazonKeyword: "エアコン 8畳 工事費込み ルームエアコン",
+    image: "/images/products/aircon-6tatami.jpg",
+    whyPick: "6畳寝室からのサイズアップ需要と、木造・西日条件の部屋からの流入に向く。",
+    priceBand: "8〜13万円台",
+    bestFor: "子供部屋、夫婦寝室、在宅勤務の書斎",
+    cautions: ["標準工事込みか確認", "室外機置き場と配管穴を確認", "木造最上階・西日では10畳も比較"]
+  },
+  {
     id: "aircon-10tatami",
     name: "10畳用 ルームエアコン 工事費込み候補",
     brand: "買い替え候補",
@@ -286,6 +302,22 @@ export const productCategories: ProductCategory[] = [
       { label: "価格.com仕様", url: "https://kakaku.com/item/K0001676982/spec/" },
       { label: "製品仕様参考", url: "https://www.takara-co.jp/products/S405ATEP-W" }
     ]
+  },
+  {
+    id: "aircon-18tatami",
+    name: "18畳以上 大型ルームエアコン候補",
+    brand: "買い替え候補",
+    type: "replacement",
+    category: "aircon-main",
+    description: "大きなLDK・吹き抜け・広いワンルーム向け。200V・専用回路が必須になることが多く、現地調査が重要な候補です。",
+    symptoms: ["冷えない", "買い替え", "大型", "省エネ"],
+    safetyNote: "200V・専用回路の確認が必須です。室外機サイズと搬入経路、電気工事の必要性を販売店・業者へ必ず確認してください。",
+    amazonKeyword: "エアコン 18畳 200V 工事費込み ルームエアコン 大型",
+    image: "/images/products/aircon-14tatami.jpg",
+    whyPick: "大空間向けで単価が高く、18畳以上の検索需要から丁寧に条件確認を促す導線に向く。",
+    priceBand: "20〜40万円台以上",
+    bestFor: "18畳以上のLDK、吹き抜けのある大空間",
+    cautions: ["単相200V・三相など電源条件を確認", "専用回路と専用コンセントが必要", "室外機の重量・搬入経路を事前確認", "家庭用の限界を超える場合は業務用も要検討"]
   },
   {
     id: "corona-dehumidifier",

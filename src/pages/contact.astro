@@ -1,0 +1,67 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { sitePath } from "@utils/paths";
+
+const breadcrumbs = [
+  { label: "ホーム", href: "/" },
+  { label: "お問い合わせ" }
+];
+---
+
+<BaseLayout
+  title="お問い合わせ"
+  description="エアコン修理高等学校へのお問い合わせページです。掲載内容の誤り、広告・アフィリエイトに関するご意見はこちらからご連絡ください。"
+  breadcrumbs={breadcrumbs}
+>
+  <section class="container section">
+    <p class="eyebrow">運営情報</p>
+    <h1>お問い合わせ</h1>
+    <div class="article-content">
+      <p>掲載内容に関するご意見・誤りのご指摘・広告に関するお問い合わせは、下記フォームよりお送りください。</p>
+
+      <div class="notice safe">
+        <strong>エアコンの症状・修理に関するご質問への個別回答はできません。</strong>
+        症状の確認は<a href={sitePath("/diagnosis/")}>症状診断ページ</a>をご利用いただき、専門的な判断が必要な場合は修理業者へご相談ください。
+      </div>
+
+      <h2>お問い合わせフォーム</h2>
+
+      <div class="contact-form-wrapper">
+        <!-- お問い合わせフォームをここに埋め込みます -->
+        <p class="muted-notice">お問い合わせフォームを準備中です。しばらくお待ちください。</p>
+      </div>
+
+      <h2>お問い合わせの種類</h2>
+      <ul>
+        <li>掲載情報の誤りや更新に関するご指摘</li>
+        <li>広告・アフィリエイトリンクに関するご意見</li>
+        <li>サイトの運営方針に関するご質問</li>
+        <li>掲載商品・業者紹介に関するご意見</li>
+      </ul>
+
+      <h2>返答について</h2>
+      <p>内容を確認のうえ、必要に応じてご連絡します。すべてのお問い合わせへの個別返答をお約束するものではありません。</p>
+
+      <p><a href={sitePath("/disclaimer/")}>広告表記・免責事項</a>もあわせてご確認ください。</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.contact-form-wrapper {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 32px;
+  background: var(--surface);
+  text-align: center;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.muted-notice {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+</style>
