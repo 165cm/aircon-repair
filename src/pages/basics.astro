@@ -18,7 +18,10 @@ const chapters = [
       "まず「冷たい空気を作る箱」ではなく、部屋の熱を室外機から外へ逃がす機械として理解します。ここが分かると、冷えない原因を空気・熱・水・電気に分けて見られます。",
     takeaway: "フィルターと室外機は、熱を運ぶ流れの入口と出口。",
     primarySlug: "how-aircon-works",
-    deepDiveSlugs: ["aircon-history"]
+    deepDiveSlugs: ["aircon-history"],
+    image: "/images/articles/basics-heat-flow.webp",
+    imageAlt: "室内機から室外機へ熱を運ぶ流れの図解",
+    imageCaption: "冷房は冷たい空気を作るだけでなく、部屋の熱を外へ運ぶ仕組みです。"
   },
   {
     number: "第2章",
@@ -28,7 +31,10 @@ const chapters = [
       "初心者が見てよいのは、リモコン設定、フィルター、室外機まわり、ドレンホース先端のような外側だけです。内部洗浄、冷媒、基板、配線は専門領域として切り分けます。",
     takeaway: "外側確認で改善しなければ、分解せずに相談へ進む。",
     primarySlug: "filter-cleaning",
-    deepDiveSlugs: ["outdoor-unit-check", "drain-hose", "cleaning-spray-risk"]
+    deepDiveSlugs: ["outdoor-unit-check", "drain-hose", "cleaning-spray-risk"],
+    image: "/images/articles/basics-safe-check-zones.webp",
+    imageAlt: "フィルター、リモコン、室外機、ドレンホース先端の安全確認範囲",
+    imageCaption: "初心者が見る場所は、分解しない外側の確認に限ります。"
   },
   {
     number: "第3章",
@@ -58,7 +64,10 @@ const chapters = [
       "最後に、危険サイン、使用年数、修理見積もり、部屋との相性で判断します。10年以上・複数症状・高額修理なら、修理相談と同時に買い替え候補も比較します。",
     takeaway: "迷う時間を減らすために、相談前メモを作っておく。",
     primarySlug: "call-contractor",
-    deepDiveSlugs: ["installation-cost", "aircon-18jou-choose"]
+    deepDiveSlugs: ["installation-cost", "aircon-18jou-choose"],
+    image: "/images/articles/basics-repair-replace-decision.webp",
+    imageAlt: "修理メモ、見積もり、畳数表を見ながら判断するイメージ",
+    imageCaption: "相談前メモと見積もりを並べると、修理・掃除・買い替えの判断が速くなります。"
   }
 ].map((chapter) => ({
   ...chapter,
@@ -116,6 +125,12 @@ const deepDiveArticles = chapters
             <div>
               <h3>{chapter.title}</h3>
               <p>{chapter.summary}</p>
+              {chapter.image && (
+                <figure class="chapter-figure">
+                  <img src={sitePath(chapter.image)} alt={chapter.imageAlt} loading="lazy" />
+                  <figcaption>{chapter.imageCaption}</figcaption>
+                </figure>
+              )}
               <p class="small"><strong>覚えること:</strong> {chapter.takeaway}</p>
               {chapter.primaryArticle && (
                 <a

@@ -498,6 +498,26 @@ h3 {
   color: var(--muted);
 }
 
+.chapter-figure {
+  margin: 14px 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--surface-soft);
+}
+
+.chapter-figure img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.chapter-figure figcaption {
+  padding: 10px 12px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
 .chapter-meta {
   display: grid;
   align-content: start;
