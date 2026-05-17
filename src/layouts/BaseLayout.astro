@@ -17,7 +17,7 @@ type Props = {
 const { title, description, canonical, jsonLd, ogImage, breadcrumbs } = Astro.props;
 const pageTitle = title === affiliate.siteName ? title : `${title} | ${affiliate.siteName}`;
 const canonicalUrl = canonical ?? absoluteUrl(Astro.url.pathname);
-const ogImageUrl = ogImage ? absoluteUrl(ogImage) : absoluteUrl("/images/aircon-hero.png");
+const ogImageUrl = ogImage ? absoluteUrl(ogImage) : absoluteUrl("/images/trust-hero-aircon-check.webp");
 
 const breadcrumbJsonLd = breadcrumbs && breadcrumbs.length > 0
   ? {
@@ -91,6 +91,24 @@ const breadcrumbJsonLd = breadcrumbs && breadcrumbs.length > 0
     <main>
       <slot />
     </main>
+    <script is:inline>
+      if (!window.__airconCvrTrackingReady) {
+        window.__airconCvrTrackingReady = true;
+        document.addEventListener("click", (event) => {
+          const target = event.target instanceof Element ? event.target.closest("[data-cvr-action]") : null;
+          if (!target) return;
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: "cvr_action_click",
+            action: target.getAttribute("data-cvr-action"),
+            action_kind: target.getAttribute("data-action-kind"),
+            link_url: target.getAttribute("href"),
+            link_text: target.textContent?.trim()
+          });
+        });
+      }
+    </script>
     <footer class="site-footer">
       <div class="container footer-grid">
         <div>

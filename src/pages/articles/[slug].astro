@@ -1,10 +1,12 @@
 ---
 import { getCollection, render } from "astro:content";
+import ActionPanel, { type ActionItem } from "@components/ActionPanel.astro";
 import GlossaryBox from "@components/GlossaryBox.astro";
 import ProductGrid from "@components/ProductGrid.astro";
 import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { affiliate } from "@data/affiliate";
+import { diagnosisItems } from "@data/diagnosis";
 import { productsByIds, productsForSymptom, replacementProducts } from "@data/products";
 import { absoluteUrl } from "@utils/paths";
 
@@ -33,6 +35,42 @@ const breadcrumbs = [
 ];
 const ctaVariant = article.data.recommendedCta === "jobs" ? "jobs" : article.data.recommendedCta === "products" ? "products" : "contractor";
 const showReplacement = article.data.symptoms.includes("冷えない") || article.data.symptoms.includes("修理");
+const matchedDiagnosis = diagnosisItems.find((item) => item.articleSlugs.includes(article.slug)) ?? diagnosisItems[0];
+const articleActions = [
+  {
+    kind: "safe",
+    label: "症状診断で確認する",
+    href: `/diagnosis/#${matchedDiagnosis.id}`,
+    body: "危険サインと安全に見てよい場所を先に整理",
+    action: "article_diagnosis_click",
+    primary: article.data.recommendedCta === "learn"
+  },
+  {
+    kind: "products",
+    label: "補助用品を比較する",
+    href: relatedProducts.length > 0 ? "#mentioned-products" : "/products/",
+    body: "分解しない範囲で使える候補だけを見る",
+    action: "article_products_click",
+    primary: ctaVariant === "products"
+  },
+  {
+    kind: "replacement",
+    label: "買い替えも比較する",
+    href: showReplacement ? "#replacement" : "/by-size/",
+    body: "10年以上・高額修理なら畳数と工事条件を確認",
+    action: "article_replacement_click",
+    primary: showReplacement
+  },
+  {
+    kind: "contractor",
+    label: "業者相談の候補を見る",
+    href: affiliate.contractorAffiliateUrl,
+    body: "焦げ臭い・水が電源近く・金属音は無理しない",
+    action: "article_contractor_click",
+    external: true,
+    primary: ctaVariant === "contractor"
+  }
+] satisfies ActionItem[];
 const jsonLd = [
   {
     "@context": "https://schema.org",
@@ -98,7 +136,22 @@ const jsonLd = [
       <div class="notice safe">
         <strong>この授業の読み方:</strong> 難しい専門用語は下のミニ解説で確認できます。自力でできるのはフィルター、リモコン、室外機まわり、ドレンホース先端などの外側確認までです。
       </div>
+      <ActionPanel
+        eyebrow="この記事を読んだら"
+        title="迷ったら、危険サイン・補助用品・買い替えをここから選ぶ"
+        description="症状に合わせて、読者が次に取りやすい行動だけを並べています。"
+        items={articleActions}
+        image={showReplacement ? "/images/repair-or-replace.webp" : "/images/safe-check-flow.webp"}
+        imageAlt={showReplacement ? "修理費と買い替えを比較する机上のイメージ" : "安全なエアコン確認のイメージ"}
+        compact
+      />
       <Content />
+      <ActionPanel
+        eyebrow="次の一手"
+        title="この記事だけで判断しきれない時の行動"
+        items={articleActions}
+        compact
+      />
     </article>
     <aside class="sidebar">
       <GlossaryBox title="この記事で出やすい用語" limit={4} />

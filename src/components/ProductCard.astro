@@ -11,6 +11,11 @@ type Props = {
 };
 
 const { product, pageType = "product-card", linkPosition = "card" } = Astro.props;
+const amazonLabel = product.type === "replacement"
+  ? "工事費込み候補を確認する"
+  : product.category === "remote"
+    ? "対応機種・価格を確認する"
+    : "仕様・価格を確認する";
 ---
 
 <article class="card product-card">
@@ -34,6 +39,6 @@ const { product, pageType = "product-card", linkPosition = "card" } = Astro.prop
   }
   <div class="button-row compact">
     <a class="button secondary" href={sitePath(`/products/${product.id}/`)}>詳しく見る</a>
-    <AmazonLink product={product} pageType={pageType} linkPosition={linkPosition} label="Amazonの商品ページを見る" />
+    <AmazonLink product={product} pageType={pageType} linkPosition={linkPosition} label={amazonLabel} />
   </div>
 </article>

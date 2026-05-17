@@ -193,6 +193,26 @@ h3 {
   margin-top: 24px;
 }
 
+.trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.trust-strip span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  border: 1px solid #c8ded5;
+  border-radius: 8px;
+  padding: 6px 10px;
+  background: #f1faf5;
+  color: #244b36;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
 .button-row.compact {
   margin-top: auto;
 }
@@ -244,11 +264,35 @@ h3 {
   overflow: hidden;
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.24)),
-    url("/aircon-repair/images/aircon-hero.png") center / cover no-repeat;
+    url("/aircon-repair/images/trust-hero-aircon-check.webp") center / cover no-repeat;
+}
+
+.hero-trust-visual {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.18)),
+    url("/aircon-repair/images/trust-hero-aircon-check.webp") center / cover no-repeat;
+}
+
+.safe-check-visual {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.18)),
+    url("/aircon-repair/images/safe-check-flow.webp") center / cover no-repeat;
+}
+
+.diagnosis-hero {
+  padding-bottom: 20px;
+}
+
+.basics-hero {
+  padding-bottom: 20px;
 }
 
 .section {
   padding: 42px 0;
+}
+
+.tight-section {
+  padding-top: 14px;
 }
 
 .section-header {
@@ -323,6 +367,171 @@ h3 {
   border-left-color: var(--ok);
   background: #eff9f2;
   color: #234b34;
+}
+
+.action-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  gap: 20px;
+  align-items: stretch;
+  border: 1px solid #c8ded5;
+  border-radius: 8px;
+  padding: 18px;
+  background: linear-gradient(180deg, #ffffff 0%, #f4faf6 100%);
+  box-shadow: var(--shadow);
+}
+
+.compact-action-panel {
+  grid-template-columns: 1fr;
+}
+
+.action-panel-image {
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.action-panel-copy {
+  align-self: center;
+}
+
+.action-panel-copy p:not(.eyebrow) {
+  margin: 10px 0 0;
+  color: var(--muted);
+}
+
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.compact-action-panel .action-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.action-card {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  min-height: 96px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  background: var(--surface);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.action-card:hover {
+  border-color: var(--brand);
+  transform: translateY(-1px);
+}
+
+.action-card strong,
+.action-card small {
+  display: block;
+}
+
+.action-card small {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+.action-card.primary-action {
+  border-color: var(--brand);
+  background: #edf8f3;
+}
+
+.action-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background-color: #e5f4ec;
+  background-image: url("data:image/svg+xml,%3Csvg width='96' height='24' viewBox='0 0 96 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230b4d4a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12l5 5L20 6'/%3E%3Cpath d='M28 18v-7l8-6 8 6v7'/%3E%3Cpath d='M32 18v-5h8v5'/%3E%3Cpath d='M54 7h12v10H54z'/%3E%3Cpath d='M57 10h6M57 14h4'/%3E%3Cpath d='M76 17h16M78 17V8h12v9M81 11h6'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 152px 38px;
+  background-position: 0 50%;
+}
+
+.action-card[data-action-kind="contractor"] .action-icon {
+  background-color: #fff2e8;
+  background-position: -38px 50%;
+}
+
+.action-card[data-action-kind="products"] .action-icon {
+  background-color: #eef3fb;
+  background-position: -76px 50%;
+}
+
+.action-card[data-action-kind="replacement"] .action-icon {
+  background-color: #fff6d9;
+  background-position: -114px 50%;
+}
+
+.chapter-list {
+  display: grid;
+  gap: 14px;
+}
+
+.chapter-card {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 20px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.chapter-card h3 {
+  font-size: 1.32rem;
+}
+
+.chapter-card p {
+  color: var(--muted);
+}
+
+.chapter-meta {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
+.chapter-meta span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  border-radius: 8px;
+  padding: 6px 10px;
+  background: var(--surface-soft);
+  color: var(--brand-dark);
+  font-weight: 800;
+}
+
+.chapter-meta span:first-child {
+  background: var(--brand);
+  color: #fff;
+}
+
+.learning-toc {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.toc-panel ol {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0 0;
+  padding-left: 1.25rem;
 }
 
 .diagnosis-tabs {
@@ -438,6 +647,10 @@ h3 {
 
 .article-content {
   font-size: 1.03rem;
+}
+
+.article-content .action-panel {
+  margin: 20px 0 28px;
 }
 
 .article-content h2 {
@@ -559,6 +772,11 @@ h3 {
   .product-detail,
   .article-body,
   .diagnosis-result,
+  .action-panel,
+  .action-grid,
+  .compact-action-panel .action-grid,
+  .chapter-card,
+  .learning-toc,
   .grid,
   .grid.two,
 

@@ -4,33 +4,208 @@ import ArticleCard from "@components/ArticleCard.astro";
 import GlossaryBox from "@components/GlossaryBox.astro";
 import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
+import { sitePath } from "@utils/paths";
 
-const articles = (await getCollection("articles"))
-  .filter((article) => ["basics", "symptom"].includes(article.data.category))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const allArticles = await getCollection("articles");
+const articleBySlug = new Map(allArticles.map((article) => [article.slug, article]));
+
+const chapters = [
+  {
+    number: "第1章",
+    time: "3分",
+    title: "エアコンは熱を外へ運ぶ機械",
+    summary:
+      "まず「冷たい空気を作る箱」ではなく、部屋の熱を室外機から外へ逃がす機械として理解します。ここが分かると、冷えない原因を空気・熱・水・電気に分けて見られます。",
+    takeaway: "フィルターと室外機は、熱を運ぶ流れの入口と出口。",
+    primarySlug: "how-aircon-works",
+    deepDiveSlugs: ["aircon-history"]
+  },
+  {
+    number: "第2章",
+    time: "3分",
+    title: "自分で見てよい場所を覚える",
+    summary:
+      "初心者が見てよいのは、リモコン設定、フィルター、室外機まわり、ドレンホース先端のような外側だけです。内部洗浄、冷媒、基板、配線は専門領域として切り分けます。",
+    takeaway: "外側確認で改善しなければ、分解せずに相談へ進む。",
+    primarySlug: "filter-cleaning",
+    deepDiveSlugs: ["outdoor-unit-check", "drain-hose", "cleaning-spray-risk"]
+  },
+  {
+    number: "第3章",
+    time: "3分",
+    title: "症状を4つの型に分ける",
+    summary:
+      "冷えない、水漏れ、異音、リモコン不調は、最初に見る場所が違います。症状の型を決めると、商品を買うべきか、業者へ相談すべきか、買い替えも見るべきかが早くなります。",
+    takeaway: "症状名ではなく、危険度と次の行動で分ける。",
+    primarySlug: "not-cooling",
+    deepDiveSlugs: ["water-leak", "strange-noise", "remote-not-working", "smell-odor", "heating-not-working"]
+  },
+  {
+    number: "第4章",
+    time: "2分",
+    title: "電気代と効きの悪さを同じ地図で見る",
+    summary:
+      "電気代が高い時も、原因はフィルター、設定、室外機、畳数不足、年式に分けられます。効きが悪い症状と同じ順番で見れば、節電と故障判断を混同しにくくなります。",
+    takeaway: "節電は我慢ではなく、空気の流れと能力の見直し。",
+    primarySlug: "electric-bill-high",
+    deepDiveSlugs: ["aircon-6jou-choose", "aircon-10jou-choose", "aircon-14jou-choose"]
+  },
+  {
+    number: "第5章",
+    time: "3分",
+    title: "修理・掃除・買い替えの判断を決める",
+    summary:
+      "最後に、危険サイン、使用年数、修理見積もり、部屋との相性で判断します。10年以上・複数症状・高額修理なら、修理相談と同時に買い替え候補も比較します。",
+    takeaway: "迷う時間を減らすために、相談前メモを作っておく。",
+    primarySlug: "call-contractor",
+    deepDiveSlugs: ["installation-cost", "aircon-18jou-choose"]
+  }
+].map((chapter) => ({
+  ...chapter,
+  primaryArticle: articleBySlug.get(chapter.primarySlug),
+  deepDiveArticles: chapter.deepDiveSlugs
+    .map((slug) => articleBySlug.get(slug))
+    .filter((article) => Boolean(article))
+}));
+
+const coreArticles = chapters
+  .map((chapter) => chapter.primaryArticle)
+  .filter((article) => Boolean(article));
+
+const deepDiveArticles = chapters
+  .flatMap((chapter) => chapter.deepDiveArticles)
+  .filter((article, index, array) => array.findIndex((entry) => entry?.slug === article?.slug) === index);
 ---
 
 <BaseLayout
   title="エアコンの基礎知識"
-  description="冷房の仕組み、冷えない原因、水漏れ、異音、修理を呼ぶ目安を高校生でも分かる言葉で学べます。"
+  description="エアコンの仕組み、安全確認、症状別の見方、節電、修理・買い替え判断を、書籍の目次のような順番で学べます。"
 >
-  <section class="container section">
-    <p class="eyebrow">1時間目: 基礎</p>
-    <h1>エアコンの基礎知識</h1>
-    <p class="lead">空気を冷やす仕組みを、冷媒は「熱を運ぶガス」、ドレンホースは「水を外へ流す管」のように、身近な言葉へ置き換えて理解します。</p>
+  <section class="container hero basics-hero">
+    <div>
+      <p class="eyebrow">10〜15分で全体像をつかむ</p>
+      <h1>エアコンの基礎知識を、読む順番つきで学ぶ</h1>
+      <p class="lead">
+        まずはこのページを上から読めば、仕組み、安全確認、症状別判断、節電、修理・買い替えの考え方まで一通りつながります。
+        深掘りしたい章だけ、下の関連記事へ進んでください。
+      </p>
+      <div class="hero-actions">
+        <a class="button" href="#quick-course" data-cvr-action="basics_quick_course_click" data-action-kind="safe">10〜15分コースを読む</a>
+        <a class="button secondary" href="#deep-dive" data-cvr-action="basics_deep_dive_click" data-action-kind="safe">深掘り目次を見る</a>
+      </div>
+    </div>
+    <div class="panel visual-panel safe-check-visual" aria-label="エアコンの安全確認を学ぶイメージ"></div>
   </section>
+
+  <section id="quick-course" class="container section">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">書籍の目次のように読む</p>
+        <h2>ざっくり学ぶ5章</h2>
+        <p>この5章だけで、初心者が迷いやすい「どこを見て、どこから先は触らないか」を整理できます。</p>
+      </div>
+    </div>
+    <div class="chapter-list">
+      {
+        chapters.map((chapter, index) => (
+          <section class="chapter-card" id={`chapter-${index + 1}`}>
+            <div class="chapter-meta">
+              <span>{chapter.number}</span>
+              <span>{chapter.time}</span>
+            </div>
+            <div>
+              <h3>{chapter.title}</h3>
+              <p>{chapter.summary}</p>
+              <p class="small"><strong>覚えること:</strong> {chapter.takeaway}</p>
+              {chapter.primaryArticle && (
+                <a
+                  class="inline-link"
+                  href={sitePath(`/articles/${chapter.primaryArticle.slug}/`)}
+                  data-cvr-action="basics_primary_article_click"
+                  data-action-kind="safe"
+                >
+                  この章を記事で読む: {chapter.primaryArticle.data.title}
+                </a>
+              )}
+            </div>
+          </section>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="notice safe">
+      <strong>この順番で読む理由:</strong>
+      仕組みを先に知ると、フィルター・室外機・ドレンホースの確認理由が分かります。
+      その後に症状別の記事へ進むと、商品購入・業者相談・買い替え比較の判断がぶれにくくなります。
+    </div>
+  </section>
+
   <section class="container section">
     <GlossaryBox />
   </section>
-  <section class="container section">
-    <div class="grid">
-      {articles.map((article) => <ArticleCard article={article} />)}
+
+  <section id="deep-dive" class="container section">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">深掘り目次</p>
+        <h2>章ごとに詳しく読む</h2>
+        <p>必要な章だけ奥へ進めるように、基礎、掃除・予防、症状、節電、買い替え判断に分けています。</p>
+      </div>
+    </div>
+    <div class="learning-toc">
+      {
+        chapters.map((chapter, index) => (
+          <section class="panel toc-panel">
+            <p class="eyebrow">{chapter.number}</p>
+            <h3>{chapter.title}</h3>
+            <ol>
+              {chapter.primaryArticle && (
+                <li>
+                  <a href={sitePath(`/articles/${chapter.primaryArticle.slug}/`)}>{chapter.primaryArticle.data.title}</a>
+                </li>
+              )}
+              {chapter.deepDiveArticles.map((article) => (
+                <li>
+                  <a href={sitePath(`/articles/${article.slug}/`)}>{article.data.title}</a>
+                </li>
+              ))}
+            </ol>
+          </section>
+        ))
+      }
     </div>
   </section>
+
+  <section class="container section">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">最初に読む記事</p>
+        <h2>基礎コースの主教材</h2>
+      </div>
+    </div>
+    <div class="grid">
+      {coreArticles.map((article) => <ArticleCard article={article} />)}
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">もっと詳しく</p>
+        <h2>深掘り記事</h2>
+      </div>
+    </div>
+    <div class="grid">
+      {deepDiveArticles.map((article) => <ArticleCard article={article} />)}
+    </div>
+  </section>
+
   <section class="container section">
     <div class="grid two">
       <RevenueCta variant="products" />
-      <RevenueCta variant="jobs" />
+      <RevenueCta variant="replacement" />
     </div>
   </section>
 </BaseLayout>

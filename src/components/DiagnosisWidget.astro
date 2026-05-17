@@ -18,6 +18,8 @@ const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
           role="tab"
           aria-selected={item.id === first.id ? "true" : "false"}
           data-diagnosis-tab={item.id}
+          data-cvr-action="diagnosis_tab_click"
+          data-action-kind="safe"
         >
           {item.label}
         </button>
@@ -44,7 +46,7 @@ const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
       <p class="eyebrow">買い替え検討</p>
       <h3>新品比較へ進む目安</h3>
       <ul>{first.replacementSignals.map((signal) => <li>{signal}</li>)}</ul>
-      <a class="button warm" href={`${basePath}/products/#replacement`}>買い替え候補を見る</a>
+      <a class="button warm" href={`${basePath}/products/#replacement`} data-cvr-action="diagnosis_replacement_click" data-action-kind="replacement">買い替え候補を見る</a>
     </div>
   </div>
 </section>
@@ -82,17 +84,17 @@ const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
         <p class="eyebrow">買い替え検討</p>
         <h3>新品比較へ進む目安</h3>
         <ul>${item.replacementSignals.map((signal) => `<li>${signal}</li>`).join("")}</ul>
-        <a class="button warm" href="${basePath}/products/#replacement">買い替え候補を見る</a>
+        <a class="button warm" href="${basePath}/products/#replacement" data-cvr-action="diagnosis_replacement_click" data-action-kind="replacement">買い替え候補を見る</a>
       </div>
       <div class="card">
         <h3>関連する商品</h3>
         <ul>${products.map((product) => `<li>${product.name}</li>`).join("")}</ul>
-        <a class="button" href="${basePath}/products/">商品カテゴリを見る</a>
+        <a class="button" href="${basePath}/products/" data-cvr-action="diagnosis_products_click" data-action-kind="products">商品カテゴリを見る</a>
       </div>
       <div class="card">
         <h3>詳しく読む</h3>
         <ul>${item.articleSlugs.map((slug) => `<li><a href="${basePath}/articles/${slug}/">${slug}</a></li>`).join("")}</ul>
-        <a class="button secondary" href="${basePath}/diagnosis/">診断ページへ</a>
+        <a class="button secondary" href="${basePath}/diagnosis/#${item.id}" data-cvr-action="diagnosis_detail_click" data-action-kind="safe">診断ページへ</a>
       </div>
     `;
 
@@ -102,8 +104,21 @@ const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
   }
 
   tabs.forEach((tab) => {
-    tab.addEventListener("click", () => renderDiagnosis(tab.dataset.diagnosisTab));
+    tab.addEventListener("click", () => {
+      renderDiagnosis(tab.dataset.diagnosisTab);
+      if (tab.dataset.diagnosisTab) {
+        history.replaceState(null, "", `#${tab.dataset.diagnosisTab}`);
+      }
+    });
   });
 
-  renderDiagnosis(diagnosisItems[0].id);
+  const initialId = location.hash.replace("#", "");
+  renderDiagnosis(diagnosisItems.some((item) => item.id === initialId) ? initialId : diagnosisItems[0].id);
+
+  window.addEventListener("hashchange", () => {
+    const hashId = location.hash.replace("#", "");
+    if (diagnosisItems.some((item) => item.id === hashId)) {
+      renderDiagnosis(hashId);
+    }
+  });
 </script>

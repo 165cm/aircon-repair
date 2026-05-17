@@ -24,6 +24,8 @@ const {
   rel="sponsored nofollow noopener"
   target="_blank"
   data-amazon-link
+  data-cvr-action={product.type === "replacement" ? "amazon_replacement_click" : "amazon_support_click"}
+  data-action-kind={product.type === "replacement" ? "replacement" : "products"}
   data-item-id={product.id}
   data-item-name={product.name}
   data-page-type={pageType}
@@ -32,7 +34,7 @@ const {
   {label}
 </a>
 
-<script>
+<script is:inline>
   if (!window.__airconAmazonTrackingReady) {
     window.__airconAmazonTrackingReady = true;
     document.addEventListener("click", (event) => {

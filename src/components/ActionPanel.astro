@@ -1,0 +1,64 @@
+---
+import { sitePath } from "@utils/paths";
+
+export type ActionKind = "safe" | "contractor" | "products" | "replacement";
+
+export type ActionItem = {
+  kind: ActionKind;
+  label: string;
+  href: string;
+  body: string;
+  action: string;
+  external?: boolean;
+  primary?: boolean;
+};
+
+type Props = {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  items: ActionItem[];
+  image?: string;
+  imageAlt?: string;
+  compact?: boolean;
+};
+
+const {
+  eyebrow = "次にやること",
+  title,
+  description,
+  items,
+  image,
+  imageAlt = "",
+  compact = false
+} = Astro.props;
+---
+
+<aside class={`action-panel ${compact ? "compact-action-panel" : ""}`}>
+  {image && <img class="action-panel-image" src={sitePath(image)} alt={imageAlt} loading="lazy" />}
+  <div class="action-panel-copy">
+    <p class="eyebrow">{eyebrow}</p>
+    <h2>{title}</h2>
+    {description && <p>{description}</p>}
+  </div>
+  <div class="action-grid">
+    {
+      items.map((item) => (
+        <a
+          class={`action-card ${item.primary ? "primary-action" : ""}`}
+          data-action-kind={item.kind}
+          data-cvr-action={item.action}
+          href={sitePath(item.href)}
+          rel={item.external ? "sponsored nofollow noopener" : undefined}
+          target={item.external ? "_blank" : undefined}
+        >
+          <span class="action-icon" aria-hidden="true"></span>
+          <span>
+            <strong>{item.label}</strong>
+            <small>{item.body}</small>
+          </span>
+        </a>
+      ))
+    }
+  </div>
+</aside>

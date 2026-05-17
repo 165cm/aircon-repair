@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import ArticleCard from "@components/ArticleCard.astro";
+import ActionPanel, { type ActionItem } from "@components/ActionPanel.astro";
 import DiagnosisWidget from "@components/DiagnosisWidget.astro";
 import GlossaryBox from "@components/GlossaryBox.astro";
 import ProductGrid from "@components/ProductGrid.astro";
@@ -21,6 +22,37 @@ const buyingArticles = articles
     return order.indexOf(a.slug) - order.indexOf(b.slug);
   })
   .slice(0, 3);
+const heroActions = [
+  {
+    kind: "safe",
+    label: "冷えない・暑い",
+    href: "/diagnosis/#not-cooling",
+    body: "温湿度・フィルター・室外機まわりを確認",
+    action: "home_symptom_not_cooling_click",
+    primary: true
+  },
+  {
+    kind: "contractor",
+    label: "水漏れする",
+    href: "/diagnosis/#water-leak",
+    body: "電源まわりを避け、排水経路だけ安全確認",
+    action: "home_symptom_water_leak_click"
+  },
+  {
+    kind: "contractor",
+    label: "異音・振動",
+    href: "/diagnosis/#noise",
+    body: "金属音・焦げ臭さは使用停止を優先",
+    action: "home_symptom_noise_click"
+  },
+  {
+    kind: "products",
+    label: "リモコン不調",
+    href: "/diagnosis/#remote",
+    body: "電池・送信部・応急運転で切り分け",
+    action: "home_symptom_remote_click"
+  }
+] satisfies ActionItem[];
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -42,18 +74,34 @@ const jsonLd = {
   <section class="container hero">
     <div>
       <p class="eyebrow">エアコン修理の放課後ノート</p>
-      <h1>エアコン修理高等学校で、壊れたかもを安全に学ぶ</h1>
+      <h1>エアコンの不調を、危ない作業に進む前に切り分ける</h1>
       <p class="lead">
         冷えない・水漏れ・異音・掃除の困りごとを、高校生でも分かる言葉で整理します。
-        自分で見てよい場所、買い替えを考える目安、専門業者へ任せる作業をはっきり分けます。
+        自分で見てよい場所、業者へ任せるサイン、買い替えを比較する目安を最短で確認できます。
       </p>
+      <div class="trust-strip" aria-label="サイトの安全方針">
+        <span>分解修理を推奨しない</span>
+        <span>危険サインを先に表示</span>
+        <span>広告リンクは明記</span>
+      </div>
       <div class="hero-actions">
-        <a class="button" href={sitePath("/diagnosis/")}>症状診断を始める</a>
-        <a class="button warm" href={sitePath("/by-size/")}>畳数で買い替え比較</a>
-        <a class="button secondary" href={sitePath("/basics/")}>仕組みを学ぶ</a>
+        <a class="button" href={sitePath("/diagnosis/")} data-cvr-action="home_diagnosis_start_click" data-action-kind="safe">症状診断を始める</a>
+        <a class="button warm" href={sitePath("/by-size/")} data-cvr-action="home_replacement_compare_click" data-action-kind="replacement">畳数で買い替え比較</a>
+        <a class="button secondary" href={sitePath("/products/")} data-cvr-action="home_products_click" data-action-kind="products">補助用品を見る</a>
       </div>
     </div>
-    <div class="panel visual-panel" aria-label="エアコンの冷房サイクル図"></div>
+    <div class="panel visual-panel hero-trust-visual" aria-label="室内エアコンと温湿度計の写真イメージ"></div>
+  </section>
+
+  <section class="container section tight-section">
+    <ActionPanel
+      eyebrow="症状から最短で選ぶ"
+      title="いま近い症状を選ぶと、次の安全な行動へ進めます"
+      description="記事を探す前に、危険度・確認範囲・商品/業者/買い替えの目安を切り分けます。"
+      items={heroActions}
+      image="/images/safe-check-flow.webp"
+      imageAlt="フィルター、リモコン、室外機まわりを安全に確認するイメージ"
+    />
   </section>
 
   <section class="container section">
@@ -100,7 +148,7 @@ const jsonLd = {
   <section class="container section">
     <div class="grid two">
       <RevenueCta variant="contractor" />
-      <RevenueCta variant="jobs" />
+      <RevenueCta variant="replacement" />
     </div>
   </section>
 

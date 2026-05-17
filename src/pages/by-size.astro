@@ -117,9 +117,9 @@ const jsonLd = {
     <h1>畳数でエアコンを選ぶ</h1>
     <p class="lead">修理費が高い時や10年以上使っている時は、部屋の広さに合うエアコン本体も比較しましょう。畳数、日当たり、断熱、電源、標準工事の範囲を確認します。</p>
     <div class="hero-actions">
-      <a class="button" href="#size-guide">畳数早見表を見る</a>
-      <a class="button warm" href="#replacement">本体候補を見る</a>
-      <a class="button secondary" href="#repair-or-replace">修理との比較を見る</a>
+      <a class="button" href="#size-guide" data-cvr-action="by_size_table_click" data-action-kind="safe">畳数早見表を見る</a>
+      <a class="button warm" href="#replacement" data-cvr-action="by_size_replacement_click" data-action-kind="replacement">本体候補を見る</a>
+      <a class="button secondary" href="#repair-or-replace" data-cvr-action="by_size_repair_compare_click" data-action-kind="replacement">修理との比較を見る</a>
     </div>
   </section>
 
@@ -196,7 +196,7 @@ const jsonLd = {
                       product={guide.productData}
                       pageType="by-size"
                       linkPosition={`size-guide-${guide.productId}`}
-                      label="Amazonで見る"
+                      label="工事費込みを確認"
                       variant="inline"
                     />
                   )}

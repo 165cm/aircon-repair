@@ -1,26 +1,75 @@
 ---
+import ActionPanel, { type ActionItem } from "@components/ActionPanel.astro";
 import DiagnosisWidget from "@components/DiagnosisWidget.astro";
 import GlossaryBox from "@components/GlossaryBox.astro";
 import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
+
+const symptomActions = [
+  {
+    kind: "safe",
+    label: "冷えない・暑い",
+    href: "#not-cooling",
+    body: "熱中症リスクを優先し、風と室外機を確認",
+    action: "diagnosis_quick_not_cooling_click",
+    primary: true
+  },
+  {
+    kind: "contractor",
+    label: "水漏れする",
+    href: "#water-leak",
+    body: "電源付近を避け、外側の排水だけ確認",
+    action: "diagnosis_quick_water_leak_click"
+  },
+  {
+    kind: "contractor",
+    label: "異音・振動",
+    href: "#noise",
+    body: "金属音や焦げ臭さは使用停止を優先",
+    action: "diagnosis_quick_noise_click"
+  },
+  {
+    kind: "products",
+    label: "リモコン不調",
+    href: "#remote",
+    body: "電池交換と送信部確認で低リスクに切り分け",
+    action: "diagnosis_quick_remote_click"
+  }
+] satisfies ActionItem[];
 ---
 
 <BaseLayout
   title="症状別診断"
   description="冷えない、水漏れ、異音、リモコン不調、掃除の悩みを選び、高校生でも分かる安全確認と修理・買い替えの目安を確認できます。"
 >
-  <section class="container section">
-    <div class="section-header">
-      <div>
-        <p class="eyebrow">保健室みたいな症状チェック</p>
-        <h1>症状別診断</h1>
-        <p>この診断は修理手順ではなく、安全な切り分けです。冷媒は熱を運ぶガス、基板は電子部品の板です。どちらも初心者が触る場所ではありません。</p>
+  <section class="container hero diagnosis-hero">
+    <div>
+      <p class="eyebrow">保健室みたいな症状チェック</p>
+      <h1>症状別診断</h1>
+      <p class="lead">この診断は修理手順ではなく、安全な切り分けです。冷媒は熱を運ぶガス、基板は電子部品の板です。どちらも初心者が触る場所ではありません。</p>
+      <div class="hero-actions">
+        <a class="button" href="#diagnosis-title" data-cvr-action="diagnosis_start_click" data-action-kind="safe">診断を始める</a>
+        <a class="button warm" href="#danger-signs" data-cvr-action="diagnosis_danger_signs_click" data-action-kind="contractor">危険サインを見る</a>
       </div>
     </div>
-    <DiagnosisWidget />
+    <div class="panel visual-panel safe-check-visual" aria-label="安全な確認用品の写真イメージ"></div>
+  </section>
+
+  <section class="container section tight-section">
+    <ActionPanel
+      eyebrow="症状別クイック導線"
+      title="近い症状から、商品・業者・買い替えの判断へ進む"
+      description="危険な分解作業に進む前に、外側から見られる範囲だけを確認します。"
+      items={symptomActions}
+      compact
+    />
   </section>
 
   <section class="container section">
+    <DiagnosisWidget />
+  </section>
+
+  <section id="danger-signs" class="container section">
     <GlossaryBox limit={6} />
   </section>
 

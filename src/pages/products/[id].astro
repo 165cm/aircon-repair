@@ -31,6 +31,11 @@ const breadcrumbs = [
   { label: product.name }
 ];
 const isReplacement = product.type === "replacement";
+const amazonLabel = isReplacement
+  ? "工事費込み候補を確認する"
+  : product.category === "remote"
+    ? "対応機種・価格を確認する"
+    : "仕様・価格を確認する";
 const purchaseChecks = isReplacement
   ? [
       "標準工事込みか、追加工事になりやすい項目が何かを確認する",
@@ -128,7 +133,7 @@ const jsonLd = [{
           <h3>参考にした情報</h3>
           <ul class="source-list">
             {product.reviewSources.map((source) => (
-              <li><a href={source.url} rel="noopener" target="_blank">{source.label}</a></li>
+              <li><a href={source.url} rel="sponsored nofollow noopener" target="_blank">{source.label}</a></li>
             ))}
           </ul>
         </div>
@@ -140,7 +145,7 @@ const jsonLd = [{
         </div>
       )}
       <div class="button-row">
-        <AmazonLink product={product} pageType="product-detail" linkPosition="hero" label="Amazonの商品ページを見る" />
+        <AmazonLink product={product} pageType="product-detail" linkPosition="hero" label={amazonLabel} />
         <a class="button secondary" href={sitePath("/products/")}>商品一覧へ戻る</a>
       </div>
     </div>
@@ -165,8 +170,8 @@ const jsonLd = [{
           {stopChecks.map((check) => <li>{check}</li>)}
         </ul>
         <div class="button-row">
-          <a class="button warm" href={sitePath("/diagnosis/")}>症状診断へ</a>
-          <a class="button secondary" href={sitePath("/articles/call-contractor/")}>業者を呼ぶ目安</a>
+          <a class="button warm" href={sitePath("/diagnosis/")} data-cvr-action="product_diagnosis_click" data-action-kind="safe">症状診断へ</a>
+          <a class="button secondary" href={sitePath("/articles/call-contractor/")} data-cvr-action="product_contractor_article_click" data-action-kind="contractor">業者を呼ぶ目安</a>
         </div>
       </div>
     </div>
