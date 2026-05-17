@@ -3,16 +3,34 @@ import { affiliate } from "@data/affiliate";
 import { absoluteUrl, sitePath } from "@utils/paths";
 import "@styles/global.css";
 
+type Breadcrumb = { label: string; href?: string };
+
 type Props = {
   title: string;
   description: string;
   canonical?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  ogImage?: string;
+  breadcrumbs?: Breadcrumb[];
 };
 
-const { title, description, canonical, jsonLd } = Astro.props;
+const { title, description, canonical, jsonLd, ogImage, breadcrumbs } = Astro.props;
 const pageTitle = title === affiliate.siteName ? title : `${title} | ${affiliate.siteName}`;
 const canonicalUrl = canonical ?? absoluteUrl(Astro.url.pathname);
+const ogImageUrl = ogImage ? absoluteUrl(ogImage) : absoluteUrl("/images/aircon-hero.png");
+
+const breadcrumbJsonLd = breadcrumbs && breadcrumbs.length > 0
+  ? {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: breadcrumbs.map((crumb, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: crumb.label,
+        ...(crumb.href ? { item: absoluteUrl(crumb.href) } : {})
+      }))
+    }
+  : null;
 ---
 
 <!doctype html>
@@ -28,13 +46,10 @@ const canonicalUrl = canonical ?? absoluteUrl(Astro.url.pathname);
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:image" content={absoluteUrl("/images/aircon-hero.png")} />
+    <meta property="og:image" content={ogImageUrl} />
     <meta name="twitter:card" content="summary_large_image" />
-    {
-      jsonLd && (
-        <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-      )
-    }
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+    {breadcrumbJsonLd && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />}
   </head>
   <body>
     <header class="site-header">
@@ -57,6 +72,22 @@ const canonicalUrl = canonical ?? absoluteUrl(Astro.url.pathname);
     <div class="ad-disclosure">
       <div class="container">{affiliate.disclosure}</div>
     </div>
+    {breadcrumbs && breadcrumbs.length > 0 && (
+      <nav aria-label="パンくずリスト" class="breadcrumb">
+        <div class="container">
+          <ol class="breadcrumb-list">
+            {breadcrumbs.map((crumb, i) => (
+              <li>
+                {crumb.href
+                  ? <a href={sitePath(crumb.href)}>{crumb.label}</a>
+                  : <span aria-current="page">{crumb.label}</span>}
+                {i < breadcrumbs.length - 1 && <span class="breadcrumb-sep" aria-hidden="true">›</span>}
+              </li>
+            ))}
+          </ol>
+        </div>
+      </nav>
+    )}
     <main>
       <slot />
     </main>

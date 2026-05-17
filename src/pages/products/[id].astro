@@ -25,6 +25,11 @@ const relatedArticles = (await getCollection("articles"))
   .slice(0, 3);
 const categoryLabel = product.category ? categoryLabels[product.category] : "商品候補";
 const canonical = absoluteUrl(`/products/${product.id}/`);
+const breadcrumbs = [
+  { label: "ホーム", href: "/" },
+  { label: "商品比較", href: "/products/" },
+  { label: product.name }
+];
 const isReplacement = product.type === "replacement";
 const purchaseChecks = isReplacement
   ? [
@@ -93,7 +98,7 @@ const jsonLd = [{
 }];
 ---
 
-<BaseLayout title={product.name} description={`${product.name}の用途、向いている症状、購入前の注意点を安全重視でまとめています。`} canonical={canonical} jsonLd={jsonLd}>
+<BaseLayout title={product.name} description={`${product.name}の用途、向いている症状、購入前の注意点を安全重視でまとめています。`} canonical={canonical} jsonLd={jsonLd} ogImage={product.image} breadcrumbs={breadcrumbs}>
   <section class="container section">
     <p class="eyebrow">{categoryLabel}</p>
     <h1>{product.name}</h1>

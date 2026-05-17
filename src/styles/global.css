@@ -108,6 +108,42 @@ svg {
   padding: 9px 0;
 }
 
+.breadcrumb {
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+}
+
+.breadcrumb-list li {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.breadcrumb-list a {
+  color: var(--brand-dark);
+  text-decoration: none;
+}
+
+.breadcrumb-list a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-sep {
+  color: var(--line);
+}
+
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
