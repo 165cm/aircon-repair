@@ -14,7 +14,7 @@ pubDate: "2026-05-17"
 
 ---
 
-![エアコンの歴史タイムライン概観図](/images/articles/aircon-history-timeline.jpg)
+![エアコンの歴史タイムライン概観図](/images/articles/aircon-history-timeline.webp)
 *▲ 1902年から現代までの主な技術革新の流れ*
 
 ---
@@ -25,7 +25,7 @@ pubDate: "2026-05-17"
 
 ### 1902年｜世界初の「空気調和機」の誕生　★★
 
-![1902年 キャリア博士のエアコン原型イメージ](/images/articles/aircon-history-1902-carrier.jpg)
+![1902年 キャリア博士のエアコン原型イメージ](/images/articles/aircon-history-1902-carrier.webp)
 *▲ 印刷工場の湿度管理のために開発された、エアコンの原型*
 
 **🏢 企業：キャリア・コーポレーション（米国）**
@@ -38,7 +38,7 @@ pubDate: "2026-05-17"
 
 ### 1954年｜日本初の家庭用ルームエアコン　★★★
 
-![1950年代の日本の家庭用エアコンレトロイメージ](/images/articles/aircon-history-1954-japan-first.jpg)
+![1950年代の日本の家庭用エアコンレトロイメージ](/images/articles/aircon-history-1954-japan-first.webp)
 *▲ 昭和30年代、エアコンはごく一部の富裕層だけが購入できた高級品だった*
 
 **🏢 企業：東芝**
@@ -59,7 +59,7 @@ pubDate: "2026-05-17"
 
 ### 1973年｜オイルショックと省エネへの転換　★★★
 
-![1973年 オイルショックの省エネキャンペーンイメージ](/images/articles/aircon-history-1973-energy-crisis.jpg)
+![1973年 オイルショックの省エネキャンペーンイメージ](/images/articles/aircon-history-1973-energy-crisis.webp)
 *▲ 石油危機が、日本のエアコン省エネ競争の出発点となった*
 
 石油危機（オイルショック）により電力コストが急騰。メーカー各社が「消費電力をいかに減らすか」を本格的な課題として取り組み始めました。この転換がなければ、現代のエアコンの省エネ性能は生まれなかったかもしれません。
@@ -68,7 +68,7 @@ pubDate: "2026-05-17"
 
 ### 1980年｜インバーター技術の登場（最重要）　★★★★★
 
-![インバーター技術のイメージ図：定速モーターとインバーターモーターの比較](/images/articles/aircon-history-1980-inverter.jpg)
+![インバーター技術のイメージ図：定速モーターとインバーターモーターの比較](/images/articles/aircon-history-1980-inverter.webp)
 *▲ 定速モーターは「全開か停止」、インバーターは「無段階で調整」できる*
 
 **🏢 企業：三菱電機（霧ヶ峰シリーズ）**
@@ -98,7 +98,7 @@ pubDate: "2026-05-17"
 
 ### 1992〜2000年代｜冷媒の世代交代（フロン規制）　★★★
 
-![冷媒の歴史と変遷イメージ（ガスボンベと規制の流れ）](/images/articles/aircon-history-1992-refrigerant.jpg)
+![冷媒の歴史と変遷イメージ（ガスボンベと規制の流れ）](/images/articles/aircon-history-1992-refrigerant.webp)
 *▲ 冷媒の種類は環境規制の変化に伴い、段階的に切り替わってきた*
 
 オゾン層を破壊するCFC冷媒（R-12など）が規制され、日本のエアコンはHCFC（R-22）→ HFC（R-410A）と冷媒の切り替えが進みました。
@@ -137,7 +137,7 @@ APFが高いほど、同じ冷暖房効果で電気代が少なくて済みま�
 
 ### 2010年代｜AIセンサーと自動掃除の普及　★★★
 
-![AIセンサーと人感センサー搭載の現代エアコンイメージ](/images/articles/aircon-history-2010s-ai-sensor.jpg)
+![AIセンサーと人感センサー搭載の現代エアコンイメージ](/images/articles/aircon-history-2010s-ai-sensor.webp)
 *▲ 人の位置や活動量を検知して、自動で風向や温度を調整する機能が一般化*
 
 **🏢 企業：各社独自機能として競争**
@@ -159,7 +159,7 @@ APFが高いほど、同じ冷暖房効果で電気代が少なくて済みま�
 
 ## 消費電力の推移（6畳用・冷房能力2.2kW相当の目安）
 
-![消費電力の推移グラフ：1970年代から2020年代の変化](/images/articles/aircon-history-power-consumption-graph.jpg)
+![消費電力の推移グラフ：1970年代から2020年代の変化](/images/articles/aircon-history-power-consumption-graph.webp)
 *▲ インバーター登場の1980年を境に、消費電力が急速に改善した*
 
 | 年代 | 消費電力の目安 | 特徴 |

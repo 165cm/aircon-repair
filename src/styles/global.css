@@ -427,41 +427,7 @@ h3 {
   margin-bottom: 14px;
 }
 
-.glossary-box {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 20px;
-  background: var(--surface);
-  box-shadow: var(--shadow);
-}
 
-.glossary-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.glossary-card {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 14px;
-  background: var(--surface-soft);
-}
-
-.glossary-card h3 {
-  font-size: 1rem;
-}
-
-.glossary-card p {
-  margin: 8px 0 0;
-  color: var(--muted);
-  font-size: 0.92rem;
-}
-
-.glossary-card .plain {
-  color: var(--brand-dark);
-  font-weight: 800;
-}
 
 .article-body {
   display: grid;
@@ -549,9 +515,6 @@ h3 {
   grid-template-columns: 1fr;
 }
 
-.sidebar .glossary-grid {
-  grid-template-columns: 1fr;
-}
 
 .site-footer {
   margin-top: 44px;
@@ -598,7 +561,7 @@ h3 {
   .diagnosis-result,
   .grid,
   .grid.two,
-  .glossary-grid,
+
   .footer-grid {
     grid-template-columns: 1fr;
   }

@@ -11,22 +11,104 @@ const terms = typeof limit === "number" ? glossaryTerms.slice(0, limit) : glossa
 ---
 
 <section class="glossary-box" aria-labelledby="glossary-title">
-  <div class="section-header compact-header">
-    <div>
-      <p class="eyebrow">高校生でも分かる用語</p>
-      <h2 id="glossary-title">{title}</h2>
-      <p>難しい言葉は、まず生活の言葉に置き換えてから読み進めます。</p>
-    </div>
-  </div>
-  <div class="glossary-grid">
-    {
-      terms.map((item) => (
-        <article class="glossary-card">
-          <h3>{item.term}</h3>
-          <p class="plain">{item.plain}</p>
+  <p class="eyebrow">高校生でも分かる用語</p>
+  <h2 id="glossary-title">{title}</h2>
+  <div class="glossary-list">
+    {terms.map((item) => (
+      <details class="glossary-item">
+        <summary class="glossary-term">{item.term}<span class="glossary-hint">{item.plain}</span></summary>
+        <div class="glossary-body">
           <p>{item.note}</p>
-        </article>
-      ))
-    }
+        </div>
+      </details>
+    ))}
   </div>
 </section>
+
+<style>
+.glossary-box {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 20px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.glossary-box .eyebrow {
+  margin: 0 0 4px;
+}
+
+.glossary-box h2 {
+  margin: 0 0 12px;
+  font-size: 1rem;
+}
+
+.glossary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.glossary-item {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface-soft);
+  overflow: hidden;
+}
+
+.glossary-item[open] {
+  border-color: var(--brand);
+}
+
+.glossary-term {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.glossary-term::-webkit-details-marker {
+  display: none;
+}
+
+.glossary-term::before {
+  content: "›";
+  display: inline-block;
+  font-size: 1.1rem;
+  color: var(--brand);
+  transition: transform 0.15s;
+  flex-shrink: 0;
+}
+
+.glossary-item[open] .glossary-term::before {
+  transform: rotate(90deg);
+}
+
+.glossary-hint {
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--brand-dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.glossary-item[open] .glossary-hint {
+  display: none;
+}
+
+.glossary-body {
+  padding: 0 14px 12px 32px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.glossary-body p {
+  margin: 0;
+}
+</style>
