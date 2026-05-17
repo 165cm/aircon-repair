@@ -30,10 +30,20 @@ const copy = {
 }[variant];
 ---
 
-<aside class="panel">
+<aside class="panel revenue-cta">
   <h2>{copy.title}</h2>
   <p>{copy.body}</p>
-  <a class={`button ${variant === "jobs" ? "warm" : ""}`} href={sitePath(copy.href)} rel={copy.href.startsWith("http") ? "sponsored nofollow noopener" : undefined} target={copy.href.startsWith("http") ? "_blank" : undefined}>
+  <a class={`button revenue-cta-btn ${variant === "jobs" ? "warm" : ""}`} href={sitePath(copy.href)} rel={copy.href.startsWith("http") ? "sponsored nofollow noopener" : undefined} target={copy.href.startsWith("http") ? "_blank" : undefined}>
     {copy.label}
   </a>
 </aside>
+
+<style>
+.revenue-cta {
+  border-left: 4px solid var(--brand);
+}
+.revenue-cta-btn {
+  width: 100%;
+  margin-top: 8px;
+}
+</style>
