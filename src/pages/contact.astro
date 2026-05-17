@@ -27,8 +27,16 @@ const breadcrumbs = [
       <h2>お問い合わせフォーム</h2>
 
       <div class="contact-form-wrapper">
-        <!-- お問い合わせフォームをここに埋め込みます -->
-        <p class="muted-notice">お問い合わせフォームを準備中です。しばらくお待ちください。</p>
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSeHMn8GJRGQwUOOOGpUlI5bTu4pmjNHK5ZxXO3uS9bWqBz5Zw/viewform?embedded=true"
+          width="100%"
+          height="800"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          title="お問い合わせフォーム"
+          loading="lazy"
+        >読み込んでいます…</iframe>
       </div>
 
       <h2>お問い合わせの種類</h2>
@@ -51,17 +59,12 @@ const breadcrumbs = [
 .contact-form-wrapper {
   border: 1px solid var(--line);
   border-radius: 8px;
-  padding: 32px;
+  overflow: hidden;
   background: var(--surface);
-  text-align: center;
-  min-height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.muted-notice {
-  color: var(--muted);
-  font-size: 0.95rem;
+.contact-form-wrapper iframe {
+  display: block;
+  width: 100%;
 }
 </style>
