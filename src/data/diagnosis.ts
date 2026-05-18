@@ -1,6 +1,7 @@
 export type DiagnosisItem = {
   id: string;
   label: string;
+  tabLabel: string;
   urgency: "low" | "medium" | "high";
   safeChecks: string[];
   stopSigns: string[];
@@ -14,6 +15,7 @@ export const diagnosisItems: DiagnosisItem[] = [
   {
     id: "not-cooling",
     label: "冷えない・暑い",
+    tabLabel: "冷えない",
     urgency: "medium",
     safeChecks: [
       "フィルターにホコリが詰まっていないか確認する",
@@ -41,6 +43,7 @@ export const diagnosisItems: DiagnosisItem[] = [
   {
     id: "water-leak",
     label: "水漏れする",
+    tabLabel: "水漏れ",
     urgency: "medium",
     safeChecks: [
       "室内機の下に家電や紙類を置かない",
@@ -68,6 +71,7 @@ export const diagnosisItems: DiagnosisItem[] = [
   {
     id: "noise",
     label: "異音・振動がある",
+    tabLabel: "異音",
     urgency: "high",
     safeChecks: [
       "室外機の周りに接触している物がないか確認する",
@@ -95,6 +99,7 @@ export const diagnosisItems: DiagnosisItem[] = [
   {
     id: "remote",
     label: "リモコンが効かない",
+    tabLabel: "リモコン",
     urgency: "low",
     safeChecks: [
       "電池を新しいものに替える",
@@ -122,6 +127,7 @@ export const diagnosisItems: DiagnosisItem[] = [
   {
     id: "cleaning",
     label: "掃除・カビ臭が気になる",
+    tabLabel: "掃除・カビ",
     urgency: "medium",
     safeChecks: [
       "フィルターと外装だけを安全に掃除する",

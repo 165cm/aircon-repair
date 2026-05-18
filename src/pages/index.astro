@@ -8,20 +8,33 @@ import ProductGrid from "@components/ProductGrid.astro";
 import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { affiliate } from "@data/affiliate";
-import { replacementProducts } from "@data/products";
+import { replacementProducts, supportProducts } from "@data/products";
 import { sitePath } from "@utils/paths";
 
 const articles = (await getCollection("articles")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 const featured = articles.slice(0, 6);
-const buyingArticles = articles
-  .filter((article) => article.data.category === "buying")
-  .sort((a, b) => {
-    const order = ["aircon-6jou-choose", "aircon-8jou-choose", "aircon-10jou-choose", "aircon-14jou-choose", "aircon-18jou-choose"];
-    return order.indexOf(a.slug) - order.indexOf(b.slug);
-  })
-  .slice(0, 3);
+const replacementSteps = [
+  {
+    label: "1",
+    title: "修理見積もりを見直す",
+    body: "新品本体の半額に近いなら比較開始",
+    href: "/articles/installation-cost/"
+  },
+  {
+    label: "2",
+    title: "部屋の広さを合わせる",
+    body: "畳数不足なら冷えない原因にもなる",
+    href: "/by-size/"
+  },
+  {
+    label: "3",
+    title: "本体候補を比べる",
+    body: "工事費込みで総額の目安を見る",
+    href: "#replacement-candidates"
+  }
+];
 const heroActions = [
   {
     kind: "safe",
@@ -29,6 +42,7 @@ const heroActions = [
     href: "/diagnosis/#not-cooling",
     body: "温湿度・フィルター・室外機まわりを確認",
     action: "home_symptom_not_cooling_click",
+    icon: "cooling",
     primary: true
   },
   {
@@ -36,21 +50,24 @@ const heroActions = [
     label: "水漏れする",
     href: "/diagnosis/#water-leak",
     body: "電源まわりを避け、排水経路だけ安全確認",
-    action: "home_symptom_water_leak_click"
+    action: "home_symptom_water_leak_click",
+    icon: "leak"
   },
   {
     kind: "contractor",
     label: "異音・振動",
     href: "/diagnosis/#noise",
     body: "金属音・焦げ臭さは使用停止を優先",
-    action: "home_symptom_noise_click"
+    action: "home_symptom_noise_click",
+    icon: "noise"
   },
   {
     kind: "products",
     label: "リモコン不調",
     href: "/diagnosis/#remote",
     body: "電池・送信部・応急運転で切り分け",
-    action: "home_symptom_remote_click"
+    action: "home_symptom_remote_click",
+    icon: "remote"
   }
 ] satisfies ActionItem[];
 const jsonLd = {
@@ -74,15 +91,15 @@ const jsonLd = {
   <section class="container hero">
     <div>
       <p class="eyebrow">エアコン修理の放課後ノート</p>
-      <h1>エアコンの不調を、危ない作業に進む前に切り分ける</h1>
+      <h1>エアコンが冷えない・水漏れ・異音の原因と安全な対処法</h1>
       <p class="lead">
         冷えない・水漏れ・異音・掃除の困りごとを、高校生でも分かる言葉で整理します。
         自分で見てよい場所、業者へ任せるサイン、買い替えを比較する目安を最短で確認できます。
       </p>
       <div class="trust-strip" aria-label="サイトの安全方針">
-        <span>分解修理を推奨しない</span>
-        <span>危険サインを先に表示</span>
-        <span>広告リンクは明記</span>
+        <span>触ってよい場所だけ分かる</span>
+        <span>相談すべきサインを見落とさない</span>
+        <span>広告リンクも判断材料を明記</span>
       </div>
       <div class="hero-actions">
         <a class="button" href={sitePath("/diagnosis/")} data-cvr-action="home_diagnosis_start_click" data-action-kind="safe">症状診断を始める</a>
@@ -116,21 +133,29 @@ const jsonLd = {
     <div class="section-header">
       <div>
         <p class="eyebrow">修理費が高い時の次の一手</p>
-        <h2>畳数でエアコン本体を比較する</h2>
-        <p>10年以上使っている、修理見積もりが高い、部屋の広さに合っていない時は、6畳・8畳・10畳・14畳の選び方から確認します。</p>
+        <h2>修理するか買い替えるか、先に費用感を比べる</h2>
+        <p>「直してもまた壊れそう」「見積もりが思ったより高い」と感じたら、修理だけで決めずに同じ部屋へ置ける新品候補も見ておくと判断しやすくなります。</p>
       </div>
-      <a href={sitePath("/by-size/")}>畳数ガイドへ</a>
+      <a href={sitePath("/by-size/")}>部屋に合う新品候補を見る</a>
     </div>
-    <div class="grid">
-      {buyingArticles.map((article) => <ArticleCard article={article} />)}
+    <div class="decision-steps" aria-label="買い替え判断の順番">
+      {
+        replacementSteps.map((step) => (
+          <a class="decision-step" href={step.href.startsWith("#") ? step.href : sitePath(step.href)}>
+            <span>{step.label}</span>
+            <strong>{step.title}</strong>
+            <small>{step.body}</small>
+          </a>
+        ))
+      }
     </div>
-    <div class="section-header product-section-title">
+    <div class="section-header product-section-title" id="replacement-candidates">
       <div>
         <p class="eyebrow">本体候補</p>
         <h2>まず比較したい買い替え候補</h2>
       </div>
     </div>
-    <ProductGrid products={replacementProducts} pageType="home" linkPosition="by-size-replacement" />
+    <ProductGrid products={replacementProducts} pageType="home" linkPosition="by-size-replacement" variant="comparison" />
   </section>
 
   <section class="container section">
@@ -142,7 +167,7 @@ const jsonLd = {
       </div>
       <a href={sitePath("/products/")}>商品比較へ</a>
     </div>
-    <ProductGrid />
+    <ProductGrid products={supportProducts} pageType="home" linkPosition="support-curation" variant="curation" />
   </section>
 
   <section class="container section">

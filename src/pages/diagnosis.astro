@@ -12,6 +12,7 @@ const symptomActions = [
     href: "#not-cooling",
     body: "熱中症リスクを優先し、風と室外機を確認",
     action: "diagnosis_quick_not_cooling_click",
+    icon: "cooling",
     primary: true
   },
   {
@@ -19,21 +20,24 @@ const symptomActions = [
     label: "水漏れする",
     href: "#water-leak",
     body: "電源付近を避け、外側の排水だけ確認",
-    action: "diagnosis_quick_water_leak_click"
+    action: "diagnosis_quick_water_leak_click",
+    icon: "leak"
   },
   {
     kind: "contractor",
     label: "異音・振動",
     href: "#noise",
     body: "金属音や焦げ臭さは使用停止を優先",
-    action: "diagnosis_quick_noise_click"
+    action: "diagnosis_quick_noise_click",
+    icon: "noise"
   },
   {
     kind: "products",
     label: "リモコン不調",
     href: "#remote",
     body: "電池交換と送信部確認で低リスクに切り分け",
-    action: "diagnosis_quick_remote_click"
+    action: "diagnosis_quick_remote_click",
+    icon: "remote"
   }
 ] satisfies ActionItem[];
 ---

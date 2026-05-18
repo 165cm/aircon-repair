@@ -1,6 +1,6 @@
 ---
 import { isAmazonConfigured } from "@data/affiliate";
-import type { ProductCategory } from "@data/products";
+import { categoryLabels, type ProductCategory } from "@data/products";
 import { sitePath } from "@utils/paths";
 import AmazonLink from "./AmazonLink.astro";
 
@@ -8,37 +8,215 @@ type Props = {
   product: ProductCategory;
   pageType?: string;
   linkPosition?: string;
+  variant?: "default" | "comparison" | "curation";
 };
 
-const { product, pageType = "product-card", linkPosition = "card" } = Astro.props;
+const { product, pageType = "product-card", linkPosition = "card", variant = "default" } = Astro.props;
 const amazonLabel = product.type === "replacement"
   ? "工事費込み候補を確認する"
   : product.category === "remote"
     ? "対応機種・価格を確認する"
     : "仕様・価格を確認する";
+const compactAmazonLabel = product.type === "replacement" ? "候補を見る" : "価格を見る";
+const comparisonCopy: Record<string, { title: string; fit: string; usp: string }> = {
+  "aircon-6tatami": {
+    title: "6畳用エアコン",
+    fit: "寝室・個室の標準候補",
+    usp: "小部屋なら工事費込みの総額を比べやすい"
+  },
+  "daikin-e-6tatami-s225ates": {
+    title: "ダイキン 6畳候補",
+    fit: "寝室向けの定番機",
+    usp: "コンパクト室内機と内部クリーン系を重視"
+  },
+  "mitsubishi-gv-6tatami-msz-gv2225": {
+    title: "三菱 6畳候補",
+    fit: "基本機能重視の6畳",
+    usp: "シンプル機能と指名買いで選びやすい"
+  },
+  "aircon-8tatami": {
+    title: "8畳用エアコン",
+    fit: "6畳で不安な部屋の余裕候補",
+    usp: "西日・木造・在宅部屋で能力不足を避けやすい"
+  },
+  "aircon-10tatami": {
+    title: "10畳用エアコン",
+    fit: "広めの個室・小さめLDK向け",
+    usp: "リビング寄りの部屋で冷え方に余裕を持てる"
+  },
+  "daikin-e-10tatami-s285ates": {
+    title: "ダイキン 10畳候補",
+    fit: "独立リビングの定番候補",
+    usp: "10畳でシリーズ違いよりサイズを先に比べやすい"
+  },
+  "mitsubishi-gv-10tatami-msz-gv2825": {
+    title: "三菱 10畳候補",
+    fit: "基本性能重視のリビング候補",
+    usp: "余計な機能を絞って本体価格を見比べやすい"
+  },
+  "aircon-14tatami": {
+    title: "14畳用エアコン",
+    fit: "LDKの主力候補",
+    usp: "家族が集まる部屋で冷え方と省エネを重視"
+  },
+  "daikin-e-14tatami-s405atep": {
+    title: "ダイキン 14畳候補",
+    fit: "大型修理の買い替え比較向け",
+    usp: "200V条件まで含めて高額修理と比べやすい"
+  },
+  "aircon-18tatami": {
+    title: "18畳以上エアコン",
+    fit: "大きなLDK・吹き抜け向け",
+    usp: "専用回路や現地調査の必要性を先に確認できる"
+  }
+};
+const comparison = comparisonCopy[product.id] ?? {
+  title: product.name,
+  fit: product.bestFor ?? product.description,
+  usp: product.whyPick ?? "条件に合うか詳細ページで確認できます。"
+};
+const comparisonSpec: Record<string, { capacity: string; maker: string; price: string }> = {
+  "aircon-6tatami": { capacity: "6畳 / 2.2kW目安", maker: "畳数基準で比較", price: product.priceBand ?? "7〜10万円台" },
+  "daikin-e-6tatami-s225ates": { capacity: "6畳 / 2.2kW", maker: "ダイキン", price: product.priceBand ?? "8〜12万円台" },
+  "mitsubishi-gv-6tatami-msz-gv2225": { capacity: "6畳 / 2.2kW", maker: "三菱電機", price: product.priceBand ?? "8〜12万円台" },
+  "aircon-8tatami": { capacity: "8畳 / 2.5kW目安", maker: "畳数基準で比較", price: product.priceBand ?? "8〜13万円台" },
+  "aircon-10tatami": { capacity: "10畳 / 2.8kW目安", maker: "畳数基準で比較", price: product.priceBand ?? "10〜15万円台" },
+  "daikin-e-10tatami-s285ates": { capacity: "10畳 / 2.8kW", maker: "ダイキン", price: product.priceBand ?? "9〜14万円台" },
+  "mitsubishi-gv-10tatami-msz-gv2825": { capacity: "10畳 / 2.8kW", maker: "三菱電機", price: product.priceBand ?? "9〜14万円台" },
+  "aircon-14tatami": { capacity: "14畳 / 4.0kW目安", maker: "畳数基準で比較", price: product.priceBand ?? "15〜30万円台" },
+  "daikin-e-14tatami-s405atep": { capacity: "14畳 / 4.0kW", maker: "ダイキン", price: product.priceBand ?? "15〜25万円台" },
+  "aircon-18tatami": { capacity: "18畳以上 / 5.6kW目安", maker: "大型・現地確認", price: product.priceBand ?? "20〜40万円台以上" }
+};
+const spec = comparisonSpec[product.id] ?? {
+  capacity: product.bestFor ?? "部屋条件を確認",
+  maker: product.brand ?? "候補比較",
+  price: product.priceBand ?? "価格を確認"
+};
+const curationCopy: Record<string, { title: string; fit: string; usp: string }> = {
+  "thermo-hygrometer": {
+    title: "温湿度計",
+    fit: "冷えない・暑いの体感確認",
+    usp: "室温の変化が数字で分かる"
+  },
+  "filter-brush": {
+    title: "エアコンブラシ",
+    fit: "フィルターのホコリ対策",
+    usp: "風量低下とカビ臭の予防に使いやすい"
+  },
+  "drain-pump": {
+    title: "ドレンホースクリーナー",
+    fit: "水漏れ時の排水確認",
+    usp: "外側のホース詰まりだけ安全に見られる"
+  },
+  "sanei-drain-cleaner-pr871": {
+    title: "ドレンホースクリーナー",
+    fit: "型番で選びたい水漏れ対策",
+    usp: "ホース径を確認して選びやすい"
+  },
+  "outdoor-cover": {
+    title: "室外機カバー",
+    fit: "直射日光と室外機まわり",
+    usp: "風の通り道を残して暑さ対策できる"
+  },
+  circulator: {
+    title: "サーキュレーター",
+    fit: "冷気を部屋に回したい時",
+    usp: "設定温度を下げすぎず涼しさを補える"
+  },
+  "remote-battery": {
+    title: "汎用リモコン",
+    fit: "リモコン不調の切り分け",
+    usp: "本体故障かリモコン側か判断しやすい"
+  },
+  "corona-dehumidifier": {
+    title: "衣類乾燥除湿機",
+    fit: "湿度・部屋干し・結露対策",
+    usp: "梅雨から夏のじめじめをまとめて抑える"
+  },
+  "sharp-air-purifier": {
+    title: "空気清浄機",
+    fit: "ホコリ・花粉・軽い生活臭",
+    usp: "エアコン掃除後の空気環境を補助できる"
+  },
+  "aircon-cleaning-cover": {
+    title: "掃除用養生カバー",
+    fit: "外装・フィルター周辺掃除",
+    usp: "水はねを抑えて掃除しやすい"
+  },
+  "drain-insect-cap": {
+    title: "防虫キャップ",
+    fit: "ドレンホースの詰まり予防",
+    usp: "虫やゴミの侵入を低コストで防げる"
+  },
+  "outdoor-vibration-pad": {
+    title: "防振ゴム",
+    fit: "室外機の振動音対策",
+    usp: "床やベランダへ響く振動をやわらげる"
+  }
+};
+const curation = curationCopy[product.id] ?? {
+  title: product.category ? categoryLabels[product.category] : product.name,
+  fit: product.bestFor ?? product.description,
+  usp: product.whyPick ?? "詳細ページで選び方を確認できます。"
+};
+const isCompactVariant = variant === "comparison" || variant === "curation";
 ---
 
-<article class="card product-card">
+<article class:list={["card", "product-card", isCompactVariant && "comparison-product-card", variant === "curation" && "curation-product-card"]}>
   {
-    product.image && (
+    product.image && variant !== "comparison" && (
       <img class="product-image" src={sitePath(product.image)} alt={`${product.name}のイメージ画像`} loading="lazy" />
     )
   }
-  <div>
-    {product.brand && <p class="eyebrow">{product.brand}</p>}
-    <h3>{product.name}</h3>
-    <p>{product.description}</p>
-  </div>
-  {product.whyPick && <p class="small"><strong>ピックアップ理由:</strong> {product.whyPick}</p>}
-  {product.reviewSummary && <p class="small"><strong>レビュー調査メモ:</strong> {product.reviewSummary}</p>}
-  <p class="small">{product.safetyNote}</p>
+  {
+    variant === "comparison" ? (
+      <div class="comparison-card-copy">
+        <p class="eyebrow">買い替え候補</p>
+        <h3>{comparison.title}</h3>
+        <p class="comparison-fit">{comparison.fit}</p>
+        <dl class="comparison-specs">
+          <div>
+            <dt>冷房性能</dt>
+            <dd>{spec.capacity}</dd>
+          </div>
+          <div>
+            <dt>比較軸</dt>
+            <dd>{spec.maker}</dd>
+          </div>
+          <div>
+            <dt>価格帯</dt>
+            <dd>{spec.price}</dd>
+          </div>
+        </dl>
+        <p class="comparison-usp"><strong>決め手:</strong> {comparison.usp}</p>
+      </div>
+    ) : variant === "curation" ? (
+      <div class="comparison-card-copy">
+        <p class="eyebrow">{product.category ? categoryLabels[product.category] : "関連商品"}</p>
+        <h3>{curation.title}</h3>
+        <p class="comparison-fit">{curation.fit}</p>
+        <p class="comparison-usp"><strong>選ぶ理由:</strong> {curation.usp}</p>
+      </div>
+    ) : (
+      <>
+        <div>
+          {product.brand && <p class="eyebrow">{product.brand}</p>}
+          <h3>{product.name}</h3>
+          <p>{product.description}</p>
+        </div>
+        {product.whyPick && <p class="small"><strong>ピックアップ理由:</strong> {product.whyPick}</p>}
+        {product.reviewSummary && <p class="small"><strong>レビュー調査メモ:</strong> {product.reviewSummary}</p>}
+        <p class="small">{product.safetyNote}</p>
+      </>
+    )
+  }
   {
     !isAmazonConfigured && (
       <p class="notice">AmazonアソシエイトIDが未設定です。公開前にsrc/data/affiliate.tsを差し替えてください。</p>
     )
   }
   <div class="button-row compact">
-    <a class="button secondary" href={sitePath(`/products/${product.id}/`)}>詳しく見る</a>
-    <AmazonLink product={product} pageType={pageType} linkPosition={linkPosition} label={amazonLabel} />
+    <a class="button secondary" href={sitePath(`/products/${product.id}/`)}>{variant === "comparison" ? "違いを詳しく見る" : variant === "curation" ? "選び方を見る" : "詳しく見る"}</a>
+    {variant !== "comparison" && <AmazonLink product={product} pageType={pageType} linkPosition={linkPosition} label={variant === "curation" ? compactAmazonLabel : amazonLabel} />}
   </div>
 </article>

@@ -9,6 +9,7 @@ export type ActionItem = {
   href: string;
   body: string;
   action: string;
+  icon?: "cooling" | "leak" | "noise" | "remote";
   external?: boolean;
   primary?: boolean;
 };
@@ -47,6 +48,7 @@ const {
         <a
           class={`action-card ${item.primary ? "primary-action" : ""}`}
           data-action-kind={item.kind}
+          data-action-icon={item.icon}
           data-cvr-action={item.action}
           href={sitePath(item.href)}
           rel={item.external ? "sponsored nofollow noopener" : undefined}

@@ -1,9 +1,39 @@
 ---
+import { getCollection } from "astro:content";
 import { diagnosisItems } from "@data/diagnosis";
 import { productCategories } from "@data/products";
 
 const first = diagnosisItems[0];
 const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+const articles = await getCollection("articles");
+const articleTitleBySlug = Object.fromEntries(
+  articles.map((article) => [article.slug, article.data.title])
+);
+const urgencyLabel = {
+  low: "落ち着いて切り分け",
+  medium: "早めに確認",
+  high: "使用停止も検討"
+};
+const firstSections = [
+  {
+    eyebrow: urgencyLabel[first.urgency],
+    title: "安全にできる確認",
+    items: first.safeChecks
+  },
+  {
+    eyebrow: "ここから先は無理しない",
+    title: "専門相談のサイン",
+    items: first.stopSigns
+  }
+];
+const firstCostDecision = {
+  repairSignals: first.repairSignals,
+  replacementSignals: first.replacementSignals,
+  cta: {
+    href: `${basePath}/products/#replacement`,
+    label: "買い替え候補を見る"
+  }
+};
 ---
 
 <section class="panel" aria-labelledby="diagnosis-title">
@@ -20,40 +50,71 @@ const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
           data-diagnosis-tab={item.id}
           data-cvr-action="diagnosis_tab_click"
           data-action-kind="safe"
+          aria-label={item.label}
         >
-          {item.label}
+          {item.tabLabel}
         </button>
       ))
     }
   </div>
   <div id="diagnosis-result" class="diagnosis-result" aria-live="polite">
-    <div class="card">
-      <p class="eyebrow">{({ low: "落ち着いて切り分け", medium: "早めに確認", high: "使用停止も検討" })[first.urgency]}</p>
-      <h3>安全にできる確認</h3>
-      <ul>{first.safeChecks.map((check) => <li>{check}</li>)}</ul>
-    </div>
-    <div class="card">
-      <p class="eyebrow">ここから先は無理しない</p>
-      <h3>専門相談のサイン</h3>
-      <ul>{first.stopSigns.map((sign) => <li>{sign}</li>)}</ul>
-    </div>
-    <div class="card">
-      <p class="eyebrow">費用判断</p>
-      <h3>修理が向きやすいケース</h3>
-      <ul>{first.repairSignals.map((signal) => <li>{signal}</li>)}</ul>
-    </div>
-    <div class="card">
-      <p class="eyebrow">買い替え検討</p>
-      <h3>新品比較へ進む目安</h3>
-      <ul>{first.replacementSignals.map((signal) => <li>{signal}</li>)}</ul>
-      <a class="button warm" href={`${basePath}/products/#replacement`} data-cvr-action="diagnosis_replacement_click" data-action-kind="replacement">買い替え候補を見る</a>
-    </div>
+    {
+      firstSections.map((section) => (
+        <details class="diagnosis-accordion">
+          <summary>
+            <span class="eyebrow">{section.eyebrow}</span>
+            <span class="diagnosis-summary-title">{section.title}</span>
+          </summary>
+          <ul class="diagnosis-check-list">{section.items.map((item) => <li>{item}</li>)}</ul>
+          {section.cta && (
+            <a class="button warm" href={section.cta.href} data-cvr-action="diagnosis_replacement_click" data-action-kind="replacement">{section.cta.label}</a>
+          )}
+        </details>
+      ))
+    }
+    <details class="diagnosis-accordion decision-accordion">
+      <summary>
+        <span class="eyebrow">費用判断</span>
+        <span class="diagnosis-summary-title">修理か買い替えかを比べる</span>
+      </summary>
+      <div class="diagnosis-decision-table" role="table" aria-label="修理と買い替えの判断基準">
+        <div class="decision-column" role="row">
+          <h3>修理が向きやすい</h3>
+          <ul class="diagnosis-check-list">{firstCostDecision.repairSignals.map((item) => <li>{item}</li>)}</ul>
+        </div>
+        <div class="decision-column replacement" role="row">
+          <h3>買い替えも比較する</h3>
+          <ul class="diagnosis-check-list">{firstCostDecision.replacementSignals.map((item) => <li>{item}</li>)}</ul>
+        </div>
+      </div>
+      <a class="button warm" href={firstCostDecision.cta.href} data-cvr-action="diagnosis_replacement_click" data-action-kind="replacement">{firstCostDecision.cta.label}</a>
+    </details>
   </div>
 </section>
 
-<script define:vars={{ diagnosisItems, productCategories, basePath }}>
+<script define:vars={{ diagnosisItems, productCategories, basePath, articleTitleBySlug }}>
   const result = document.querySelector("#diagnosis-result");
   const tabs = Array.from(document.querySelectorAll("[data-diagnosis-tab]"));
+
+  function productDisplayName(product) {
+    const generalNames = {
+      "thermo-hygrometer": "温湿度計",
+      "filter-brush": "エアコンブラシ",
+      "drain-pump": "ドレンホースクリーナー",
+      "sanei-drain-cleaner-pr871": "ドレンホースクリーナー",
+      "outdoor-cover": "室外機カバー",
+      "circulator": "サーキュレーター",
+      "remote-battery": "汎用リモコン",
+      "aircon-6tatami": "6畳用エアコン",
+      "aircon-8tatami": "8畳用エアコン",
+      "aircon-10tatami": "10畳用エアコン",
+      "aircon-14tatami": "14畳用エアコン",
+      "aircon-18tatami": "18畳以上のエアコン"
+    };
+
+    if (generalNames[product.id]) return generalNames[product.id];
+    return product.brand ? product.name.replace(product.brand, "").trim() : product.name;
+  }
 
   function renderDiagnosis(id) {
     const item = diagnosisItems.find((entry) => entry.id === id) ?? diagnosisItems[0];
@@ -63,37 +124,62 @@ const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
       medium: "早めに確認",
       high: "使用停止も検討"
     }[item.urgency];
+    const sections = [
+      {
+        eyebrow: urgency,
+        title: "安全にできる確認",
+        items: item.safeChecks
+      },
+      {
+        eyebrow: "ここから先は無理しない",
+        title: "専門相談のサイン",
+        items: item.stopSigns
+      }
+    ];
+    const costDecision = {
+      repairSignals: item.repairSignals,
+      replacementSignals: item.replacementSignals,
+      cta: {
+        href: `${basePath}/products/#replacement`,
+        label: "買い替え候補を見る"
+      }
+    };
 
     result.innerHTML = `
-      <div class="card">
-        <p class="eyebrow">${urgency}</p>
-        <h3>安全にできる確認</h3>
-        <ul>${item.safeChecks.map((check) => `<li>${check}</li>`).join("")}</ul>
-      </div>
-      <div class="card">
-        <p class="eyebrow">ここから先は無理しない</p>
-        <h3>専門相談のサイン</h3>
-        <ul>${item.stopSigns.map((sign) => `<li>${sign}</li>`).join("")}</ul>
-      </div>
-      <div class="card">
-        <p class="eyebrow">費用判断</p>
-        <h3>修理が向きやすいケース</h3>
-        <ul>${item.repairSignals.map((signal) => `<li>${signal}</li>`).join("")}</ul>
-      </div>
-      <div class="card">
-        <p class="eyebrow">買い替え検討</p>
-        <h3>新品比較へ進む目安</h3>
-        <ul>${item.replacementSignals.map((signal) => `<li>${signal}</li>`).join("")}</ul>
-        <a class="button warm" href="${basePath}/products/#replacement" data-cvr-action="diagnosis_replacement_click" data-action-kind="replacement">買い替え候補を見る</a>
-      </div>
+      ${sections.map((section) => `
+        <details class="diagnosis-accordion">
+          <summary>
+            <span class="eyebrow">${section.eyebrow}</span>
+            <span class="diagnosis-summary-title">${section.title}</span>
+          </summary>
+          <ul class="diagnosis-check-list">${section.items.map((entry) => `<li>${entry}</li>`).join("")}</ul>
+        </details>
+      `).join("")}
+      <details class="diagnosis-accordion decision-accordion">
+        <summary>
+          <span class="eyebrow">費用判断</span>
+          <span class="diagnosis-summary-title">修理か買い替えかを比べる</span>
+        </summary>
+        <div class="diagnosis-decision-table" role="table" aria-label="修理と買い替えの判断基準">
+          <div class="decision-column" role="row">
+            <h3>修理が向きやすい</h3>
+            <ul class="diagnosis-check-list">${costDecision.repairSignals.map((entry) => `<li>${entry}</li>`).join("")}</ul>
+          </div>
+          <div class="decision-column replacement" role="row">
+            <h3>買い替えも比較する</h3>
+            <ul class="diagnosis-check-list">${costDecision.replacementSignals.map((entry) => `<li>${entry}</li>`).join("")}</ul>
+          </div>
+        </div>
+        <a class="button warm" href="${costDecision.cta.href}" data-cvr-action="diagnosis_replacement_click" data-action-kind="replacement">${costDecision.cta.label}</a>
+      </details>
       <div class="card">
         <h3>関連する商品</h3>
-        <ul>${products.map((product) => `<li>${product.name}</li>`).join("")}</ul>
+        <ul>${products.map((product) => `<li><a href="${basePath}/products/${product.id}/">${productDisplayName(product)}</a></li>`).join("")}</ul>
         <a class="button" href="${basePath}/products/" data-cvr-action="diagnosis_products_click" data-action-kind="products">商品カテゴリを見る</a>
       </div>
       <div class="card">
         <h3>詳しく読む</h3>
-        <ul>${item.articleSlugs.map((slug) => `<li><a href="${basePath}/articles/${slug}/">${slug}</a></li>`).join("")}</ul>
+        <ul>${item.articleSlugs.map((slug) => `<li><a href="${basePath}/articles/${slug}/">${articleTitleBySlug[slug] ?? slug}</a></li>`).join("")}</ul>
         <a class="button secondary" href="${basePath}/diagnosis/#${item.id}" data-cvr-action="diagnosis_detail_click" data-action-kind="safe">診断ページへ</a>
       </div>
     `;
