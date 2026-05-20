@@ -4,6 +4,7 @@ import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { isAmazonConfigured } from "@data/affiliate";
 import { replacementProducts, supportProducts } from "@data/products";
+import { sitePath } from "@utils/paths";
 ---
 
 <BaseLayout
@@ -36,6 +37,9 @@ import { replacementProducts, supportProducts } from "@data/products";
     </div>
     <div class="notice">
       Amazonアソシエイトの家電カテゴリは料率が低めでも、エアコン本体は単価が高いため成約時の報酬額を狙いやすい導線です。購入前には標準工事、追加工事費、電源電圧、室外機置き場、対応畳数を必ず確認してください。
+    </div>
+    <div class="hero-actions">
+      <a class="button secondary" href={sitePath("/articles/aircon-maker-compare/")} data-cvr-action="products_maker_compare_click" data-action-kind="replacement">メーカー比較を見る</a>
     </div>
     <ProductGrid products={replacementProducts} pageType="products-index" linkPosition="replacement-grid" />
   </section>

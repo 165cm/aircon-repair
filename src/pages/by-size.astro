@@ -8,12 +8,10 @@ import { affiliate } from "@data/affiliate";
 import { productById, replacementProducts } from "@data/products";
 import { absoluteUrl, sitePath } from "@utils/paths";
 
+const sizeGuideArticleOrder = ["aircon-6jou-choose", "aircon-8jou-choose", "aircon-10jou-choose", "aircon-14jou-choose", "aircon-18jou-choose"];
 const articles = (await getCollection("articles"))
-  .filter((article) => article.data.category === "buying")
-  .sort((a, b) => {
-    const order = ["aircon-6jou-choose", "aircon-8jou-choose", "aircon-10jou-choose", "aircon-14jou-choose", "aircon-18jou-choose"];
-    return order.indexOf(a.slug) - order.indexOf(b.slug);
-  });
+  .filter((article) => sizeGuideArticleOrder.includes(article.slug))
+  .sort((a, b) => sizeGuideArticleOrder.indexOf(a.slug) - sizeGuideArticleOrder.indexOf(b.slug));
 
 const sizeGuides = [
   {
@@ -232,6 +230,19 @@ const jsonLd = {
   <section class="container section">
     <div class="notice safe">
       購入前は「標準工事込み」の範囲、既存配管を使うか、配管穴、室外機置き場、コンセント形状、100V/200Vを確認してください。電源変更や専用回路の工事は資格者・販売店へ相談します。
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">メーカー選び</p>
+        <h2>価格だけでなく、修理・清掃のしやすさも比べる</h2>
+        <p>エアコン本体は長く使う家電です。お掃除ロボットの有無、補修用性能部品、メーカー修理の相談しやすさまで見ると、Amazonでの候補選びがぐっと現実的になります。</p>
+      </div>
+      <div class="hero-actions">
+        <a class="button secondary" href={sitePath("/articles/aircon-maker-compare/")} data-cvr-action="by_size_maker_compare_click" data-action-kind="replacement">メーカー比較を見る</a>
+      </div>
     </div>
   </section>
 
