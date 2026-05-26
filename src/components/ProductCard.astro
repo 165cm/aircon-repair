@@ -9,9 +9,20 @@ type Props = {
   pageType?: string;
   linkPosition?: string;
   variant?: "default" | "comparison" | "curation";
+  sourceSlug?: string;
+  slotIndex?: number;
+  recommendationRole?: string;
 };
 
-const { product, pageType = "product-card", linkPosition = "card", variant = "default" } = Astro.props;
+const {
+  product,
+  pageType = "product-card",
+  linkPosition = "card",
+  variant = "default",
+  sourceSlug,
+  slotIndex,
+  recommendationRole
+} = Astro.props;
 const amazonLabel = product.type === "replacement"
   ? "工事費込み候補を確認する"
   : product.category === "remote"
@@ -160,6 +171,7 @@ const curation = curationCopy[product.id] ?? {
   usp: product.whyPick ?? "詳細ページで選び方を確認できます。"
 };
 const isCompactVariant = variant === "comparison" || variant === "curation";
+const actionKind = product.type === "replacement" ? "replacement" : "products";
 ---
 
 <article class:list={["card", "product-card", isCompactVariant && "comparison-product-card", variant === "curation" && "curation-product-card"]}>
@@ -216,7 +228,30 @@ const isCompactVariant = variant === "comparison" || variant === "curation";
     )
   }
   <div class="button-row compact">
-    <a class="button secondary" href={sitePath(`/products/${product.id}/`)}>{variant === "comparison" ? "違いを詳しく見る" : variant === "curation" ? "選び方を見る" : "詳しく見る"}</a>
-    {variant !== "comparison" && <AmazonLink product={product} pageType={pageType} linkPosition={linkPosition} label={variant === "curation" ? compactAmazonLabel : amazonLabel} />}
+    <a
+      class="button secondary"
+      href={sitePath(`/products/${product.id}/`)}
+      data-cvr-action="product_detail_click"
+      data-action-kind={actionKind}
+      data-source-slug={sourceSlug}
+      data-slot-index={slotIndex}
+      data-recommendation-role={recommendationRole}
+      data-item-id={product.id}
+    >
+      {variant === "comparison" ? "違いを詳しく見る" : variant === "curation" ? "選び方を見る" : "詳しく見る"}
+    </a>
+    {
+      variant !== "comparison" && (
+        <AmazonLink
+          product={product}
+          pageType={pageType}
+          linkPosition={linkPosition}
+          label={variant === "curation" ? compactAmazonLabel : amazonLabel}
+          sourceSlug={sourceSlug}
+          slotIndex={slotIndex}
+          recommendationRole={recommendationRole}
+        />
+      )
+    }
   </div>
 </article>

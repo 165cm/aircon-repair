@@ -3,8 +3,9 @@ import { getCollection } from "astro:content";
 import ArticleCard from "@components/ArticleCard.astro";
 import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
+import { getCanonicalArticles } from "@data/internalLinks";
 
-const articles = (await getCollection("articles"))
+const articles = getCanonicalArticles(await getCollection("articles"))
   .filter((article) => article.data.category === "career")
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---

@@ -7,6 +7,9 @@ type Props = {
   pageType?: string;
   linkPosition?: string;
   variant?: "button" | "inline";
+  sourceSlug?: string;
+  slotIndex?: number;
+  recommendationRole?: string;
 };
 
 const {
@@ -14,7 +17,10 @@ const {
   label = "Amazonの商品ページを見る",
   pageType = "unknown",
   linkPosition = "inline",
-  variant = "button"
+  variant = "button",
+  sourceSlug,
+  slotIndex,
+  recommendationRole
 } = Astro.props;
 ---
 
@@ -30,6 +36,9 @@ const {
   data-item-name={product.name}
   data-page-type={pageType}
   data-link-position={linkPosition}
+  data-source-slug={sourceSlug}
+  data-slot-index={slotIndex}
+  data-recommendation-role={recommendationRole}
 >
   {label}
 </a>
@@ -47,7 +56,10 @@ const {
         item_id: target.getAttribute("data-item-id"),
         item_name: target.getAttribute("data-item-name"),
         page_type: target.getAttribute("data-page-type"),
-        link_position: target.getAttribute("data-link-position")
+        link_position: target.getAttribute("data-link-position"),
+        source_slug: target.getAttribute("data-source-slug"),
+        slot_index: target.getAttribute("data-slot-index"),
+        recommendation_role: target.getAttribute("data-recommendation-role")
       });
     });
   }

@@ -1,9 +1,10 @@
 ---
 import { getCollection } from "astro:content";
+import { getCanonicalArticles } from "@data/internalLinks";
 import { productCategories } from "@data/products";
 
 export async function getStaticPaths() {
-  const articles = await getCollection("articles");
+  const articles = getCanonicalArticles(await getCollection("articles"));
   const staticPaths = [
     "about",
     "articles",
