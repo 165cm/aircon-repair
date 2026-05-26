@@ -5,6 +5,7 @@ import ArticleCard from "@components/ArticleCard.astro";
 import ProductGrid from "@components/ProductGrid.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { affiliate } from "@data/affiliate";
+import { getProductRelatedArticles, getRelatedProductsForProduct } from "@data/internalLinks";
 import { categoryLabels, productCategories, type ProductCategory } from "@data/products";
 import { absoluteUrl, sitePath } from "@utils/paths";
 
@@ -16,13 +17,8 @@ export function getStaticPaths() {
 }
 
 const { product } = Astro.props as { product: ProductCategory };
-const related = productCategories
-  .filter((candidate) => candidate.id !== product.id && candidate.symptoms.some((symptom) => product.symptoms.includes(symptom)))
-  .slice(0, 3);
-const relatedArticles = (await getCollection("articles"))
-  .filter((article) => article.data.products?.includes(product.id) || article.data.symptoms.some((symptom) => product.symptoms.includes(symptom)))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
+const related = getRelatedProductsForProduct(product);
+const relatedArticles = getProductRelatedArticles(product, await getCollection("articles"));
 const categoryLabel = product.category ? categoryLabels[product.category] : "商品候補";
 const canonical = absoluteUrl(`/products/${product.id}/`);
 const breadcrumbs = [
@@ -194,7 +190,14 @@ const jsonLd = [{
         </div>
       </div>
       <div class="grid">
-        {relatedArticles.map((article) => <ArticleCard article={article} />)}
+        {relatedArticles.map((article, index) => (
+          <ArticleCard
+            article={article}
+            sourceSlug={product.id}
+            slotIndex={index + 1}
+            recommendationRole="product-before-buying"
+          />
+        ))}
       </div>
     </section>
   )}
@@ -207,7 +210,7 @@ const jsonLd = [{
           <h2>同じ症状で比較されやすい候補</h2>
         </div>
       </div>
-      <ProductGrid products={related} pageType="product-detail" linkPosition="related" />
+      <ProductGrid products={related} pageType="product-detail" linkPosition="related" sourceSlug={product.id} recommendationRole="related-product" />
     </section>
   )}
 </BaseLayout>

@@ -4,9 +4,10 @@ import ArticleCard from "@components/ArticleCard.astro";
 import GlossaryBox from "@components/GlossaryBox.astro";
 import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
+import { getCanonicalArticles } from "@data/internalLinks";
 import { sitePath } from "@utils/paths";
 
-const allArticles = await getCollection("articles");
+const allArticles = getCanonicalArticles(await getCollection("articles"));
 const articleBySlug = new Map(allArticles.map((article) => [article.slug, article]));
 
 const chapters = [

@@ -7,11 +7,30 @@ type Props = {
   pageType?: string;
   linkPosition?: string;
   variant?: "default" | "comparison" | "curation";
+  sourceSlug?: string;
+  recommendationRole?: string;
 };
 
-const { products = productCategories, pageType = "product-grid", linkPosition = "grid", variant = "default" } = Astro.props;
+const {
+  products = productCategories,
+  pageType = "product-grid",
+  linkPosition = "grid",
+  variant = "default",
+  sourceSlug,
+  recommendationRole
+} = Astro.props;
 ---
 
-<div class:list={["grid", variant === "comparison" && "comparison-product-grid"]}>
-  {products.map((product) => <ProductCard product={product} pageType={pageType} linkPosition={linkPosition} variant={variant} />)}
+<div class:list={["grid", variant === "comparison" && "comparison-product-grid", variant === "curation" && "curation-product-grid"]}>
+  {products.map((product, index) => (
+    <ProductCard
+      product={product}
+      pageType={pageType}
+      linkPosition={linkPosition}
+      variant={variant}
+      sourceSlug={sourceSlug}
+      slotIndex={index + 1}
+      recommendationRole={recommendationRole}
+    />
+  ))}
 </div>

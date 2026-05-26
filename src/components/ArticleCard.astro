@@ -4,9 +4,12 @@ import { sitePath } from "@utils/paths";
 
 type Props = {
   article: CollectionEntry<"articles">;
+  sourceSlug?: string;
+  slotIndex?: number;
+  recommendationRole?: string;
 };
 
-const { article } = Astro.props;
+const { article, sourceSlug, slotIndex, recommendationRole } = Astro.props;
 const riskLabel = {
   low: "低リスク",
   medium: "注意",
@@ -16,7 +19,19 @@ const riskLabel = {
 
 <article class="card">
   <p class="eyebrow">{riskLabel}</p>
-  <h3><a href={sitePath(`/articles/${article.slug}/`)}>{article.data.title}</a></h3>
+  <h3>
+    <a
+      href={sitePath(`/articles/${article.slug}/`)}
+      data-cvr-action={sourceSlug ? "related_article_click" : undefined}
+      data-action-kind={sourceSlug ? "safe" : undefined}
+      data-source-slug={sourceSlug}
+      data-slot-index={slotIndex}
+      data-recommendation-role={recommendationRole}
+      data-item-id={article.slug}
+    >
+      {article.data.title}
+    </a>
+  </h3>
   <p>{article.data.description}</p>
   <div class="tag-list">
     <span class="tag">{article.data.category}</span>
