@@ -1,12 +1,11 @@
 ---
 import { getCollection } from "astro:content";
 import { diagnosisItems } from "@data/diagnosis";
-import { getCanonicalArticles } from "@data/internalLinks";
 import { productCategories } from "@data/products";
 
 const first = diagnosisItems[0];
 const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
-const articles = getCanonicalArticles(await getCollection("articles"));
+const articles = await getCollection("articles");
 const articleTitleBySlug = Object.fromEntries(
   articles.map((article) => [article.slug, article.data.title])
 );
