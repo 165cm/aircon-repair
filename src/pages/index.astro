@@ -8,10 +8,11 @@ import ProductGrid from "@components/ProductGrid.astro";
 import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { affiliate } from "@data/affiliate";
+import { getCanonicalArticles } from "@data/internalLinks";
 import { replacementProducts, supportProducts } from "@data/products";
 import { sitePath } from "@utils/paths";
 
-const articles = (await getCollection("articles")).sort(
+const articles = getCanonicalArticles(await getCollection("articles")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 const featured = articles.slice(0, 6);
@@ -88,26 +89,26 @@ const jsonLd = {
   description="エアコンの冷えない、水漏れ、異音、掃除の悩みを安全に切り分け、補助用品・業者相談・求人情報へ案内する初心者向けサイト。"
   jsonLd={jsonLd}
 >
-  <section class="container hero">
+  <section class="container hero home-hero">
     <div>
-      <p class="eyebrow">エアコン修理の放課後ノート</p>
-      <h1>エアコンが冷えない・水漏れ・異音の原因と安全な対処法</h1>
+      <p class="eyebrow">エアコン修理の3分診断</p>
+      <h1>故障かもと思ったら、まず修理か買い替えかを決める</h1>
       <p class="lead">
-        冷えない・水漏れ・異音・掃除の困りごとを、高校生でも分かる言葉で整理します。
-        自分で見てよい場所、業者へ任せるサイン、買い替えを比較する目安を最短で確認できます。
+        冷えない・水漏れ・異音・リモコン不調を、危険な分解に進まず切り分けます。
+        症状と使用状況を選ぶだけで、修理相談を優先するか、買い替え比較まで進めるかが分かります。
       </p>
       <div class="trust-strip" aria-label="サイトの安全方針">
-        <span>触ってよい場所だけ分かる</span>
-        <span>相談すべきサインを見落とさない</span>
-        <span>広告リンクも判断材料を明記</span>
+        <span>外側から見られる範囲だけ</span>
+        <span>危険サインは使用停止を優先</span>
+        <span>10年以上なら新品候補も比較</span>
       </div>
       <div class="hero-actions">
-        <a class="button" href={sitePath("/diagnosis/")} data-cvr-action="home_diagnosis_start_click" data-action-kind="safe">症状診断を始める</a>
+        <a class="button" href="#diagnosis-title" data-cvr-action="home_diagnosis_start_click" data-action-kind="safe">いますぐ診断する</a>
         <a class="button warm" href={sitePath("/by-size/")} data-cvr-action="home_replacement_compare_click" data-action-kind="replacement">畳数で買い替え比較</a>
-        <a class="button secondary" href={sitePath("/products/")} data-cvr-action="home_products_click" data-action-kind="products">補助用品を見る</a>
+        <a class="button secondary" href={sitePath("/articles/call-contractor/")} data-cvr-action="home_repair_consult_click" data-action-kind="contractor">修理を呼ぶ目安</a>
       </div>
     </div>
-    <div class="panel visual-panel hero-trust-visual" aria-label="室内エアコンと温湿度計の写真イメージ"></div>
+    <DiagnosisWidget />
   </section>
 
   <section class="container section tight-section">
@@ -119,10 +120,6 @@ const jsonLd = {
       image="/images/safe-check-flow.webp"
       imageAlt="フィルター、リモコン、室外機まわりを安全に確認するイメージ"
     />
-  </section>
-
-  <section class="container section">
-    <DiagnosisWidget />
   </section>
 
   <section class="container section">

@@ -1,11 +1,12 @@
 ---
 import { getCollection } from "astro:content";
 import { diagnosisItems } from "@data/diagnosis";
+import { getCanonicalArticles } from "@data/internalLinks";
 import { productCategories } from "@data/products";
 
 const first = diagnosisItems[0];
 const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
-const articles = await getCollection("articles");
+const articles = getCanonicalArticles(await getCollection("articles"));
 const articleTitleBySlug = Object.fromEntries(
   articles.map((article) => [article.slug, article.data.title])
 );
@@ -14,6 +15,23 @@ const urgencyLabel = {
   medium: "早めに確認",
   high: "使用停止も検討"
 };
+const decisionModes = [
+  {
+    id: "repair",
+    label: "年式が浅い・症状は1つ",
+    hint: "修理相談を優先"
+  },
+  {
+    id: "replacement",
+    label: "10年以上・症状が重なる",
+    hint: "買い替え比較も開始"
+  },
+  {
+    id: "urgent",
+    label: "焦げ臭い・煙・電源まわりの水",
+    hint: "使用停止して相談"
+  }
+];
 const firstSections = [
   {
     eyebrow: urgencyLabel[first.urgency],
@@ -30,15 +48,21 @@ const firstCostDecision = {
   repairSignals: first.repairSignals,
   replacementSignals: first.replacementSignals,
   cta: {
-    href: `${basePath}/products/#replacement`,
+    href: `${basePath}/by-size/`,
     label: "買い替え候補を見る"
   }
 };
 ---
 
 <section class="panel" aria-labelledby="diagnosis-title">
-  <p class="eyebrow">症状別セルフチェック</p>
-  <h2 id="diagnosis-title">いまの症状を選んで、安全な確認だけを見る</h2>
+  <p class="eyebrow">3分診断</p>
+  <h2 id="diagnosis-title">症状と状況を選ぶだけで、次の行動を決める</h2>
+  <p class="diagnosis-intro">危険な分解には進まず、記事内の判断基準に沿って「修理相談」「買い替え比較」「使用停止」を出し分けます。</p>
+  <ol class="diagnosis-progress" aria-label="診断の流れ">
+    <li><span>1</span>症状</li>
+    <li><span>2</span>状況</li>
+    <li><span>3</span>次の行動</li>
+  </ol>
   <div class="diagnosis-tabs" role="tablist" aria-label="症状">
     {
       diagnosisItems.map((item) => (
@@ -53,6 +77,23 @@ const firstCostDecision = {
           aria-label={item.label}
         >
           {item.tabLabel}
+        </button>
+      ))
+    }
+  </div>
+  <div id="diagnosis-recommendation" class="diagnosis-recommendation" aria-live="polite"></div>
+  <div class="diagnosis-mode-group" role="radiogroup" aria-label="使用年数や危険サイン">
+    {
+      decisionModes.map((mode, index) => (
+        <button
+          class="diagnosis-mode"
+          type="button"
+          role="radio"
+          aria-checked={index === 0 ? "true" : "false"}
+          data-decision-mode={mode.id}
+        >
+          <strong>{mode.label}</strong>
+          <small>{mode.hint}</small>
         </button>
       ))
     }
@@ -94,7 +135,10 @@ const firstCostDecision = {
 
 <script define:vars={{ diagnosisItems, productCategories, basePath, articleTitleBySlug }}>
   const result = document.querySelector("#diagnosis-result");
+  const recommendation = document.querySelector("#diagnosis-recommendation");
   const tabs = Array.from(document.querySelectorAll("[data-diagnosis-tab]"));
+  const modeButtons = Array.from(document.querySelectorAll("[data-decision-mode]"));
+  let currentMode = "repair";
 
   function productDisplayName(product) {
     const generalNames = {
@@ -114,6 +158,48 @@ const firstCostDecision = {
 
     if (generalNames[product.id]) return generalNames[product.id];
     return product.brand ? product.name.replace(product.brand, "").trim() : product.name;
+  }
+
+  function recommendationCopy(item, mode) {
+    if (mode === "urgent") {
+      return {
+        tone: "danger",
+        eyebrow: "推奨: 使用停止して専門相談",
+        title: "焦げ臭さ・煙・電源まわりの水は、修理判断の前に止める",
+        body: "安全確認は外側の観察とメモまで。ブレーカーが落ちる、火花、金属音が続く場合も同じ扱いです。",
+        primaryHref: `${basePath}/articles/call-contractor/`,
+        primaryLabel: "業者へ相談する目安を見る",
+        primaryKind: "contractor",
+        secondaryHref: `${basePath}/diagnosis/#danger-signs`,
+        secondaryLabel: "危険サインを確認"
+      };
+    }
+
+    if (mode === "replacement") {
+      return {
+        tone: "replacement",
+        eyebrow: "推奨: 買い替え比較も同時に進める",
+        title: "10年以上・複数症状・高めの見積もりなら新品候補を先に比較",
+        body: "修理を否定せず、畳数に合う本体と工事込みの総額を見てから判断すると迷いにくくなります。",
+        primaryHref: `${basePath}/by-size/`,
+        primaryLabel: "畳数で買い替え比較",
+        primaryKind: "replacement",
+        secondaryHref: `${basePath}/articles/installation-cost/`,
+        secondaryLabel: "工事費の目安を見る"
+      };
+    }
+
+    return {
+      tone: "repair",
+      eyebrow: "推奨: 修理相談を優先",
+      title: "年式が浅く症状が1つなら、原因をメモして修理相談へ",
+      body: `${item.label}は、外側の安全確認とエラー・音・水の出方をメモすると相談が早くなります。`,
+      primaryHref: `${basePath}/articles/call-contractor/`,
+      primaryLabel: "修理を呼ぶ目安を見る",
+      primaryKind: "contractor",
+      secondaryHref: `${basePath}/articles/${item.articleSlugs[0]}/`,
+      secondaryLabel: "症状別の記事を読む"
+    };
   }
 
   function renderDiagnosis(id) {
@@ -140,11 +226,25 @@ const firstCostDecision = {
       repairSignals: item.repairSignals,
       replacementSignals: item.replacementSignals,
       cta: {
-        href: `${basePath}/products/#replacement`,
+        href: `${basePath}/by-size/`,
         label: "買い替え候補を見る"
       }
     };
+    const next = recommendationCopy(item, currentMode);
 
+    recommendation.innerHTML = `
+      <div class="diagnosis-recommendation-card ${next.tone}">
+        <div>
+          <p class="eyebrow">${next.eyebrow}</p>
+          <h3>${next.title}</h3>
+          <p>${next.body}</p>
+        </div>
+        <div class="diagnosis-recommendation-actions">
+          <a class="button ${next.tone === "replacement" ? "warm" : ""}" href="${next.primaryHref}" data-cvr-action="diagnosis_next_action_click" data-action-kind="${next.primaryKind}">${next.primaryLabel}</a>
+          <a class="button secondary" href="${next.secondaryHref}" data-cvr-action="diagnosis_secondary_action_click" data-action-kind="safe">${next.secondaryLabel}</a>
+        </div>
+      </div>
+    `;
     result.innerHTML = `
       ${sections.map((section) => `
         <details class="diagnosis-accordion">
@@ -195,6 +295,17 @@ const firstCostDecision = {
       if (tab.dataset.diagnosisTab) {
         history.replaceState(null, "", `#${tab.dataset.diagnosisTab}`);
       }
+    });
+  });
+
+  modeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      currentMode = button.dataset.decisionMode ?? "repair";
+      modeButtons.forEach((entry) => {
+        entry.setAttribute("aria-checked", entry === button ? "true" : "false");
+      });
+      const selectedId = tabs.find((tab) => tab.getAttribute("aria-selected") === "true")?.dataset.diagnosisTab;
+      renderDiagnosis(selectedId ?? diagnosisItems[0].id);
     });
   });
 
