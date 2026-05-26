@@ -31,6 +31,60 @@ const breadcrumbJsonLd = breadcrumbs && breadcrumbs.length > 0
       }))
     }
   : null;
+
+const footerSiteMap = [
+  {
+    id: "symptoms",
+    heading: "症状から調べる",
+    links: [
+      { label: "症状別診断", href: "/diagnosis/" },
+      { label: "冷えない・効きが悪い", href: "/articles/not-cooling/" },
+      { label: "水漏れしている", href: "/articles/water-leak/" },
+      { label: "異音がする", href: "/articles/strange-noise/" },
+      { label: "暖房が効かない", href: "/articles/heating-not-working/" },
+      { label: "リモコンが効かない", href: "/articles/remote-not-working/" },
+      { label: "修理を呼ぶ目安", href: "/articles/call-contractor/" }
+    ]
+  },
+  {
+    id: "buying",
+    heading: "買い替え・商品選び",
+    links: [
+      { label: "畳数でエアコンを選ぶ", href: "/by-size/" },
+      { label: "エアコンメーカー比較", href: "/articles/aircon-maker-compare/" },
+      { label: "取り付け工事費の確認", href: "/articles/installation-cost/" },
+      { label: "6畳用の選び方", href: "/articles/aircon-6jou-choose/" },
+      { label: "10畳用の選び方", href: "/articles/aircon-10jou-choose/" },
+      { label: "14畳用の選び方", href: "/articles/aircon-14jou-choose/" },
+      { label: "補助用品・本体候補", href: "/products/" }
+    ]
+  },
+  {
+    id: "learn",
+    heading: "基礎知識・掃除予防",
+    links: [
+      { label: "エアコンの基礎知識", href: "/basics/" },
+      { label: "掃除・故障予防まとめ", href: "/cleaning-prevention/" },
+      { label: "フィルター掃除の基本", href: "/articles/filter-cleaning/" },
+      { label: "掃除スプレーの注意点", href: "/articles/cleaning-spray-risk/" },
+      { label: "室外機まわりの確認", href: "/articles/outdoor-unit-check/" },
+      { label: "ドレンホースの確認", href: "/articles/drain-hose/" },
+      { label: "電気代が高い時の確認", href: "/articles/electric-bill-high/" }
+    ]
+  },
+  {
+    id: "site-info",
+    heading: "サイト情報",
+    links: [
+      { label: "記事一覧", href: "/articles/" },
+      { label: "運営者・編集方針", href: "/about/" },
+      { label: "広告表記・免責事項", href: "/disclaimer/" },
+      { label: "お問い合わせ", href: "/contact/" },
+      { label: "求人・副業入門", href: "/jobs/" },
+      { label: "XMLサイトマップ（検索エンジン用）", href: "/sitemap.xml" }
+    ]
+  }
+];
 ---
 
 <!doctype html>
@@ -103,6 +157,10 @@ const breadcrumbJsonLd = breadcrumbs && breadcrumbs.length > 0
             event: "cvr_action_click",
             action: target.getAttribute("data-cvr-action"),
             action_kind: target.getAttribute("data-action-kind"),
+            source_slug: target.getAttribute("data-source-slug"),
+            slot_index: target.getAttribute("data-slot-index"),
+            recommendation_role: target.getAttribute("data-recommendation-role"),
+            item_id: target.getAttribute("data-item-id"),
             link_url: target.getAttribute("href"),
             link_text: target.textContent?.trim()
           });
@@ -110,25 +168,23 @@ const breadcrumbJsonLd = breadcrumbs && breadcrumbs.length > 0
       }
     </script>
     <footer class="site-footer">
-      <div class="container footer-grid">
-        <div>
+      <div class="container footer-content">
+        <div class="footer-about">
           <h2>{affiliate.siteName}</h2>
           <p>エアコン修理エンジニアが学習ノートをもとに、高校生でも読める言葉で不調の切り分け、商品選び、専門相談の目安を整理するサイトです。</p>
         </div>
-        <div class="footer-links">
-          <strong>コンテンツ</strong>
-          <a href={sitePath("/diagnosis/")}>症状診断</a>
-          <a href={sitePath("/by-size/")}>畳数で選ぶ</a>
-          <a href={sitePath("/products/")}>商品比較</a>
-          <a href={sitePath("/jobs/")}>求人・副業</a>
-        </div>
-        <div class="footer-links">
-          <strong>運営情報</strong>
-          <a href={sitePath("/disclaimer/")}>広告表記・免責</a>
-          <a href={sitePath("/about/")}>運営者・編集方針</a>
-          <a href={sitePath("/contact/")}>お問い合わせ</a>
-          <a href={sitePath("/sitemap.xml")}>サイトマップ</a>
-        </div>
+        <nav class="footer-sitemap" aria-label="フッターサイトマップ">
+          {footerSiteMap.map((group) => (
+            <section class="footer-links" aria-labelledby={`footer-${group.id}`}>
+              <h3 id={`footer-${group.id}`}>{group.heading}</h3>
+              <ul>
+                {group.links.map((link) => (
+                  <li><a href={sitePath(link.href)}>{link.label}</a></li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </nav>
       </div>
     </footer>
   </body>
