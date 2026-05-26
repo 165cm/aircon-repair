@@ -8,11 +8,10 @@ import ProductGrid from "@components/ProductGrid.astro";
 import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { affiliate } from "@data/affiliate";
-import { getCanonicalArticles } from "@data/internalLinks";
 import { replacementProducts, supportProducts } from "@data/products";
 import { sitePath } from "@utils/paths";
 
-const articles = getCanonicalArticles(await getCollection("articles")).sort(
+const articles = (await getCollection("articles")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 const featured = articles.slice(0, 6);
