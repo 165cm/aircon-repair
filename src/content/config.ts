@@ -11,6 +11,14 @@ const articles = defineCollection({
     difficulty: z.enum(["beginner", "intermediate"]).default("beginner"),
     risk: z.enum(["low", "medium", "high"]),
     recommendedCta: z.enum(["products", "contractor", "jobs", "learn"]),
+    teacher: z
+      .enum(["netsugashi-reitaro", "tomuro-mamoru", "kazetooshi-kiyoshi", "mizumichi-nukeru", "kaikae-shinji", "genba-minoru"])
+      .optional(),
+    lessonGoal: z.string().optional(),
+    quickAnswer: z.array(z.string()).default([]),
+    boardImage: z.string().optional(),
+    boardAlt: z.string().optional(),
+    relatedArticles: z.array(z.string()).default([]),
     pubDate: z.coerce.date()
   })
 });

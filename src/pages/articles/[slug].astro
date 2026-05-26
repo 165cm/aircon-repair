@@ -1,17 +1,16 @@
 ---
 import { getCollection, render } from "astro:content";
-import ActionPanel, { type ActionItem } from "@components/ActionPanel.astro";
 import GlossaryBox from "@components/GlossaryBox.astro";
-import ProductGrid from "@components/ProductGrid.astro";
+import ProductCard from "@components/ProductCard.astro";
 import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { affiliate } from "@data/affiliate";
-import { diagnosisItems } from "@data/diagnosis";
-import { productsByIds, productsForSymptom, replacementProducts } from "@data/products";
-import { absoluteUrl } from "@utils/paths";
+import { getArticleRecommendations, getCanonicalArticles, getProductRecommendations } from "@data/internalLinks";
+import { teachers } from "@data/teachers";
+import { absoluteUrl, sitePath } from "@utils/paths";
 
 export async function getStaticPaths() {
-  const articles = await getCollection("articles");
+  const articles = getCanonicalArticles(await getCollection("articles"));
   return articles.map((article) => ({
     params: { slug: article.slug },
     props: { article }
@@ -20,13 +19,9 @@ export async function getStaticPaths() {
 
 const { article } = Astro.props;
 const { Content } = await render(article);
-const frontmatterProducts = productsByIds(article.data.products);
-const symptomProducts = article.data.symptoms.flatMap(productsForSymptom);
-const products = [
-  ...new Map([...frontmatterProducts, ...symptomProducts].map((product) => [product.id, product])).values()
-];
-const sidebarProducts = frontmatterProducts.length > 0 ? frontmatterProducts.slice(0, 2) : products.slice(0, 2);
-const relatedProducts = frontmatterProducts.length > 0 ? frontmatterProducts : products.slice(0, 8);
+const allArticles = getCanonicalArticles(await getCollection("articles"));
+const relatedProductRecommendations = getProductRecommendations(article.slug, article);
+const relatedProducts = relatedProductRecommendations.map((recommendation) => recommendation.product);
 const canonical = absoluteUrl(`/articles/${article.slug}/`);
 const breadcrumbs = [
   { label: "ホーム", href: "/" },
@@ -35,42 +30,42 @@ const breadcrumbs = [
 ];
 const ctaVariant = article.data.recommendedCta === "jobs" ? "jobs" : article.data.recommendedCta === "products" ? "products" : "contractor";
 const showReplacement = article.data.symptoms.includes("冷えない") || article.data.symptoms.includes("修理");
-const matchedDiagnosis = diagnosisItems.find((item) => item.articleSlugs.includes(article.slug)) ?? diagnosisItems[0];
-const articleActions = [
-  {
-    kind: "safe",
-    label: "症状診断で確認する",
-    href: `/diagnosis/#${matchedDiagnosis.id}`,
-    body: "危険サインと安全に見てよい場所を先に整理",
-    action: "article_diagnosis_click",
-    primary: article.data.recommendedCta === "learn"
-  },
-  {
-    kind: "products",
-    label: "補助用品を比較する",
-    href: relatedProducts.length > 0 ? "#mentioned-products" : "/products/",
-    body: "分解しない範囲で使える候補だけを見る",
-    action: "article_products_click",
-    primary: ctaVariant === "products"
-  },
-  {
-    kind: "replacement",
-    label: "買い替えも比較する",
-    href: showReplacement ? "#replacement" : "/by-size/",
-    body: "10年以上・高額修理なら畳数と工事条件を確認",
-    action: "article_replacement_click",
-    primary: showReplacement
-  },
-  {
-    kind: "contractor",
-    label: "業者相談の候補を見る",
-    href: affiliate.contractorAffiliateUrl,
-    body: "焦げ臭い・水が電源近く・金属音は無理しない",
-    action: "article_contractor_click",
-    external: true,
-    primary: ctaVariant === "contractor"
+const fallbackTeacherId = article.data.symptoms.includes("水漏れ") || article.data.symptoms.includes("排水")
+  ? "mizumichi-nukeru"
+  : article.data.category === "buying"
+    ? "kaikae-shinji"
+    : article.data.category === "career"
+      ? "genba-minoru"
+      : article.data.category === "cleaning"
+        ? "kazetooshi-kiyoshi"
+        : article.data.category === "basics" || article.data.category === "energy-saving" || article.data.symptoms.includes("冷えない")
+          ? "netsugashi-reitaro"
+          : article.data.risk === "high"
+            ? "tomuro-mamoru"
+            : "tomuro-mamoru";
+const teacher = teachers[article.data.teacher ?? fallbackTeacherId];
+const nextLessons = getArticleRecommendations(article.slug, article, allArticles);
+const articleThumbnail = (entry: (typeof allArticles)[number]) => {
+  if (entry.data.boardImage) {
+    return entry.data.boardImage;
   }
-] satisfies ActionItem[];
+
+  return entry.body.match(/!\[[^\]]*\]\(([^)]+)\)/)?.[1] ?? "/images/articles/basics-safe-check-zones.webp";
+};
+const showReplacementGuide = article.data.category === "symptom" || article.data.category === "energy-saving";
+const categoryLabel = {
+  symptom: "症状別",
+  basics: "基礎知識",
+  cleaning: "掃除・予防",
+  career: "求人・仕事",
+  buying: "買い替え",
+  "energy-saving": "節電"
+}[article.data.category];
+const riskLabel = {
+  low: "低め",
+  medium: "注意",
+  high: "危険サインあり"
+}[article.data.risk];
 const jsonLd = [
   {
     "@context": "https://schema.org",
@@ -122,41 +117,153 @@ const jsonLd = [
 
 <BaseLayout title={article.data.title} description={article.data.description} canonical={canonical} jsonLd={jsonLd} breadcrumbs={breadcrumbs}>
   <section class="container section">
-    <p class="eyebrow">{article.data.category}</p>
+    <p class="eyebrow">{categoryLabel}</p>
     <h1>{article.data.title}</h1>
     <p class="lead">{article.data.description}</p>
     <div class="tag-list">
-      <span class="tag">危険度: {article.data.risk}</span>
+      <span class="tag">危険度: {riskLabel}</span>
       <span class="tag">{article.data.difficulty === "beginner" ? "初心者向け" : "一歩詳しく"}</span>
       {article.data.symptoms.map((symptom) => <span class="tag">{symptom}</span>)}
     </div>
   </section>
   <section class="container article-body">
     <article class="article-content">
-      <div class="notice safe">
-        <strong>この授業の読み方:</strong> 難しい専門用語は下のミニ解説で確認できます。自力でできるのはフィルター、リモコン、室外機まわり、ドレンホース先端などの外側確認までです。
+      <div class="school-greeting school-greeting-start" aria-label="授業開始のあいさつ">
+        <strong>「起動、冷え、着風！」</strong>
+        <span>エアコン修理高等学校、今日の授業を始めます。</span>
       </div>
-      <ActionPanel
-        eyebrow="この記事を読んだら"
-        title="迷ったら、危険サイン・補助用品・買い替えをここから選ぶ"
-        description="症状に合わせて、読者が次に取りやすい行動だけを並べています。"
-        items={articleActions}
-        image={showReplacement ? "/images/repair-or-replace.webp" : "/images/safe-check-flow.webp"}
-        imageAlt={showReplacement ? "修理費と買い替えを比較する机上のイメージ" : "安全なエアコン確認のイメージ"}
-        compact
-      />
+      <section class="teacher-panel" aria-labelledby="teacher-title">
+        <img class="teacher-portrait" src={sitePath(teacher.image)} alt={`${teacher.name}先生の立ち絵`} loading="eager" />
+        <div class="teacher-copy">
+          <div class="teacher-heading">
+            <h2 id="teacher-title">{teacher.name}先生</h2>
+            <p class="teacher-subject">{teacher.subject}</p>
+          </div>
+          <blockquote>{teacher.catchphrase}</blockquote>
+          <p>{teacher.profile}</p>
+        </div>
+      </section>
+      {
+        article.data.quickAnswer.length > 0 && (
+          <section class="lesson-summary" aria-labelledby="quick-answer-title">
+            <h2 id="quick-answer-title">1分で分かる結論</h2>
+            <ul>
+              {article.data.quickAnswer.map((answer) => (
+                <li>{answer}</li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+      {
+        relatedProducts.length > 0 && (
+          <aside class="mini-product-cta" aria-labelledby="mini-product-title">
+            <div>
+              <h2 id="mini-product-title">関連商品</h2>
+              <div class="mini-product-list">
+                {relatedProducts.map((product) => (
+                  <a
+                    class="mini-product-card"
+                    href={sitePath(`/products/${product.id}/`)}
+                    data-cvr-action="article_intro_product_detail_click"
+                    data-action-kind={product.type === "replacement" ? "replacement" : "products"}
+                    data-source-slug={article.slug}
+                    data-slot-index={relatedProducts.findIndex((candidate) => candidate.id === product.id) + 1}
+                    data-recommendation-role={relatedProductRecommendations.find((recommendation) => recommendation.product.id === product.id)?.role}
+                    data-item-id={product.id}
+                  >
+                    <strong>{product.name}</strong>
+                    <span>{product.description}</span>
+                    <small>{product.safetyNote}</small>
+                  </a>
+                ))}
+              </div>
+            </div>
+            <a
+              class="button secondary"
+              href={sitePath("/products/")}
+              data-cvr-action="article_intro_product_list_click"
+              data-action-kind="products"
+              data-source-slug={article.slug}
+              data-slot-index="0"
+              data-recommendation-role="product-list"
+              data-item-id="products"
+            >
+              商品カテゴリを見る
+            </a>
+          </aside>
+        )
+      }
+      {
+        article.data.boardImage && (
+          <figure class="board-figure">
+            <img src={sitePath(article.data.boardImage)} alt={article.data.boardAlt ?? `${article.data.title}の板書図解`} loading="eager" />
+            <figcaption>{article.data.boardAlt ?? "この記事の要点を板書風に整理した図解です。"}</figcaption>
+          </figure>
+        )
+      }
       <Content />
-      <ActionPanel
-        eyebrow="次の一手"
-        title="この記事だけで判断しきれない時の行動"
-        items={articleActions}
-        compact
-      />
+      {
+        showReplacementGuide && (
+          <aside class="replacement-check" aria-labelledby="replacement-check-title">
+            <div class="replacement-check-head">
+              <h2 id="replacement-check-title">修理より買い替えが早いかも</h2>
+              <p>10年以上・修理費高め・部屋に合わない。ひとつでも当てはまるなら、修理待ちの間に本体候補も見ておくと安心です。</p>
+            </div>
+            <div class="replacement-check-grid">
+              <span>📅 10年以上</span>
+              <span>💴 修理費が高い</span>
+              <span>📐 部屋に合わない</span>
+            </div>
+            <div class="replacement-check-actions">
+              <a
+                class="button warm"
+                href={sitePath("/by-size/")}
+                data-cvr-action="article_replacement_guide_by_size_click"
+                data-action-kind="replacement"
+                data-source-slug={article.slug}
+                data-slot-index="0"
+                data-recommendation-role="replacement"
+                data-item-id="by-size"
+              >
+                畳数から買い替え候補を見る
+              </a>
+            </div>
+          </aside>
+        )
+      }
+      {
+        nextLessons.length > 0 && (
+          <section class="next-lessons" aria-labelledby="next-lessons-title">
+            <h2 id="next-lessons-title">関連記事</h2>
+            <div class="next-lesson-grid">
+              {nextLessons.map((recommendation, index) => (
+                <a
+                  href={sitePath(`/articles/${recommendation.article.slug}/`)}
+                  aria-label={`${recommendation.article.data.title}: ${recommendation.article.data.description}`}
+                  data-cvr-action="article_related_article_click"
+                  data-action-kind="safe"
+                  data-source-slug={article.slug}
+                  data-slot-index={index + 1}
+                  data-recommendation-role={recommendation.role}
+                  data-item-id={recommendation.article.slug}
+                >
+                  <img src={sitePath(articleThumbnail(recommendation.article))} alt="" loading="lazy" />
+                  <strong>{recommendation.article.data.title}</strong>
+                </a>
+              ))}
+            </div>
+          </section>
+        )
+      }
+      <div class="school-greeting school-greeting-end" aria-label="授業終了のあいさつ">
+        <strong>「停止、点検、また次回！」</strong>
+        <span>今日の授業はここまでです。</span>
+      </div>
     </article>
     <aside class="sidebar">
-      <GlossaryBox title="この記事で出やすい用語" limit={4} />
+      <GlossaryBox title="この記事のミニ用語集" limit={4} />
       <RevenueCta variant={ctaVariant} />
-      {sidebarProducts.length > 0 && <ProductGrid products={sidebarProducts} pageType={`article-${article.slug}`} linkPosition="sidebar" />}
     </aside>
   </section>
   {
@@ -164,12 +271,23 @@ const jsonLd = [
       <section class="container section" id="mentioned-products">
         <div class="section-header">
           <div>
-            <p class="eyebrow">この記事で紹介した商品</p>
-            <h2>症状に合わせて比較したい候補</h2>
-            <p>記事内容に合わせて手動で紐付けた商品です。掲載画像は当サイト生成のイメージで、実際の写真・仕様・価格はリンク先で確認してください。</p>
+            <h2>関連商品</h2>
+            <p>本文で触れた確認に使いやすい候補だけを絞っています。</p>
           </div>
         </div>
-        <ProductGrid products={relatedProducts} pageType={`article-${article.slug}`} linkPosition="mentioned-products" />
+        <div class="grid curation-product-grid">
+          {relatedProductRecommendations.map((recommendation, index) => (
+            <ProductCard
+              product={recommendation.product}
+              pageType={`article-${article.slug}`}
+              linkPosition="mentioned-products"
+              variant="curation"
+              sourceSlug={article.slug}
+              slotIndex={index + 1}
+              recommendationRole={recommendation.role}
+            />
+          ))}
+        </div>
       </section>
     )
   }
@@ -179,11 +297,48 @@ const jsonLd = [
         <div class="section-header">
           <div>
             <p class="eyebrow">買い替え比較</p>
-            <h2>修理費が高い時のエアコン本体候補</h2>
-            <p>掲載画像は当サイト生成のイメージです。実際の商品写真・仕様・標準工事・追加工事費はリンク先で確認してください。</p>
+            <h2>買い替えを検討するなら、まず比較記事へ</h2>
+            <p>部屋の広さ、工事費、年式を見てから候補を絞ると判断しやすくなります。</p>
           </div>
         </div>
-        <ProductGrid products={replacementProducts} pageType={`article-${article.slug}`} linkPosition="replacement-section" />
+        <div class="replacement-link-grid">
+          <a
+            href={sitePath("/by-size/")}
+            data-cvr-action="article_replacement_by_size_click"
+            data-action-kind="replacement"
+            data-source-slug={article.slug}
+            data-slot-index="1"
+            data-recommendation-role="replacement"
+            data-item-id="by-size"
+          >
+            <strong>畳数で買い替え候補を比べる</strong>
+            <small>6畳・8畳・10畳・14畳など、部屋の広さから選ぶ。</small>
+          </a>
+          <a
+            href={sitePath("/articles/installation-cost/")}
+            data-cvr-action="article_replacement_cost_click"
+            data-action-kind="replacement"
+            data-source-slug={article.slug}
+            data-slot-index="2"
+            data-recommendation-role="replacement"
+            data-item-id="installation-cost"
+          >
+            <strong>工事費の見方を確認する</strong>
+            <small>標準工事、追加工事、電源条件まで先に見る。</small>
+          </a>
+          <a
+            href={sitePath("/articles/aircon-history/")}
+            data-cvr-action="article_replacement_age_click"
+            data-action-kind="replacement"
+            data-source-slug={article.slug}
+            data-slot-index="3"
+            data-recommendation-role="replacement"
+            data-item-id="aircon-history"
+          >
+            <strong>年式と省エネ性能を確認する</strong>
+            <small>古い機種の電気代や買い替え目安を整理する。</small>
+          </a>
+        </div>
       </section>
     )
   }
