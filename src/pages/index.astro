@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import ArticleCard from "@components/ArticleCard.astro";
 import ActionPanel, { type ActionItem } from "@components/ActionPanel.astro";
-import DiagnosisWidget from "@components/DiagnosisWidget.astro";
+import DiagnosisChat from "@components/DiagnosisChat.astro";
 import GlossaryBox from "@components/GlossaryBox.astro";
 import ProductGrid from "@components/ProductGrid.astro";
 import RevenueCta from "@components/RevenueCta.astro";
@@ -102,12 +102,12 @@ const jsonLd = {
         <span>10年以上なら新品候補も比較</span>
       </div>
       <div class="hero-actions">
-        <a class="button" href="#diagnosis-title" data-cvr-action="home_diagnosis_start_click" data-action-kind="safe">いますぐ診断する</a>
+        <a class="button" href="#chat-title" data-cvr-action="home_diagnosis_start_click" data-action-kind="safe">いますぐ診断する</a>
         <a class="button warm" href={sitePath("/by-size/")} data-cvr-action="home_replacement_compare_click" data-action-kind="replacement">畳数で買い替え比較</a>
         <a class="button secondary" href={sitePath("/articles/call-contractor/")} data-cvr-action="home_repair_consult_click" data-action-kind="contractor">修理を呼ぶ目安</a>
       </div>
     </div>
-    <DiagnosisWidget />
+    <DiagnosisChat />
   </section>
 
   <section class="container section tight-section">
