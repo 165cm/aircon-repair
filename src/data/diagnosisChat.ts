@@ -51,7 +51,6 @@ export type DiagnosisChatScript = {
   nodes: Record<string, ChatNode>;
 };
 
-// 終端に常設する導線（別の症状を聞く／最初から）はランタイム側で付与する。
 export const diagnosisChat: DiagnosisChatScript = {
   startNodeId: "greeting",
   nodes: {
@@ -61,8 +60,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       kind: "question",
       teacher: "netsugashi-reitaro",
       messages: [
-        { text: "「起動、冷え、着風！」エアコン修理科の保健室へようこそ。" },
-        { text: "今日はどんな調子ですか？ 気になる症状をひとつ選んでください。順番に、一緒に切り分けていきましょう。" }
+        { text: "やあ！エアコン修理科の保健室へようこそ 👋" },
+        { text: "どんな症状が出てる？ 一緒に見ていこう。" }
       ],
       quickReplies: [
         { label: "冷えない・暑い", next: "not-cooling__danger-gate" },
@@ -82,8 +81,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "not-cooling",
       teacher: "tomuro-mamoru",
       messages: [
-        { text: "まずは安全確認から。迷ったら止める——それがいちばん早い安全確認です。" },
-        { text: "次のどれかに当てはまりますか？" },
+        { text: "ちょっと待って！まず大事な確認から。" },
+        { text: "次のどれかに当てはまる？" },
         { fromItem: { field: "stopSigns", as: "list" } }
       ],
       quickReplies: [
@@ -98,8 +97,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "stop-call-pro",
       teacher: "tomuro-mamoru",
       messages: [
-        { text: "よく気づきました。それは無理をしてはいけないサインです。" },
-        { text: "今日は使用を止めて、コンセントを抜き、症状を専門業者に伝えましょう。" }
+        { text: "それは止めるサインだよ ⚠️" },
+        { text: "コンセントを抜いて、業者に相談してね。無理しないで。" }
       ],
       actions: [{ type: "contractor" }, { type: "danger-anchor" }]
     },
@@ -109,7 +108,7 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "not-cooling",
       teacher: "netsugashi-reitaro",
       messages: [
-        { text: "了解です。冷房は風の通り道が命。外側からこの3つを確認してみましょう。" },
+        { text: "了解！まず外側から3つ確認してみて。" },
         { fromItem: { field: "safeChecks", as: "list" } }
       ],
       quickReplies: [
@@ -124,8 +123,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "diy-wait",
       teacher: "kazetooshi-kiyoshi",
       messages: [
-        { text: "よかった、風の道が戻りましたね。" },
-        { text: "次に詰まらせないよう、フィルター掃除と空気の循環を整えておくと安心です。無理な出費はいりません。" }
+        { text: "直ったね！よかった 😊" },
+        { text: "フィルターは定期的に掃除しておくと詰まりにくいよ。無理な出費はなし。" }
       ],
       actions: [
         { type: "product", productId: "filter-brush", role: "primary-support" },
@@ -139,7 +138,7 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "not-cooling",
       teacher: "netsugashi-reitaro",
       messages: [
-        { text: "外側に原因がなければ、年式と症状の数で進む道が分かれます。どちらが近いですか？" },
+        { text: "年式と症状の数で、次の道が変わってくるよ。" },
         { fromItem: { field: "repairSignals", as: "list" } },
         { fromItem: { field: "replacementSignals", as: "list" } }
       ],
@@ -155,8 +154,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "repair",
       teacher: "genba-minoru",
       messages: [
-        { text: "工具より先に、見る目を持ってこい——つまり症状メモです。" },
-        { text: "エラーコード・音・冷え方を控えてから相談すると、話が早く済みますよ。" }
+        { text: "症状メモを持って相談が一番早いよ。" },
+        { text: "エラーコード・音・冷え方を控えてから連絡してみて。" }
       ],
       actions: [{ type: "contractor" }, { type: "article", slug: "call-contractor" }]
     },
@@ -167,8 +166,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "replacement",
       teacher: "kaikae-shinji",
       messages: [
-        { text: "本体価格だけで進路希望を出すな。工事費まで面談だ。" },
-        { text: "畳数に合う候補と工事込みの総額を見てから、修理と比べると迷いにくくなります。" }
+        { text: "修理費と新品の価格、まず比べてから決めよう。" },
+        { text: "工事込みの総額を見ると迷いにくくなるよ。" }
       ],
       actions: [
         { type: "replacement" },
@@ -185,8 +184,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "water-leak",
       teacher: "tomuro-mamoru",
       messages: [
-        { text: "水まわりはまず安全確認。電源の近くは触らないのが鉄則です。" },
-        { text: "次のどれかに当てはまりますか？" },
+        { text: "水まわりは電源の近くに触らないのが鉄則！" },
+        { text: "次のどれかある？" },
         { fromItem: { field: "stopSigns", as: "list" } }
       ],
       quickReplies: [
@@ -201,8 +200,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "stop-call-pro",
       teacher: "tomuro-mamoru",
       messages: [
-        { text: "それは止めるサインです。使用を止めて、電源まわりに水がかからないようにしましょう。" },
-        { text: "高所作業や壁内の水は、無理せず専門業者へ。" }
+        { text: "それは止めるサインだよ ⚠️" },
+        { text: "高所作業や壁内の水は、無理せず業者に任せてね。" }
       ],
       actions: [{ type: "contractor" }, { type: "danger-anchor" }]
     },
@@ -212,7 +211,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "water-leak",
       teacher: "mizumichi-nukeru",
       messages: [
-        { text: "水は正直。出口をふさぐと、すぐ下に出てきます。外側からこの3つを見てみましょう。" },
+        { text: "出口がふさがると下に出てきちゃうんだよね 💧" },
+        { text: "外側からこの3つ見てみて。" },
         { fromItem: { field: "safeChecks", as: "list" } }
       ],
       quickReplies: [
@@ -227,8 +227,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "diy-wait",
       teacher: "mizumichi-nukeru",
       messages: [
-        { text: "出口が通れば、水はちゃんと帰ります。" },
-        { text: "ドレンホースの先端を時々見て、フィルターは乾いた状態で掃除しておきましょう。" }
+        { text: "水が止まったね！よかった 😊" },
+        { text: "ドレンの先端、時々チェックしてみてね。" }
       ],
       actions: [
         { type: "product", productId: "drain-pump", role: "primary-support" },
@@ -241,7 +241,7 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "water-leak",
       teacher: "mizumichi-nukeru",
       messages: [
-        { text: "出口を見ても止まらないなら、年式と他の症状で道が分かれます。どちらが近いですか？" },
+        { text: "年式と他の症状で道が変わるよ。どっちに近い？" },
         { fromItem: { field: "repairSignals", as: "list" } },
         { fromItem: { field: "replacementSignals", as: "list" } }
       ],
@@ -257,7 +257,7 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "repair",
       teacher: "genba-minoru",
       messages: [
-        { text: "排水経路の問題が疑われます。どこから・いつ漏れるかをメモして相談しましょう。" }
+        { text: "どこから・いつ漏れるかをメモして相談しよう。" }
       ],
       actions: [{ type: "contractor" }, { type: "article", slug: "water-leak" }]
     },
@@ -268,7 +268,7 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "replacement",
       teacher: "kaikae-shinji",
       messages: [
-        { text: "複数部品の交換が要りそうなら、買い替えとの総額比較が早道です。畳数と工事費から見ていきましょう。" }
+        { text: "複数部品の交換になりそうなら、買い替えとの比較が早道だよ。" }
       ],
       actions: [{ type: "replacement" }]
     },
@@ -282,8 +282,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "noise",
       teacher: "tomuro-mamoru",
       messages: [
-        { text: "異音は機械のSOSのことがあります。ここは特に慎重に。" },
-        { text: "次のどれかに当てはまりますか？ ひとつでも当てはまれば、すぐ止めるのが正解です。" },
+        { text: "異音は機械のSOSかも。ここは特に慎重に！" },
+        { text: "次のどれかある？ ひとつでも当てはまったらすぐ止めて。" },
         { fromItem: { field: "stopSigns", as: "list" } }
       ],
       quickReplies: [
@@ -298,8 +298,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "stop-call-pro",
       teacher: "tomuro-mamoru",
       messages: [
-        { text: "迷わず止めましょう。金属音・焦げ臭さ・煙・火花は、運転を続けてはいけないサインです。" },
-        { text: "コンセントを抜き、症状を専門業者に伝えてください。" }
+        { text: "今すぐ止めて！金属音・焦げ臭さ・煙・火花は危険サインだよ ⚠️" },
+        { text: "コンセントを抜いて業者に連絡してね。" }
       ],
       actions: [{ type: "contractor" }, { type: "danger-anchor" }]
     },
@@ -309,7 +309,7 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "noise",
       teacher: "netsugashi-reitaro",
       messages: [
-        { text: "音の正体は、たいてい『どこかが当たっている』か『ゆるんでいる』です。外側からこの3つを確認しましょう。" },
+        { text: "「当たってる」か「ゆるんでる」ことが多いよ。外側から見てみて。" },
         { fromItem: { field: "safeChecks", as: "list" } }
       ],
       quickReplies: [
@@ -324,8 +324,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "diy-wait",
       teacher: "netsugashi-reitaro",
       messages: [
-        { text: "接触やゆるみが取れたようですね。ここで買うものはありません。" },
-        { text: "音が出るタイミングだけメモしておくと、再発したときに役立ちます。" }
+        { text: "直ったね！ここは買うものなし 👌" },
+        { text: "音のタイミングをメモしておくと、再発のときに役立つよ。" }
       ],
       actions: [{ type: "article", slug: "strange-noise" }]
     },
@@ -335,7 +335,7 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "noise",
       teacher: "netsugashi-reitaro",
       messages: [
-        { text: "表面で直らない音は、中身の可能性があります。年式と症状で道が分かれます。どちらが近いですか？" },
+        { text: "表面で直らない音は中身の話かも。年式と症状で見てみよう。" },
         { fromItem: { field: "repairSignals", as: "list" } },
         { fromItem: { field: "replacementSignals", as: "list" } }
       ],
@@ -351,7 +351,7 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "repair",
       teacher: "genba-minoru",
       messages: [
-        { text: "どんな音が・いつ・どのくらい続くかをメモして相談しましょう。動画があるとなお伝わります。" }
+        { text: "どんな音が・いつ・どのくらい続くかをメモして相談しよう。動画もあると伝わりやすいよ。" }
       ],
       actions: [{ type: "contractor" }, { type: "article", slug: "strange-noise" }]
     },
@@ -362,7 +362,7 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "replacement",
       teacher: "kaikae-shinji",
       messages: [
-        { text: "圧縮機やファンモーター系の異常は修理費が高くなりがちです。買い替えとの総額比較を先に。" }
+        { text: "圧縮機系の異常は修理費が高くなりがち。買い替えと比べてみて。" }
       ],
       actions: [{ type: "replacement" }]
     },
@@ -376,8 +376,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "remote",
       teacher: "tomuro-mamoru",
       messages: [
-        { text: "リモコン不調は基本的に低リスクです。ただ、本体側に次のサインがあれば話は別。" },
-        { text: "当てはまりますか？" },
+        { text: "リモコン不調は基本低リスク。でも本体にこのサインがあったら別の話。" },
+        { text: "当てはまるのある？" },
         { fromItem: { field: "stopSigns", as: "list" } }
       ],
       quickReplies: [
@@ -392,7 +392,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "stop-call-pro",
       teacher: "tomuro-mamoru",
       messages: [
-        { text: "それはリモコンだけの問題ではないかもしれません。電源・配線まわりは触らず、使用を止めて相談を。" }
+        { text: "それはリモコンだけの問題じゃないかも ⚠️" },
+        { text: "電源・配線は触らず、使用を止めて業者に相談してね。" }
       ],
       actions: [{ type: "contractor" }, { type: "danger-anchor" }]
     },
@@ -402,7 +403,7 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "remote",
       teacher: "netsugashi-reitaro",
       messages: [
-        { text: "では、いちばん安い確認から。電池交換と送信部チェックで、不要な修理依頼を減らせます。" },
+        { text: "まず一番安い確認から！電池交換で直ることも多いよ。" },
         { fromItem: { field: "safeChecks", as: "list" } }
       ],
       quickReplies: [
@@ -417,8 +418,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "diy-wait",
       teacher: "netsugashi-reitaro",
       messages: [
-        { text: "電池や送信部で切り分けできましたね。応急運転で本体が動くなら、急ぎの修理は不要なことが多いです。" },
-        { text: "スマホカメラで送信部が光らないときだけ、対応機種を確認して汎用リモコンを検討しましょう。" }
+        { text: "切り分けできたね 👍 急ぎじゃないなら様子見でOK。" },
+        { text: "送信部が光らないときだけ、汎用リモコンを検討してみて。" }
       ],
       actions: [
         { type: "product", productId: "remote-battery", role: "primary-support" },
@@ -431,7 +432,7 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "remote",
       teacher: "netsugashi-reitaro",
       messages: [
-        { text: "本体側か、リモコン側か、年式で道が分かれます。どちらが近いですか？" },
+        { text: "本体側か、リモコン側か、年式で見てみよう。" },
         { fromItem: { field: "repairSignals", as: "list" } },
         { fromItem: { field: "replacementSignals", as: "list" } }
       ],
@@ -447,7 +448,7 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "repair",
       teacher: "genba-minoru",
       messages: [
-        { text: "受光部や基板側が疑わしいときは、型番と症状をメモして相談を。リモコン交換で済むこともあります。" }
+        { text: "型番と症状をメモして相談してみて。リモコン交換で済むこともあるよ。" }
       ],
       actions: [{ type: "contractor" }, { type: "article", slug: "remote-not-working" }]
     },
@@ -458,7 +459,7 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "replacement",
       teacher: "kaikae-shinji",
       messages: [
-        { text: "純正部品が手に入りにくい古い機種で不調が重なるなら、買い替え比較も視野に。" }
+        { text: "純正部品が入りにくい古い機種で不調が重なるなら、買い替え比較も考えてみて。" }
       ],
       actions: [{ type: "replacement" }]
     },
@@ -472,8 +473,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "cleaning",
       teacher: "tomuro-mamoru",
       messages: [
-        { text: "掃除で気をつけたいのは、スプレーと分解です。安全な範囲を超えると、かえって壊します。" },
-        { text: "次に当てはまりますか？" },
+        { text: "掃除のスプレーと分解には気をつけてね！" },
+        { text: "次のどれかある？" },
         { fromItem: { field: "stopSigns", as: "list" } }
       ],
       quickReplies: [
@@ -488,7 +489,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "stop-call-pro",
       teacher: "tomuro-mamoru",
       messages: [
-        { text: "電装部品へのスプレーや奥の分解は、自己流だと故障や発火の元です。そこはプロに任せましょう。" }
+        { text: "電装部品へのスプレーや分解は危険だよ ⚠️" },
+        { text: "そこはプロに任せるのが正解。" }
       ],
       actions: [{ type: "cleaning" }, { type: "article", slug: "cleaning-spray-risk" }]
     },
@@ -498,7 +500,7 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "cleaning",
       teacher: "kazetooshi-kiyoshi",
       messages: [
-        { text: "風の欠席、だいたいホコリが原因です。まずは安全な範囲だけ。" },
+        { text: "ホコリが原因のことが多いよ！まず安全な範囲だけやってみて 🌬️" },
         { fromItem: { field: "safeChecks", as: "list" } }
       ],
       quickReplies: [
@@ -513,8 +515,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "diy-wait",
       teacher: "kazetooshi-kiyoshi",
       messages: [
-        { text: "フィルター掃除と送風乾燥でここまで来ましたね。" },
-        { text: "定期的な掃除でカビ臭は出にくくなります。奥は無理に触らないのがコツです。" }
+        { text: "においが消えたね！よかった 😊" },
+        { text: "定期的なフィルター掃除でカビ臭は出にくくなるよ。奥は触らないのがコツ。" }
       ],
       actions: [
         { type: "product", productId: "filter-brush", role: "primary-support" },
@@ -528,7 +530,7 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "cleaning",
       teacher: "kazetooshi-kiyoshi",
       messages: [
-        { text: "奥のカビは無理に分解せず、プロの分解クリーニングか、年式しだいで買い替えかを比べます。どちらが近いですか？" },
+        { text: "奥のカビは自力はムリ！プロか買い替えか比べてみよう。" },
         { fromItem: { field: "repairSignals", as: "list" } },
         { fromItem: { field: "replacementSignals", as: "list" } }
       ],
@@ -544,7 +546,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "cleaning",
       teacher: "kazetooshi-kiyoshi",
       messages: [
-        { text: "奥の汚れは、プロの分解クリーニングが安全で確実です。市販スプレーで奥を狙うより、結局はやく済みます。" }
+        { text: "奥の汚れはプロの分解クリーニングが確実だよ 🧹" },
+        { text: "市販スプレーより早くてきれいになるから、長い目で見るとお得。" }
       ],
       actions: [{ type: "cleaning" }, { type: "article", slug: "cleaning-spray-risk" }]
     },
@@ -555,7 +558,7 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "replacement",
       teacher: "kaikae-shinji",
       messages: [
-        { text: "お掃除機能付きで分解清掃費が高く、他の不調も重なるなら、買い替えとの比較が現実的です。" }
+        { text: "お掃除機能付きで清掃費が高く、不調が重なるなら買い替えとの比較が現実的だよ。" }
       ],
       actions: [{ type: "replacement" }]
     }

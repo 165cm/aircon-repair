@@ -138,6 +138,18 @@ import DiagnosisChat from "./DiagnosisChat.astro";
   .cf-open .cf-icon-close { display: block; }
   .cf-open .cf-label { display: none; }
 
+  /* 閉じているときだけパルスで存在をアピール */
+  @media (prefers-reduced-motion: no-preference) {
+    .cf-root:not(.cf-open) .cf-trigger {
+      animation: cf-pulse 3s ease-in-out 2s infinite;
+    }
+  }
+
+  @keyframes cf-pulse {
+    0%, 100% { box-shadow: 0 4px 16px rgba(17, 116, 111, 0.45); }
+    50%       { box-shadow: 0 4px 24px rgba(17, 116, 111, 0.65), 0 0 0 7px rgba(17, 116, 111, 0.12); }
+  }
+
   /* ---- パネル ---- */
   .cf-panel {
     width: 380px;
