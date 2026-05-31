@@ -39,12 +39,15 @@ const affiliateUrls = {
   contractor: affiliate.contractorAffiliateUrl,
   cleaning: affiliate.cleaningAffiliateUrl
 };
+
+type Props = { compact?: boolean };
+const { compact = false } = Astro.props;
 ---
 
-<section class="panel chat" aria-labelledby="chat-title">
-  <p class="eyebrow">保健室みたいな3分相談</p>
-  <h2 id="chat-title">講師に相談しながら、次の行動を決める</h2>
-  <p class="chat-intro">危険な分解には進みません。症状を選ぶだけで、講師が安全な確認と「修理・買い替え・様子見」の目安を一緒に整理します。</p>
+<section class={compact ? "chat chat-compact" : "panel chat"} aria-labelledby="chat-title">
+  {!compact && <p class="eyebrow">保健室みたいな3分相談</p>}
+  {!compact && <h2 id="chat-title">講師に相談しながら、次の行動を決める</h2>}
+  {!compact && <p class="chat-intro">危険な分解には進みません。症状を選ぶだけで、講師が安全な確認と「修理・買い替え・様子見」の目安を一緒に整理します。</p>}
 
   <div class="chat-window">
     <div class="chat-log" role="log" aria-live="polite" aria-label="講師との会話">
