@@ -217,7 +217,22 @@ import DiagnosisChat from "./DiagnosisChat.astro";
   }
 
   .cf-panel-body :global(.chat-log) {
-    max-height: 320px;
+    max-height: 340px;
+    padding: 14px 12px;
+  }
+
+  /* コンパクト表示ではアバターを小さくして横幅を節約 */
+  .cf-panel-body :global(.chat-avatar-wrap) {
+    width: 40px;
+  }
+
+  .cf-panel-body :global(.chat-avatar-wrap img) {
+    width: 40px;
+    height: 40px;
+  }
+
+  .cf-panel-body :global(.chat-bubble-group) {
+    max-width: min(80%, 300px);
   }
 
   /* chat-controls をパネル内に合わせる */
