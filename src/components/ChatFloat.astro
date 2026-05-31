@@ -1,0 +1,256 @@
+---
+import DiagnosisChat from "./DiagnosisChat.astro";
+---
+
+<!-- フローティングボタン＋スライドパネル（全ページに挿入） -->
+<div class="cf-root" id="cf-root">
+  <!-- 開くボタン -->
+  <button
+    type="button"
+    class="cf-trigger"
+    id="cf-trigger"
+    aria-expanded="false"
+    aria-controls="cf-panel"
+    aria-label="エアコンの症状を講師に相談する"
+    data-cvr-action="chat_float_open" data-action-kind="safe"
+  >
+    <svg class="cf-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+    <span class="cf-label">症状を相談</span>
+    <svg class="cf-icon-close" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+
+  <!-- パネル -->
+  <div class="cf-panel" id="cf-panel" role="dialog" aria-modal="true" aria-labelledby="cf-panel-title" hidden>
+    <div class="cf-panel-header">
+      <div>
+        <p class="cf-panel-eyebrow">保健室みたいな3分相談</p>
+        <h2 id="cf-panel-title" class="cf-panel-title">講師に症状を相談する</h2>
+      </div>
+    </div>
+    <div class="cf-panel-body">
+      <DiagnosisChat compact />
+    </div>
+  </div>
+</div>
+
+<!-- モバイル用バックドロップ -->
+<div class="cf-backdrop" id="cf-backdrop" hidden aria-hidden="true"></div>
+
+<script>
+  const root = document.getElementById("cf-root");
+  const trigger = document.getElementById("cf-trigger");
+  const panel = document.getElementById("cf-panel");
+  const backdrop = document.getElementById("cf-backdrop");
+  if (!root || !trigger || !panel || !backdrop) throw new Error("ChatFloat: elements missing");
+
+  let isOpen = false;
+
+  function open() {
+    isOpen = true;
+    panel.hidden = false;
+    backdrop.hidden = false;
+    trigger.setAttribute("aria-expanded", "true");
+    root.classList.add("cf-open");
+    // フォーカスをパネル内の最初の要素へ
+    const firstFocusable = panel.querySelector<HTMLElement>("button, [href], input, [tabindex]:not([tabindex='-1'])");
+    firstFocusable?.focus();
+  }
+
+  function close() {
+    isOpen = false;
+    panel.hidden = true;
+    backdrop.hidden = true;
+    trigger.setAttribute("aria-expanded", "false");
+    root.classList.remove("cf-open");
+    trigger.focus();
+  }
+
+  trigger.addEventListener("click", () => (isOpen ? close() : open()));
+  backdrop.addEventListener("click", close);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && isOpen) close();
+  });
+</script>
+
+<style>
+  /* ---- 基本配置 ---- */
+  .cf-root {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 900;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+  }
+
+  /* ---- トリガーボタン ---- */
+  .cf-trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 48px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: none;
+    background: var(--brand);
+    color: #fff;
+    font: inherit;
+    font-weight: 800;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(17, 116, 111, 0.45);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .cf-trigger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(17, 116, 111, 0.5);
+  }
+
+  .cf-trigger:focus-visible {
+    outline: 2px solid var(--brand-dark);
+    outline-offset: 3px;
+  }
+
+  .cf-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .cf-icon-close {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    display: none;
+  }
+
+  /* 開いている間はチャットアイコン→閉じるアイコンへ */
+  .cf-open .cf-icon { display: none; }
+  .cf-open .cf-icon-close { display: block; }
+  .cf-open .cf-label { display: none; }
+
+  /* ---- パネル ---- */
+  .cf-panel {
+    width: 380px;
+    max-height: calc(100dvh - 100px);
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    box-shadow: 0 20px 60px rgba(20, 38, 32, 0.18);
+    overflow: hidden;
+  }
+
+  .cf-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+    background: var(--surface);
+    flex-shrink: 0;
+  }
+
+  .cf-panel-eyebrow {
+    margin: 0;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--brand);
+  }
+
+  .cf-panel-title {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  .cf-panel-body {
+    flex: 1;
+    overflow-y: auto;
+    /* chat-compact のボーダーなし版を収める */
+  }
+
+  /* ---- compact モード用: DiagnosisChat の panel クラスを上書き ---- */
+  .cf-panel-body :global(.chat-compact) {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  /* chat-window（吹き出し部分）のmax-heightを短くして中でスクロール */
+  .cf-panel-body :global(.chat-window) {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+  }
+
+  .cf-panel-body :global(.chat-log) {
+    max-height: 320px;
+  }
+
+  /* chat-controls をパネル内に合わせる */
+  .cf-panel-body :global(.chat-controls) {
+    padding: 8px 14px;
+  }
+
+  /* ---- バックドロップ（モバイル） ---- */
+  .cf-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 899;
+  }
+
+  /* ---- アニメーション ---- */
+  @media (prefers-reduced-motion: no-preference) {
+    .cf-panel {
+      animation: cf-slide-up 0.22s ease;
+    }
+  }
+
+  @keyframes cf-slide-up {
+    from { opacity: 0; transform: translateY(12px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* ---- モバイル ---- */
+  @media (max-width: 480px) {
+    .cf-root {
+      bottom: 16px;
+      right: 16px;
+    }
+
+    .cf-panel {
+      position: fixed;
+      bottom: 72px;
+      right: 16px;
+      left: 16px;
+      width: auto;
+      max-height: calc(100dvh - 100px);
+    }
+
+    .cf-panel-body :global(.chat-log) {
+      max-height: 260px;
+    }
+  }
+</style>

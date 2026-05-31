@@ -1,6 +1,7 @@
 ---
 import { affiliate } from "@data/affiliate";
 import { absoluteUrl, sitePath } from "@utils/paths";
+import ChatFloat from "@components/ChatFloat.astro";
 import "@styles/global.css";
 
 type Breadcrumb = { label: string; href?: string };
@@ -17,6 +18,9 @@ type Props = {
 const { title, description, canonical, jsonLd, ogImage, breadcrumbs } = Astro.props;
 const pageTitle = title === affiliate.siteName ? title : `${title} | ${affiliate.siteName}`;
 const canonicalUrl = canonical ?? absoluteUrl(Astro.url.pathname);
+
+// /diagnosis/ は専用のインラインチャットがあるのでフローティングは表示しない
+const showChatFloat = !Astro.url.pathname.replace(/\/$/, "").endsWith("/diagnosis");
 const ogImageUrl = ogImage ? absoluteUrl(ogImage) : absoluteUrl("/images/trust-hero-aircon-check.webp");
 
 const breadcrumbJsonLd = breadcrumbs && breadcrumbs.length > 0
@@ -187,5 +191,6 @@ const footerSiteMap = [
         </nav>
       </div>
     </footer>
+    {showChatFloat && <ChatFloat />}
   </body>
 </html>

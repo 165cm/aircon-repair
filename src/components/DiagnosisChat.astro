@@ -1,0 +1,490 @@
+---
+import { getCollection } from "astro:content";
+import { diagnosisChat } from "@data/diagnosisChat";
+import { diagnosisItems } from "@data/diagnosis";
+import { teachers } from "@data/teachers";
+import { productCategories, productUrl } from "@data/products";
+import { affiliate } from "@data/affiliate";
+import { sitePath } from "@utils/paths";
+
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+const articles = await getCollection("articles");
+const articleTitleBySlug = Object.fromEntries(articles.map((a) => [a.slug, a.data.title]));
+
+// 症状ごとのチェックリスト（diagnosis.ts を流用、文章を二重化しない）
+const symptomData = Object.fromEntries(
+  diagnosisItems.map((item) => [
+    item.id,
+    {
+      safeChecks: item.safeChecks,
+      stopSigns: item.stopSigns,
+      repairSignals: item.repairSignals,
+      replacementSignals: item.replacementSignals
+    }
+  ])
+);
+
+// 講師（名前・立ち絵）
+const teacherData = Object.fromEntries(
+  Object.values(teachers).map((t) => [t.id, { name: t.name, image: sitePath(t.image) }])
+);
+
+// 商品（名前・Amazon URL・種別）
+const productData = Object.fromEntries(
+  productCategories.map((p) => [p.id, { name: p.name, url: productUrl(p), type: p.type ?? "support" }])
+);
+
+const affiliateUrls = {
+  contractor: affiliate.contractorAffiliateUrl,
+  cleaning: affiliate.cleaningAffiliateUrl
+};
+
+type Props = { compact?: boolean };
+const { compact = false } = Astro.props;
+---
+
+<section class={compact ? "chat chat-compact" : "panel chat"} aria-labelledby="chat-title">
+  {!compact && <p class="eyebrow">保健室みたいな3分相談</p>}
+  {!compact && <h2 id="chat-title">講師に相談しながら、次の行動を決める</h2>}
+  {!compact && <p class="chat-intro">危険な分解には進みません。症状を選ぶだけで、講師が安全な確認と「修理・買い替え・様子見」の目安を一緒に整理します。</p>}
+
+  <div class="chat-window">
+    <div class="chat-log" role="log" aria-live="polite" aria-label="講師との会話">
+      <!-- あいさつはJS無効時のフォールバック兼ビュー用にサーバー描画 -->
+      <noscript>
+        <div class="chat-row instructor">
+          <div class="chat-bubble">
+            このチャット診断はJavaScriptで動きます。症状別の確認は<a href={sitePath("/articles/")}>記事一覧</a>からもご覧いただけます。
+          </div>
+        </div>
+      </noscript>
+    </div>
+    <div class="chat-replies" role="group" aria-label="返信を選ぶ"></div>
+  </div>
+
+  <div class="chat-controls">
+    <button type="button" class="chat-control" data-chat-back hidden>← ひとつ戻る</button>
+    <button type="button" class="chat-control" data-chat-restart hidden>最初から</button>
+  </div>
+</section>
+
+<script define:vars={{ script: diagnosisChat, symptomData, teacherData, productData, affiliateUrls, articleTitleBySlug, basePath }}>
+  const logEl = document.querySelector(".chat-log");
+  const repliesEl = document.querySelector(".chat-replies");
+  const backBtn = document.querySelector("[data-chat-back]");
+  const restartBtn = document.querySelector("[data-chat-restart]");
+
+  const state = { currentId: script.startNodeId, history: [] };
+  const stepEls = []; // 各ノードで追記した講師吹き出しのまとまり
+  const echoEls = []; // ユーザーの選択エコー吹き出し
+  let userInteracted = false;
+
+  function esc(value) {
+    return String(value).replace(/[&<>"']/g, (c) =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]
+    );
+  }
+
+  function listHTML(items) {
+    return `<ul class="chat-list">${items.map((i) => `<li>${esc(i)}</li>`).join("")}</ul>`;
+  }
+
+  // InstructorMessage[] -> 吹き出し本文HTMLの配列
+  function messagesToHTML(node) {
+    return node.messages.map((m) => {
+      if (m.text) return `<p>${esc(m.text)}</p>`;
+      if (m.fromItem && node.symptom) {
+        const items = symptomData[node.symptom]?.[m.fromItem.field] ?? [];
+        return listHTML(items);
+      }
+      return "";
+    });
+  }
+
+  function teacherHeaderHTML(teacherId) {
+    const t = teacherData[teacherId];
+    if (!t) return "";
+    return `
+      <div class="chat-avatar">
+        <img src="${esc(t.image)}" alt="${esc(t.name)}先生の立ち絵" loading="lazy" width="44" height="44" />
+      </div>`;
+  }
+
+  // ChatAction -> CTAアンカーHTML（AmazonLink.astro と同じ属性で、既存の委譲リスナーに計測させる）
+  function actionToAnchorHTML(action) {
+    if (action.type === "product") {
+      const p = productData[action.productId];
+      if (!p) return "";
+      const isReplacement = p.type === "replacement";
+      const cvr = isReplacement ? "amazon_replacement_click" : "amazon_support_click";
+      const kind = isReplacement ? "replacement" : "products";
+      const label = isReplacement ? `${p.name}を比較する` : `${p.name}を見る`;
+      const cls = isReplacement ? "button warm" : "button";
+      return `<a class="${cls}" href="${esc(p.url)}" rel="sponsored nofollow noopener" target="_blank"
+        data-amazon-link data-cvr-action="${cvr}" data-action-kind="${kind}"
+        data-item-id="${esc(action.productId)}" data-item-name="${esc(p.name)}"
+        data-page-type="diagnosis-chat" data-link-position="chat-terminal"
+        data-recommendation-role="${esc(action.role ?? "")}">${esc(label)}<span class="sr-only">（新しいタブで開きます）</span></a>`;
+    }
+    if (action.type === "contractor") {
+      return `<a class="button" href="${esc(affiliateUrls.contractor)}" rel="sponsored nofollow noopener" target="_blank"
+        data-cvr-action="contractor_consult_click" data-action-kind="contractor">業者に相談する<span class="sr-only">（新しいタブで開きます）</span></a>`;
+    }
+    if (action.type === "cleaning") {
+      return `<a class="button" href="${esc(affiliateUrls.cleaning)}" rel="sponsored nofollow noopener" target="_blank"
+        data-cvr-action="cleaning_consult_click" data-action-kind="contractor">分解クリーニングを相談する<span class="sr-only">（新しいタブで開きます）</span></a>`;
+    }
+    if (action.type === "replacement") {
+      return `<a class="button warm" href="${esc(basePath)}/by-size/"
+        data-cvr-action="replacement_compare_click" data-action-kind="replacement">畳数で買い替えを比較する</a>`;
+    }
+    if (action.type === "article") {
+      const title = articleTitleBySlug[action.slug] ?? action.slug;
+      return `<a class="button secondary" href="${esc(basePath)}/articles/${esc(action.slug)}/"
+        data-cvr-action="diagnosis_secondary_action_click" data-action-kind="safe">${esc(title)}を読む</a>`;
+    }
+    if (action.type === "danger-anchor") {
+      return `<a class="button secondary" href="${esc(basePath)}/diagnosis/#danger-signs"
+        data-cvr-action="diagnosis_danger_signs_click" data-action-kind="contractor">危険サインの一覧を見る</a>`;
+    }
+    return "";
+  }
+
+  // ノードの講師吹き出し（＋終端ならCTA）をログに追記
+  function appendNodeMessages(node) {
+    const step = document.createElement("div");
+    step.className = "chat-step";
+    const bubbles = messagesToHTML(node).map((html) => `<div class="chat-bubble">${html}</div>`).join("");
+    let actionsHTML = "";
+    if (node.kind === "terminal" && node.actions.length > 0) {
+      const rec = node.recommendation;
+      const toneClass = rec === "stop-call-pro" ? " danger" : "";
+      actionsHTML = `<div class="chat-actions${toneClass}">${node.actions.map(actionToAnchorHTML).join("")}</div>`;
+    }
+    step.innerHTML = `
+      <div class="chat-row instructor">
+        ${teacherHeaderHTML(node.teacher)}
+        <div class="chat-bubble-group">${bubbles}${actionsHTML}</div>
+      </div>`;
+    logEl.appendChild(step);
+    stepEls.push(step);
+  }
+
+  // 返信エリア（質問ノード=クイックリプライ／終端=ナビゲーション）
+  function renderReplies(node) {
+    let chips = [];
+    if (node.kind === "question") {
+      chips = node.quickReplies.map((qr) => ({ label: qr.label, next: qr.next, kind: "advance" }));
+    } else {
+      chips = [
+        { label: "別の症状を聞く", next: script.startNodeId, kind: "advance" },
+        { label: "最初から", next: null, kind: "restart" }
+      ];
+    }
+    repliesEl.innerHTML = chips
+      .map(
+        (c) =>
+          `<button type="button" class="chat-chip" data-chip-kind="${c.kind}" ${
+            c.next ? `data-next="${esc(c.next)}"` : ""
+          } data-cvr-action="diagnosis_chat_reply_click" data-action-kind="safe">${esc(c.label)}</button>`
+      )
+      .join("");
+
+    if (userInteracted) {
+      const firstChip = repliesEl.querySelector(".chat-chip");
+      if (firstChip) firstChip.focus();
+    }
+  }
+
+  function scrollToLatest() {
+    logEl.scrollTop = logEl.scrollHeight;
+  }
+
+  function updateControls() {
+    backBtn.hidden = state.history.length === 0;
+    restartBtn.hidden = state.history.length === 0;
+  }
+
+  function renderNode(id) {
+    const node = script.nodes[id];
+    if (!node) return;
+    state.currentId = id;
+    appendNodeMessages(node);
+    renderReplies(node);
+    updateControls();
+    scrollToLatest();
+  }
+
+  function appendUserEcho(label) {
+    const echo = document.createElement("div");
+    echo.className = "chat-row user";
+    echo.innerHTML = `<div class="chat-bubble user-bubble">${esc(label)}</div>`;
+    logEl.appendChild(echo);
+    echoEls.push(echo);
+  }
+
+  function advance(next, echoLabel) {
+    if (!script.nodes[next]) return;
+    if (echoLabel) appendUserEcho(echoLabel);
+    state.history.push(state.currentId);
+    renderNode(next);
+  }
+
+  function back() {
+    if (state.history.length === 0) return;
+    const lastStep = stepEls.pop();
+    if (lastStep) lastStep.remove();
+    const lastEcho = echoEls.pop();
+    if (lastEcho) lastEcho.remove();
+    state.currentId = state.history.pop();
+    renderReplies(script.nodes[state.currentId]);
+    updateControls();
+    scrollToLatest();
+  }
+
+  function restart() {
+    logEl.querySelectorAll(".chat-step, .chat-row.user").forEach((el) => el.remove());
+    stepEls.length = 0;
+    echoEls.length = 0;
+    state.history = [];
+    renderNode(script.startNodeId);
+  }
+
+  // クイックリプライ／ナビゲーションのクリック
+  repliesEl.addEventListener("click", (event) => {
+    const chip = event.target.closest(".chat-chip");
+    if (!chip) return;
+    userInteracted = true;
+    if (chip.dataset.chipKind === "restart") {
+      restart();
+      return;
+    }
+    const next = chip.dataset.next;
+    if (next) advance(next, chip.textContent.trim());
+  });
+
+  backBtn.addEventListener("click", () => {
+    userInteracted = true;
+    back();
+  });
+  restartBtn.addEventListener("click", () => {
+    userInteracted = true;
+    restart();
+  });
+
+  // 初期化：ハッシュが症状idなら、その症状のゲートまで自動で前進（ActionPanelのディープリンク互換）
+  const symptomIds = new Set(
+    Object.values(script.nodes)
+      .filter((n) => n.symptom)
+      .map((n) => n.symptom)
+  );
+  const hashId = location.hash.replace("#", "");
+  renderNode(script.startNodeId);
+  if (symptomIds.has(hashId)) {
+    advance(`${hashId}__danger-gate`, null);
+  }
+</script>
+
+<style>
+  .chat {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .chat-intro {
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .chat-window {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--bg);
+    overflow: hidden;
+  }
+
+  .chat-log {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-height: 560px;
+    overflow-y: auto;
+    padding: 18px;
+  }
+
+  .chat-step {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .chat-row {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+  }
+
+  .chat-row.instructor {
+    justify-content: flex-start;
+  }
+
+  .chat-row.user {
+    justify-content: flex-end;
+  }
+
+  .chat-avatar {
+    flex: 0 0 auto;
+  }
+
+  .chat-avatar img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--line);
+    background: var(--surface);
+  }
+
+  .chat-bubble-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: min(80%, 520px);
+  }
+
+  .chat-bubble {
+    border-radius: 14px;
+    padding: 10px 14px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 2px 6px rgba(20, 38, 32, 0.06);
+  }
+
+  .chat-bubble :global(p) {
+    margin: 0;
+  }
+
+  .chat-bubble :global(p + p) {
+    margin-top: 6px;
+  }
+
+  .chat-bubble :global(.chat-list) {
+    margin: 0;
+    padding-left: 1.2em;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .user-bubble {
+    background: var(--brand);
+    color: #fff;
+    border-color: var(--brand-dark);
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 4px;
+    max-width: min(80%, 420px);
+    font-weight: 700;
+  }
+
+  .chat-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 2px;
+  }
+
+  .chat-actions :global(.button) {
+    flex: 1 1 auto;
+  }
+
+  .chat-actions.danger {
+    border-left: 4px solid var(--danger);
+    padding-left: 10px;
+  }
+
+  .chat-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 14px;
+    border-top: 1px solid var(--line);
+    background: var(--surface);
+  }
+
+  .chat-chip {
+    appearance: none;
+    cursor: pointer;
+    min-height: 40px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--brand);
+    background: var(--surface);
+    color: var(--brand-dark);
+    font-weight: 700;
+    font: inherit;
+    line-height: 1.4;
+  }
+
+  .chat-chip:hover {
+    background: var(--surface-soft);
+  }
+
+  .chat-chip:focus-visible {
+    outline: 2px solid var(--brand-dark);
+    outline-offset: 2px;
+  }
+
+  .chat-controls {
+    display: flex;
+    gap: 12px;
+  }
+
+  .chat-control {
+    appearance: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    padding: 4px 0;
+  }
+
+  .chat-control:hover {
+    color: var(--brand-dark);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .chat-step,
+    .chat-row.user {
+      animation: chat-bubble-in 0.28s ease;
+    }
+  }
+
+  @keyframes chat-bubble-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
