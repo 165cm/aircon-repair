@@ -1,6 +1,6 @@
 ---
 import ActionPanel, { type ActionItem } from "@components/ActionPanel.astro";
-import DiagnosisWidget from "@components/DiagnosisWidget.astro";
+import DiagnosisChat from "@components/DiagnosisChat.astro";
 import GlossaryBox from "@components/GlossaryBox.astro";
 import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
@@ -52,7 +52,7 @@ const symptomActions = [
       <h1>症状別診断</h1>
       <p class="lead">この診断は修理手順ではなく、安全な切り分けです。冷媒は熱を運ぶガス、基板は電子部品の板です。どちらも初心者が触る場所ではありません。</p>
       <div class="hero-actions">
-        <a class="button" href="#diagnosis-title" data-cvr-action="diagnosis_start_click" data-action-kind="safe">診断を始める</a>
+        <a class="button" href="#chat-title" data-cvr-action="diagnosis_start_click" data-action-kind="safe">診断を始める</a>
         <a class="button warm" href="#danger-signs" data-cvr-action="diagnosis_danger_signs_click" data-action-kind="contractor">危険サインを見る</a>
       </div>
     </div>
@@ -70,7 +70,7 @@ const symptomActions = [
   </section>
 
   <section class="container section">
-    <DiagnosisWidget />
+    <DiagnosisChat />
   </section>
 
   <section id="danger-signs" class="container section">
