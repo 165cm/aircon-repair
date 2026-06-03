@@ -43,16 +43,16 @@ const symptomActions = [
 ---
 
 <BaseLayout
-  title="症状別診断"
-  description="冷えない、水漏れ、異音、リモコン不調、掃除の悩みを選び、高校生でも分かる安全確認と修理・買い替えの目安を確認できます。"
+  title="症状を相談する"
+  description="冷えない、水漏れ、異音、リモコン不調、掃除の悩みを選び、保健室の先生と安全確認、修理相談、買い替え検討の順に整理できます。"
 >
   <section class="container hero diagnosis-hero">
     <div>
-      <p class="eyebrow">保健室みたいな症状チェック</p>
-      <h1>症状別診断</h1>
+      <p class="eyebrow">エアコン保健室</p>
+      <h1>症状を相談する</h1>
       <p class="lead">この診断は修理手順ではなく、安全な切り分けです。冷媒は熱を運ぶガス、基板は電子部品の板です。どちらも初心者が触る場所ではありません。</p>
       <div class="hero-actions">
-        <a class="button" href="#chat-title" data-cvr-action="diagnosis_start_click" data-action-kind="safe">診断を始める</a>
+        <a class="button" href="#chat-title" data-cvr-action="diagnosis_start_click" data-action-kind="safe">先生に相談する</a>
         <a class="button warm" href="#danger-signs" data-cvr-action="diagnosis_danger_signs_click" data-action-kind="contractor">危険サインを見る</a>
       </div>
     </div>
@@ -61,9 +61,9 @@ const symptomActions = [
 
   <section class="container section tight-section">
     <ActionPanel
-      eyebrow="症状別クイック導線"
-      title="近い症状から、商品・業者・買い替えの判断へ進む"
-      description="危険な分解作業に進む前に、外側から見られる範囲だけを確認します。"
+      eyebrow="相談メモの入口"
+      title="近い症状から、同じ順番で確認します"
+      description="危険な分解作業に進む前に、外側から見られる範囲、修理相談、買い替え検討をひとつの流れで整理します。"
       items={symptomActions}
       compact
     />

@@ -6,7 +6,7 @@ import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { affiliate } from "@data/affiliate";
 import { getArticleRecommendations, getCanonicalArticles, getProductRecommendations } from "@data/internalLinks";
-import { teachers } from "@data/teachers";
+import { healthRoomTeacher } from "@data/teachers";
 import { absoluteUrl, sitePath } from "@utils/paths";
 
 export async function getStaticPaths() {
@@ -30,20 +30,7 @@ const breadcrumbs = [
 ];
 const ctaVariant = article.data.recommendedCta === "jobs" ? "jobs" : article.data.recommendedCta === "products" ? "products" : "contractor";
 const showReplacement = article.data.symptoms.includes("冷えない") || article.data.symptoms.includes("修理");
-const fallbackTeacherId = article.data.symptoms.includes("水漏れ") || article.data.symptoms.includes("排水")
-  ? "mizumichi-nukeru"
-  : article.data.category === "buying"
-    ? "kaikae-shinji"
-    : article.data.category === "career"
-      ? "genba-minoru"
-      : article.data.category === "cleaning"
-        ? "kazetooshi-kiyoshi"
-        : article.data.category === "basics" || article.data.category === "energy-saving" || article.data.symptoms.includes("冷えない")
-          ? "netsugashi-reitaro"
-          : article.data.risk === "high"
-            ? "tomuro-mamoru"
-            : "tomuro-mamoru";
-const teacher = teachers[article.data.teacher ?? fallbackTeacherId];
+const teacher = healthRoomTeacher;
 const nextLessons = getArticleRecommendations(article.slug, article, allArticles);
 const articleThumbnail = (entry: (typeof allArticles)[number]) => {
   if (entry.data.boardImage) {
@@ -66,6 +53,15 @@ const riskLabel = {
   medium: "注意",
   high: "危険サインあり"
 }[article.data.risk];
+const safeCheckNotes = article.data.category === "buying"
+  ? ["部屋の畳数、設置場所、コンセント形状をメモする。", "修理見積もりと新品本体、工事費を同じ紙で比べる。", "急いで買わず、標準工事に含まれない費用を確認する。"]
+  : ["外側から見える範囲だけ確認する。", "型番、購入年、症状、発生した時間をメモする。", "暑さや水濡れがある時は、先に人と床を守る。"];
+const doNotTouchNotes = article.data.category === "cleaning"
+  ? ["内部ファン、熱交換器、電装部品へスプレーしない。", "分解洗浄や高所作業は自分で進めない。", "カビ臭が残る時は、内部清掃の相談へ切り替える。"]
+  : ["冷媒配管、基板、電源配線、室外機の中は触らない。", "焦げ臭い、煙、火花、金属音、水が電源付近にある時は使用停止。", "原因が分からないまま運転を続けない。"];
+const consultNotes = showReplacementGuide
+  ? ["危険サインがあれば修理相談を優先する。", "10年以上・複数症状・高額見積もりなら買い替えも同時に比べる。", "判断に迷う時は、診断チャットで症状を選び直す。"]
+  : ["外側確認で改善しなければ、無理せず相談へ進む。", "必要なら関連記事で基礎を確認する。", "判断に迷う時は、診断チャットで症状を選び直す。"];
 const jsonLd = [
   {
     "@context": "https://schema.org",
@@ -128,12 +124,12 @@ const jsonLd = [
   </section>
   <section class="container article-body">
     <article class="article-content">
-      <div class="school-greeting school-greeting-start" aria-label="授業開始のあいさつ">
-        <strong>「起動、冷え、着風！」</strong>
-        <span>私立 涼峰工業高校【エアコン修理科】、今日の授業を始めます。</span>
+      <div class="school-greeting school-greeting-start" aria-label="保健室だよりの始まり">
+        <strong>エアコン保健室だより</strong>
+        <span>今日の不調を、修理・買い替え・応急確認の順に整理します。</span>
       </div>
       <section class="teacher-panel" aria-labelledby="teacher-title">
-        <img class="teacher-portrait" src={sitePath(teacher.image)} alt={`${teacher.name}先生の立ち絵`} loading="eager" />
+        <img class="teacher-portrait" src={sitePath(teacher.image)} alt={`${teacher.name}先生の顔`} loading="eager" />
         <div class="teacher-copy">
           <div class="teacher-heading">
             <h2 id="teacher-title">{teacher.name}先生</h2>
@@ -146,7 +142,7 @@ const jsonLd = [
       {
         article.data.quickAnswer.length > 0 && (
           <section class="lesson-summary" aria-labelledby="quick-answer-title">
-            <h2 id="quick-answer-title">1分で分かる結論</h2>
+            <h2 id="quick-answer-title">今日の結論</h2>
             <ul>
               {article.data.quickAnswer.map((answer) => (
                 <li>{answer}</li>
@@ -155,11 +151,34 @@ const jsonLd = [
           </section>
         )
       }
+      <section class="care-sheet" aria-label="安全確認と次の相談">
+        <div>
+          <h2>安全に確認</h2>
+          <ul>{safeCheckNotes.map((note) => <li>{note}</li>)}</ul>
+        </div>
+        <div class="danger-note">
+          <h2>触らない場所</h2>
+          <ul>{doNotTouchNotes.map((note) => <li>{note}</li>)}</ul>
+        </div>
+        <div>
+          <h2>次に相談する</h2>
+          <ul>{consultNotes.map((note) => <li>{note}</li>)}</ul>
+        </div>
+      </section>
+      <Content />
+      {
+        article.data.boardImage && (
+          <figure class="board-figure">
+            <img src={sitePath(article.data.boardImage)} alt={article.data.boardAlt ?? `${article.data.title}の図解`} loading="lazy" />
+            <figcaption>{article.data.boardAlt ?? "この記事の要点を図解で整理しています。"}</figcaption>
+          </figure>
+        )
+      }
       {
         relatedProducts.length > 0 && (
           <aside class="mini-product-cta" aria-labelledby="mini-product-title">
             <div>
-              <h2 id="mini-product-title">関連商品</h2>
+              <h2 id="mini-product-title">次の処置に使う候補</h2>
               <div class="mini-product-list">
                 {relatedProducts.map((product) => (
                   <a
@@ -194,15 +213,6 @@ const jsonLd = [
           </aside>
         )
       }
-      {
-        article.data.boardImage && (
-          <figure class="board-figure">
-            <img src={sitePath(article.data.boardImage)} alt={article.data.boardAlt ?? `${article.data.title}の板書図解`} loading="eager" />
-            <figcaption>{article.data.boardAlt ?? "この記事の要点を板書風に整理した図解です。"}</figcaption>
-          </figure>
-        )
-      }
-      <Content />
       {
         showReplacementGuide && (
           <aside class="replacement-check" aria-labelledby="replacement-check-title">
@@ -256,9 +266,9 @@ const jsonLd = [
           </section>
         )
       }
-      <div class="school-greeting school-greeting-end" aria-label="授業終了のあいさつ">
-        <strong>「停止、点検、また次回！」</strong>
-        <span>今日の授業はここまでです。</span>
+      <div class="school-greeting school-greeting-end" aria-label="相談メモの終わり">
+        <strong>相談メモはここまで</strong>
+        <span>迷う時は、使用を止めてから次の相談へ進みましょう。</span>
       </div>
     </article>
     <aside class="sidebar">

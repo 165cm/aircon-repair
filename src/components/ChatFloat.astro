@@ -11,7 +11,7 @@ import DiagnosisChat from "./DiagnosisChat.astro";
     id="cf-trigger"
     aria-expanded="false"
     aria-controls="cf-panel"
-    aria-label="エアコンの症状を講師に相談する"
+    aria-label="エアコンの症状を保健室の先生に相談する"
     data-cvr-action="chat_float_open" data-action-kind="safe"
   >
     <svg class="cf-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -28,8 +28,8 @@ import DiagnosisChat from "./DiagnosisChat.astro";
   <div class="cf-panel" id="cf-panel" role="dialog" aria-modal="true" aria-labelledby="cf-panel-title" hidden>
     <div class="cf-panel-header">
       <div>
-        <p class="cf-panel-eyebrow">保健室みたいな3分相談</p>
-        <h2 id="cf-panel-title" class="cf-panel-title">講師に症状を相談する</h2>
+        <p class="cf-panel-eyebrow">エアコン保健室の3分相談</p>
+        <h2 id="cf-panel-title" class="cf-panel-title">先生に症状を相談する</h2>
       </div>
     </div>
     <div class="cf-panel-body">
@@ -163,6 +163,11 @@ import DiagnosisChat from "./DiagnosisChat.astro";
     overflow: hidden;
   }
 
+  .cf-panel[hidden],
+  .cf-backdrop[hidden] {
+    display: none;
+  }
+
   .cf-panel-header {
     display: flex;
     align-items: center;
@@ -223,12 +228,12 @@ import DiagnosisChat from "./DiagnosisChat.astro";
 
   /* コンパクト表示ではアバターを小さくして横幅を節約 */
   .cf-panel-body :global(.chat-avatar-wrap) {
-    width: 40px;
+    width: 48px;
   }
 
-  .cf-panel-body :global(.chat-avatar-wrap img) {
-    width: 40px;
-    height: 40px;
+  .cf-panel-body :global(.chat-avatar-frame) {
+    width: 46px;
+    height: 46px;
   }
 
   .cf-panel-body :global(.chat-bubble-group) {

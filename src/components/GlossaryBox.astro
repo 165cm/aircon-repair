@@ -11,7 +11,7 @@ const terms = typeof limit === "number" ? glossaryTerms.slice(0, limit) : glossa
 ---
 
 <section class="glossary-box" aria-labelledby="glossary-title">
-  <p class="eyebrow">高校生でも分かる用語</p>
+  <p class="eyebrow">やさしい用語メモ</p>
   <h2 id="glossary-title">{title}</h2>
   <div class="glossary-list">
     {terms.map((item) => (
@@ -30,7 +30,7 @@ const terms = typeof limit === "number" ? glossaryTerms.slice(0, limit) : glossa
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 20px;
-  background: var(--surface);
+  background: var(--paper);
   box-shadow: var(--shadow);
 }
 

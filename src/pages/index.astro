@@ -1,75 +1,106 @@
 ---
-import { getCollection } from "astro:content";
-import ArticleCard from "@components/ArticleCard.astro";
-import ActionPanel, { type ActionItem } from "@components/ActionPanel.astro";
 import DiagnosisChat from "@components/DiagnosisChat.astro";
-import GlossaryBox from "@components/GlossaryBox.astro";
-import ProductGrid from "@components/ProductGrid.astro";
-import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { affiliate } from "@data/affiliate";
-import { replacementProducts, supportProducts } from "@data/products";
 import { sitePath } from "@utils/paths";
 
-const articles = (await getCollection("articles")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
-const featured = articles.slice(0, 6);
-const replacementSteps = [
+const routeGroups = [
   {
-    label: "1",
-    title: "修理見積もりを見直す",
-    body: "新品本体の半額に近いなら比較開始",
-    href: "/articles/installation-cost/"
+    label: "症状",
+    title: "いま困っている症状",
+    body: "冷えない、水漏れ、異音、リモコン不調を安全確認から見ます。",
+    links: [
+      { label: "症状別診断", href: "/diagnosis/" },
+      { label: "冷えない", href: "/articles/not-cooling/" },
+      { label: "水漏れ", href: "/articles/water-leak/" },
+      { label: "異音", href: "/articles/strange-noise/" },
+      { label: "リモコン", href: "/articles/remote-not-working/" }
+    ]
   },
   {
-    label: "2",
-    title: "部屋の広さを合わせる",
-    body: "畳数不足なら冷えない原因にもなる",
-    href: "/by-size/"
+    label: "安全",
+    title: "止めるか、修理を呼ぶか",
+    body: "焦げ臭い、火花、水が電源近くにある時は原因探しより停止を優先します。",
+    links: [
+      { label: "危険サイン", href: "/diagnosis/#danger-signs" },
+      { label: "業者を呼ぶ目安", href: "/articles/call-contractor/" },
+      { label: "工事費の見方", href: "/articles/installation-cost/" },
+      { label: "室外機確認", href: "/articles/outdoor-unit-check/" }
+    ]
   },
   {
-    label: "3",
-    title: "本体候補を比べる",
-    body: "工事費込みで総額の目安を見る",
-    href: "#replacement-candidates"
+    label: "買替",
+    title: "修理費が高い時の比較",
+    body: "10年以上、複数症状、高額見積もりなら買い替え候補も同時に確認します。",
+    links: [
+      { label: "畳数で選ぶ", href: "/by-size/" },
+      { label: "メーカー比較", href: "/articles/aircon-maker-compare/" },
+      { label: "6畳", href: "/articles/aircon-6jou-choose/" },
+      { label: "10畳", href: "/articles/aircon-10jou-choose/" },
+      { label: "14畳", href: "/articles/aircon-14jou-choose/" }
+    ]
+  },
+  {
+    label: "予防",
+    title: "掃除・電気代・水まわり",
+    body: "分解しない範囲で、フィルター、ドレンホース、室外機まわりを整えます。",
+    links: [
+      { label: "掃除予防まとめ", href: "/cleaning-prevention/" },
+      { label: "フィルター掃除", href: "/articles/filter-cleaning/" },
+      { label: "ドレンホース", href: "/articles/drain-hose/" },
+      { label: "掃除スプレー注意", href: "/articles/cleaning-spray-risk/" },
+      { label: "電気代が高い", href: "/articles/electric-bill-high/" }
+    ]
+  },
+  {
+    label: "道具",
+    title: "補助用品と本体候補",
+    body: "応急確認の道具と買い替え候補は、診断後の次の処置として見ます。",
+    links: [
+      { label: "商品比較", href: "/products/" },
+      { label: "補助用品", href: "/products/#support" },
+      { label: "本体候補", href: "/products/#replacement" },
+      { label: "基礎知識", href: "/basics/" }
+    ]
+  },
+  {
+    label: "案内",
+    title: "記事一覧・運営情報",
+    body: "もっと詳しく調べたい時や、求人・副業、広告表記を確認したい時はこちらです。",
+    links: [
+      { label: "記事一覧", href: "/articles/" },
+      { label: "運営方針", href: "/about/" },
+      { label: "求人・副業", href: "/jobs/" },
+      { label: "広告表記", href: "/disclaimer/" }
+    ]
   }
 ];
-const heroActions = [
+const heroSymptoms = [
   {
-    kind: "safe",
     label: "冷えない・暑い",
-    href: "/diagnosis/#not-cooling",
-    body: "温湿度・フィルター・室外機まわりを確認",
-    action: "home_symptom_not_cooling_click",
-    icon: "cooling",
-    primary: true
+    symptom: "not-cooling",
+    body: "風がぬるい、部屋が冷えない",
+    action: "home_symptom_not_cooling_click"
   },
   {
-    kind: "contractor",
     label: "水漏れする",
-    href: "/diagnosis/#water-leak",
-    body: "電源まわりを避け、排水経路だけ安全確認",
-    action: "home_symptom_water_leak_click",
-    icon: "leak"
+    symptom: "water-leak",
+    body: "室内機や壁から水が落ちる",
+    action: "home_symptom_water_leak_click"
   },
   {
-    kind: "contractor",
     label: "異音・振動",
-    href: "/diagnosis/#noise",
-    body: "金属音・焦げ臭さは使用停止を優先",
-    action: "home_symptom_noise_click",
-    icon: "noise"
+    symptom: "noise",
+    body: "カタカタ、金属音、揺れがある",
+    action: "home_symptom_noise_click"
   },
   {
-    kind: "products",
     label: "リモコン不調",
-    href: "/diagnosis/#remote",
-    body: "電池・送信部・応急運転で切り分け",
-    action: "home_symptom_remote_click",
-    icon: "remote"
+    symptom: "remote",
+    body: "反応しない、表示がおかしい",
+    action: "home_symptom_remote_click"
   }
-] satisfies ActionItem[];
+];
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -85,104 +116,104 @@ const jsonLd = {
 
 <BaseLayout
   title={affiliate.siteName}
-  description="エアコンの冷えない、水漏れ、異音、掃除の悩みを安全に切り分け、補助用品・業者相談・求人情報へ案内する初心者向けサイト。"
+  description="エアコンの冷えない、水漏れ、異音、掃除の悩みを保健室の先生と安全に切り分け、修理相談か買い替え検討かを落ち着いて整理する初心者向けサイト。"
   jsonLd={jsonLd}
 >
-  <section class="container hero home-hero">
-    <div>
-      <p class="eyebrow">エアコン修理の3分診断</p>
-      <h1>故障かもと思ったら、まず修理か買い替えかを決める</h1>
-      <p class="lead">
-        冷えない・水漏れ・異音・リモコン不調を、危険な分解に進まず切り分けます。
-        症状と使用状況を選ぶだけで、修理相談を優先するか、買い替え比較まで進めるかが分かります。
-      </p>
-      <div class="trust-strip" aria-label="サイトの安全方針">
-        <span>外側から見られる範囲だけ</span>
-        <span>危険サインは使用停止を優先</span>
-        <span>10年以上なら新品候補も比較</span>
-      </div>
-      <div class="hero-actions">
-        <a class="button" href="#chat-title" data-cvr-action="home_diagnosis_start_click" data-action-kind="safe">いますぐ診断する</a>
-        <a class="button warm" href={sitePath("/by-size/")} data-cvr-action="home_replacement_compare_click" data-action-kind="replacement">畳数で買い替え比較</a>
-        <a class="button secondary" href={sitePath("/articles/call-contractor/")} data-cvr-action="home_repair_consult_click" data-action-kind="contractor">修理を呼ぶ目安</a>
+  <section class="home-hero-room" aria-labelledby="home-title">
+    <img
+      class="home-hero-room-image"
+      src={sitePath("/images/aircon-health-room-hero.png")}
+      alt=""
+      loading="eager"
+    />
+    <div class="home-hero-room-shade"></div>
+    <div class="container home-hero-room-inner">
+      <div class="home-hero-copy">
+        <p class="eyebrow">すずね先生の最初の質問</p>
+        <h1 id="home-title">いま、どの症状ですか？</h1>
+        <p class="lead">
+          近いものを選ぶだけで、安全確認から修理相談、買い替え検討まで同じ順番で整理します。
+        </p>
+        <div class="home-hero-symptoms" aria-label="症状を選んで相談を始める">
+          {
+            heroSymptoms.map((item) => (
+              <a
+                href="#chat-title"
+                data-diagnosis-symptom={item.symptom}
+                data-cvr-action={item.action}
+                data-action-kind="safe"
+              >
+                <strong>{item.label}</strong>
+                <span>{item.body}</span>
+              </a>
+            ))
+          }
+        </div>
+        <a class="home-danger-link" href={sitePath("/diagnosis/#danger-signs")} data-cvr-action="home_danger_signs_click" data-action-kind="contractor">
+          焦げ臭い・火花・電源近くの水は先に停止
+        </a>
       </div>
     </div>
-    <DiagnosisChat />
   </section>
 
-  <section class="container section tight-section">
-    <ActionPanel
-      eyebrow="症状から最短で選ぶ"
-      title="いま近い症状を選ぶと、次の安全な行動へ進めます"
-      description="記事を探す前に、危険度・確認範囲・商品/業者/買い替えの目安を切り分けます。"
-      items={heroActions}
-      image="/images/safe-check-flow.webp"
-      imageAlt="フィルター、リモコン、室外機まわりを安全に確認するイメージ"
-    />
+  <section class="container section home-chat-section">
+    <DiagnosisChat startClosed={false} showHeader={false} />
   </section>
 
-  <section class="container section">
-    <GlossaryBox limit={4} />
-  </section>
-
-  <section class="container section">
+  <section class="container section home-route-section" aria-labelledby="route-title">
     <div class="section-header">
       <div>
-        <p class="eyebrow">修理費が高い時の次の一手</p>
-        <h2>修理するか買い替えるか、先に費用感を比べる</h2>
-        <p>「直してもまた壊れそう」「見積もりが思ったより高い」と感じたら、修理だけで決めずに同じ部屋へ置ける新品候補も見ておくと判断しやすくなります。</p>
+        <p class="eyebrow">目的別リンク</p>
+        <h2 id="route-title">次に見るページを選ぶ</h2>
+        <p>相談のあとに詳しく読むページを、悩み別にまとめました。気になる行を押すと、そのページへ移動します。</p>
       </div>
-      <a href={sitePath("/by-size/")}>部屋に合う新品候補を見る</a>
+      <a href={sitePath("/articles/")}>記事一覧へ</a>
     </div>
-    <div class="decision-steps" aria-label="買い替え判断の順番">
+    <div class="home-route-grid">
       {
-        replacementSteps.map((step) => (
-          <a class="decision-step" href={step.href.startsWith("#") ? step.href : sitePath(step.href)}>
-            <span>{step.label}</span>
-            <strong>{step.title}</strong>
-            <small>{step.body}</small>
-          </a>
+        routeGroups.map((group) => (
+          <article class="home-route-card">
+            <div>
+              <span>{group.label}</span>
+              <h3>{group.title}</h3>
+              <p>{group.body}</p>
+            </div>
+            <ul>
+              {group.links.map((link) => (
+                <li><a href={sitePath(link.href)}>{link.label}</a></li>
+              ))}
+            </ul>
+          </article>
         ))
       }
     </div>
-    <div class="section-header product-section-title" id="replacement-candidates">
+    <div class="home-route-footer">
       <div>
-        <p class="eyebrow">本体候補</p>
-        <h2>まず比較したい買い替え候補</h2>
+        <strong>まだ迷うときは、症状から相談できます。</strong>
+        <span>使用停止・修理相談・買い替え比較のどれを先に見るか、チャットで絞ります。</span>
       </div>
-    </div>
-    <ProductGrid products={replacementProducts} pageType="home" linkPosition="by-size-replacement" variant="comparison" />
-  </section>
-
-  <section class="container section">
-    <div class="section-header">
-      <div>
-        <p class="eyebrow">安全な範囲の備え</p>
-        <h2>分解しない補助用品から整える</h2>
-        <p>価格は固定表示せず、個別の商品候補からAmazonの商品ページで仕様・在庫を確認できるようにしています。</p>
-      </div>
-      <a href={sitePath("/products/")}>商品比較へ</a>
-    </div>
-    <ProductGrid products={supportProducts} pageType="home" linkPosition="support-curation" variant="curation" />
-  </section>
-
-  <section class="container section">
-    <div class="grid two">
-      <RevenueCta variant="contractor" />
-      <RevenueCta variant="replacement" />
+      <a href="#chat-title" data-cvr-action="home_route_footer_chat_click" data-action-kind="safe">3分相談へ戻る</a>
     </div>
   </section>
 
-  <section class="container section">
-    <div class="section-header">
-      <div>
-        <p class="eyebrow">初期記事</p>
-        <h2>まず読んでほしい基礎と症状別ガイド</h2>
-      </div>
-      <a href={sitePath("/basics/")}>記事一覧へ</a>
-    </div>
-    <div class="grid">
-      {featured.map((article) => <ArticleCard article={article} />)}
-    </div>
-  </section>
+  <script>
+    document.addEventListener("click", (event) => {
+      const targetEl = event.target instanceof Element ? event.target : event.target?.parentElement;
+      const symptomTarget = targetEl?.closest("[data-diagnosis-symptom]");
+      if (!symptomTarget) return;
+      event.preventDefault();
+
+      const label =
+        symptomTarget.querySelector("strong")?.textContent?.trim() ??
+        symptomTarget.textContent?.trim().replace(/\s+/g, " ");
+      window.dispatchEvent(
+        new CustomEvent("diagnosis:symptom", {
+          detail: {
+            symptomId: symptomTarget.dataset.diagnosisSymptom,
+            label
+          }
+        })
+      );
+    });
+  </script>
 </BaseLayout>

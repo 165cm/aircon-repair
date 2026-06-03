@@ -25,9 +25,17 @@ const symptomData = Object.fromEntries(
   ])
 );
 
-// 講師（名前・立ち絵）
+// 保健室の先生（名前・立ち絵・丸アイコンの顔抜き位置）
+const teacherAvatarFocus = {
+  "netsugashi-reitaro": { x: "50%", y: "50%", scale: "1" },
+  "tomuro-mamoru": { x: "50%", y: "50%", scale: "1" },
+  "kazetooshi-kiyoshi": { x: "50%", y: "50%", scale: "1" },
+  "mizumichi-nukeru": { x: "50%", y: "50%", scale: "1" },
+  "kaikae-shinji": { x: "50%", y: "50%", scale: "1" },
+  "genba-minoru": { x: "50%", y: "50%", scale: "1" }
+};
 const teacherData = Object.fromEntries(
-  Object.values(teachers).map((t) => [t.id, { name: t.name, image: sitePath(t.image) }])
+  Object.values(teachers).map((t) => [t.id, { name: t.name, image: sitePath(t.avatarImage ?? t.image), avatar: teacherAvatarFocus[t.id] }])
 );
 
 // 商品（名前・Amazon URL・種別）
@@ -40,17 +48,41 @@ const affiliateUrls = {
   cleaning: affiliate.cleaningAffiliateUrl
 };
 
-type Props = { compact?: boolean };
-const { compact = false } = Astro.props;
+type Props = { compact?: boolean; startClosed?: boolean; showHeader?: boolean };
+const { compact = false, startClosed = !compact, showHeader = true } = Astro.props;
+const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
 ---
 
-<section class={compact ? "chat chat-compact" : "panel chat"} aria-labelledby="chat-title">
-  {!compact && <p class="eyebrow">保健室みたいな3分相談</p>}
-  {!compact && <h2 id="chat-title">講師に相談しながら、次の行動を決める</h2>}
-  {!compact && <p class="chat-intro">危険な分解には進みません。症状を選ぶだけで、講師が安全な確認と「修理・買い替え・様子見」の目安を一緒に整理します。</p>}
+<section
+  id={chatDomId}
+  class={compact ? "chat chat-compact" : "panel chat"}
+  aria-labelledby={compact ? undefined : "chat-title"}
+  data-diagnosis-chat
+  data-chat-start-closed={startClosed ? "true" : "false"}
+>
+  {
+    !compact && showHeader ? (
+      <>
+        <p class="eyebrow">エアコン保健室の3分相談</p>
+        <h2 id="chat-title">保健室の先生と、次の処置を決める</h2>
+        <p class="chat-intro">危険な分解には進みません。症状を選ぶだけで、先生が安全確認、修理相談、買い替え検討の順に一緒に整理します。</p>
+      </>
+    ) : (
+      !compact && <h2 id="chat-title" class="sr-only">症状を選んで相談する</h2>
+    )
+  }
 
-  <div class="chat-window">
-    <div class="chat-log" role="log" aria-live="polite" aria-label="講師との会話">
+  {!compact && startClosed && (
+    <div class="chat-launch" data-chat-launch-panel>
+      <p>質問は4ステップだけです。危険サイン、外側確認、修理相談、買い替え検討の順に見ます。</p>
+      <button type="button" class="button" data-chat-launch data-cvr-action="diagnosis_chat_launch_click" data-action-kind="safe">
+        症状を相談する
+      </button>
+    </div>
+  )}
+
+  <div class="chat-window" hidden={startClosed && !compact}>
+    <div class="chat-log" role="log" aria-live="polite" aria-label="保健室の先生との会話">
       <!-- あいさつはJS無効時のフォールバック兼ビュー用にサーバー描画 -->
       <noscript>
         <div class="chat-row instructor">
@@ -63,23 +95,32 @@ const { compact = false } = Astro.props;
     <div class="chat-replies" role="group" aria-label="返信を選ぶ"></div>
   </div>
 
-  <div class="chat-controls">
+  <div class="chat-controls" hidden={startClosed && !compact}>
     <button type="button" class="chat-control" data-chat-back hidden>← ひとつ戻る</button>
     <button type="button" class="chat-control" data-chat-restart hidden>最初から</button>
   </div>
 </section>
 
-<script define:vars={{ script: diagnosisChat, symptomData, teacherData, productData, affiliateUrls, articleTitleBySlug, basePath }}>
-  const logEl = document.querySelector(".chat-log");
-  const repliesEl = document.querySelector(".chat-replies");
-  const backBtn = document.querySelector("[data-chat-back]");
-  const restartBtn = document.querySelector("[data-chat-restart]");
+<script define:vars={{ script: diagnosisChat, symptomData, teacherData, productData, affiliateUrls, articleTitleBySlug, basePath, chatDomId, isCompact: compact }}>
+  const rootEl = document.getElementById(chatDomId);
+  const logEl = rootEl?.querySelector(".chat-log");
+  const repliesEl = rootEl?.querySelector(".chat-replies");
+  const backBtn = rootEl?.querySelector("[data-chat-back]");
+  const restartBtn = rootEl?.querySelector("[data-chat-restart]");
+  const launchPanel = rootEl?.querySelector("[data-chat-launch-panel]");
+  const launchBtn = rootEl?.querySelector("[data-chat-launch]");
+  const windowEl = rootEl?.querySelector(".chat-window");
+  const controlsEl = rootEl?.querySelector(".chat-controls");
+  if (!rootEl || !logEl || !repliesEl || !backBtn || !restartBtn || !windowEl || !controlsEl) {
+    throw new Error("DiagnosisChat: elements missing");
+  }
 
   const state = { currentId: script.startNodeId, history: [] };
   const stepEls = [];
   const echoEls = [];
   let userInteracted = false;
   let isAnimating = false;
+  let hasStarted = false;
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function esc(value) {
@@ -108,9 +149,19 @@ const { compact = false } = Astro.props;
     const t = teacherData[teacherId];
     if (!t) return "";
     const shortName = t.name.split(/\s/)[0] + "先生";
+    const avatar = t.avatar ?? { x: "50%", y: "50%", scale: "1" };
     return `
       <div class="chat-avatar-wrap">
-        <img src="${esc(t.image)}" alt="${esc(t.name)}先生の立ち絵" loading="lazy" width="48" height="48" />
+        <span class="chat-avatar-frame">
+          <img
+            src="${esc(t.image)}"
+            alt="${esc(t.name)}先生の顔"
+            loading="lazy"
+            width="88"
+            height="88"
+            style="--avatar-x: ${esc(avatar.x)}; --avatar-y: ${esc(avatar.y)}; --avatar-scale: ${esc(avatar.scale)};"
+          />
+        </span>
         <span class="chat-avatar-name">${esc(shortName)}</span>
       </div>`;
   }
@@ -305,7 +356,8 @@ const { compact = false } = Astro.props;
   }
 
   repliesEl.addEventListener("click", async (event) => {
-    const chip = event.target.closest(".chat-chip");
+    const targetEl = event.target instanceof Element ? event.target : event.target?.parentElement;
+    const chip = targetEl?.closest(".chat-chip");
     if (!chip || isAnimating) return;
     userInteracted = true;
     if (chip.dataset.chipKind === "restart") {
@@ -332,12 +384,61 @@ const { compact = false } = Astro.props;
       .map((n) => n.symptom)
   );
   const hashId = location.hash.replace("#", "");
-  (async () => {
+
+  async function startChat() {
+    if (hasStarted) return;
+    hasStarted = true;
+    launchPanel?.remove();
+    windowEl.hidden = false;
+    controlsEl.hidden = false;
+    const activeHashId = location.hash.replace("#", "");
     await renderNode(script.startNodeId);
-    if (symptomIds.has(hashId)) {
-      await advance(`${hashId}__danger-gate`, null);
+    if (symptomIds.has(activeHashId)) {
+      await advance(`${activeHashId}__danger-gate`, null);
     }
-  })();
+  }
+
+  async function startSymptom(symptomId, echoLabel) {
+    const nextId = `${symptomId}__danger-gate`;
+    if (!script.nodes[nextId] || isAnimating) return;
+    userInteracted = true;
+    await startChat();
+    if (state.currentId !== script.startNodeId || state.history.length > 0) {
+      await restart();
+    }
+    await advance(nextId, echoLabel);
+    const targetTop = rootEl.getBoundingClientRect().top + window.scrollY - 14;
+    window.scrollTo({ top: Math.max(0, targetTop), behavior: reducedMotion ? "auto" : "smooth" });
+  }
+
+  launchBtn?.addEventListener("click", async () => {
+    userInteracted = true;
+    await startChat();
+  });
+
+  if (!isCompact) {
+    window.addEventListener("diagnosis:symptom", (event) => {
+      const detail = event.detail ?? {};
+      startSymptom(detail.symptomId, detail.label);
+    });
+  }
+
+  if (!isCompact) {
+    document.addEventListener("click", (event) => {
+      const targetEl = event.target instanceof Element ? event.target : event.target?.parentElement;
+      if (!targetEl) return;
+      const target = targetEl.closest('a[href="#chat-title"]');
+      if (!target || !document.getElementById("chat-title")) return;
+      setTimeout(() => {
+        userInteracted = true;
+        startChat();
+      }, 0);
+    });
+  }
+
+  if (rootEl.dataset.chatStartClosed !== "true" || symptomIds.has(hashId)) {
+    startChat();
+  }
 </script>
 
 <style>
@@ -352,12 +453,41 @@ const { compact = false } = Astro.props;
     margin: 0;
   }
 
+  .chat-launch {
+    display: grid;
+    gap: 12px;
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background:
+      linear-gradient(rgba(15, 118, 110, 0.055) 1px, transparent 1px) 0 20px / 100% 30px,
+      var(--paper);
+    box-shadow: var(--shadow);
+  }
+
+  .chat-launch p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .chat-launch .button {
+    justify-self: start;
+  }
+
   .chat-window {
     border: 1px solid var(--line);
-    border-radius: 16px;
-    background: #edf7f0; /* 少し温かみのある緑がかった白 */
+    border-radius: 8px;
+    background:
+      linear-gradient(rgba(15, 118, 110, 0.045) 1px, transparent 1px) 0 20px / 100% 30px,
+      var(--paper);
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(20, 38, 32, 0.08);
+    box-shadow: var(--shadow);
+  }
+
+  .chat-window[hidden],
+  .chat-controls[hidden] {
+    display: none;
   }
 
   .chat-log {
@@ -369,51 +499,62 @@ const { compact = false } = Astro.props;
     padding: 20px 16px;
   }
 
-  .chat-step {
+  .chat-log :global(.chat-step) {
     display: flex;
     flex-direction: column;
     gap: 6px;
   }
 
-  .chat-row {
+  .chat-log :global(.chat-row) {
     display: flex;
     gap: 10px;
   }
 
-  /* 講師＝左寄せ・アバターは最初の吹き出しの高さに合わせて上揃え */
-  .chat-row.instructor {
+  /* 先生＝左寄せ・アバターは最初の吹き出しの高さに合わせて上揃え */
+  .chat-log :global(.chat-row.instructor) {
     justify-content: flex-start;
     align-items: flex-start;
   }
 
   /* 閲覧者＝右寄せ */
-  .chat-row.user {
+  .chat-log :global(.chat-row.user) {
     justify-content: flex-end;
     align-items: flex-end;
   }
 
-  /* 講師アバター＋名前 */
-  .chat-avatar-wrap {
+  /* 先生アバター＋名前 */
+  .chat-log :global(.chat-avatar-wrap) {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 4px;
     flex-shrink: 0;
-    width: 52px;
+    width: 66px;
   }
 
-  .chat-avatar-wrap img {
-    width: 52px;
-    height: 52px;
+  .chat-log :global(.chat-avatar-frame) {
+    position: relative;
+    display: block;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
-    object-fit: cover;
-    object-position: center top; /* キャラの顔（上部）が見えるように */
+    overflow: hidden;
     border: 2px solid #fff;
-    background: linear-gradient(160deg, #f0f7f2, #d9ebe1);
-    box-shadow: 0 2px 8px rgba(20, 38, 32, 0.16);
+    background: #f7fbf8;
+    box-shadow: 0 2px 8px rgba(20, 38, 32, 0.12);
   }
 
-  .chat-avatar-name {
+  .chat-log :global(.chat-avatar-frame img) {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    object-position: var(--avatar-x, 50%) var(--avatar-y, 18%);
+    transform: scale(var(--avatar-scale, 1.64));
+    transform-origin: var(--avatar-x, 50%) var(--avatar-y, 18%);
+  }
+
+  .chat-log :global(.chat-avatar-name) {
     font-size: 0.64rem;
     font-weight: 700;
     color: var(--brand-dark);
@@ -424,7 +565,7 @@ const { compact = false } = Astro.props;
     box-shadow: 0 1px 3px rgba(20, 38, 32, 0.1);
   }
 
-  .chat-bubble-group {
+  .chat-log :global(.chat-bubble-group) {
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -433,38 +574,38 @@ const { compact = false } = Astro.props;
     padding-top: 2px;
   }
 
-  /* 講師吹き出し */
-  .chat-bubble {
-    border-radius: 18px;
+  /* 先生吹き出し */
+  .chat-log :global(.chat-bubble) {
+    border-radius: 8px;
     padding: 10px 14px;
     background: #ffffff;
-    border: none;
-    box-shadow: 0 2px 8px rgba(20, 38, 32, 0.09);
+    border: 1px solid var(--paper-line);
+    box-shadow: none;
     line-height: 1.6;
     width: fit-content;
     max-width: 100%;
   }
 
   /* グループ先頭の吹き出しだけ、アバター側（左上）にしっぽ */
-  .chat-bubble-group > .chat-bubble:first-child {
-    border-top-left-radius: 4px;
+  .chat-log :global(.chat-bubble-group > .chat-bubble:first-child) {
+    border-top-left-radius: 2px;
   }
 
-  .chat-bubble :global(p) {
+  .chat-log :global(.chat-bubble p) {
     margin: 0;
   }
 
-  .chat-bubble :global(p + p) {
+  .chat-log :global(.chat-bubble p + p) {
     margin-top: 5px;
   }
 
   /* fromItem チェックリスト吹き出し */
-  .chat-bubble-checklist {
+  .chat-log :global(.chat-bubble-checklist) {
     background: #eef8f1 !important;
     border: 1px solid rgba(17, 116, 111, 0.18) !important;
   }
 
-  .chat-bubble-checklist :global(.check-item) {
+  .chat-log :global(.chat-bubble-checklist .check-item) {
     margin: 0;
     padding: 3px 0;
     display: flex;
@@ -472,7 +613,7 @@ const { compact = false } = Astro.props;
     gap: 6px;
   }
 
-  .chat-bubble-checklist :global(.check-item)::before {
+  .chat-log :global(.chat-bubble-checklist .check-item)::before {
     content: "✔";
     color: var(--brand);
     font-size: 0.8em;
@@ -481,26 +622,27 @@ const { compact = false } = Astro.props;
     margin-top: 2px;
   }
 
-  .chat-bubble-checklist :global(.check-item + .check-item) {
+  .chat-log :global(.chat-bubble-checklist .check-item + .check-item) {
     border-top: 1px solid rgba(17, 116, 111, 0.1);
     padding-top: 6px;
     margin-top: 3px;
   }
 
   /* タイピングインジケーター */
-  .chat-typing {
+  .chat-log :global(.chat-typing) {
     display: flex;
     align-items: center;
     gap: 5px;
     padding: 12px 16px;
-    border-radius: 18px;
+    border-radius: 8px;
     border-bottom-left-radius: 4px;
     background: #ffffff;
-    box-shadow: 0 2px 8px rgba(20, 38, 32, 0.09);
+    border: 1px solid var(--paper-line);
+    box-shadow: none;
     width: fit-content;
   }
 
-  .chat-typing span {
+  .chat-log :global(.chat-typing span) {
     display: block;
     width: 8px;
     height: 8px;
@@ -509,11 +651,11 @@ const { compact = false } = Astro.props;
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    .chat-typing span {
+    .chat-log :global(.chat-typing span) {
       animation: typing-dot 1.1s ease-in-out infinite;
     }
-    .chat-typing span:nth-child(2) { animation-delay: 0.18s; }
-    .chat-typing span:nth-child(3) { animation-delay: 0.36s; }
+    .chat-log :global(.chat-typing span:nth-child(2)) { animation-delay: 0.18s; }
+    .chat-log :global(.chat-typing span:nth-child(3)) { animation-delay: 0.36s; }
   }
 
   @keyframes typing-dot {
@@ -521,12 +663,12 @@ const { compact = false } = Astro.props;
     30% { transform: translateY(-5px); opacity: 1; }
   }
 
-  /* ユーザー吹き出し（右側・しっぽは右上で講師と左右対称に） */
-  .user-bubble {
+  /* ユーザー吹き出し（右側・しっぽは右上で先生と左右対称に） */
+  .chat-log :global(.user-bubble) {
     background: var(--brand);
     color: #fff;
     border: none;
-    border-radius: 18px;
+    border-radius: 8px;
     border-top-right-radius: 4px;
     max-width: min(72%, 360px);
     font-weight: 700;
@@ -534,18 +676,18 @@ const { compact = false } = Astro.props;
   }
 
   /* 終端CTA */
-  .chat-actions {
+  .chat-log :global(.chat-actions) {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     margin-top: 4px;
   }
 
-  .chat-actions :global(.button) {
+  .chat-log :global(.chat-actions .button) {
     flex: 1 1 auto;
   }
 
-  .chat-actions.danger {
+  .chat-log :global(.chat-actions.danger) {
     border-left: 4px solid var(--danger);
     padding-left: 10px;
     background: rgba(173, 47, 47, 0.04);
@@ -556,40 +698,45 @@ const { compact = false } = Astro.props;
   .chat-replies {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    padding: 12px 14px 14px;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 14px 16px 16px 90px;
     border-top: 1px solid rgba(215, 223, 216, 0.6);
-    background: var(--surface);
+    background:
+      linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.78) 28%, rgba(255, 255, 255, 0.9) 100%);
   }
 
-  /* クイックリプライ チップ */
-  .chat-chip {
+  /* クイックリプライ チップ（ユーザー側の返答候補） */
+  :global(.chat-chip) {
     appearance: none;
     cursor: pointer;
-    min-height: 40px;
-    padding: 8px 18px;
-    border-radius: 999px;
-    border: 2px solid var(--brand);
-    background: var(--surface);
+    min-height: 42px;
+    padding: 9px 18px;
+    border-radius: 8px;
+    border-top-right-radius: 3px;
+    border: 1px solid rgba(15, 118, 110, 0.38);
+    background: #f0fbf8;
     color: var(--brand-dark);
     font-weight: 800;
     font: inherit;
     font-size: 0.9rem;
     line-height: 1.4;
-    transition: background 0.12s, color 0.12s, transform 0.1s;
+    box-shadow: 0 4px 12px rgba(17, 116, 111, 0.12);
+    transition: background 0.12s, color 0.12s, border-color 0.12s, transform 0.1s;
   }
 
-  .chat-chip:hover {
+  :global(.chat-chip:hover) {
     background: var(--brand);
+    border-color: var(--brand);
     color: #fff;
     transform: translateY(-1px);
   }
 
-  .chat-chip:active {
+  :global(.chat-chip:active) {
     transform: translateY(0);
   }
 
-  .chat-chip:focus-visible {
+  :global(.chat-chip:focus-visible) {
     outline: 2px solid var(--brand-dark);
     outline-offset: 2px;
   }
@@ -617,6 +764,16 @@ const { compact = false } = Astro.props;
     color: var(--brand-dark);
   }
 
+  @media (max-width: 640px) {
+    .chat-replies {
+      padding: 12px;
+    }
+
+    :global(.chat-chip) {
+      flex: 1 1 min(100%, 150px);
+    }
+  }
+
   .sr-only {
     position: absolute;
     width: 1px;
@@ -630,10 +787,10 @@ const { compact = false } = Astro.props;
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    .chat-bubble,
-    .chat-typing,
-    .chat-actions,
-    .chat-row.user {
+    .chat-log :global(.chat-bubble),
+    .chat-log :global(.chat-typing),
+    .chat-log :global(.chat-actions),
+    .chat-log :global(.chat-row.user) {
       animation: chat-bubble-in 0.22s ease;
     }
   }

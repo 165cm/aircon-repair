@@ -54,7 +54,7 @@ const footerSiteMap = [
   },
   {
     id: "buying",
-    heading: "買い替え・商品選び",
+    heading: "買い替え・備え",
     links: [
       { label: "畳数でエアコンを選ぶ", href: "/by-size/" },
       { label: "エアコンメーカー比較", href: "/articles/aircon-maker-compare/" },
@@ -115,11 +115,11 @@ const footerSiteMap = [
     <header class="site-header">
       <div class="container nav">
         <a class="brand" href={sitePath("/")}>
-          <span class="brand-mark" aria-hidden="true">高</span>
+          <span class="brand-mark" aria-hidden="true">保</span>
           <span>{affiliate.siteName}</span>
         </a>
         <nav class="nav-links" aria-label="主要ナビゲーション">
-          <a href={sitePath("/diagnosis/")}>症状診断</a>
+          <a class="nav-consult-link" href={sitePath("/#chat-title")} data-cvr-action="header_consult_click" data-action-kind="safe">3分相談</a>
           <a href={sitePath("/by-size/")}>畳数で選ぶ</a>
           <a href={sitePath("/basics/")}>基礎知識</a>
           <a href={sitePath("/cleaning-prevention/")}>掃除・予防</a>
@@ -177,7 +177,7 @@ const footerSiteMap = [
       <div class="container footer-content">
         <div class="footer-about">
           <h2>{affiliate.siteName}</h2>
-          <p>エアコン修理エンジニアが学習ノートをもとに、高校生でも読める言葉で不調の切り分け、商品選び、専門相談の目安を整理するサイトです。</p>
+          <p>保健室だよりのように、エアコンの不調を安全確認、修理相談、買い替え検討の順番で整理する相談ノートです。</p>
         </div>
         <nav class="footer-sitemap" aria-label="フッターサイトマップ">
           {footerSiteMap.map((group) => (
