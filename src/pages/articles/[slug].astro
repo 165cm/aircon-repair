@@ -124,27 +124,6 @@ const jsonLd = [
   </section>
   <section class="container article-body">
     <article class="article-content">
-      <div class="school-greeting school-greeting-start" aria-label="保健室だよりの始まり">
-        <strong>エアコン保健室だより</strong>
-        <span>今日の不調を、修理・買い替え・応急確認の順に整理します。</span>
-      </div>
-      <section class="teacher-panel" aria-labelledby="teacher-title">
-        <img class="teacher-portrait" src={sitePath(teacher.image)} alt={`${teacher.name}先生の顔`} loading="eager" />
-        <div class="teacher-copy">
-          <div class="teacher-heading">
-            <h2 id="teacher-title">{teacher.name}先生</h2>
-            <p class="teacher-subject">{teacher.subject}</p>
-          </div>
-          <blockquote>{teacher.catchphrase}</blockquote>
-          <p class="teacher-profile-summary">{teacher.profile}</p>
-          <details class="teacher-details">
-            <summary>すずね先生の自己紹介を読む</summary>
-            <div class="teacher-details-body">
-              {teacher.detailProfile.map((detail) => <p>{detail}</p>)}
-            </div>
-          </details>
-        </div>
-      </section>
       {
         article.data.quickAnswer.length > 0 && (
           <section class="lesson-summary" aria-labelledby="quick-answer-title">
@@ -157,6 +136,7 @@ const jsonLd = [
           </section>
         )
       }
+      <Content />
       <section class="care-sheet" aria-label="安全確認と次の相談">
         <div>
           <h2>安全に確認</h2>
@@ -171,7 +151,6 @@ const jsonLd = [
           <ul>{consultNotes.map((note) => <li>{note}</li>)}</ul>
         </div>
       </section>
-      <Content />
       {
         article.data.boardImage && (
           <figure class="board-figure">
@@ -272,6 +251,23 @@ const jsonLd = [
           </section>
         )
       }
+      <section class="teacher-panel" aria-labelledby="teacher-title">
+        <img class="teacher-portrait" src={sitePath(teacher.image)} alt={`${teacher.name}先生の顔`} loading="lazy" />
+        <div class="teacher-copy">
+          <div class="teacher-heading">
+            <h2 id="teacher-title">{teacher.name}先生</h2>
+            <p class="teacher-subject">{teacher.subject}</p>
+          </div>
+          <blockquote>{teacher.catchphrase}</blockquote>
+          <p class="teacher-profile-summary">{teacher.profile}</p>
+          <details class="teacher-details">
+            <summary>すずね先生の自己紹介を読む</summary>
+            <div class="teacher-details-body">
+              {teacher.detailProfile.map((detail) => <p>{detail}</p>)}
+            </div>
+          </details>
+        </div>
+      </section>
       <div class="school-greeting school-greeting-end" aria-label="相談メモの終わり">
         <strong>相談メモはここまで</strong>
         <span>迷う時は、使用を止めてから次の相談へ進みましょう。</span>
