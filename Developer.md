@@ -4,8 +4,8 @@
 
 ## 公開方式
 
-- 本番URLは `https://165cm.github.io/aircon-repair/` です。
-- Astro設定は `astro.config.mjs` で `site: "https://165cm.github.io"`、`base: "/aircon-repair"`、`output: "static"` になっています。
+- 本番URLは `https://aircon-hokenshitsu.com/` です。
+- Astro設定は `astro.config.mjs` で `site: "https://aircon-hokenshitsu.com"`、`base: "/"`、`output: "static"` になっています。
 - GitHub Pages は `.github/workflows/deploy.yml` の GitHub Actions で公開します。
 - Actions は `npm run build` で `dist/` を生成し、`actions/upload-pages-artifact@v3` の `path: dist` を `actions/deploy-pages@v4` でデプロイします。
 - `docs/` は使いません。GitHub Pages の Source は「GitHub Actions」に統一し、ブランチの `/docs` 公開には戻さないでください。
@@ -21,9 +21,9 @@
 
 ## パスとリンク
 
-- 内部リンクや画像パスは原則 `src/utils/paths.ts` の `sitePath()` を使い、`/aircon-repair` の base path を二重付与・付け忘れしないようにします。
+- 内部リンクや画像パスは原則 `src/utils/paths.ts` の `sitePath()` を使い、独自ドメインのルート公開でもリンクが崩れないようにします。
 - 絶対URLが必要な canonical、OG、構造化データなどは `absoluteUrl()` を使います。
-- Markdown本文内で内部リンクを直書きする場合は、公開URLに合わせて `/aircon-repair/...` から始めます。
+- Markdown本文内で内部リンクを直書きする場合は、公開URLに合わせて `/...` から始めます。
 - `#anchor` と外部URLは `sitePath()` がそのまま返す前提です。
 
 ## CVR計測
@@ -75,7 +75,7 @@
 
 - 通常は `npm run build` を使います。
 - 環境によって `npm` が使えない場合は、利用可能な Node.js で `node node_modules/astro/astro.js build` を実行します。
-- CSS内の `/aircon-repair/images/...` 参照について、Viteが「build timeに解決しないがruntimeで解決する」と警告する場合があります。画像が `public/images/` と生成後の `dist/images/` に存在するかを確認してください。
+- CSS内で画像を参照する場合は `/images/...` を使います。画像が `public/images/` と生成後の `dist/images/` に存在するかを確認してください。
 - 変更後は少なくとも対象ページ、ホーム、診断、商品導線、畳数導線の主要CTAが崩れていないか確認します。
 - 外部リンクの `rel` と `target`、`data-cvr-action` の付与漏れも確認対象です。
 

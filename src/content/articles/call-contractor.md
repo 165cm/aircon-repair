@@ -100,9 +100,9 @@ pubDate: "2026-05-16"
 
 | 状況 | 次に読む記事 |
 | --- | --- |
-| まだ症状を切り分けたい | [エアコンが冷えない時の原因と安全チェック](/aircon-repair/articles/not-cooling/) |
-| 水が落ちている | [エアコンから水漏れする時の応急確認](/aircon-repair/articles/water-leak/) |
-| 音が気になる | [エアコンの異音で止めるべき音・様子を見る音](/aircon-repair/articles/strange-noise/) |
-| 買い替え費用も見たい | [エアコン取り付け工事費の相場と確認すべきポイント](/aircon-repair/articles/installation-cost/) |
+| まだ症状を切り分けたい | [エアコンが冷えない時の原因と安全チェック](/articles/not-cooling/) |
+| 水が落ちている | [エアコンから水漏れする時の応急確認](/articles/water-leak/) |
+| 音が気になる | [エアコンの異音で止めるべき音・様子を見る音](/articles/strange-noise/) |
+| 買い替え費用も見たい | [エアコン取り付け工事費の相場と確認すべきポイント](/articles/installation-cost/) |
 
 迷った時は、「危険サインがあるか」「外側だけで確認できるか」「10年以上使っているか」の3つを見ます。この3つで、商品購入、業者相談、買い替え比較のどこへ進むかが決めやすくなります。

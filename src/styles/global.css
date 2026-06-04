@@ -392,19 +392,19 @@ h3 {
   overflow: hidden;
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.24)),
-    url("/aircon-repair/images/trust-hero-aircon-check.webp") center / cover no-repeat;
+    url("/images/trust-hero-aircon-check.webp") center / cover no-repeat;
 }
 
 .hero-trust-visual {
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.18)),
-    url("/aircon-repair/images/trust-hero-aircon-check.webp") center / cover no-repeat;
+    url("/images/trust-hero-aircon-check.webp") center / cover no-repeat;
 }
 
 .safe-check-visual {
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.18)),
-    url("/aircon-repair/images/safe-check-flow.webp") center / cover no-repeat;
+    url("/images/safe-check-flow.webp") center / cover no-repeat;
 }
 
 .diagnosis-hero {

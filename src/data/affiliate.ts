@@ -1,6 +1,6 @@
 export const affiliate = {
   siteName: "エアコン保健室",
-  siteUrl: "https://165cm.github.io/aircon-repair",
+  siteUrl: "https://aircon-hokenshitsu.com",
   amazonTrackingId: "notestimatobe-22",
   disclosure:
     "当サイトには広告・アフィリエイトリンクが含まれます。エアコン保健室は、Amazonアソシエイトとして適格販売により収入を得ています。",

@@ -207,7 +207,7 @@ Amazonでエアコンを探すと、国内大手から低価格ブランドま�
 ## お掃除ロボットは必要か
 
 <figure class="article-illustration">
-  <img src="/aircon-repair/images/articles/aircon-cleaning-robot-choice.webp" alt="お掃除ロボット付きエアコンにするか迷う利用者のイラスト" loading="lazy" decoding="async" />
+  <img src="/images/articles/aircon-cleaning-robot-choice.webp" alt="お掃除ロボット付きエアコンにするか迷う利用者のイラスト" loading="lazy" decoding="async" />
 </figure>
 
 お掃除ロボットは、エアフィルターのホコリを自動で取る機能です。フィルター掃除を忘れがちな家庭、高い位置に設置していて脚立作業が不安な家庭、上位機の省エネ・快適機能もまとめて欲しい家庭には、十分に選ぶ理由があります。フィルターが詰まりにくいと風量低下を防ぎやすく、日常の手間も減ります。

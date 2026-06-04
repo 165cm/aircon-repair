@@ -9,6 +9,6 @@ export function sitePath(path: string) {
   return `${base}${normalized}`;
 }
 
-export function absoluteUrl(path: string, origin = "https://165cm.github.io") {
+export function absoluteUrl(path: string, origin = "https://aircon-hokenshitsu.com") {
   return new URL(sitePath(path), origin).toString();
 }

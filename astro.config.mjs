@@ -1,8 +1,13 @@
 import { defineConfig } from "astro/config";
 
-const BASE = "/aircon-repair";
+const SITE_URL = "https://aircon-hokenshitsu.com";
+const BASE = "/";
 
 function rehypeBaseUrl() {
+  if (BASE === "/") {
+    return () => {};
+  }
+
   function walk(node) {
     if (node.tagName === "img" && typeof node.properties?.src === "string") {
       const src = node.properties.src;
@@ -16,7 +21,7 @@ function rehypeBaseUrl() {
 }
 
 export default defineConfig({
-  site: "https://165cm.github.io",
+  site: SITE_URL,
   base: BASE,
   output: "static",
   markdown: {

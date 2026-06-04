@@ -4,7 +4,7 @@
 
 症状から次の一手を選ぶエアコントラブル対処ガイド
 
-公開URL: https://165cm.github.io/aircon-repair/
+公開URL: https://aircon-hokenshitsu.com/
 
 ## これは何
 
@@ -21,14 +21,14 @@
 
 初めて読む場合は「基礎知識」から順番に読むと全体像をつかみやすくなります。
 
-- [基礎知識](https://165cm.github.io/aircon-repair/basics/): 10〜15分でエアコンの仕組みと安全確認の範囲を学ぶ。
-- [症状診断](https://165cm.github.io/aircon-repair/diagnosis/): 今起きている症状から次の行動を選ぶ。
-- [畳数で選ぶ](https://165cm.github.io/aircon-repair/by-size/): 修理か買い替えか迷う時に部屋の広さから確認する。
-- [商品比較](https://165cm.github.io/aircon-repair/products/): 安全な補助用品や買い替え候補を見る。
+- [基礎知識](https://aircon-hokenshitsu.com/basics/): 10〜15分でエアコンの仕組みと安全確認の範囲を学ぶ。
+- [症状診断](https://aircon-hokenshitsu.com/diagnosis/): 今起きている症状から次の行動を選ぶ。
+- [畳数で選ぶ](https://aircon-hokenshitsu.com/by-size/): 修理か買い替えか迷う時に部屋の広さから確認する。
+- [商品比較](https://aircon-hokenshitsu.com/products/): 安全な補助用品や買い替え候補を見る。
 
 ## 関連リンク
 
-- [広告表記・免責事項](https://165cm.github.io/aircon-repair/disclaimer/)
+- [広告表記・免責事項](https://aircon-hokenshitsu.com/disclaimer/)
 - [Developer.md](./Developer.md) — ビルド・デプロイ・CVR計測・実装詳細
 
 ## 安全方針

@@ -7,7 +7,7 @@
 
 ## このリポジトリについて
 
-Astro 製静的サイト。GitHub Actions で GitHub Pages (`https://165cm.github.io/aircon-repair/`) へデプロイ。エアコンの不調に関する情報を読者に提供し、安全な判断と次の行動を促す。
+Astro 製静的サイト。GitHub Actions で GitHub Pages (`https://aircon-hokenshitsu.com/`) へデプロイ。エアコンの不調に関する情報を読者に提供し、安全な判断と次の行動を促す。
 
 ## 安全方針（変更禁止）
 
@@ -24,7 +24,7 @@ Astro 製静的サイト。GitHub Actions で GitHub Pages (`https://165cm.githu
 
 ## ビルド・パス制約
 
-- 内部リンク・画像パスは `src/utils/paths.ts` の `sitePath()` を使う（`/aircon-repair` の base path 二重付与・付け忘れ防止）
+- 内部リンク・画像パスは `src/utils/paths.ts` の `sitePath()` を使う（独自ドメインのルート公開でパスを安定させる）
 - canonical・OG・構造化データなどの絶対URLは `absoluteUrl()` を使う
 - `dist/` と `docs/` は生成物。git 管理しない・コミットしない
 - GitHub Pages の Source は「GitHub Actions」に統一する（`/docs` 公開に戻さない）
