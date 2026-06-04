@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="72" viewBox="0 0 430 72" role="img" aria-labelledby="title desc">
+  <title id="title">エアコン保健室</title>
+  <desc id="desc">笑顔のエアコンと保健室のしるしを組み合わせたロゴ</desc>
+  <defs>
+    <linearGradient id="mark-bg" x1="8" y1="8" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#eaf5f8"/>
+      <stop offset="1" stop-color="#dcecf1"/>
+    </linearGradient>
+    <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#314955" flood-opacity=".18"/>
+    </filter>
+  </defs>
+  <g filter="url(#soft-shadow)">
+    <rect x="3" y="5" width="64" height="64" rx="20" fill="url(#mark-bg)" stroke="#2f6477" stroke-width="3"/>
+    <path d="M22 27.5c0-5.2 4.2-9.4 9.4-9.4h17.2c5.2 0 9.4 4.2 9.4 9.4v8.2c0 5.2-4.2 9.4-9.4 9.4H31.4c-5.2 0-9.4-4.2-9.4-9.4z" fill="#fffdf7" stroke="#1b4354" stroke-width="2.4"/>
+    <path d="M28.8 32.2h22.4" stroke="#1b4354" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M31 37.2c4.8 3.9 13.1 3.9 18 0" stroke="#2f6477" stroke-width="2.7" stroke-linecap="round"/>
+    <circle cx="33.5" cy="28.3" r="2.2" fill="#1b4354"/>
+    <circle cx="46.5" cy="28.3" r="2.2" fill="#1b4354"/>
+    <path d="M16 47c-3.2 2.2-6.4 2.1-9.2-.5" stroke="#7fafbd" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M17.6 53.8c-3.5 1.9-7.1 1.6-10.5-1" stroke="#7fafbd" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="54.5" cy="18.5" r="8.5" fill="#f1c65b" stroke="#b98521" stroke-width="2"/>
+    <path d="M54.5 14v9M50 18.5h9" stroke="#fffdf7" stroke-width="2.4" stroke-linecap="round"/>
+  </g>
+  <text x="80" y="44" fill="#1b4354" font-family="Hiragino Sans, Hiragino Kaku Gothic ProN, Yu Gothic, Meiryo, sans-serif" font-size="30" font-weight="900" letter-spacing=".5">
+    エアコン保健室
+  </text>
+  <path d="M82 56h278" stroke="#d3a23a" stroke-width="4" stroke-linecap="round"/>
+</svg>

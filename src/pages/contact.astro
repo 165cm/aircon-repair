@@ -2,6 +2,7 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { sitePath } from "@utils/paths";
 
+const contactFormAction = "https://docs.google.com/forms/d/e/1FAIpQLSeHMn8GJRGQwUOOOGpUlI5bTu4pmjNHK5ZxXO3uS9bWqBz5Zw/formResponse";
 const breadcrumbs = [
   { label: "ホーム", href: "/" },
   { label: "お問い合わせ" }
@@ -26,18 +27,56 @@ const breadcrumbs = [
 
       <h2>お問い合わせフォーム</h2>
 
-      <div class="contact-form-wrapper">
-        <iframe
-          src="https://docs.google.com/forms/d/e/1FAIpQLSeHMn8GJRGQwUOOOGpUlI5bTu4pmjNHK5ZxXO3uS9bWqBz5Zw/viewform?embedded=true"
-          width="100%"
-          height="800"
-          frameborder="0"
-          marginheight="0"
-          marginwidth="0"
-          title="お問い合わせフォーム"
-          loading="lazy"
-        >読み込んでいます…</iframe>
-      </div>
+      <form class="contact-form" action={contactFormAction} method="post" target="contact-submit-frame" data-contact-form>
+        <label>
+          <span>お問い合わせの種別 <strong>必須</strong></span>
+          <select name="entry.703891953" required>
+            <option value="">選択してください</option>
+            <option value="掲載情報の誤り・修正依頼">掲載情報の誤り・修正依頼</option>
+            <option value="広告・アフィリエイトリンクへのご意見">広告・アフィリエイトリンクへのご意見</option>
+            <option value="商品・業者紹介記事へのご意見">商品・業者紹介記事へのご意見</option>
+            <option value="サイト運営方針・その他に関するご質問">サイト運営方針・その他に関するご質問</option>
+            <option value="その他">その他</option>
+          </select>
+        </label>
+
+        <label>
+          <span>お問い合わせ対象のURL <em>任意</em></span>
+          <input type="url" name="entry.1414440002" placeholder="https://example.com/page/" />
+        </label>
+
+        <label>
+          <span>お問い合わせ内容の詳細 <strong>必須</strong></span>
+          <textarea name="entry.1091174661" rows="8" required placeholder="掲載内容の誤り、広告に関するご意見、サイト運営へのご質問などをご記入ください。"></textarea>
+        </label>
+
+        <div class="form-grid">
+          <label>
+            <span>お名前 <em>任意</em></span>
+            <input type="text" name="entry.1755574451" autocomplete="name" placeholder="ハンドルネーム可" />
+          </label>
+          <label>
+            <span>メールアドレス <em>任意</em></span>
+            <input type="email" name="entry.823103770" autocomplete="email" placeholder="返信が必要な場合のみ" />
+          </label>
+        </div>
+
+        <fieldset>
+          <legend>当サイトへの満足度 <em>任意</em></legend>
+          <div class="rating-options">
+            {["1", "2", "3", "4", "5"].map((value) => (
+              <label>
+                <input type="radio" name="entry.569766371" value={value} />
+                <span>{value}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <button class="button" type="submit">送信する</button>
+        <p class="form-status" data-contact-status hidden>送信しました。内容を確認のうえ、必要に応じてご連絡します。</p>
+      </form>
+      <iframe class="contact-submit-frame" name="contact-submit-frame" title="お問い合わせ送信先" aria-hidden="true"></iframe>
 
       <h2>お問い合わせの種類</h2>
       <ul>
@@ -51,20 +90,130 @@ const breadcrumbs = [
       <p>内容を確認のうえ、必要に応じてご連絡します。すべてのお問い合わせへの個別返答をお約束するものではありません。</p>
 
       <p><a href={sitePath("/disclaimer/")}>広告表記・免責事項</a>もあわせてご確認ください。</p>
+      <p><a href={sitePath("/privacy/")}>プライバシーポリシー</a>では、フォーム送信時に扱う情報について説明しています。</p>
     </div>
   </section>
+
+  <script>
+    const form = document.querySelector("[data-contact-form]");
+    const status = document.querySelector("[data-contact-status]");
+
+    form?.addEventListener("submit", () => {
+      window.setTimeout(() => {
+        if (status instanceof HTMLElement) {
+          status.hidden = false;
+        }
+        if (form instanceof HTMLFormElement) {
+          form.reset();
+        }
+      }, 900);
+    });
+  </script>
 </BaseLayout>
 
 <style>
-.contact-form-wrapper {
+.contact-form {
   border: 1px solid var(--line);
   border-radius: 8px;
-  overflow: hidden;
   background: var(--surface);
+  box-shadow: 0 14px 32px rgb(30 50 60 / 8%);
+  display: grid;
+  gap: 18px;
+  padding: clamp(18px, 3vw, 28px);
 }
 
-.contact-form-wrapper iframe {
-  display: block;
+.contact-form label,
+.contact-form fieldset {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.contact-form span,
+.contact-form legend {
+  color: var(--ink);
+  font-weight: 750;
+}
+
+.contact-form strong {
+  color: var(--danger);
+  font-size: 0.82em;
+  margin-left: 4px;
+}
+
+.contact-form em {
+  color: var(--muted);
+  font-size: 0.82em;
+  font-style: normal;
+  font-weight: 650;
+  margin-left: 4px;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  font: inherit;
+  line-height: 1.5;
+  padding: 12px 13px;
   width: 100%;
 }
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-form fieldset {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.form-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.rating-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.rating-options label {
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  display: inline-flex;
+  gap: 7px;
+  padding: 8px 12px;
+}
+
+.form-status {
+  background: var(--brand-soft);
+  border: 1px solid var(--brand-line);
+  border-radius: 8px;
+  color: var(--brand-dark);
+  font-weight: 700;
+  margin: 0;
+  padding: 12px 14px;
+}
+
+.contact-submit-frame {
+  border: 0;
+  height: 0;
+  position: absolute;
+  width: 0;
+}
+
+@media (max-width: 720px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 </style>

@@ -460,7 +460,7 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
     border: 1px solid var(--line);
     border-radius: 8px;
     background:
-      linear-gradient(rgba(15, 118, 110, 0.055) 1px, transparent 1px) 0 20px / 100% 30px,
+      linear-gradient(rgb(var(--brand-rgb) / 0.055) 1px, transparent 1px) 0 20px / 100% 30px,
       var(--paper);
     box-shadow: var(--shadow);
   }
@@ -479,7 +479,7 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
     border: 1px solid var(--line);
     border-radius: 8px;
     background:
-      linear-gradient(rgba(15, 118, 110, 0.045) 1px, transparent 1px) 0 20px / 100% 30px,
+      linear-gradient(rgb(var(--brand-rgb) / 0.045) 1px, transparent 1px) 0 20px / 100% 30px,
       var(--paper);
     overflow: hidden;
     box-shadow: var(--shadow);
@@ -540,7 +540,7 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
     border-radius: 50%;
     overflow: hidden;
     border: 2px solid #fff;
-    background: #f7fbf8;
+    background: #f7fbfc;
     box-shadow: 0 2px 8px rgba(20, 38, 32, 0.12);
   }
 
@@ -601,8 +601,8 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
 
   /* fromItem チェックリスト吹き出し */
   .chat-log :global(.chat-bubble-checklist) {
-    background: #eef8f1 !important;
-    border: 1px solid rgba(17, 116, 111, 0.18) !important;
+    background: var(--brand-soft) !important;
+    border: 1px solid rgb(var(--brand-rgb) / 0.18) !important;
   }
 
   .chat-log :global(.chat-bubble-checklist .check-item) {
@@ -623,7 +623,7 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
   }
 
   .chat-log :global(.chat-bubble-checklist .check-item + .check-item) {
-    border-top: 1px solid rgba(17, 116, 111, 0.1);
+    border-top: 1px solid rgb(var(--brand-rgb) / 0.1);
     padding-top: 6px;
     margin-top: 3px;
   }
@@ -672,7 +672,7 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
     border-top-right-radius: 4px;
     max-width: min(72%, 360px);
     font-weight: 700;
-    box-shadow: 0 2px 10px rgba(17, 116, 111, 0.3);
+    box-shadow: 0 2px 10px rgb(var(--brand-rgb) / 0.3);
   }
 
   /* 終端CTA */
@@ -690,7 +690,7 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
   .chat-log :global(.chat-actions.danger) {
     border-left: 4px solid var(--danger);
     padding-left: 10px;
-    background: rgba(173, 47, 47, 0.04);
+    background: rgb(179 74 66 / 0.05);
     border-radius: 0 8px 8px 0;
   }
 
@@ -701,7 +701,7 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
     justify-content: flex-end;
     gap: 10px;
     padding: 14px 16px 16px 90px;
-    border-top: 1px solid rgba(215, 223, 216, 0.6);
+    border-top: 1px solid rgb(220 210 194 / 0.7);
     background:
       linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.78) 28%, rgba(255, 255, 255, 0.9) 100%);
   }
@@ -714,14 +714,14 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
     padding: 9px 18px;
     border-radius: 8px;
     border-top-right-radius: 3px;
-    border: 1px solid rgba(15, 118, 110, 0.38);
-    background: #f0fbf8;
+    border: 1px solid rgb(var(--brand-rgb) / 0.38);
+    background: #edf7fa;
     color: var(--brand-dark);
     font-weight: 800;
     font: inherit;
     font-size: 0.9rem;
     line-height: 1.4;
-    box-shadow: 0 4px 12px rgba(17, 116, 111, 0.12);
+    box-shadow: 0 4px 12px rgb(var(--brand-rgb) / 0.12);
     transition: background 0.12s, color 0.12s, border-color 0.12s, transform 0.1s;
   }
 

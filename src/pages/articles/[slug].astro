@@ -136,7 +136,13 @@ const jsonLd = [
             <p class="teacher-subject">{teacher.subject}</p>
           </div>
           <blockquote>{teacher.catchphrase}</blockquote>
-          <p>{teacher.profile}</p>
+          <p class="teacher-profile-summary">{teacher.profile}</p>
+          <details class="teacher-details">
+            <summary>すずね先生の自己紹介を読む</summary>
+            <div class="teacher-details-body">
+              {teacher.detailProfile.map((detail) => <p>{detail}</p>)}
+            </div>
+          </details>
         </div>
       </section>
       {

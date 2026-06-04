@@ -15,6 +15,8 @@ export async function GET() {
     "/products/",
     "/jobs/",
     "/disclaimer/",
+    "/privacy/",
+    "/contact/",
     "/articles/",
     "/about/"
   ];

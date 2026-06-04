@@ -1,4 +1,4 @@
-# AGENTS.md — エアコン修理高等学校
+# AGENTS.md — エアコン保健室
 
 **Tier**: T0 | **Category**: work
 **Tagline**: 症状から次の一手を選ぶエアコントラブル対処ガイド

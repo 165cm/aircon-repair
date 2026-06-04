@@ -7,34 +7,34 @@ import { sitePath } from "@utils/paths";
 const routeGroups = [
   {
     label: "症状",
-    title: "いま困っている症状",
-    body: "冷えない、水漏れ、異音、リモコン不調を安全確認から見ます。",
+    title: "いまの困りごと",
+    body: "冷えない、水もれ、変な音、リモコン不調を安全確認から見ます。",
     links: [
-      { label: "症状別診断", href: "/diagnosis/" },
+      { label: "症状チェック", href: "/diagnosis/" },
       { label: "冷えない", href: "/articles/not-cooling/" },
-      { label: "水漏れ", href: "/articles/water-leak/" },
-      { label: "異音", href: "/articles/strange-noise/" },
+      { label: "水もれ", href: "/articles/water-leak/" },
+      { label: "変な音", href: "/articles/strange-noise/" },
       { label: "リモコン", href: "/articles/remote-not-working/" }
     ]
   },
   {
     label: "安全",
-    title: "止めるか、修理を呼ぶか",
-    body: "焦げ臭い、火花、水が電源近くにある時は原因探しより停止を優先します。",
+    title: "止める？相談する？",
+    body: "こげ臭い、火花、水が電源近くにある時は、先に止めます。",
     links: [
-      { label: "危険サイン", href: "/diagnosis/#danger-signs" },
-      { label: "業者を呼ぶ目安", href: "/articles/call-contractor/" },
-      { label: "工事費の見方", href: "/articles/installation-cost/" },
-      { label: "室外機確認", href: "/articles/outdoor-unit-check/" }
+      { label: "あぶないサイン", href: "/diagnosis/#danger-signs" },
+      { label: "相談の目安", href: "/articles/call-contractor/" },
+      { label: "工事費を見る", href: "/articles/installation-cost/" },
+      { label: "室外機を見る", href: "/articles/outdoor-unit-check/" }
     ]
   },
   {
     label: "買替",
-    title: "修理費が高い時の比較",
-    body: "10年以上、複数症状、高額見積もりなら買い替え候補も同時に確認します。",
+    title: "修理費が高い時",
+    body: "10年以上、いくつか症状がある、高い見積もりなら買い替えも見ます。",
     links: [
       { label: "畳数で選ぶ", href: "/by-size/" },
-      { label: "メーカー比較", href: "/articles/aircon-maker-compare/" },
+      { label: "メーカーを見る", href: "/articles/aircon-maker-compare/" },
       { label: "6畳", href: "/articles/aircon-6jou-choose/" },
       { label: "10畳", href: "/articles/aircon-10jou-choose/" },
       { label: "14畳", href: "/articles/aircon-14jou-choose/" }
@@ -42,20 +42,20 @@ const routeGroups = [
   },
   {
     label: "予防",
-    title: "掃除・電気代・水まわり",
-    body: "分解しない範囲で、フィルター、ドレンホース、室外機まわりを整えます。",
+    title: "掃除・電気代・水",
+    body: "分解しない範囲で、フィルター、ホース、室外機まわりを整えます。",
     links: [
-      { label: "掃除予防まとめ", href: "/cleaning-prevention/" },
-      { label: "フィルター掃除", href: "/articles/filter-cleaning/" },
+      { label: "掃除と予防", href: "/cleaning-prevention/" },
+      { label: "フィルター", href: "/articles/filter-cleaning/" },
       { label: "ドレンホース", href: "/articles/drain-hose/" },
-      { label: "掃除スプレー注意", href: "/articles/cleaning-spray-risk/" },
+      { label: "スプレー注意", href: "/articles/cleaning-spray-risk/" },
       { label: "電気代が高い", href: "/articles/electric-bill-high/" }
     ]
   },
   {
     label: "道具",
-    title: "補助用品と本体候補",
-    body: "応急確認の道具と買い替え候補は、診断後の次の処置として見ます。",
+    title: "道具と本体候補",
+    body: "確認に使う道具と買い替え候補は、診断後に見ます。",
     links: [
       { label: "商品比較", href: "/products/" },
       { label: "補助用品", href: "/products/#support" },
@@ -65,8 +65,8 @@ const routeGroups = [
   },
   {
     label: "案内",
-    title: "記事一覧・運営情報",
-    body: "もっと詳しく調べたい時や、求人・副業、広告表記を確認したい時はこちらです。",
+    title: "記事とサイト案内",
+    body: "もっと読みたい時や、運営方針、広告表記を確認したい時はこちらです。",
     links: [
       { label: "記事一覧", href: "/articles/" },
       { label: "運営方針", href: "/about/" },

@@ -1,20 +1,22 @@
 ---
 import { getCollection } from "astro:content";
-import { getCanonicalArticles } from "@data/internalLinks";
 import { productCategories } from "@data/products";
 
 export async function getStaticPaths() {
-  const articles = getCanonicalArticles(await getCollection("articles"));
+  const articles = await getCollection("articles");
   const staticPaths = [
     "about",
     "articles",
     "basics",
     "by-size",
     "cleaning-prevention",
+    "contact",
     "diagnosis",
     "disclaimer",
     "jobs",
-    "products"
+    "privacy",
+    "products",
+    "sitemap.xml"
   ];
 
   return [
@@ -25,7 +27,12 @@ export async function getStaticPaths() {
 }
 
 const path = Astro.params.path ?? "";
-const target = path ? `/${path.replace(/^\/+/, "").replace(/\/?$/, "/")}` : "/";
+const normalizedPath = path.replace(/^\/+/, "");
+const target = path
+  ? normalizedPath.includes(".")
+    ? `/${normalizedPath}`
+    : `/${normalizedPath.replace(/\/?$/, "/")}`
+  : "/";
 ---
 
 <!doctype html>

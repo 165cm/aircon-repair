@@ -85,6 +85,7 @@ const footerSiteMap = [
       { label: "記事一覧", href: "/articles/" },
       { label: "運営者・編集方針", href: "/about/" },
       { label: "広告表記・免責事項", href: "/disclaimer/" },
+      { label: "プライバシーポリシー", href: "/privacy/" },
       { label: "お問い合わせ", href: "/contact/" },
       { label: "求人・副業入門", href: "/jobs/" },
       { label: "XMLサイトマップ（検索エンジン用）", href: "/sitemap.xml" }
@@ -108,6 +109,7 @@ const footerSiteMap = [
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={ogImageUrl} />
     <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href={sitePath("/favicon.png")} type="image/png" />
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
     {breadcrumbJsonLd && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />}
   </head>
@@ -115,8 +117,7 @@ const footerSiteMap = [
     <header class="site-header">
       <div class="container nav">
         <a class="brand" href={sitePath("/")}>
-          <span class="brand-mark" aria-hidden="true">保</span>
-          <span>{affiliate.siteName}</span>
+          <img class="brand-logo" src={sitePath("/images/brand/aircon-hokenshitsu-logo.png")} alt={affiliate.siteName} width="860" height="144" />
         </a>
         <nav class="nav-links" aria-label="主要ナビゲーション">
           <a class="nav-consult-link" href={sitePath("/#chat-title")} data-cvr-action="header_consult_click" data-action-kind="safe">3分相談</a>

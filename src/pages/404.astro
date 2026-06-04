@@ -1,0 +1,21 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { sitePath } from "@utils/paths";
+---
+
+<BaseLayout
+  title="ページが見つかりません"
+  description="お探しのページが見つかりませんでした。エアコン保健室の相談、記事一覧、商品比較ページをご利用ください。"
+  showChatFloat={false}
+>
+  <section class="container section">
+    <p class="eyebrow">404</p>
+    <h1>ページが見つかりません</h1>
+    <p class="lead">URLが変わったか、ページが移動した可能性があります。症状から相談するか、記事一覧から近い内容を探してください。</p>
+    <div class="hero-actions">
+      <a class="button" href={sitePath("/")}>ホームへ戻る</a>
+      <a class="button warm" href={sitePath("/diagnosis/")}>症状を相談する</a>
+      <a class="button secondary" href={sitePath("/articles/")}>記事一覧を見る</a>
+    </div>
+  </section>
+</BaseLayout>

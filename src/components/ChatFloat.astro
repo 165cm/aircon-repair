@@ -106,13 +106,13 @@ import DiagnosisChat from "./DiagnosisChat.astro";
     font-weight: 800;
     font-size: 0.9rem;
     cursor: pointer;
-    box-shadow: 0 4px 16px rgba(17, 116, 111, 0.45);
+    box-shadow: 0 4px 16px rgb(var(--brand-rgb) / 0.45);
     transition: transform 0.15s, box-shadow 0.15s;
   }
 
   .cf-trigger:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 22px rgba(17, 116, 111, 0.5);
+    box-shadow: 0 6px 22px rgb(var(--brand-rgb) / 0.5);
   }
 
   .cf-trigger:focus-visible {
@@ -146,8 +146,8 @@ import DiagnosisChat from "./DiagnosisChat.astro";
   }
 
   @keyframes cf-pulse {
-    0%, 100% { box-shadow: 0 4px 16px rgba(17, 116, 111, 0.45); }
-    50%       { box-shadow: 0 4px 24px rgba(17, 116, 111, 0.65), 0 0 0 7px rgba(17, 116, 111, 0.12); }
+    0%, 100% { box-shadow: 0 4px 16px rgb(var(--brand-rgb) / 0.45); }
+    50%       { box-shadow: 0 4px 24px rgb(var(--brand-rgb) / 0.65), 0 0 0 7px rgb(var(--brand-rgb) / 0.12); }
   }
 
   /* ---- パネル ---- */
