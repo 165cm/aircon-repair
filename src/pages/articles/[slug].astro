@@ -53,6 +53,8 @@ const riskLabel = {
   medium: "注意",
   high: "危険サインあり"
 }[article.data.risk];
+const hasQuickAnswer = article.data.quickAnswer.length > 0;
+const hasBoardImage = Boolean(article.data.boardImage);
 const safeCheckNotes = article.data.category === "buying"
   ? ["部屋の畳数、設置場所、コンセント形状をメモする。", "修理見積もりと新品本体、工事費を同じ紙で比べる。", "急いで買わず、標準工事に含まれない費用を確認する。"]
   : ["外側から見える範囲だけ確認する。", "型番、購入年、症状、発生した時間をメモする。", "暑さや水濡れがある時は、先に人と床を守る。"];
@@ -124,18 +126,28 @@ const jsonLd = [
   </section>
   <section class="container article-body">
     <article class="article-content">
-      {
-        article.data.quickAnswer.length > 0 && (
-          <section class="lesson-summary" aria-labelledby="quick-answer-title">
-            <h2 id="quick-answer-title">今日の結論</h2>
-            <ul>
-              {article.data.quickAnswer.map((answer) => (
-                <li>{answer}</li>
-              ))}
-            </ul>
-          </section>
-        )
-      }
+      <div class:list={["article-intro-strip", !(hasQuickAnswer && hasBoardImage) && "article-intro-strip-single"]}>
+        {
+          hasQuickAnswer && (
+            <section class="lesson-summary" aria-labelledby="quick-answer-title">
+              <h2 id="quick-answer-title">今日の結論</h2>
+              <ul>
+                {article.data.quickAnswer.map((answer) => (
+                  <li>{answer}</li>
+                ))}
+              </ul>
+            </section>
+          )
+        }
+        {
+          hasBoardImage && (
+            <figure class="board-figure board-figure-intro">
+              <img src={sitePath(article.data.boardImage)} alt={article.data.boardAlt ?? `${article.data.title}の図解`} loading="eager" />
+              <figcaption>{article.data.boardAlt ?? "この記事の要点を図解で整理しています。"}</figcaption>
+            </figure>
+          )
+        }
+      </div>
       <Content />
       <section class="care-sheet" aria-label="安全確認と次の相談">
         <div>
@@ -151,14 +163,6 @@ const jsonLd = [
           <ul>{consultNotes.map((note) => <li>{note}</li>)}</ul>
         </div>
       </section>
-      {
-        article.data.boardImage && (
-          <figure class="board-figure">
-            <img src={sitePath(article.data.boardImage)} alt={article.data.boardAlt ?? `${article.data.title}の図解`} loading="lazy" />
-            <figcaption>{article.data.boardAlt ?? "この記事の要点を図解で整理しています。"}</figcaption>
-          </figure>
-        )
-      }
       {
         relatedProducts.length > 0 && (
           <aside class="mini-product-cta" aria-labelledby="mini-product-title">

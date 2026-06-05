@@ -898,6 +898,18 @@ h3 {
   line-height: 1.55;
 }
 
+.article-intro-strip {
+  display: grid;
+  grid-template-columns: minmax(210px, 0.9fr) minmax(0, 1.1fr);
+  gap: 12px;
+  align-items: stretch;
+  margin-bottom: 18px;
+}
+
+.article-intro-strip-single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .lesson-summary {
   border-left: 4px solid var(--brand);
   padding: 12px 14px;
@@ -1107,6 +1119,15 @@ h3 {
   color: var(--muted);
   font-size: 0.88rem;
   line-height: 1.5;
+}
+
+.board-figure-intro {
+  margin: 0;
+}
+
+.board-figure-intro img {
+  aspect-ratio: 1.72 / 1;
+  max-height: 240px;
 }
 
 .article-illustration {
@@ -2489,6 +2510,7 @@ h3 {
   .diagnosis-mode-group,
   .diagnosis-recommendation-card,
   .mini-product-cta,
+  .article-intro-strip,
   .care-flow-grid,
   .care-sheet,
   .replacement-check,
