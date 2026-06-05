@@ -9,6 +9,49 @@ import { sitePath } from "@utils/paths";
 const articles = getCanonicalArticles(await getCollection("articles")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+const categoryGroups = [
+  {
+    id: "symptom",
+    label: "症状",
+    title: "いま困っている症状から読む",
+    description: "冷えない、水漏れ、異音など、まず安全確認と次の相談先を整理したい時に見る記事です。"
+  },
+  {
+    id: "basics",
+    label: "基礎知識",
+    title: "仕組みと安全確認を先に知る",
+    description: "エアコンの仕組み、触ってよい場所、相談前に残すメモをまとめています。"
+  },
+  {
+    id: "cleaning",
+    label: "掃除・予防",
+    title: "掃除と故障予防を安全に進める",
+    description: "フィルター、室外機、ドレンホースなど、分解しない範囲で整える記事です。"
+  },
+  {
+    id: "buying",
+    label: "買い替え",
+    title: "修理費が高い時の買い替え判断",
+    description: "畳数、メーカー、工事費、年式から、買い替え候補も同時に見たい時の記事です。"
+  },
+  {
+    id: "energy-saving",
+    label: "節電",
+    title: "電気代と効きの悪さを見直す",
+    description: "電気代が高い、効きが弱い時に、故障と設定・使い方を分けて確認します。"
+  },
+  {
+    id: "career",
+    label: "求人・仕事",
+    title: "仕事として空調に関わる入口",
+    description: "エアコン修理、設備、クリーニングの仕事を知りたい方向けの記事です。"
+  }
+]
+  .map((group) => ({
+    ...group,
+    articles: articles.filter((article) => article.data.category === group.id)
+  }))
+  .filter((group) => group.articles.length > 0);
 ---
 
 <BaseLayout
@@ -25,11 +68,27 @@ const articles = getCanonicalArticles(await getCollection("articles")).sort(
       <a class="button secondary" href={sitePath("/products/")}>商品比較</a>
     </div>
   </section>
-  <section class="container section">
-    <div class="grid">
-      {articles.map((article) => <ArticleCard article={article} />)}
+  <section class="container section tight-section">
+    <div class="article-index-nav" aria-label="記事カテゴリ">
+      {categoryGroups.map((group) => <a href={`#${group.id}`}>{group.label}</a>)}
     </div>
   </section>
+  {
+    categoryGroups.map((group) => (
+      <section id={group.id} class="container section article-index-section">
+        <div class="section-header compact-header">
+          <div>
+            <p class="eyebrow">{group.label}</p>
+            <h2>{group.title}</h2>
+            <p>{group.description}</p>
+          </div>
+        </div>
+        <div class="grid article-index-grid">
+          {group.articles.map((article) => <ArticleCard article={article} />)}
+        </div>
+      </section>
+    ))
+  }
   <section class="container section">
     <div class="grid two">
       <RevenueCta variant="products" />

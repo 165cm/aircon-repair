@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { articleThumbnail } from "@utils/articles";
 import { sitePath } from "@utils/paths";
 
 type Props = {
@@ -15,27 +16,58 @@ const riskLabel = {
   medium: "注意",
   high: "危険サインあり"
 }[article.data.risk];
+const categoryLabel = {
+  symptom: "症状",
+  basics: "基礎知識",
+  cleaning: "掃除・予防",
+  career: "求人・仕事",
+  buying: "買い替え",
+  "energy-saving": "節電"
+}[article.data.category];
+const thumbnail = articleThumbnail(article);
 ---
 
-<article class="card">
-  <p class="eyebrow">{riskLabel}</p>
-  <h3>
+<article class="card article-card">
+  <a
+    class="article-card-thumb"
+    href={sitePath(`/articles/${article.slug}/`)}
+    aria-label={`${article.data.title}を読む`}
+    data-cvr-action={sourceSlug ? "related_article_thumbnail_click" : undefined}
+    data-action-kind={sourceSlug ? "safe" : undefined}
+    data-source-slug={sourceSlug}
+    data-slot-index={slotIndex}
+    data-recommendation-role={recommendationRole}
+    data-item-id={article.slug}
+  >
+    <img src={sitePath(thumbnail)} alt="" loading="lazy" />
+  </a>
+  <div class="article-card-body">
+    <p class="eyebrow">{riskLabel}</p>
+    <h3>
+      <a
+        href={sitePath(`/articles/${article.slug}/`)}
+        data-cvr-action={sourceSlug ? "related_article_click" : undefined}
+        data-action-kind={sourceSlug ? "safe" : undefined}
+        data-source-slug={sourceSlug}
+        data-slot-index={slotIndex}
+        data-recommendation-role={recommendationRole}
+        data-item-id={article.slug}
+      >
+        {article.data.title}
+      </a>
+    </h3>
+    <p>{article.data.description}</p>
+    <div class="tag-list">
+      <span class="tag">{categoryLabel}</span>
+      <span class="tag">{article.data.difficulty === "beginner" ? "初心者向け" : "一歩詳しく"}</span>
+      {article.data.symptoms.map((symptom) => <span class="tag">{symptom}</span>)}
+    </div>
     <a
+      class="inline-link article-card-link"
       href={sitePath(`/articles/${article.slug}/`)}
-      data-cvr-action={sourceSlug ? "related_article_click" : undefined}
-      data-action-kind={sourceSlug ? "safe" : undefined}
-      data-source-slug={sourceSlug}
-      data-slot-index={slotIndex}
-      data-recommendation-role={recommendationRole}
-      data-item-id={article.slug}
+      aria-label={`${article.data.title}を読む`}
     >
-      {article.data.title}
+      記事を読む
     </a>
-  </h3>
-  <p>{article.data.description}</p>
-  <div class="tag-list">
-    <span class="tag">{article.data.category}</span>
-    <span class="tag">{article.data.difficulty === "beginner" ? "初心者向け" : "一歩詳しく"}</span>
-    {article.data.symptoms.map((symptom) => <span class="tag">{symptom}</span>)}
   </div>
 </article>

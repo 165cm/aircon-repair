@@ -7,6 +7,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import { affiliate } from "@data/affiliate";
 import { getArticleRecommendations, getCanonicalArticles, getProductRecommendations } from "@data/internalLinks";
 import { healthRoomTeacher } from "@data/teachers";
+import { articleThumbnail } from "@utils/articles";
 import { absoluteUrl, sitePath } from "@utils/paths";
 
 export async function getStaticPaths() {
@@ -32,13 +33,6 @@ const ctaVariant = article.data.recommendedCta === "jobs" ? "jobs" : article.dat
 const showReplacement = article.data.symptoms.includes("冷えない") || article.data.symptoms.includes("修理");
 const teacher = healthRoomTeacher;
 const nextLessons = getArticleRecommendations(article.slug, article, allArticles);
-const articleThumbnail = (entry: (typeof allArticles)[number]) => {
-  if (entry.data.boardImage) {
-    return entry.data.boardImage;
-  }
-
-  return entry.body.match(/!\[[^\]]*\]\(([^)]+)\)/)?.[1] ?? "/images/articles/basics-safe-check-zones.webp";
-};
 const showReplacementGuide = article.data.category === "symptom" || article.data.category === "energy-saving";
 const categoryLabel = {
   symptom: "症状別",
