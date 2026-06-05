@@ -80,10 +80,8 @@ const jsonLd = [
       name: affiliate.siteName
     },
     mentions: relatedProducts.map((product) => ({
-      "@type": "Product",
+      "@type": "Thing",
       name: product.name,
-      brand: product.brand,
-      category: product.category,
       url: absoluteUrl(`/products/${product.id}/`)
     })),
     mainEntityOfPage: canonical
