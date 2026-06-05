@@ -1445,8 +1445,24 @@ h3 {
   color: var(--muted);
 }
 
+.chapter-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
+  gap: 8px 18px;
+  align-items: start;
+}
+
+.chapter-body h3,
+.chapter-body p,
+.chapter-body .small,
+.chapter-body .inline-link {
+  grid-column: 1;
+}
+
 .chapter-figure {
-  margin: 14px 0;
+  grid-column: 2;
+  grid-row: 1 / span 4;
+  margin: 0;
   border: 1px solid var(--line);
   border-radius: 8px;
   overflow: hidden;
@@ -2517,6 +2533,7 @@ h3 {
   .replacement-check-grid,
   .replacement-link-grid,
   .chapter-card,
+  .chapter-body,
   .learning-toc,
   .price-band-summary,
   .maker-link-grid,
@@ -2615,6 +2632,12 @@ h3 {
 
   .home-route-card a {
     min-height: 44px;
+  }
+
+  .chapter-figure {
+    grid-column: auto;
+    grid-row: auto;
+    margin: 6px 0;
   }
 
   .home-hero {
