@@ -2390,15 +2390,30 @@ h3 {
   display: grid;
   gap: 10px;
   margin: 18px 0 0;
-  padding-left: 1.25rem;
+  padding-left: 0;
+  list-style: none;
 }
 
 .check-list li {
-  padding-left: 4px;
+  position: relative;
+  padding-left: 30px;
+  color: var(--ink);
+  font-weight: 700;
+  line-height: 1.55;
 }
 
-.danger-list li::marker {
+.check-list li::before {
+  position: absolute;
+  top: 0.08em;
+  left: 0;
+  color: var(--brand);
+  font-weight: 900;
+  content: "☑";
+}
+
+.danger-list li::before {
   color: var(--danger);
+  content: "!";
 }
 
 .source-list {

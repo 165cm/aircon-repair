@@ -38,29 +38,29 @@ const makerAmazonUrl = (recommendation: NonNullable<ProductCategory["makerRecomm
   amazonSearchUrl(recommendation.amazonKeyword ?? `${recommendation.maker} エアコン ${makerSearchBase} 工事費込み`);
 const purchaseChecks = isReplacement
   ? [
-      "標準工事込みか、追加工事になりやすい項目が何かを確認する",
-      "部屋の畳数、木造/鉄筋、日当たり、LDK続きかを確認する",
-      "100V/200V、専用回路、コンセント形状を確認する",
-      "室外機置き場、配管穴、搬入経路、既存機の取り外し費を確認する",
-      "保証年数、工事日、リサイクル・処分費の扱いを確認する"
+      "標準工事込み / 追加費用",
+      "畳数・木造/鉄筋・日当たり",
+      "100V/200V・専用回路・コンセント形状",
+      "室外機置き場・配管穴・搬入経路・撤去費",
+      "保証年数・工事日・リサイクル費"
     ]
   : [
-      "自分の症状に合う用途かを確認する",
-      "サイズ、対応機種、設置場所、消耗品の有無を確認する",
-      "分解・電装部・冷媒・配線に触れない範囲で使えるか確認する",
-      "レビューだけで判断せず、公式仕様や注意書きを確認する",
-      "水漏れ、異音、焦げ臭い、ブレーカー異常がある時は先に業者相談する"
+      "症状に合う用途",
+      "サイズ・対応機種・設置場所・消耗品",
+      "分解なしで使える範囲",
+      "公式仕様・注意書き",
+      "水漏れ/異音/焦げ臭い時は業者優先"
     ];
 const stopChecks = isReplacement
   ? [
-      "200Vや専用回路の変更が必要で、工事内容が分からない",
-      "室外機が高所・屋根置き・壁面置きで追加工事の可能性がある",
-      "冷媒、配管、電気工事を自分で触る必要がありそう"
+      "200V/専用回路の変更が必要",
+      "高所・屋根置き・壁面置き",
+      "冷媒・配管・電気工事に触れる"
     ]
   : [
-      "室内機の奥、基板、ファン、冷媒配管に触る必要がある",
-      "水漏れが天井や壁内へ広がっている",
-      "焦げ臭い、異音が大きい、ブレーカーが落ちる"
+      "内部・基板・ファン・冷媒配管に触れる",
+      "水漏れが天井や壁内へ広がる",
+      "焦げ臭い / 異音大 / ブレーカー停止"
     ];
 const faqs = [
   {
@@ -210,12 +210,12 @@ const jsonLd = [{
     <div class="grid two">
       <div class="card">
         <p class="eyebrow">購入前チェック</p>
-        <h2>リンク先で確認すること</h2>
+        <h2>リンク先で見る項目</h2>
         <ul class="check-list">
           {purchaseChecks.map((check) => <li>{check}</li>)}
         </ul>
         <div class="button-row">
-          <AmazonLink product={product} pageType="product-detail" linkPosition="checklist" label="Amazonで仕様・在庫を確認する" />
+          <AmazonLink product={product} pageType="product-detail" linkPosition="checklist" label="Amazonで仕様・在庫を見る" />
         </div>
       </div>
       <div class="card">
