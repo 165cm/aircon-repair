@@ -697,7 +697,6 @@ h3 {
   font-variant-numeric: tabular-nums;
 }
 
-.product-table-copy,
 .size-pick-button {
   display: inline-flex;
   align-items: center;
@@ -724,6 +723,13 @@ h3 {
   background: var(--brand-dark);
 }
 
+.product-table-copy {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  text-align: left;
+}
+
 .size-pick-copy {
   display: grid;
   gap: 3px;
@@ -742,18 +748,6 @@ h3 {
   font-size: 0.9rem;
   font-weight: 700;
   line-height: 1.5;
-}
-
-.product-table-copy small {
-  width: fit-content;
-  border: 1px solid #ead2b8;
-  border-radius: 999px;
-  padding: 2px 7px;
-  background: #fff9ef;
-  color: #8a5418;
-  font-size: 0.78rem;
-  font-weight: 900;
-  line-height: 1.35;
 }
 
 .product-table-actions {

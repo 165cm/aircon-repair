@@ -22,7 +22,6 @@ const { products, pageType = "product-list", linkPosition = "list" } = Astro.pro
           <div class="product-table-copy">
             <strong>{product.name}</strong>
             <span>{product.bestFor ?? product.description}</span>
-            {product.priceBand && <small>{product.priceBand}</small>}
           </div>
           <div class="product-table-actions">
             <a
