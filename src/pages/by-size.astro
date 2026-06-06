@@ -167,20 +167,17 @@ const jsonLd = {
     </div>
     <ol class="size-pick-list">
       {
-        sizeGuides.map((guide, index) => (
+        sizeGuides.map((guide) => (
           <li>
             <div class="size-pick-row">
-              <span class="article-table-number">{String(index + 1).padStart(2, "0")}</span>
-              <div class="size-pick-main">
-                <strong>{guide.label}</strong>
-                <span>{guide.room}</span>
-              </div>
+              <a class="size-pick-button" href={sitePath(guide.article)}>
+                <strong>{guide.label} / {guide.capacity}</strong>
+              </a>
               <div class="size-pick-copy">
-                <b>{guide.base} / {guide.capacity}</b>
+                <b>{guide.room}</b>
                 <span>{guide.upgrade}</span>
               </div>
               <div class="product-table-actions">
-                <a class="inline-link" href={sitePath(guide.article)}>選び方</a>
                 <a class="inline-link" href={sitePath(guide.product)}>候補</a>
                 {guide.productData && (
                   <AmazonLink
