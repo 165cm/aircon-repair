@@ -20,6 +20,17 @@ export type ProductCategory = {
     label: string;
     url: string;
   }[];
+  makerRecommendations?: {
+    maker: string;
+    bestFor: string;
+    strength: string;
+    weakness: string;
+    howToChoose: string;
+    source: {
+      label: string;
+      url: string;
+    };
+  }[];
 };
 
 export const categoryLabels = {
@@ -148,7 +159,34 @@ export const productCategories: ProductCategory[] = [
     whyPick: "単身・個室ニーズが強く、冷えない記事からの買い替え導線に向く。",
     priceBand: "7〜10万円台",
     bestFor: "寝室、子供部屋、書斎などの小部屋",
-    cautions: ["標準工事込みか確認", "室外機置き場と配管穴を確認", "木造/鉄筋で畳数目安が変わる"]
+    cautions: ["標準工事込みか確認", "室外機置き場と配管穴を確認", "木造/鉄筋で畳数目安が変わる"],
+    reviewSummary: "6畳は価格差が出にくい反面、寝室・子供部屋では静かさ、手入れのしやすさ、狭い壁面への設置性で満足度が変わります。安さだけでなく、室内機サイズと内部清潔機能を見て選ぶのが現実的です。",
+    makerRecommendations: [
+      {
+        maker: "ダイキン",
+        bestFor: "寝室や書斎で、無難に長く使える定番を選びたい人",
+        strength: "Eシリーズは6畳から18畳まで型番がそろい、畳数表や電源条件を公式仕様で確認しやすい。空調専業メーカーとして、購入前相談やサポート導線も探しやすいです。",
+        weakness: "6畳の低価格帯では、上位機のような自動掃除・高度センサーまで求めると予算が上がります。シンプル機で十分かを先に決めると選びやすいです。",
+        howToChoose: "迷ったら最初の比較軸。木造最上階や西日が強い部屋は、同じダイキンでも8畳用も並べて見ます。",
+        source: { label: "ダイキン Eシリーズ仕様", url: "https://www.ac.daikin.co.jp/roomaircon/products/e_series/spec" }
+      },
+      {
+        maker: "三菱電機 霧ヶ峰",
+        bestFor: "子供部屋や高齢者の部屋で、基本性能と見守り系の安心感を重視したい人",
+        strength: "GVシリーズは基本機能と品質にこだわったスタンダードモデル。高温みまもり、はずせるボディ、清潔コート熱交換器など、初心者にも意味が伝わりやすい機能がまとまっています。",
+        weakness: "GVシリーズでは左右風向が手動調整など、上位機ほど全自動ではありません。風向を細かく自動制御したい部屋は上位シリーズも比較します。",
+        howToChoose: "6畳の個室で、機能を盛りすぎず安心して選びたい時の本命候補。リモコン操作の分かりやすさも確認します。",
+        source: { label: "三菱電機 GVシリーズ", url: "https://www.mitsubishielectric.co.jp/home/kirigamine_setsubi/product/2025_gv/index.html" }
+      },
+      {
+        maker: "富士通ゼネラル ノクリア",
+        bestFor: "窓上・窓横など、室内機を置ける壁面が限られる6畳部屋",
+        strength: "Cシリーズは横幅728mm・高さ250mmのコンパクトモデル。狭いスペースにも設置しやすく、熱交換器加熱除菌も訴求されています。",
+        weakness: "コンパクトさを優先すると、上位機の気流制御や省エネ機能とは別軸の選び方になります。設置性が問題ない部屋では他社の清潔機能やセンサーも比較したいです。",
+        howToChoose: "梁・カーテンレール・窓位置で普通サイズが厳しい時に優先。購入前に室内機寸法と左右の余白を測ります。",
+        source: { label: "ノクリア Cシリーズ", url: "https://www.generalww.com/jp/products/aircon/2026/lineup/nocria-c/index.html" }
+      }
+    ]
   },
   {
     id: "daikin-e-6tatami-s225ates",
@@ -206,7 +244,34 @@ export const productCategories: ProductCategory[] = [
     whyPick: "6畳寝室からのサイズアップ需要と、木造・西日条件の部屋からの流入に向く。",
     priceBand: "8〜13万円台",
     bestFor: "子供部屋、夫婦寝室、在宅勤務の書斎",
-    cautions: ["標準工事込みか確認", "室外機置き場と配管穴を確認", "木造最上階・西日では10畳も比較"]
+    cautions: ["標準工事込みか確認", "室外機置き場と配管穴を確認", "木造最上階・西日では10畳も比較"],
+    reviewSummary: "8畳は6畳用で妥協するか、10畳用まで上げるかで迷いやすいサイズです。子供部屋・夫婦寝室・在宅勤務の書斎なら、温度ムラ、清潔機能、夜間の使いやすさを優先すると選びやすくなります。",
+    makerRecommendations: [
+      {
+        maker: "三菱電機 霧ヶ峰",
+        bestFor: "子供部屋・夫婦寝室で、暑さの見守りと手入れのしやすさを重視したい人",
+        strength: "GVシリーズは8畳モデルも用意され、基本機能と品質を重視。高温みまもりやはずせるボディなど、家族の個室で安心につながる機能を説明しやすいです。",
+        weakness: "高度な人感センサーや自動風向制御を求めるなら上位シリーズの検討が必要です。価格だけでGVに決めず、欲しい便利機能の有無を確認します。",
+        howToChoose: "子供部屋・寝室の買い替えで、複雑な機能より分かりやすい安心感を優先する時に向きます。",
+        source: { label: "三菱電機 GVシリーズ", url: "https://www.mitsubishielectric.co.jp/home/kirigamine_setsubi/product/2025_gv/index.html" }
+      },
+      {
+        maker: "パナソニック エオリア",
+        bestFor: "寝室で空気の清潔感やニオイ対策も気になる人",
+        strength: "JシリーズはナノイーX搭載のスタンダードモデル。エアコン内部だけでなく、部屋の空気に対する清潔訴求が分かりやすいです。",
+        weakness: "清潔機能の試験値は実使用空間そのものではなく、カビを完全に除去する機能でもありません。フィルター掃除や換気は別に必要です。",
+        howToChoose: "寝室のニオイ、花粉、カビ不安を軽くしたい人向け。自動掃除の有無やアプリ対応はシリーズごとに確認します。",
+        source: { label: "パナソニック Jシリーズ", url: "https://panasonic.jp/housing-aircon/Jseries.html" }
+      },
+      {
+        maker: "ダイキン",
+        bestFor: "在宅勤務の書斎など、毎日長く使う8畳部屋",
+        strength: "Eシリーズは8畳モデルを含む基本ラインが公式仕様で見やすく、畳数・電源・配管条件を確認しやすい。相談窓口やサポート導線も初心者向きです。",
+        weakness: "低価格帯では機能がシンプルです。長時間運転の省エネや快適性まで重視するなら、同じダイキンでも上位シリーズと比較します。",
+        howToChoose: "迷った時の基準メーカー。木造・西日・在宅勤務で暑さが残るなら10畳用も比較します。",
+        source: { label: "ダイキン Eシリーズ仕様", url: "https://www.ac.daikin.co.jp/roomaircon/products/e_series/spec" }
+      }
+    ]
   },
   {
     id: "aircon-10tatami",
@@ -222,7 +287,34 @@ export const productCategories: ProductCategory[] = [
     whyPick: "リビング需要があり、修理より買い替えを検討する高単価導線にしやすい。",
     priceBand: "10〜15万円台",
     bestFor: "10畳前後のリビング、ダイニング、広めの寝室",
-    cautions: ["LDK続きなら能力不足に注意", "日当たりと断熱性能を確認", "追加工事費の条件を確認"]
+    cautions: ["LDK続きなら能力不足に注意", "日当たりと断熱性能を確認", "追加工事費の条件を確認"],
+    reviewSummary: "10畳はリビング利用が増え、冷房の効きだけでなく空気清浄、内部清潔、日当たりへの対応が効いてきます。LDK続きやキッチン熱があるなら、10畳表記だけで決めず14畳用も比較します。",
+    makerRecommendations: [
+      {
+        maker: "ダイキン",
+        bestFor: "独立した10畳リビングで、まず外しにくい基準機を選びたい人",
+        strength: "Eシリーズの仕様表では10畳クラスを含め、電源・畳数・配管条件を確認しやすい。公式にも部屋条件を考慮する必要があるとされ、初心者にサイズ選びの注意を伝えやすいです。",
+        weakness: "標準機だけでLDK続きや西日までカバーできるとは限りません。部屋条件が重い場合は14畳用や上位シリーズも見ます。",
+        howToChoose: "独立した10畳なら最初の比較候補。キッチン・吹き抜け・南西向きなら能力アップを検討します。",
+        source: { label: "ダイキン Eシリーズ仕様", url: "https://www.ac.daikin.co.jp/roomaircon/products/e_series/spec" }
+      },
+      {
+        maker: "日立 白くまくん",
+        bestFor: "リビングで内部の汚れやカビ対策を重視したい人",
+        strength: "Dシリーズは凍結洗浄 Light、カビバスター、ステンレス・クリーンを搭載するベーシックモデル。熱交換器や通風路の清潔訴求が強く、リビング利用と相性が良いです。",
+        weakness: "凍結洗浄は汚れやカビをすべて洗い流すものではなく、運転条件によって動作しない場合もあります。過信せずフィルター掃除は必要です。",
+        howToChoose: "キッチンに近いリビングや、カビ臭が気になりやすい部屋で比較候補に入れます。",
+        source: { label: "日立 Dシリーズ", url: "https://kadenfan.hitachi.co.jp/ra/lineup/dseries_26/" }
+      },
+      {
+        maker: "東芝 大清快",
+        bestFor: "風が直接当たるのが苦手なリビング、ペットや家族が長くいる部屋",
+        strength: "V-DZシリーズはプラズマ空清＆無風感空調を訴求し、高さ250mmの室内機、無線LAN内蔵など機能も豊富。リビングの快適性で比較しやすいです。",
+        weakness: "ハイスペック寄りなので価格は上がりやすく、奥行きも確認が必要です。清潔機能や空清機能が本当に必要かを見極めます。",
+        howToChoose: "風あたりの不快感を減らしたい、空気清浄も一台でまとめたい時の候補です。",
+        source: { label: "東芝 V-DZシリーズ", url: "https://www.toshiba-lifestyle.com/jp/air_conditioners/v-dz/" }
+      }
+    ]
   },
   {
     id: "daikin-e-10tatami-s285ates",
@@ -280,7 +372,34 @@ export const productCategories: ProductCategory[] = [
     whyPick: "商品単価が高く、省エネ・修理費比較の記事から収益導線を作りやすい。",
     priceBand: "15〜30万円台",
     bestFor: "14畳前後のLDK、家族が集まる広めの部屋",
-    cautions: ["200V機種が多い", "専用回路の確認が必要", "室外機サイズと搬入経路を確認"]
+    cautions: ["200V機種が多い", "専用回路の確認が必要", "室外機サイズと搬入経路を確認"],
+    reviewSummary: "14畳は本体価格も工事費も上がりやすく、メーカー選びの差が出ます。省エネ・清潔機能・気流制御だけでなく、200V電源、室外機寸法、追加工事費まで同時に確認します。",
+    makerRecommendations: [
+      {
+        maker: "日立 白くまくん",
+        bestFor: "LDKで油汚れ・カビ・室外機の汚れまで気になる家庭",
+        strength: "Dシリーズでも室内機・室外機の凍結洗浄、カビバスター、ステンレス・クリーンを訴求。キッチン近くのLDKで説明しやすい清潔機能がまとまっています。",
+        weakness: "凍結洗浄は汚れやカビをすべて除去するものではありません。LDKの油汚れが強い家では、定期的なフィルター掃除と専門清掃も前提にします。",
+        howToChoose: "14畳LDKで清潔機能を重視するなら本命候補。室外機凍結洗浄は設定条件も確認します。",
+        source: { label: "日立 Dシリーズ", url: "https://kadenfan.hitachi.co.jp/ra/lineup/dseries_26/" }
+      },
+      {
+        maker: "パナソニック エオリア",
+        bestFor: "家族が長く過ごすLDKで、省エネ・清潔・空気ケアをまとめて考えたい人",
+        strength: "Xシリーズは省エネ、ナノイーX、フィルターお掃除ロボットなどを訴求するハイグレードモデル。長時間使うLDKでは電気代と手入れの両面で比較軸になります。",
+        weakness: "上位機は価格が高く、機能が多いぶん将来の清掃費や修理費も確認したいところです。シンプルで十分ならJ/C系も比較します。",
+        howToChoose: "長時間つけっぱなしのLDKで、初期費用より10年使う前提の快適性を重視する時に向きます。",
+        source: { label: "パナソニック Xシリーズ", url: "https://panasonic.jp/aircon/Xseries.html" }
+      },
+      {
+        maker: "三菱電機 霧ヶ峰",
+        bestFor: "暑さが厳しいLDKで、基本性能と耐暑運転の分かりやすさを重視したい人",
+        strength: "GVシリーズは14畳モデルもあり、屋外温度50℃でも冷房運転が止まらないSTRONG冷房を訴求。標準機の範囲で基本性能を重視する人に説明しやすいです。",
+        weakness: "高度なセンサー制御や自動掃除は上位シリーズの領域です。広いLDKでは、GVだけでなく上位グレードも含めて比較します。",
+        howToChoose: "予算を抑えつつ14畳の基本性能を確保したい時の比較候補。200V条件は必ず確認します。",
+        source: { label: "三菱電機 GVシリーズ", url: "https://www.mitsubishielectric.co.jp/home/kirigamine_setsubi/product/2025_gv/index.html" }
+      }
+    ]
   },
   {
     id: "daikin-e-14tatami-s405atep",
@@ -317,7 +436,34 @@ export const productCategories: ProductCategory[] = [
     whyPick: "大空間向けで単価が高く、18畳以上の検索需要から丁寧に条件確認を促す導線に向く。",
     priceBand: "20〜40万円台以上",
     bestFor: "18畳以上のLDK、吹き抜けのある大空間",
-    cautions: ["単相200V・三相など電源条件を確認", "専用回路と専用コンセントが必要", "室外機の重量・搬入経路を事前確認", "家庭用の限界を超える場合は業務用も要検討"]
+    cautions: ["単相200V・三相など電源条件を確認", "専用回路と専用コンセントが必要", "室外機の重量・搬入経路を事前確認", "家庭用の限界を超える場合は業務用も要検討"],
+    reviewSummary: "18畳以上は、カタログ畳数より現地条件が重要です。吹き抜け、二間続き、日射、断熱、200V電源、室外機重量で失敗しやすいため、メーカー比較と同時に販売店・工事業者への相談を前提にします。",
+    makerRecommendations: [
+      {
+        maker: "ダイキン",
+        bestFor: "大きなLDKで、空調メーカーの相談導線とサイズ展開を重視したい人",
+        strength: "Eシリーズでも18畳程度まで仕様表で確認でき、ダイキンは購入前相談・サポート窓口が探しやすい。大空間で不安がある初心者には相談しやすさが強みです。",
+        weakness: "18畳以上は標準機を型番だけで選ぶと能力不足になりがちです。吹き抜けや高断熱でない家では、上位機や現地負荷計算も必要です。",
+        howToChoose: "まず相談前提の基準候補。部屋条件が重い時は、18畳表記より一段上や業務用も視野に入れます。",
+        source: { label: "ダイキン Eシリーズ仕様", url: "https://www.ac.daikin.co.jp/roomaircon/products/e_series/spec" }
+      },
+      {
+        maker: "三菱重工 ビーバーエアコン",
+        bestFor: "広いLDKで、素早く冷やす・暖める力感を重視したい人",
+        strength: "Sシリーズはフラッグシップモデルで、主に6畳から26畳までのラインアップ。JET運転、ワープ運転、清潔機能、暖房強化型の選択肢など、大空間で比較しやすい要素があります。",
+        weakness: "シリーズによって機能差が大きく、取り扱い店舗や工事条件も確認が必要です。名前だけでなくS/R/T/SKの違いを見ます。",
+        howToChoose: "18畳以上や26畳級まで視野に入る時、三菱重工は候補に入れる価値があります。寒冷地なら暖房強化型も確認します。",
+        source: { label: "三菱重工 ビーバーエアコン", url: "https://www.mhi-mth.co.jp/customer/room/s/" }
+      },
+      {
+        maker: "日立 白くまくん",
+        bestFor: "大きなLDKで、内部清潔と室外機まわりの汚れ対策を重視したい人",
+        strength: "Dシリーズは18畳クラスも含み、室内機・室外機の凍結洗浄、ステンレス・クリーン、カビバスターを訴求。LDKで長時間使う家庭に説明しやすいです。",
+        weakness: "凍結洗浄の効果は環境条件に左右され、すべての汚れを落とすものではありません。大型機では清潔機能だけでなく能力・電源・工事も優先します。",
+        howToChoose: "LDKの使用時間が長く、内部の汚れ対策も気になる家庭向け。最終判断は現地調査とセットで行います。",
+        source: { label: "日立 Dシリーズ", url: "https://kadenfan.hitachi.co.jp/ra/lineup/dseries_26/" }
+      }
+    ]
   },
   {
     id: "corona-dehumidifier",

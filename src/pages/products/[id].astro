@@ -20,6 +20,7 @@ const { product } = Astro.props as { product: ProductCategory };
 const related = getRelatedProductsForProduct(product);
 const relatedArticles = getProductRelatedArticles(product, await getCollection("articles"));
 const categoryLabel = product.category ? categoryLabels[product.category] : "商品候補";
+const makerRecommendations = product.makerRecommendations ?? [];
 const canonical = absoluteUrl(`/products/${product.id}/`);
 const breadcrumbs = [
   { label: "ホーム", href: "/" },
@@ -146,6 +147,38 @@ const jsonLd = [{
       </div>
     </div>
   </section>
+
+  {makerRecommendations.length > 0 && (
+    <section class="container section maker-recommendations">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">メーカーで選ぶ</p>
+          <h2>この畳数でおすすめの3メーカー</h2>
+          <p>同じ畳数でも、部屋の使い方や設置条件で合うメーカーは変わります。まずは自分の部屋に近い条件から比べてください。</p>
+        </div>
+      </div>
+      <div class="maker-recommendation-grid">
+        {makerRecommendations.map((recommendation, index) => (
+          <article class="maker-recommendation-card">
+            <div class="maker-recommendation-head">
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{recommendation.maker}</h3>
+            </div>
+            <p class="maker-recommendation-fit">{recommendation.bestFor}</p>
+            <dl class="maker-recommendation-points">
+              <dt>強み</dt>
+              <dd>{recommendation.strength}</dd>
+              <dt>弱み</dt>
+              <dd>{recommendation.weakness}</dd>
+              <dt>選び方</dt>
+              <dd>{recommendation.howToChoose}</dd>
+            </dl>
+            <a class="inline-link" href={recommendation.source.url} rel="noopener" target="_blank">{recommendation.source.label}</a>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
 
   <section class="container section">
     <div class="grid two">

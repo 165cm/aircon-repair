@@ -2409,6 +2409,89 @@ h3 {
   font-size: 0.94rem;
 }
 
+.maker-recommendations {
+  padding-top: 18px;
+}
+
+.maker-recommendation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.maker-recommendation-card {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  gap: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.maker-recommendation-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.maker-recommendation-head span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: var(--brand);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.maker-recommendation-head h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.12rem;
+  line-height: 1.35;
+}
+
+.maker-recommendation-fit {
+  margin: 0;
+  color: var(--brand-dark);
+  font-weight: 850;
+  line-height: 1.55;
+}
+
+.maker-recommendation-points {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.maker-recommendation-points dt {
+  width: fit-content;
+  border-radius: 6px;
+  padding: 2px 8px;
+  background: var(--surface-soft);
+  color: var(--brand-dark);
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.maker-recommendation-points dd {
+  margin: -4px 0 4px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.65;
+}
+
+.maker-recommendation-card .inline-link {
+  margin-top: auto;
+}
+
 .compact-header {
   margin-bottom: 14px;
 }
@@ -2860,6 +2943,7 @@ h3 {
   .chapter-body,
   .learning-toc,
   .price-band-summary,
+  .maker-recommendation-grid,
   .maker-link-grid,
   .grid,
   .grid.two,
