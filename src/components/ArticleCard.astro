@@ -62,12 +62,5 @@ const thumbnail = articleThumbnail(article);
       <span class="tag">{article.data.difficulty === "beginner" ? "初心者向け" : "一歩詳しく"}</span>
       {article.data.symptoms.map((symptom) => <span class="tag">{symptom}</span>)}
     </div>
-    <a
-      class="inline-link article-card-link"
-      href={sitePath(`/articles/${article.slug}/`)}
-      aria-label={`${article.data.title}を読む`}
-    >
-      記事を読む
-    </a>
   </div>
 </article>
