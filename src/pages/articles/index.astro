@@ -1,9 +1,9 @@
 ---
 import { getCollection } from "astro:content";
+import ArticleTocList from "@components/ArticleTocList.astro";
 import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { getCanonicalArticles } from "@data/internalLinks";
-import { articleThumbnail } from "@utils/articles";
 import { sitePath } from "@utils/paths";
 
 const articles = getCanonicalArticles(await getCollection("articles")).sort(
@@ -95,22 +95,7 @@ const totalArticleCount = categoryGroups.reduce((count, group) => count + group.
             <p>{group.description}</p>
           </div>
         </div>
-        <ol class="article-table-list">
-          {
-            group.articles.map((article, index) => (
-              <li>
-                <a class="article-table-row" href={sitePath(`/articles/${article.slug}/`)}>
-                  <span class="article-table-number">{String(index + 1).padStart(2, "0")}</span>
-                  <img src={sitePath(articleThumbnail(article))} alt="" loading="lazy" />
-                  <span class="article-table-copy">
-                    <strong>{article.data.title}</strong>
-                    <span>{article.data.description}</span>
-                  </span>
-                </a>
-              </li>
-            ))
-          }
-        </ol>
+        <ArticleTocList articles={group.articles} />
       </section>
     ))
   }

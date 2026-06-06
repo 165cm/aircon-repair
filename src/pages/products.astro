@@ -1,5 +1,5 @@
 ---
-import ProductGrid from "@components/ProductGrid.astro";
+import ProductTocList from "@components/ProductTocList.astro";
 import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { isAmazonConfigured } from "@data/affiliate";
@@ -19,18 +19,19 @@ import { sitePath } from "@utils/paths";
     {!isAmazonConfigured && <p class="notice">公開前にsrc/data/affiliate.tsのamazonTrackingIdを実際のIDに変更してください。</p>}
   </section>
   <section class="container section" id="support">
-    <div class="section-header">
+    <div class="article-index-heading">
+      <div class="article-index-heading-label">補助用品</div>
       <div>
-        <p class="eyebrow">まずは低リスク</p>
         <h2>分解しない補助用品</h2>
+        <p>温湿度、フィルター、排水、室外機まわりなど、安全な確認範囲で使う候補です。</p>
       </div>
     </div>
-    <ProductGrid products={supportProducts} pageType="products-index" linkPosition="support-grid" />
+    <ProductTocList products={supportProducts} pageType="products-index" linkPosition="support-list" />
   </section>
   <section class="container section" id="replacement">
-    <div class="section-header">
+    <div class="article-index-heading">
+      <div class="article-index-heading-label">本体候補</div>
       <div>
-        <p class="eyebrow">高単価導線</p>
         <h2>修理費が高い時の買い替え候補</h2>
         <p>10年以上使用、複数症状、修理見積もりが高額、畳数不足、省エネ性能の古さが気になる場合は、本体購入も比較します。</p>
       </div>
@@ -41,7 +42,7 @@ import { sitePath } from "@utils/paths";
     <div class="hero-actions">
       <a class="button secondary" href={sitePath("/articles/aircon-maker-compare/")} data-cvr-action="products_maker_compare_click" data-action-kind="replacement">メーカー比較を見る</a>
     </div>
-    <ProductGrid products={replacementProducts} pageType="products-index" linkPosition="replacement-grid" />
+    <ProductTocList products={replacementProducts} pageType="products-index" linkPosition="replacement-list" />
   </section>
   <section class="container section">
     <RevenueCta variant="contractor" />

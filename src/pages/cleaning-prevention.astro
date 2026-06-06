@@ -1,10 +1,11 @@
 ---
 import { getCollection } from "astro:content";
-import ArticleCard from "@components/ArticleCard.astro";
-import ProductGrid from "@components/ProductGrid.astro";
+import ArticleTocList from "@components/ArticleTocList.astro";
+import ProductTocList from "@components/ProductTocList.astro";
 import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { getCanonicalArticles } from "@data/internalLinks";
+import { supportProducts } from "@data/products";
 
 const articles = getCanonicalArticles(await getCollection("articles"))
   .filter((article) => article.data.category === "cleaning")
@@ -21,12 +22,24 @@ const articles = getCanonicalArticles(await getCollection("articles"))
     <p class="lead">安全にできるのは主にフィルター、外装、室外機まわり、ドレンホース先端の確認です。内部洗浄は無理に行いません。</p>
   </section>
   <section class="container section">
-    <div class="grid">
-      {articles.map((article) => <ArticleCard article={article} />)}
+    <div class="article-index-heading">
+      <div class="article-index-heading-label">予防</div>
+      <div>
+        <h2>分解しない範囲で読む順番</h2>
+        <p>まずフィルター、次に排水と室外機、最後にスプレーのリスクを確認します。</p>
+      </div>
     </div>
+    <ArticleTocList articles={articles} />
   </section>
   <section class="container section">
-    <ProductGrid />
+    <div class="article-index-heading">
+      <div class="article-index-heading-label">道具</div>
+      <div>
+        <h2>掃除・予防に使う候補</h2>
+        <p>内部を分解せず、外側の確認と環境づくりに使うものだけを並べています。</p>
+      </div>
+    </div>
+    <ProductTocList products={supportProducts} pageType="cleaning-prevention" linkPosition="support-list" />
   </section>
   <section class="container section">
     <RevenueCta variant="contractor" />

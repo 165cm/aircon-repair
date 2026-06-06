@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import ArticleCard from "@components/ArticleCard.astro";
+import ArticleTocList from "@components/ArticleTocList.astro";
 import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { getCanonicalArticles } from "@data/internalLinks";
@@ -29,8 +29,13 @@ const articles = getCanonicalArticles(await getCollection("articles"))
     </div>
   </section>
   <section class="container section">
-    <div class="grid">
-      {articles.map((article) => <ArticleCard article={article} />)}
+    <div class="article-index-heading">
+      <div class="article-index-heading-label">入門</div>
+      <div>
+        <h2>仕事を選ぶ前に読む記事</h2>
+        <p>修理寄りか、クリーニング寄りか。未経験で確認すべき作業範囲を先に分けます。</p>
+      </div>
     </div>
+    <ArticleTocList articles={articles} />
   </section>
 </BaseLayout>

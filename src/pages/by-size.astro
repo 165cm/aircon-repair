@@ -1,8 +1,8 @@
 ---
 import { getCollection } from "astro:content";
-import ArticleCard from "@components/ArticleCard.astro";
 import AmazonLink from "@components/AmazonLink.astro";
-import ProductGrid from "@components/ProductGrid.astro";
+import ArticleTocList from "@components/ArticleTocList.astro";
+import ProductTocList from "@components/ProductTocList.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { affiliate } from "@data/affiliate";
 import { productById, replacementProducts } from "@data/products";
@@ -165,46 +165,38 @@ const jsonLd = {
         <p>まず部屋の広さで候補を決め、日当たり・断熱・LDK続きならワンサイズ上も比較します。</p>
       </div>
     </div>
-    <div class="table-wrap">
-      <table class="comparison-table">
-        <thead>
-          <tr>
-            <th>部屋</th>
-            <th>主な用途</th>
-            <th>基本候補</th>
-            <th>冷房能力</th>
-            <th>ワンサイズ上を考える条件</th>
-            <th>導線</th>
-          </tr>
-        </thead>
-        <tbody>
-          {sizeGuides.map((guide) => (
-            <tr>
-              <th>{guide.label}</th>
-              <td>{guide.room}</td>
-              <td>{guide.base}</td>
-              <td>{guide.capacity}</td>
-              <td>{guide.upgrade}</td>
-              <td>
-                <div class="table-actions">
-                  <a href={sitePath(guide.article)}>記事</a>
-                  <a href={sitePath(guide.product)}>商品詳細</a>
-                  {guide.productData && (
-                    <AmazonLink
-                      product={guide.productData}
-                      pageType="by-size"
-                      linkPosition={`size-guide-${guide.productId}`}
-                      label="工事費込みを確認"
-                      variant="inline"
-                    />
-                  )}
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <ol class="size-pick-list">
+      {
+        sizeGuides.map((guide, index) => (
+          <li>
+            <div class="size-pick-row">
+              <span class="article-table-number">{String(index + 1).padStart(2, "0")}</span>
+              <div class="size-pick-main">
+                <strong>{guide.label}</strong>
+                <span>{guide.room}</span>
+              </div>
+              <div class="size-pick-copy">
+                <b>{guide.base} / {guide.capacity}</b>
+                <span>{guide.upgrade}</span>
+              </div>
+              <div class="product-table-actions">
+                <a class="inline-link" href={sitePath(guide.article)}>選び方</a>
+                <a class="inline-link" href={sitePath(guide.product)}>候補</a>
+                {guide.productData && (
+                  <AmazonLink
+                    product={guide.productData}
+                    pageType="by-size"
+                    linkPosition={`size-guide-${guide.productId}`}
+                    label="価格を見る"
+                    variant="inline"
+                  />
+                )}
+              </div>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
   </section>
 
   <section class="container section">
@@ -253,9 +245,7 @@ const jsonLd = {
         <h2>部屋サイズ別の選び方</h2>
       </div>
     </div>
-    <div class="grid">
-      {articles.map((article) => <ArticleCard article={article} />)}
-    </div>
+    <ArticleTocList articles={articles} />
   </section>
 
   <section class="container section">
@@ -265,6 +255,6 @@ const jsonLd = {
         <h2>まず比較したいエアコン本体</h2>
       </div>
     </div>
-    <ProductGrid products={replacementProducts} pageType="by-size" linkPosition="replacement-grid" />
+    <ProductTocList products={replacementProducts} pageType="by-size" linkPosition="replacement-list" />
   </section>
 </BaseLayout>
