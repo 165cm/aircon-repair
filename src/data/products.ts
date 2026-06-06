@@ -24,8 +24,13 @@ export type ProductCategory = {
     maker: string;
     bestFor: string;
     strength: string;
+    strengthKeyword?: string;
     weakness: string;
+    weaknessKeyword?: string;
     howToChoose: string;
+    howToChooseKeyword?: string;
+    amazonKeyword?: string;
+    isPick?: boolean;
     source: {
       label: string;
       url: string;
@@ -185,6 +190,16 @@ export const productCategories: ProductCategory[] = [
         weakness: "コンパクトさを優先すると、上位機の気流制御や省エネ機能とは別軸の選び方になります。設置性が問題ない部屋では他社の清潔機能やセンサーも比較したいです。",
         howToChoose: "梁・カーテンレール・窓位置で普通サイズが厳しい時に優先。購入前に室内機寸法と左右の余白を測ります。",
         source: { label: "ノクリア Cシリーズ", url: "https://www.generalww.com/jp/products/aircon/2026/lineup/nocria-c/index.html" }
+      },
+      {
+        maker: "COMFEE'",
+        bestFor: "6畳の個室で、価格とシンプルさを優先して候補を広げたい人",
+        strength: "2026年モデルの6畳機を公式に展開。海外系ブランドらしく、必要機能に絞った低価格候補として比較しやすいです。",
+        weakness: "国内大手に比べると、修理窓口・工事対応・長期の部品入手性は購入前に確認したいところです。",
+        howToChoose: "最安候補として見るなら、販売元、工事保証、メーカー保証、返品条件までセットで確認します。",
+        amazonKeyword: "COMFEE エアコン 6畳 工事費込み",
+        isPick: true,
+        source: { label: "COMFEE' エアコン", url: "https://www.feelcomfee.com/jp/products/air-conditioner" }
       }
     ]
   },
@@ -270,6 +285,16 @@ export const productCategories: ProductCategory[] = [
         weakness: "低価格帯では機能がシンプルです。長時間運転の省エネや快適性まで重視するなら、同じダイキンでも上位シリーズと比較します。",
         howToChoose: "迷った時の基準メーカー。木造・西日・在宅勤務で暑さが残るなら10畳用も比較します。",
         source: { label: "ダイキン Eシリーズ仕様", url: "https://www.ac.daikin.co.jp/roomaircon/products/e_series/spec" }
+      },
+      {
+        maker: "TCL",
+        bestFor: "8畳の寝室・書斎で、AI節電や優しい気流など新しさも試したい人",
+        strength: "AI節電シリーズは8畳モデルを含み、AI自動運転、優しい気流、室温パトロールなど、機能の個性がはっきりしています。",
+        weakness: "日本の家庭用エアコンとしては新興寄りなので、販売店の工事体制と故障時の相談先を必ず確認します。",
+        howToChoose: "価格だけでなく、設置工事込みか、保証窓口が国内で明確か、レビュー件数が十分かを見ます。",
+        amazonKeyword: "TCL エアコン 8畳 工事費込み",
+        isPick: true,
+        source: { label: "TCL AI節電シリーズ", url: "https://www.tcl.com/jp/ja/air-conditioners/ai-energy-saving-ac" }
       }
     ]
   },
@@ -313,6 +338,16 @@ export const productCategories: ProductCategory[] = [
         weakness: "ハイスペック寄りなので価格は上がりやすく、奥行きも確認が必要です。清潔機能や空清機能が本当に必要かを見極めます。",
         howToChoose: "風あたりの不快感を減らしたい、空気清浄も一台でまとめたい時の候補です。",
         source: { label: "東芝 V-DZシリーズ", url: "https://www.toshiba-lifestyle.com/jp/air_conditioners/v-dz/" }
+      },
+      {
+        maker: "ハイセンス",
+        bestFor: "10畳前後で、日本向け仕様の海外メーカーも価格比較に入れたい人",
+        strength: "Mシリーズは日本向け専用ラインで生産されるルームエアコンとして訴求。基本機能と価格のバランスを見たい時に候補になります。",
+        weakness: "国内大手ほど修理網の印象が強いブランドではないため、購入店の工事保証とメーカー保証の受け方を確認します。",
+        howToChoose: "テレビ家電でブランドに馴染みがある人向け。エアコンでは設置後サポートまで見て判断します。",
+        amazonKeyword: "ハイセンス エアコン 10畳 工事費込み",
+        isPick: true,
+        source: { label: "ハイセンス Mシリーズ", url: "https://www.hisense.co.jp/aircon/ha-m-series-e/" }
       }
     ]
   },
@@ -398,6 +433,16 @@ export const productCategories: ProductCategory[] = [
         weakness: "高度なセンサー制御や自動掃除は上位シリーズの領域です。広いLDKでは、GVだけでなく上位グレードも含めて比較します。",
         howToChoose: "予算を抑えつつ14畳の基本性能を確保したい時の比較候補。200V条件は必ず確認します。",
         source: { label: "三菱電機 GVシリーズ", url: "https://www.mitsubishielectric.co.jp/home/kirigamine_setsubi/product/2025_gv/index.html" }
+      },
+      {
+        maker: "TCL",
+        bestFor: "14畳LDKで、価格を抑えつつAI節電や立体気流も見たい人",
+        strength: "AI節電シリーズは14畳モデルまで展開。AI自動運転、立体気流、室温パトロールなど、低価格帯でも機能訴求が分かりやすいです。",
+        weakness: "14畳は工事費と電源条件の影響が大きいため、安く見えても追加工事で総額が上がることがあります。",
+        howToChoose: "本体価格に惹かれた時ほど、200V条件、標準工事範囲、販売店保証を先に確認します。",
+        amazonKeyword: "TCL エアコン 14畳 工事費込み",
+        isPick: true,
+        source: { label: "TCL AI節電シリーズ", url: "https://www.tcl.com/jp/ja/air-conditioners/ai-energy-saving-ac" }
       }
     ]
   },
@@ -462,6 +507,16 @@ export const productCategories: ProductCategory[] = [
         weakness: "凍結洗浄の効果は環境条件に左右され、すべての汚れを落とすものではありません。大型機では清潔機能だけでなく能力・電源・工事も優先します。",
         howToChoose: "LDKの使用時間が長く、内部の汚れ対策も気になる家庭向け。最終判断は現地調査とセットで行います。",
         source: { label: "日立 Dシリーズ", url: "https://kadenfan.hitachi.co.jp/ra/lineup/dseries_26/" }
+      },
+      {
+        maker: "ハイアール huu",
+        bestFor: "18畳以上で、海外大手の大容量モデルも比較に入れたい人",
+        strength: "huuはAIエコ、フィルター自動お掃除、外気温50℃冷房などを訴求し、大容量モデルの展開もあります。",
+        weakness: "大空間はメーカー以前に現地条件の影響が大きいです。吹き抜けや二間続きでは、家庭用の限界も含めて相談が必要です。",
+        howToChoose: "海外メーカーの大型候補を見るなら、販売店の設置実績、電源工事、室外機搬入まで確認します。",
+        amazonKeyword: "ハイアール エアコン 18畳 200V 工事費込み",
+        isPick: true,
+        source: { label: "ハイアール huu", url: "https://www.haier.com/jp/markets/huu/" }
       }
     ]
   },
