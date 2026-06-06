@@ -27,3 +27,11 @@ export function amazonSearchUrl(keyword: string) {
 
   return `https://www.amazon.co.jp/s?${params.toString()}`;
 }
+
+export function amazonProductUrl(asin: string) {
+  const params = new URLSearchParams({
+    tag: affiliate.amazonTrackingId
+  });
+
+  return `https://www.amazon.co.jp/dp/${asin}?${params.toString()}`;
+}

@@ -4,7 +4,7 @@ import AmazonLink from "@components/AmazonLink.astro";
 import ArticleCard from "@components/ArticleCard.astro";
 import ProductGrid from "@components/ProductGrid.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
-import { amazonSearchUrl } from "@data/affiliate";
+import { amazonProductUrl, amazonSearchUrl } from "@data/affiliate";
 import { getProductRelatedArticles, getRelatedProductsForProduct } from "@data/internalLinks";
 import { categoryLabels, productCategories, type ProductCategory } from "@data/products";
 import { absoluteUrl, sitePath } from "@utils/paths";
@@ -21,11 +21,17 @@ const related = getRelatedProductsForProduct(product);
 const relatedArticles = getProductRelatedArticles(product, await getCollection("articles"));
 const categoryLabel = product.category ? categoryLabels[product.category] : "商品候補";
 const makerRecommendations = product.makerRecommendations ?? [];
+const choiceGuide = product.choiceGuide;
 const canonical = absoluteUrl(`/products/${product.id}/`);
+const productDisplayName = product.choiceName ?? product.name;
+const pageTitle = choiceGuide ? `${productDisplayName}の選び方・おすすめ候補` : product.name;
+const pageDescription = choiceGuide
+  ? `${productDisplayName}を選ぶ前に見るポイント、後悔しやすい注意点、おすすめ候補を安全重視で比較します。`
+  : `${product.name}の用途、向いている症状、購入前の注意点を安全重視でまとめています。`;
 const breadcrumbs = [
   { label: "ホーム", href: "/" },
   { label: "商品比較", href: "/products/" },
-  { label: product.name }
+  { label: pageTitle }
 ];
 const isReplacement = product.type === "replacement";
 const amazonLabel = isReplacement
@@ -36,6 +42,44 @@ const amazonLabel = isReplacement
 const makerSearchBase = product.name.replace(/候補|工事費込み|ルームエアコン|省エネ|大型/g, "").replace(/\s+/g, " ").trim();
 const makerAmazonUrl = (recommendation: NonNullable<ProductCategory["makerRecommendations"]>[number]) =>
   amazonSearchUrl(recommendation.amazonKeyword ?? `${recommendation.maker} エアコン ${makerSearchBase} 工事費込み`);
+const choiceAmazonUrl = (option: NonNullable<ProductCategory["choiceGuide"]>["options"][number]) =>
+  amazonSearchUrl(option.amazonKeyword);
+const reviewCandidateUrl = (candidate: NonNullable<NonNullable<ProductCategory["choiceGuide"]>["reviewCandidates"]>[number]) =>
+  candidate.amazonAsin ? amazonProductUrl(candidate.amazonAsin) : amazonSearchUrl(candidate.amazonKeyword ?? candidate.productName);
+const defaultReviewCriteria = ["用途適合", "使いやすさ", "手入れ", "安全性", "価格納得感"];
+const displayReviewCriteria = choiceGuide?.reviewCriteria ?? (choiceGuide ? defaultReviewCriteria : undefined);
+const generatedReviewCandidates = choiceGuide?.options.map((option, index) => {
+  const optionNotes = [
+    option.bestFor,
+    option.pros?.[0] ?? option.reason,
+    option.pros?.[1] ?? (option.cons?.[0] ? `注意: ${option.cons[0]}` : "価格だけでなく、対応範囲と使う場所をリンク先で確認します。"),
+    option.cons?.[1] ? `注意: ${option.cons[1]}` : "公式仕様とレビューを見て、使いたい部屋に合うかを確認します。",
+    "安全に使える範囲を超えそうなら、購入より先に業者相談を優先します。"
+  ];
+
+  return {
+    label: option.label,
+    productName: option.productName,
+    bestFor: option.bestFor,
+    usp: option.reason,
+    referencePrice: product.priceBand ?? "リンク先で確認",
+    amazonKeyword: option.amazonKeyword,
+    source: option.source,
+    scores: defaultReviewCriteria.map((label, scoreIndex) => ({
+      label,
+      score: Math.max(76, 90 - index * 3 - scoreIndex),
+      note: optionNotes[scoreIndex] ?? option.reason
+    }))
+  };
+}) ?? [];
+const reviewCandidates = (choiceGuide?.reviewCandidates ?? generatedReviewCandidates)
+  .map((candidate) => ({
+    ...candidate,
+    totalScore: Math.round(candidate.scores.reduce((sum, score) => sum + score.score, 0) / candidate.scores.length)
+  }))
+  .sort((a, b) => b.totalScore - a.totalScore);
+const topReviewCandidates = reviewCandidates.slice(0, 2);
+const runnerUpCandidates = reviewCandidates.slice(2);
 const purchaseChecks = isReplacement
   ? [
       "標準工事込み / 追加費用",
@@ -64,7 +108,7 @@ const stopChecks = isReplacement
     ];
 const faqs = [
   {
-    question: `${product.name}はどんな人に向いていますか？`,
+    question: `${productDisplayName}はどんな人に向いていますか？`,
     answer: product.bestFor ?? product.description
   },
   {
@@ -79,7 +123,7 @@ const faqs = [
 const jsonLd = [{
   "@context": "https://schema.org",
   "@type": "Product",
-  name: product.name,
+  name: pageTitle,
   brand: product.brand,
   category: categoryLabel,
   description: product.description,
@@ -103,10 +147,10 @@ const jsonLd = [{
 }];
 ---
 
-<BaseLayout title={product.name} description={`${product.name}の用途、向いている症状、購入前の注意点を安全重視でまとめています。`} canonical={canonical} jsonLd={jsonLd} ogImage={product.image} breadcrumbs={breadcrumbs}>
+<BaseLayout title={pageTitle} description={pageDescription} canonical={canonical} jsonLd={jsonLd} ogImage={product.image} breadcrumbs={breadcrumbs}>
   <section class="container section">
     <p class="eyebrow">{categoryLabel}</p>
-    <h1>{product.name}</h1>
+    <h1>{pageTitle}</h1>
     <p class="lead">{product.description}</p>
     <div class="tag-list">
       {product.priceBand && <span class="tag">価格帯目安: {product.priceBand}</span>}
@@ -114,42 +158,221 @@ const jsonLd = [{
     </div>
   </section>
 
-  <section class="container section product-detail">
-    <div class="panel">
-      {product.image && <img class="product-detail-image" src={sitePath(product.image)} alt={`${product.name}のイメージ画像`} />}
-      <p class="small">掲載画像は当サイトで生成したイメージです。実際の商品写真・仕様・価格・在庫はリンク先で確認してください。</p>
+  <section class:list={["container section product-detail", choiceGuide && "product-detail-intro"]}>
+    <div class="panel product-image-panel">
+      {product.image && <img class="product-detail-image" src={sitePath(product.image)} alt={`${productDisplayName}のイメージ画像`} />}
     </div>
     <div class="panel">
-      <h2>購入前に見るポイント</h2>
-      <dl class="detail-list">
-        {product.brand && <><dt>ブランド/候補</dt><dd>{product.brand}</dd></>}
-        {product.bestFor && <><dt>向いている使い方</dt><dd>{product.bestFor}</dd></>}
-        {product.whyPick && <><dt>ピックアップ理由</dt><dd>{product.whyPick}</dd></>}
-        {product.reviewSummary && <><dt>レビュー調査メモ</dt><dd>{product.reviewSummary}</dd></>}
-        <dt>安全メモ</dt><dd>{product.safetyNote}</dd>
-      </dl>
-      {product.reviewSources && product.reviewSources.length > 0 && (
-        <div>
-          <h3>参考にした情報</h3>
-          <ul class="source-list">
-            {product.reviewSources.map((source) => (
-              <li><a href={source.url} rel="sponsored nofollow noopener" target="_blank">{source.label}</a></li>
-            ))}
+      {choiceGuide ? (
+        <div class="product-choice-summary">
+          <p class="eyebrow">選ぶ前にここだけ確認</p>
+          <h2>{productDisplayName}で見るポイント</h2>
+          <ul class="product-quick-list">
+            {product.bestFor && (
+              <li>
+                <span>使い道</span>
+                <strong>{product.bestFor}</strong>
+              </li>
+            )}
+            {product.priceBand && (
+              <li>
+                <span>価格帯</span>
+                <strong>{product.priceBand}</strong>
+              </li>
+            )}
+            <li>
+              <span>安全ライン</span>
+              <strong>{product.safetyNote}</strong>
+            </li>
           </ul>
+          <a class="inline-link" href="#choice-guide">候補比較へ進む</a>
         </div>
+      ) : (
+        <>
+          <h2>購入前に見るポイント</h2>
+          <dl class="detail-list">
+            {product.brand && <><dt>ブランド/候補</dt><dd>{product.brand}</dd></>}
+            {product.bestFor && <><dt>向いている使い方</dt><dd>{product.bestFor}</dd></>}
+            {product.whyPick && <><dt>ピックアップ理由</dt><dd>{product.whyPick}</dd></>}
+            {product.reviewSummary && <><dt>レビュー調査メモ</dt><dd>{product.reviewSummary}</dd></>}
+            <dt>安全メモ</dt><dd>{product.safetyNote}</dd>
+          </dl>
+          {product.reviewSources && product.reviewSources.length > 0 && (
+            <div>
+              <h3>参考にした情報</h3>
+              <ul class="source-list">
+                {product.reviewSources.map((source) => (
+                  <li><a href={source.url} rel="sponsored nofollow noopener" target="_blank">{source.label}</a></li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {product.cautions && product.cautions.length > 0 && (
+            <div class="notice">
+              <h3>注意点</h3>
+              <ul>{product.cautions.map((caution) => <li>{caution}</li>)}</ul>
+            </div>
+          )}
+          <div class="button-row">
+            <AmazonLink product={product} pageType="product-detail" linkPosition="hero" label={amazonLabel} />
+            <a class="button secondary" href={sitePath("/products/")}>商品一覧へ戻る</a>
+          </div>
+        </>
       )}
-      {product.cautions && product.cautions.length > 0 && (
-        <div class="notice">
-          <h3>注意点</h3>
-          <ul>{product.cautions.map((caution) => <li>{caution}</li>)}</ul>
-        </div>
-      )}
-      <div class="button-row">
-        <AmazonLink product={product} pageType="product-detail" linkPosition="hero" label={amazonLabel} />
-        <a class="button secondary" href={sitePath("/products/")}>商品一覧へ戻る</a>
-      </div>
     </div>
   </section>
+
+  {choiceGuide && (
+    <section id="choice-guide" class="container section choice-guide">
+      <div class="section-header compact">
+        <div>
+          <p class="eyebrow">{reviewCandidates.length > 2 ? "5候補比較" : "迷わない2択"}</p>
+          <h2>{reviewCandidates.length > 2 ? `${productDisplayName}のおすすめ候補を比較` : `${productDisplayName}はどちらを選ぶ？`}</h2>
+          <p>{choiceGuide.intro}</p>
+        </div>
+      </div>
+      <div class="choice-guide-layout">
+        <aside class="choice-regret-box">
+          <p class="eyebrow">安い商品で後悔しやすいこと</p>
+          <ul>
+            {choiceGuide.regrets.map((regret) => <li>{regret}</li>)}
+          </ul>
+        </aside>
+        {reviewCandidates.length > 0 ? (
+          <>
+            {displayReviewCriteria && (
+              <div class="review-criteria-strip" aria-label="採点項目">
+                {displayReviewCriteria.map((criterion) => <span>{criterion}</span>)}
+              </div>
+            )}
+            <div class="review-top-grid">
+              {topReviewCandidates.map((candidate, index) => (
+                <article class="review-candidate-card">
+                  <div class="review-candidate-head">
+                    <span>{candidate.label}</span>
+                    <strong>参考価格 {candidate.referencePrice}</strong>
+                  </div>
+                  <h3>{candidate.productName}</h3>
+                  <p class="choice-option-fit">{candidate.bestFor}</p>
+                  <p>{candidate.usp}</p>
+                  <ul class="review-note-list">
+                    {candidate.scores.slice(0, 3).map((score) => <li>{score.note}</li>)}
+                  </ul>
+                  <div class="choice-option-actions">
+                    <a
+                      class="button choice-amazon-button"
+                      href={reviewCandidateUrl(candidate)}
+                      rel="sponsored nofollow noopener"
+                      target="_blank"
+                      data-amazon-link
+                      data-cvr-action={product.type === "replacement" ? "amazon_replacement_click" : "amazon_support_click"}
+                      data-action-kind={product.type === "replacement" ? "replacement" : "products"}
+                      data-item-id={`${product.id}-review-${index + 1}`}
+                      data-item-name={candidate.productName}
+                      data-page-type="product-detail"
+                      data-link-position={`review-top-${index + 1}`}
+                      data-source-slug={product.id}
+                      data-slot-index={index + 1}
+                      data-recommendation-role="review-top-candidate"
+                    >
+                      Amazonで評判を見る
+                    </a>
+                    {candidate.source && <a class="inline-link" href={candidate.source.url} rel="noopener" target="_blank">公式情報を見る</a>}
+                  </div>
+                </article>
+              ))}
+            </div>
+            {runnerUpCandidates.length > 0 && (
+              <div class="review-runner-list">
+                <p class="eyebrow">ほかの候補</p>
+                {runnerUpCandidates.map((candidate, index) => (
+                  <article>
+                    <div>
+                      <strong>{candidate.productName}</strong>
+                      <span>参考価格 {candidate.referencePrice}</span>
+                    </div>
+                    <p>{candidate.usp}</p>
+                    <div class="review-runner-actions">
+                      <a
+                        class="inline-link"
+                        href={reviewCandidateUrl(candidate)}
+                        rel="sponsored nofollow noopener"
+                        target="_blank"
+                        data-amazon-link
+                        data-cvr-action={product.type === "replacement" ? "amazon_replacement_click" : "amazon_support_click"}
+                        data-action-kind={product.type === "replacement" ? "replacement" : "products"}
+                        data-item-id={`${product.id}-runner-${index + 1}`}
+                        data-item-name={candidate.productName}
+                        data-page-type="product-detail"
+                        data-link-position={`review-runner-${index + 1}`}
+                        data-source-slug={product.id}
+                        data-slot-index={index + 3}
+                        data-recommendation-role="review-runner-candidate"
+                      >
+                        Amazonで評判を見る
+                      </a>
+                      {candidate.source && <a class="inline-link" href={candidate.source.url} rel="noopener" target="_blank">公式情報を見る</a>}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
+          </>
+        ) : (
+          <div class="choice-option-grid">
+            {choiceGuide.options.map((option, index) => (
+              <article class="choice-option-card">
+                <div class="choice-option-head">
+                  <span>{option.label}</span>
+                  <h3>{option.productName}</h3>
+                </div>
+                <p class="choice-option-fit">{option.bestFor}</p>
+                <p>{option.reason}</p>
+                {(option.pros || option.cons) && (
+                  <div class="choice-compare-points">
+                    {option.pros && (
+                      <div class="choice-point-group is-pro">
+                        <h4>メリット</h4>
+                        <ul>{option.pros.map((point) => <li>{point}</li>)}</ul>
+                      </div>
+                    )}
+                    {option.cons && (
+                      <div class="choice-point-group is-con">
+                        <h4>デメリット</h4>
+                        <ul>{option.cons.map((point) => <li>{point}</li>)}</ul>
+                      </div>
+                    )}
+                  </div>
+                )}
+                <div class="choice-option-actions">
+                  <a
+                    class="button choice-amazon-button"
+                    href={choiceAmazonUrl(option)}
+                    rel="sponsored nofollow noopener"
+                    target="_blank"
+                    data-amazon-link
+                    data-cvr-action={product.type === "replacement" ? "amazon_replacement_click" : "amazon_support_click"}
+                    data-action-kind={product.type === "replacement" ? "replacement" : "products"}
+                    data-item-id={`${product.id}-choice-${index + 1}`}
+                    data-item-name={option.productName}
+                    data-page-type="product-detail"
+                    data-link-position={`choice-${index + 1}`}
+                    data-source-slug={product.id}
+                    data-slot-index={index + 1}
+                    data-recommendation-role="choice-comparison"
+                  >
+                    Amazonで評判を見る
+                  </a>
+                  {option.source && <a class="inline-link" href={option.source.url} rel="noopener" target="_blank">{option.source.label}</a>}
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
+      </div>
+      <p class="choice-verdict">{choiceGuide.verdict}</p>
+    </section>
+  )}
 
   {makerRecommendations.length > 0 && (
     <section class="container section maker-recommendations">

@@ -10,6 +10,8 @@ type Props = {
 };
 
 const { products, pageType = "product-list", linkPosition = "list" } = Astro.props;
+const choiceTitle = (product: ProductCategory) =>
+  `${product.choiceName ?? product.name.replace(/候補|工事費込み|ルームエアコン/g, "").trim()}の選び方`;
 ---
 
 <ol class="product-table-list">
@@ -17,28 +19,29 @@ const { products, pageType = "product-list", linkPosition = "list" } = Astro.pro
     products.map((product, index) => (
       <li>
         <div class="product-table-row">
-          <span class="product-table-number">{String(index + 1).padStart(2, "0")}</span>
           {product.image && <img src={sitePath(product.image)} alt="" loading="lazy" />}
           <div class="product-table-copy">
-            <strong>{product.name}</strong>
+            <div class="product-title-line">
+              <a
+                class="product-title-link"
+                href={sitePath(`/products/${product.id}/`)}
+                data-cvr-action="product_detail_click"
+                data-action-kind={product.type === "replacement" ? "replacement" : "products"}
+                data-slot-index={index + 1}
+                data-item-id={product.id}
+              >
+                {choiceTitle(product)}
+              </a>
+              {product.priceBand && <span class="product-price-badge">{product.priceBand}</span>}
+            </div>
             <span>{product.bestFor ?? product.description}</span>
           </div>
           <div class="product-table-actions">
-            <a
-              class="inline-link"
-              href={sitePath(`/products/${product.id}/`)}
-              data-cvr-action="product_detail_click"
-              data-action-kind={product.type === "replacement" ? "replacement" : "products"}
-              data-slot-index={index + 1}
-              data-item-id={product.id}
-            >
-              選び方
-            </a>
             <AmazonLink
               product={product}
               pageType={pageType}
               linkPosition={`${linkPosition}-${product.id}`}
-              label={product.type === "replacement" ? "候補を見る" : "価格を見る"}
+              label="Amazonで評判を見る"
               slotIndex={index + 1}
             />
           </div>
