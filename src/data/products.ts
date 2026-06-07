@@ -22,6 +22,30 @@ export type ProductCategory = {
     label: string;
     url: string;
   }[];
+  modelPurchaseGuide?: {
+    listTitle: string;
+    modelCode: string;
+    capacityLabel: string;
+    intro: string;
+    uspLead: string;
+    reasons: {
+      label: string;
+      text: string;
+    }[];
+    lineup: {
+      capacity: string;
+      modelCode: string;
+      room: string;
+      note: string;
+      amazonKeyword: string;
+    }[];
+    items: {
+      worry: string;
+      check: string;
+      reassurance: string;
+    }[];
+    closingNote: string;
+  };
   choiceGuide?: {
     intro: string;
     regrets: string[];
@@ -127,6 +151,96 @@ function reviewCandidate(
     }))
   };
 }
+
+const daikinELineup = [
+  {
+    capacity: "6畳",
+    modelCode: "S225ATES-W",
+    room: "寝室・子供部屋・書斎",
+    note: "小部屋の買い替え候補",
+    amazonKeyword: "ダイキン S225ATES-W 6畳 工事費込み"
+  },
+  {
+    capacity: "8畳",
+    modelCode: "S255ATES-W",
+    room: "子供部屋・夫婦寝室",
+    note: "6畳で不安な部屋の一段上",
+    amazonKeyword: "ダイキン S255ATES-W 8畳 工事費込み"
+  },
+  {
+    capacity: "10畳",
+    modelCode: "S285ATES-W",
+    room: "独立リビング・広めの寝室",
+    note: "10畳前後の基準候補",
+    amazonKeyword: "ダイキン S285ATES-W 10畳 工事費込み"
+  },
+  {
+    capacity: "12畳",
+    modelCode: "S365ATES-W",
+    room: "広めの個室・小さめLDK",
+    note: "10畳では弱そうな時の中間",
+    amazonKeyword: "ダイキン S365ATES-W 12畳 工事費込み"
+  },
+  {
+    capacity: "14畳",
+    modelCode: "S405ATEP-W",
+    room: "14畳前後のLDK",
+    note: "200V条件も確認",
+    amazonKeyword: "ダイキン S405ATEP-W 14畳 工事費込み"
+  },
+  {
+    capacity: "18畳",
+    modelCode: "S565ATEP-W",
+    room: "大きめLDK",
+    note: "吹き抜けや二間続きは現地相談",
+    amazonKeyword: "ダイキン S565ATEP-W 18畳 工事費込み"
+  }
+];
+
+const mitsubishiGvLineup = [
+  {
+    capacity: "6畳",
+    modelCode: "MSZ-GV2225-W",
+    room: "寝室・子供部屋",
+    note: "個室の標準候補",
+    amazonKeyword: "三菱 霧ヶ峰 MSZ-GV2225-W 6畳 工事費込み"
+  },
+  {
+    capacity: "8畳",
+    modelCode: "MSZ-GV2525-W",
+    room: "夫婦寝室・書斎",
+    note: "6畳で不安な部屋の一段上",
+    amazonKeyword: "三菱 霧ヶ峰 MSZ-GV2525-W 8畳 工事費込み"
+  },
+  {
+    capacity: "10畳",
+    modelCode: "MSZ-GV2825-W",
+    room: "独立リビング・広めの個室",
+    note: "10畳前後の基準候補",
+    amazonKeyword: "三菱 霧ヶ峰 MSZ-GV2825-W 10畳 工事費込み"
+  },
+  {
+    capacity: "12畳",
+    modelCode: "MSZ-GV3625-W",
+    room: "広めの個室・小さめLDK",
+    note: "10畳では弱そうな時の中間",
+    amazonKeyword: "三菱 霧ヶ峰 MSZ-GV3625-W 12畳 工事費込み"
+  },
+  {
+    capacity: "14畳",
+    modelCode: "MSZ-GV4025S-W",
+    room: "14畳前後のLDK",
+    note: "200V条件も確認",
+    amazonKeyword: "三菱 霧ヶ峰 MSZ-GV4025S-W 14畳 工事費込み"
+  },
+  {
+    capacity: "18畳",
+    modelCode: "MSZ-GV5625S-W",
+    room: "大きめLDK",
+    note: "広い部屋は設置条件も重視",
+    amazonKeyword: "三菱 霧ヶ峰 MSZ-GV5625S-W 18畳 工事費込み"
+  }
+];
 
 export const productCategories: ProductCategory[] = [
   {
@@ -946,7 +1060,47 @@ export const productCategories: ProductCategory[] = [
     reviewSources: [
       { label: "価格.com仕様", url: "https://kakaku.com/item/K0001676976/spec/" },
       { label: "製品仕様参考", url: "https://www.takara-co.jp/products/S225ATES-W" }
-    ]
+    ],
+    modelPurchaseGuide: {
+      listTitle: "ダイキン Eシリーズ S225ATES-Wは買って損しない？",
+      modelCode: "S225ATES-W",
+      capacityLabel: "6畳向け",
+      intro: "型番まで絞れている人は、安さよりも工事込み総額と口コミの不満点を先に見ます。条件が合えば、あとはAmazonで価格と評判を確認するだけです。",
+      uspLead: "S225ATES-Wは、6畳の寝室や子供部屋で「高機能すぎない定番」を選びたい人に合う候補です。必要な基本性能に絞りつつ、室内機の収まりと内部クリーン系の安心感を見られます。",
+      reasons: [
+        {
+          label: "小部屋に収めやすい",
+          text: "高さ250mmクラスのコンパクト室内機として検討しやすく、窓上やカーテンレール近くの設置不安を減らしやすいです。"
+        },
+        {
+          label: "清潔機能を最低限見られる",
+          text: "水内部クリーンやストリーマ内部クリーン系の訴求があり、シンプル機でも内部のにおい不安を軽くできます。"
+        },
+        {
+          label: "サイズアップしやすい",
+          text: "Eシリーズ内で畳数違いを探しやすいため、6畳で不安なら8畳・10畳へ迷わず比較できます。"
+        }
+      ],
+      lineup: daikinELineup,
+      items: [
+        {
+          worry: "相場より高く買わないか",
+          check: "標準工事込みで8〜12万円台なら、6畳用の定番価格帯として見やすい水準です。",
+          reassurance: "本体だけの安値ではなく、撤去費・配管延長・保証まで含めて比較すれば損を避けやすくなります。"
+        },
+        {
+          worry: "6畳で能力不足にならないか",
+          check: "寝室・子供部屋・書斎などの独立した6畳なら候補にしやすい機種です。",
+          reassurance: "木造最上階、西日が強い、隣室とつながる部屋なら8畳用も並べて確認します。"
+        },
+        {
+          worry: "口コミで後悔しないか",
+          check: "見るべき口コミは、冷え方よりも工事対応、室外機音、リモコンの使いやすさです。",
+          reassurance: "必要機能がシンプルでよければ、Eシリーズは過剰機能に払わず選びやすい候補です。"
+        }
+      ],
+      closingNote: "標準工事込みの総額と設置条件が合うなら、Amazonで最新価格とレビューの温度感を見て判断して大丈夫です。"
+    }
   },
   {
     id: "mitsubishi-gv-6tatami-msz-gv2225",
@@ -967,7 +1121,47 @@ export const productCategories: ProductCategory[] = [
     reviewSources: [
       { label: "三菱電機 GVシリーズ", url: "https://www.mitsubishielectric.co.jp/home/kirigamine_setsubi/product/2025_gv/index.html" },
       { label: "三菱電機WIN2K", url: "https://www.mitsubishielectric.co.jp/ldg/wink/ssl/displayProduct.do?ccd=1040101411&pid=337788" }
-    ]
+    ],
+    modelPurchaseGuide: {
+      listTitle: "三菱 霧ヶ峰 GV MSZ-GV2225-Wは買って損しない？",
+      modelCode: "MSZ-GV2225-W",
+      capacityLabel: "6畳向け",
+      intro: "三菱GVを指名している人は、基本性能で十分か、上位機能にお金を足すべきかを決める段階です。価格と口コミの見方を絞って確認します。",
+      uspLead: "MSZ-GV2225-Wは、三菱霧ヶ峰の標準機として、6畳の個室を無理なく買い替えたい人向けです。複雑な機能より、基本性能と手入れしやすさを重視する時に候補になります。",
+      reasons: [
+        {
+          label: "標準機として選びやすい",
+          text: "GVシリーズは基本機能と品質を重視する位置づけなので、上位機能を使いこなせるか不安な人でも選びやすいです。"
+        },
+        {
+          label: "高温みまもりを見られる",
+          text: "子供部屋や高齢者の部屋など、夏の室温上昇が気になる部屋で安心材料になります。"
+        },
+        {
+          label: "手入れしやすさを重視できる",
+          text: "はずせるボディや清潔コート熱交換器など、日常の掃除を続けやすい要素を確認できます。"
+        }
+      ],
+      lineup: mitsubishiGvLineup,
+      items: [
+        {
+          worry: "安い標準機で後悔しないか",
+          check: "8〜12万円台で工事条件が明確なら、6畳の買い替え候補として検討しやすい価格帯です。",
+          reassurance: "自動掃除や高度なセンサーが不要なら、機能を盛りすぎずに済むのがGVの良さです。"
+        },
+        {
+          worry: "寝室や子供部屋で使いやすいか",
+          check: "独立した6畳前後で、冷暖房の基本性能と操作の分かりやすさを重視する部屋に向きます。",
+          reassurance: "左右風向の自動制御など細かな快適機能が欲しい場合だけ、上位シリーズを比較します。"
+        },
+        {
+          worry: "口コミで見るべき不満は何か",
+          check: "工事の丁寧さ、運転音、リモコン表示、室外機の置き場所に関するレビューを優先します。",
+          reassurance: "本体性能より設置条件で満足度が変わりやすいので、レビューは工事込み条件とセットで見ます。"
+        }
+      ],
+      closingNote: "シンプルで無難な6畳機を選びたいなら有力候補です。Amazonでは工事込み条件とレビューの不満点を中心に確認します。"
+    }
   },
   {
     id: "aircon-8tatami",
@@ -1094,7 +1288,47 @@ export const productCategories: ProductCategory[] = [
     reviewSources: [
       { label: "製品仕様参考", url: "https://www.takara-co.jp/products/S285ATES-W" },
       { label: "エアコンマーケット製品情報", url: "https://www.ac-mrk.com/s285ates-w/" }
-    ]
+    ],
+    modelPurchaseGuide: {
+      listTitle: "ダイキン Eシリーズ S285ATES-Wは買って損しない？",
+      modelCode: "S285ATES-W",
+      capacityLabel: "10畳向け",
+      intro: "10畳用は部屋条件で満足度が変わります。型番指名で迷っているなら、価格より先に能力不足と追加工事の不安をつぶします。",
+      uspLead: "S285ATES-Wは、独立した10畳前後の部屋で、ダイキンの定番スタンダード機を選びたい人向けです。余計な機能を盛りすぎず、基本性能と設置しやすさを重視できます。",
+      reasons: [
+        {
+          label: "10畳の基準候補にしやすい",
+          text: "広めの寝室や独立リビングで、まず比較の軸にしやすいダイキンEシリーズの10畳モデルです。"
+        },
+        {
+          label: "シンプルで判断しやすい",
+          text: "上位機の多機能さより、冷暖房の基本と内部クリーン系を重視したい時に候補を絞りやすいです。"
+        },
+        {
+          label: "一段上も見やすい",
+          text: "LDK続きや西日が不安なら、同じEシリーズ内で12畳・14畳へサイズアップ比較しやすいです。"
+        }
+      ],
+      lineup: daikinELineup,
+      items: [
+        {
+          worry: "10畳で本当に足りるか",
+          check: "独立した10畳、広めの寝室、日当たりが普通の部屋なら検討しやすい候補です。",
+          reassurance: "LDK続き、キッチン熱、西日が強い部屋は14畳用も比較すると失敗しにくくなります。"
+        },
+        {
+          worry: "価格で損しないか",
+          check: "工事込みで9〜14万円台なら、スタンダードな10畳用として見やすい範囲です。",
+          reassurance: "安値だけでなく、100V/15A、配管延長、既設撤去費まで同じ条件で見れば判断しやすいです。"
+        },
+        {
+          worry: "口コミで見るべき不満は何か",
+          check: "冷え方、室外機音、設置工事、リビング利用時の余裕感を中心に確認します。",
+          reassurance: "Eシリーズはシンプルな定番機なので、過度な快適機能を求めない人ほど納得しやすいです。"
+        }
+      ],
+      closingNote: "部屋が独立10畳に近く、工事条件が明確なら買いやすい候補です。Amazonでは価格と設置レビューを重点的に見ます。"
+    }
   },
   {
     id: "mitsubishi-gv-10tatami-msz-gv2825",
@@ -1115,7 +1349,47 @@ export const productCategories: ProductCategory[] = [
     reviewSources: [
       { label: "三菱電機 GVシリーズ", url: "https://www.mitsubishielectric.co.jp/home/kirigamine_setsubi/product/2025_gv/index.html" },
       { label: "価格.com仕様", url: "https://kakaku.com/item/K0001676757/spec/" }
-    ]
+    ],
+    modelPurchaseGuide: {
+      listTitle: "三菱 霧ヶ峰 GV MSZ-GV2825-Wは買って損しない？",
+      modelCode: "MSZ-GV2825-W",
+      capacityLabel: "10畳向け",
+      intro: "三菱GVの10畳用は、リビングで使うか個室で使うかで判断が変わります。価格の安さより、部屋条件と口コミの不満点を先に確認します。",
+      uspLead: "MSZ-GV2825-Wは、10畳前後の部屋で三菱霧ヶ峰の標準機を選びたい人向けです。価格を抑えつつ、基本性能と日常の扱いやすさを優先できます。",
+      reasons: [
+        {
+          label: "標準機の安心感",
+          text: "複雑なセンサーや自動掃除より、基本性能をきちんと押さえたい人に向くGVシリーズの10畳候補です。"
+        },
+        {
+          label: "家族の部屋にも使いやすい",
+          text: "高温みまもりや清潔系の仕様を見られるため、寝室・子供部屋・独立リビングで検討しやすいです。"
+        },
+        {
+          label: "上位機との線引きがしやすい",
+          text: "自動風向や高度な快適制御が必須なら上位シリーズ、不要ならGVで十分かを判断しやすいです。"
+        }
+      ],
+      lineup: mitsubishiGvLineup,
+      items: [
+        {
+          worry: "リビングで力不足にならないか",
+          check: "独立した10畳前後なら候補にしやすい一方、LDK続きやキッチン近くでは余裕を見ます。",
+          reassurance: "部屋条件が重い場合は、同じGVでも14畳用や上位シリーズも比較すると安心です。"
+        },
+        {
+          worry: "標準機で満足できるか",
+          check: "基本性能と価格を優先し、自動掃除や細かな気流制御を必須にしない人向けです。",
+          reassurance: "必要な機能だけに絞れるので、上位機能に余計な費用を払いたくない人には相性が良いです。"
+        },
+        {
+          worry: "口コミで何を見ればいいか",
+          check: "工事対応、風量、運転音、室内機サイズ、リモコンの分かりやすさを確認します。",
+          reassurance: "本体の評判だけでなく、販売店と工事込み条件のレビューまで見ると失敗を避けやすくなります。"
+        }
+      ],
+      closingNote: "独立した10畳でシンプルな標準機を選びたいなら候補にできます。Amazonでは工事条件と低評価レビューの理由を確認します。"
+    }
   },
   {
     id: "aircon-14tatami",
@@ -1128,7 +1402,7 @@ export const productCategories: ProductCategory[] = [
     safetyNote: "200V機種や専用回路が必要な場合があります。電気工事の要否は販売店・工事業者に確認してください。",
     amazonKeyword: "エアコン 14畳 省エネ 工事費込み ルームエアコン",
     image: "/images/products/aircon-14tatami.jpg",
-    whyPick: "商品単価が高く、省エネ・修理費比較の記事から収益導線を作りやすい。",
+    whyPick: "14畳は本体価格と工事費の影響が大きく、省エネ性能や修理費との比較を丁寧に確認したい候補です。",
     priceBand: "15〜30万円台",
     bestFor: "14畳前後のLDK、家族が集まる広めの部屋",
     cautions: ["200V機種が多い", "専用回路の確認が必要", "室外機サイズと搬入経路を確認"],
@@ -1181,7 +1455,7 @@ export const productCategories: ProductCategory[] = [
     safetyNote: "200V・専用回路・室外機サイズ・搬入経路を必ず確認し、電気工事は資格者へ依頼してください。",
     amazonKeyword: "ダイキン S405ATEP-W 14畳 工事費込み",
     image: "/images/products/aircon-14tatami.jpg",
-    whyPick: "14畳は成約単価が高く、価格.comでも注目度の高い型番として確認できるため買い替え導線の主力にしやすい。",
+    whyPick: "14畳は本体価格と工事条件の影響が大きく、価格比較サイトでも注目されやすい型番として確認できるため、購入前の条件整理が重要です。",
     priceBand: "15〜25万円台",
     bestFor: "14畳前後のLDK、家族が集まる広めの部屋",
     cautions: ["単相200V条件を確認", "専用回路とコンセント形状を確認", "室外機特殊設置費を確認"],
@@ -1189,7 +1463,47 @@ export const productCategories: ProductCategory[] = [
     reviewSources: [
       { label: "価格.com仕様", url: "https://kakaku.com/item/K0001676982/spec/" },
       { label: "製品仕様参考", url: "https://www.takara-co.jp/products/S405ATEP-W" }
-    ]
+    ],
+    modelPurchaseGuide: {
+      listTitle: "ダイキン Eシリーズ S405ATEP-Wは買って損しない？",
+      modelCode: "S405ATEP-W",
+      capacityLabel: "14畳向け",
+      intro: "14畳用は本体価格だけでなく、200V電源と追加工事で総額が変わります。購入前に損しやすいポイントを先につぶします。",
+      uspLead: "S405ATEP-Wは、14畳前後のLDKでダイキンEシリーズを選びたい人向けです。大型寄りの買い替えでも、定番シリーズ内で価格と設置条件を比較しやすいのが強みです。",
+      reasons: [
+        {
+          label: "LDKの定番候補にしやすい",
+          text: "14畳前後の家族が集まる部屋で、まず比較に入れやすいダイキンEシリーズの大型寄りモデルです。"
+        },
+        {
+          label: "大型でも機能を盛りすぎない",
+          text: "高額な上位機に行く前に、基本性能と内部クリーン系で十分かを判断できます。"
+        },
+        {
+          label: "電源条件を見ながら選べる",
+          text: "14畳は200Vや専用回路が絡みやすいため、同シリーズの畳数表で位置を確認しながら比較できます。"
+        }
+      ],
+      lineup: daikinELineup,
+      items: [
+        {
+          worry: "工事費込みでも高くならないか",
+          check: "15〜25万円台でも、200V工事・配管延長・室外機特殊設置が別なら総額が上がります。",
+          reassurance: "Amazonでは本体価格だけでなく、標準工事範囲と追加費用の説明が明確な出品を優先します。"
+        },
+        {
+          worry: "14畳LDKで能力不足にならないか",
+          check: "独立した14畳前後なら候補にしやすいですが、吹き抜けや二間続きでは余裕を見ます。",
+          reassurance: "キッチン熱や西日が強い場合は、18畳以上や上位機種も比較すると後悔しにくいです。"
+        },
+        {
+          worry: "口コミで見るべき不満は何か",
+          check: "200V工事、室外機サイズ、設置日の調整、追加費用、冷房の余裕感を中心に見ます。",
+          reassurance: "大型機は本体より工事条件で満足度が変わるため、レビューは工事込み前提で確認します。"
+        }
+      ],
+      closingNote: "電源と設置条件が合うなら、14畳LDKの定番候補です。Amazonでは価格より総額条件と工事レビューを見て判断します。"
+    }
   },
   {
     id: "aircon-18tatami",
@@ -1257,7 +1571,7 @@ export const productCategories: ProductCategory[] = [
     amazonKeyword: "コロナ 衣類乾燥除湿機 CD コンプレッサー",
     amazonAsin: "B0GKF7PS8Z",
     image: "/images/products/corona-dehumidifier.jpg",
-    whyPick: "梅雨と夏の湿度対策記事から、エアコン周辺の関連家電として収益導線を広げやすい。",
+    whyPick: "梅雨と夏の湿度対策で、エアコンだけでは整えにくい部屋干しや結露の悩みに合わせて提案しやすい候補です。",
     priceBand: "3〜5万円台",
     bestFor: "部屋干し、結露、湿度が高い部屋",
     cautions: ["低温時は方式に注意", "タンク容量と連続排水の有無を確認"],

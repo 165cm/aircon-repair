@@ -11,6 +11,7 @@ type Props = {
 
 const { products, pageType = "product-list", linkPosition = "list" } = Astro.props;
 const choiceTitle = (product: ProductCategory) =>
+  product.modelPurchaseGuide?.listTitle ??
   `${product.choiceName ?? product.name.replace(/候補|工事費込み|ルームエアコン/g, "").trim()}の選び方`;
 ---
 

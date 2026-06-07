@@ -2,9 +2,73 @@
 import ProductTocList from "@components/ProductTocList.astro";
 import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
-import { isAmazonConfigured } from "@data/affiliate";
+import { amazonSearchUrl, isAmazonConfigured } from "@data/affiliate";
 import { replacementProducts, supportProducts } from "@data/products";
 import { sitePath } from "@utils/paths";
+
+const replacementSizeProducts = replacementProducts.filter((product) => !product.modelPurchaseGuide);
+const makerPicks = [
+  {
+    group: "定番",
+    maker: "ダイキン",
+    model: "Eシリーズ S225ATES-W",
+    bestFor: "迷った時の基準にしたい人",
+    strength: "空調専業メーカーとして比較の軸にしやすく、Eシリーズは6畳からサイズアップ候補まで追いやすい定番です。",
+    caution: "シンプル機なので、自動掃除や高度なセンサーまで求めるなら上位機も比較します。",
+    amazonKeyword: "ダイキン S225ATES-W 6畳 工事費込み",
+    source: { label: "ダイキン Eシリーズ仕様", url: "https://www.ac.daikin.co.jp/kabekake/2025/products/e_series/spec" }
+  },
+  {
+    group: "定番",
+    maker: "三菱電機",
+    model: "霧ヶ峰 GV MSZ-GV2225-W",
+    bestFor: "個室で基本性能と手入れしやすさを重視したい人",
+    strength: "GVシリーズは基本機能と品質重視の標準機。高温みまもりや清潔系の仕様を見ながら選びやすいです。",
+    caution: "左右風向の自動制御など、細かな快適機能は上位シリーズも確認します。",
+    amazonKeyword: "三菱 霧ヶ峰 MSZ-GV2225-W 6畳 工事費込み",
+    source: { label: "三菱電機 GVシリーズ", url: "https://www.mitsubishielectric.co.jp/home/kirigamine_setsubi/product/2025_gv/index.html" }
+  },
+  {
+    group: "定番",
+    maker: "パナソニック",
+    model: "エオリア J CS-225DJ",
+    bestFor: "寝室の空気ケアや清潔感も気になる人",
+    strength: "JシリーズはナノイーX搭載のスタンダードモデルとして見やすく、空気の清潔感を重視する人に説明しやすいです。",
+    caution: "清潔機能は掃除不要を意味しません。フィルター掃除や設置条件も合わせて確認します。",
+    amazonKeyword: "パナソニック エオリア CS-225DJ 6畳 工事費込み",
+    source: { label: "パナソニック Jシリーズ", url: "https://panasonic.jp/housing-aircon/25Jseries.html" }
+  },
+  {
+    group: "個性派",
+    maker: "TCL",
+    model: "AI節電 TAC-P2225I-W",
+    bestFor: "AI節電や立体気流など新しさも試したい人",
+    strength: "AI節電、室温パトロール、3Dエアフラップなど、低価格帯でも機能の個性がはっきりしています。",
+    caution: "国内大手より販売店・工事・保証窓口を念入りに確認したいメーカーです。",
+    amazonKeyword: "TCL TAC-P2225I-W 6畳 工事費込み",
+    source: { label: "TCL AI節電シリーズ", url: "https://www.tcl.com/jp/ja/air-conditioners/ai-energy-saving-ac" }
+  },
+  {
+    group: "個性派",
+    maker: "ハイセンス",
+    model: "Sシリーズ HA-S22G-W",
+    bestFor: "価格と基本性能のバランスを見たい人",
+    strength: "日本向けの壁掛けエアコンとして、6畳から14畳クラスまで仕様を確認しやすい海外メーカー候補です。",
+    caution: "エアコンでは購入店の工事保証、故障時の相談先、レビュー件数を見て判断します。",
+    amazonKeyword: "ハイセンス HA-S22G-W 6畳 工事費込み",
+    source: { label: "ハイセンス Sシリーズ仕様", url: "https://www.hisense.co.jp/aircon/ha-sg-series/d1.php" }
+  },
+  {
+    group: "個性派",
+    maker: "COMFEE'",
+    model: "6畳 2026年モデル",
+    bestFor: "必要機能に絞って初期費用を抑えたい人",
+    strength: "6畳モデルを公式展開しており、必要機能に絞った低価格候補として比較しやすいメーカーです。",
+    caution: "価格だけで決めず、工事セットの条件、返品、保証、修理受付を先に確認します。",
+    amazonKeyword: "COMFEE エアコン 6畳 工事費込み",
+    source: { label: "COMFEE エアコン", url: "https://www.feelcomfee.com/jp/products/air-conditioner" }
+  }
+];
 ---
 
 <BaseLayout
@@ -37,12 +101,76 @@ import { sitePath } from "@utils/paths";
       </div>
     </div>
     <div class="notice">
-      Amazonアソシエイトの家電カテゴリは料率が低めでも、エアコン本体は単価が高いため成約時の報酬額を狙いやすい導線です。購入前には標準工事、追加工事費、電源電圧、室外機置き場、対応畳数を必ず確認してください。
+      エアコン本体は本体価格だけでなく、標準工事、追加工事費、電源電圧、室外機置き場、対応畳数で総額と満足度が変わります。購入前に条件をそろえて比較してください。
     </div>
-    <div class="hero-actions">
-      <a class="button secondary" href={sitePath("/articles/aircon-maker-compare/")} data-cvr-action="products_maker_compare_click" data-action-kind="replacement">メーカー比較を見る</a>
+    <div class="product-index-subsection">
+      <div class="section-header compact">
+        <div>
+          <p class="eyebrow">サイズ別</p>
+          <h3>部屋の広さから選ぶ</h3>
+          <p>まだ型番が決まっていない人は、まず畳数と部屋条件から候補を絞ります。</p>
+        </div>
+        <div class="button-row compact">
+          <a class="button secondary" href={sitePath("/by-size/")} data-cvr-action="products_by_size_click" data-action-kind="replacement">畳数早見表を見る</a>
+          <a class="button secondary" href={sitePath("/articles/aircon-maker-compare/")} data-cvr-action="products_maker_compare_click" data-action-kind="replacement">メーカー比較を見る</a>
+        </div>
+      </div>
+      <ProductTocList products={replacementSizeProducts} pageType="products-index" linkPosition="replacement-size-list" />
     </div>
-    <ProductTocList products={replacementProducts} pageType="products-index" linkPosition="replacement-list" />
+    <div class="product-index-subsection">
+      <div class="section-header compact">
+        <div>
+          <p class="eyebrow">メーカー別</p>
+          <h3>6畳モデルを基準にメーカーを選ぶ</h3>
+          <p>まずは定番3社と個性派3社を比べて、価格、清潔機能、保証、工事条件のどれを重視するか決めます。</p>
+        </div>
+      </div>
+      <div class="maker-pick-groups">
+        {["定番", "個性派"].map((group) => (
+          <div class="maker-pick-group">
+            <p class="eyebrow">{group}3社</p>
+            <div class="maker-pick-grid">
+              {makerPicks.filter((pick) => pick.group === group).map((pick, index) => (
+                <article class="maker-pick-card">
+                  <div class="maker-pick-head">
+                    <span>{pick.group}</span>
+                    <h4>{pick.maker}</h4>
+                  </div>
+                  <p class="maker-pick-model">6畳基準: {pick.model}</p>
+                  <p class="maker-pick-fit">{pick.bestFor}</p>
+                  <dl class="maker-pick-points">
+                    <dt>買う理由</dt>
+                    <dd>{pick.strength}</dd>
+                    <dt>先に確認</dt>
+                    <dd>{pick.caution}</dd>
+                  </dl>
+                  <div class="maker-pick-actions">
+                    <a
+                      class="button"
+                      href={amazonSearchUrl(pick.amazonKeyword)}
+                      rel="sponsored nofollow noopener"
+                      target="_blank"
+                      data-amazon-link
+                      data-cvr-action="amazon_replacement_click"
+                      data-action-kind="replacement"
+                      data-item-id={`maker-pick-${pick.maker}`}
+                      data-item-name={`${pick.maker} ${pick.model}`}
+                      data-page-type="products-index"
+                      data-link-position={`replacement-maker-${group}-${index + 1}`}
+                      data-slot-index={index + 1}
+                      data-recommendation-role="replacement-maker-pick"
+                    >
+                      Amazonで評判を見る
+                    </a>
+                    <a class="inline-link" href={pick.source.url} rel="noopener" target="_blank">{pick.source.label}</a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   </section>
   <section class="container section">
     <RevenueCta variant="contractor" />

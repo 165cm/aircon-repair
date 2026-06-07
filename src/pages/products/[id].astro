@@ -22,11 +22,19 @@ const relatedArticles = getProductRelatedArticles(product, await getCollection("
 const categoryLabel = product.category ? categoryLabels[product.category] : "商品候補";
 const makerRecommendations = product.makerRecommendations ?? [];
 const choiceGuide = product.choiceGuide;
+const modelPurchaseGuide = product.modelPurchaseGuide;
 const canonical = absoluteUrl(`/products/${product.id}/`);
 const productDisplayName = product.choiceName ?? product.name;
-const pageTitle = choiceGuide ? `${productDisplayName}の選び方・おすすめ候補` : product.name;
+const productTitleName = product.name.replace(/候補$/, "").trim();
+const pageTitle = choiceGuide
+  ? `${productDisplayName}の選び方・おすすめ候補`
+  : modelPurchaseGuide
+    ? `${productTitleName}は買って損しない？価格と口コミの確認ポイント`
+    : product.name;
 const pageDescription = choiceGuide
   ? `${productDisplayName}を選ぶ前に見るポイント、後悔しやすい注意点、おすすめ候補を安全重視で比較します。`
+  : modelPurchaseGuide
+    ? `${product.name.replace(/候補$/, "")}を買う前に、価格で損しない目安、口コミで見るべき不満、設置条件をまとめます。`
   : `${product.name}の用途、向いている症状、購入前の注意点を安全重視でまとめています。`;
 const breadcrumbs = [
   { label: "ホーム", href: "/" },
@@ -46,6 +54,8 @@ const choiceAmazonUrl = (option: NonNullable<ProductCategory["choiceGuide"]>["op
   amazonSearchUrl(option.amazonKeyword);
 const reviewCandidateUrl = (candidate: NonNullable<NonNullable<ProductCategory["choiceGuide"]>["reviewCandidates"]>[number]) =>
   candidate.amazonAsin ? amazonProductUrl(candidate.amazonAsin) : amazonSearchUrl(candidate.amazonKeyword ?? candidate.productName);
+const lineupAmazonUrl = (item: NonNullable<ProductCategory["modelPurchaseGuide"]>["lineup"][number]) =>
+  amazonSearchUrl(item.amazonKeyword);
 const defaultReviewCriteria = ["用途適合", "使いやすさ", "手入れ", "安全性", "価格納得感"];
 const displayReviewCriteria = choiceGuide?.reviewCriteria ?? (choiceGuide ? defaultReviewCriteria : undefined);
 const generatedReviewCandidates = choiceGuide?.options.map((option, index) => {
@@ -158,34 +168,40 @@ const jsonLd = [{
     </div>
   </section>
 
-  <section class:list={["container section product-detail", choiceGuide && "product-detail-intro"]}>
+  <section class:list={["container section product-detail", (choiceGuide || isReplacement) && "product-detail-intro"]}>
     <div class="panel product-image-panel">
       {product.image && <img class="product-detail-image" src={sitePath(product.image)} alt={`${productDisplayName}のイメージ画像`} />}
     </div>
     <div class="panel">
-      {choiceGuide ? (
+      {choiceGuide || isReplacement ? (
         <div class="product-choice-summary">
           <p class="eyebrow">選ぶ前にここだけ確認</p>
-          <h2>{productDisplayName}で見るポイント</h2>
+          <h2>{modelPurchaseGuide ? "買う前にここだけ確認" : isReplacement ? "この畳数で見るポイント" : `${productDisplayName}で見るポイント`}</h2>
           <ul class="product-quick-list">
             {product.bestFor && (
               <li>
-                <span>使い道</span>
+                <span>{isReplacement ? "向く部屋" : "使い道"}</span>
                 <strong>{product.bestFor}</strong>
               </li>
             )}
             {product.priceBand && (
               <li>
-                <span>価格帯</span>
+                <span>{modelPurchaseGuide ? "価格目安" : "価格帯"}</span>
                 <strong>{product.priceBand}</strong>
               </li>
             )}
             <li>
-              <span>安全ライン</span>
-              <strong>{product.safetyNote}</strong>
+              <span>{isReplacement ? "先に確認" : "安全ライン"}</span>
+              <strong>{modelPurchaseGuide ? "総額・口コミ・設置条件" : isReplacement ? "標準工事込み・電源・配管穴" : product.safetyNote}</strong>
             </li>
           </ul>
-          <a class="inline-link" href="#choice-guide">候補比較へ進む</a>
+          <div class="button-row compact">
+            {choiceGuide && <a class="inline-link" href="#choice-guide">候補比較へ進む</a>}
+            {modelPurchaseGuide && <a class="inline-link" href="#model-reasons">買う理由を見る</a>}
+            {modelPurchaseGuide && <a class="inline-link" href="#model-purchase-guide">損しない確認へ進む</a>}
+            {isReplacement && makerRecommendations.length > 0 && <a class="inline-link" href="#maker-guide">メーカー比較へ進む</a>}
+            {isReplacement && <a class="inline-link" href="#purchase-checks">購入前チェックへ進む</a>}
+          </div>
         </div>
       ) : (
         <>
@@ -375,7 +391,7 @@ const jsonLd = [{
   )}
 
   {makerRecommendations.length > 0 && (
-    <section class="container section maker-recommendations">
+    <section id="maker-guide" class="container section maker-recommendations">
       <div class="section-header">
         <div>
           <p class="eyebrow">メーカーで選ぶ</p>
@@ -429,7 +445,100 @@ const jsonLd = [{
     </section>
   )}
 
-  <section class="container section">
+  {modelPurchaseGuide && (
+    <section id="model-reasons" class="container section model-reasons">
+      <div class="section-header compact">
+        <div>
+          <p class="eyebrow">この製品を買う理由</p>
+          <h2>{productTitleName}を選ぶメリット</h2>
+          <p>{modelPurchaseGuide.uspLead}</p>
+        </div>
+      </div>
+      <div class="model-reason-grid">
+        {modelPurchaseGuide.reasons.map((reason) => (
+          <article class="model-reason-card">
+            <h3>{reason.label}</h3>
+            <p>{reason.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {modelPurchaseGuide && (
+    <section id="model-purchase-guide" class="container section model-purchase-guide">
+      <div class="section-header compact">
+        <div>
+          <p class="eyebrow">購入直前の不安整理</p>
+          <h2>{modelPurchaseGuide.modelCode}を買って損しないために見ること</h2>
+          <p>{modelPurchaseGuide.intro}</p>
+        </div>
+      </div>
+      <div class="model-purchase-grid">
+        {modelPurchaseGuide.items.map((item) => (
+          <article class="model-purchase-card">
+            <h3>{item.worry}</h3>
+            <dl>
+              <dt>見るポイント</dt>
+              <dd>{item.check}</dd>
+              <dt>判断の目安</dt>
+              <dd>{item.reassurance}</dd>
+            </dl>
+          </article>
+        ))}
+      </div>
+      <div class="model-lineup-panel">
+        <div class="model-lineup-head">
+          <div>
+            <p class="eyebrow">畳数ラインナップ</p>
+            <h3>パワー不足が不安なら、同じシリーズで一段上も見る</h3>
+          </div>
+          <span>現在: {modelPurchaseGuide.capacityLabel}</span>
+        </div>
+        <div class="model-lineup-list">
+          {modelPurchaseGuide.lineup.map((item, index) => {
+            const isCurrent = item.modelCode === modelPurchaseGuide.modelCode;
+            return (
+              <article class:list={["model-lineup-row", isCurrent && "is-current"]}>
+                <div>
+                  <strong>{item.capacity}</strong>
+                  <span>{item.modelCode}</span>
+                </div>
+                <p>{item.room}<small>{item.note}</small></p>
+                <a
+                  class="inline-link"
+                  href={lineupAmazonUrl(item)}
+                  rel="sponsored nofollow noopener"
+                  target="_blank"
+                  data-amazon-link
+                  data-cvr-action="amazon_replacement_click"
+                  data-action-kind="replacement"
+                  data-item-id={`${product.id}-lineup-${item.modelCode}`}
+                  data-item-name={`${product.name} ${item.capacity}`}
+                  data-page-type="product-detail"
+                  data-link-position={`model-lineup-${index + 1}`}
+                  data-source-slug={product.id}
+                  data-slot-index={index + 1}
+                  data-recommendation-role={isCurrent ? "current-model-lineup" : "size-up-lineup"}
+                >
+                  {isCurrent ? "この畳数をAmazonで見る" : "Amazonで見る"}
+                </a>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+      <div class="model-purchase-cta">
+        <p>{modelPurchaseGuide.closingNote}</p>
+        <div class="button-row">
+          <AmazonLink product={product} pageType="product-detail" linkPosition="model-purchase-guide" label="Amazonで価格と評判を見る" />
+          {product.reviewSources?.[0] && <a class="inline-link" href={product.reviewSources[0].url} rel="noopener" target="_blank">仕様の参考情報を見る</a>}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section id="purchase-checks" class="container section">
     <div class="grid two">
       <div class="card">
         <p class="eyebrow">購入前チェック</p>
