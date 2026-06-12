@@ -22,9 +22,9 @@
 初めて読む場合は「基礎知識」から順番に読むと全体像をつかみやすくなります。
 
 - [基礎知識](https://aircon-hokenshitsu.com/basics/): 10〜15分でエアコンの仕組みと安全確認の範囲を学ぶ。
-- [症状診断](https://aircon-hokenshitsu.com/diagnosis/): 今起きている症状から次の行動を選ぶ。
+- [症状診断](https://aircon-hokenshitsu.com/diagnosis/): 今起きている症状から次の行動を選ぶ。保健室の先生とのチャット形式で、危険サイン→自力確認→修理/買い替えの順に整理します。
 - [畳数で選ぶ](https://aircon-hokenshitsu.com/by-size/): 修理か買い替えか迷う時に部屋の広さから確認する。
-- [商品比較](https://aircon-hokenshitsu.com/products/): 安全な補助用品や買い替え候補を見る。
+- [商品比較](https://aircon-hokenshitsu.com/products/): 安全な補助用品や買い替え候補を見る。候補はメーカー公式仕様・公的機関の注意喚起をもとに用途別に選定し、独自の採点・点数付けは行いません（詳細は[運営者・編集方針](https://aircon-hokenshitsu.com/about/)）。
 
 ## 関連リンク
 
