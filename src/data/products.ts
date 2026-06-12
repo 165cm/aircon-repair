@@ -1,5 +1,9 @@
 import { amazonProductUrl, amazonSearchUrl } from "./affiliate";
 
+// 参考価格・型番・ASINを最後に確認した日。価格改定や型番の年次切り替えを見直したら更新する。
+export const priceCheckedAt = "2026-06-12";
+export const priceCheckedAtLabel = "2026年6月12日";
+
 export type ProductCategory = {
   id: string;
   name: string;
@@ -62,9 +66,8 @@ export type ProductCategory = {
         label: string;
         url: string;
       };
-      scores: {
+      points: {
         label: string;
-        score: number;
         note: string;
       }[];
     }[];
@@ -130,9 +133,8 @@ const reviewCriteriaSets = {
 
 function reviewCandidate(
   criteria: string[],
-  input: Omit<ReviewCandidate, "scores"> & {
-    scoreValues: number[];
-    scoreNotes: string[];
+  input: Omit<ReviewCandidate, "points"> & {
+    notes: string[];
   }
 ): ReviewCandidate {
   return {
@@ -144,10 +146,9 @@ function reviewCandidate(
     amazonAsin: input.amazonAsin,
     amazonKeyword: input.amazonKeyword,
     source: input.source,
-    scores: criteria.map((label, index) => ({
+    points: criteria.map((label, index) => ({
       label,
-      score: input.scoreValues[index] ?? input.scoreValues[input.scoreValues.length - 1] ?? 80,
-      note: input.scoreNotes[index] ?? input.usp
+      note: input.notes[index] ?? input.usp
     }))
   };
 }
@@ -273,8 +274,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B09PYKJ6CS",
           amazonKeyword: "SwitchBot 温湿度計プラス",
           source: { label: "SwitchBot公式比較", url: "https://support.switch-bot.com/hc/ja/articles/4433540028183-%E6%B8%A9%E6%B9%BF%E5%BA%A6%E8%A8%88%E3%81%A8%E6%B8%A9%E6%B9%BF%E5%BA%A6%E8%A8%88%E3%83%97%E3%83%A9%E3%82%B9%E3%81%AE%E7%9B%B8%E9%81%95%E7%82%B9" },
-          scoreValues: [92, 95, 88, 93, 86],
-          scoreNotes: ["画面が大きめで寝室でも確認しやすい。", "アプリ履歴で夜間や外出中の変化を追いやすい。", "置き・壁掛けで使う場所を選びにくい。", "スマートホーム化したい家庭と相性がいい。", "単体表示だけの商品より高いが、記録まで使うなら納得しやすい。"]
+          notes: ["画面が大きめで寝室でも確認しやすい。", "アプリ履歴で夜間や外出中の変化を追いやすい。", "置き・壁掛けで使う場所を選びにくい。", "スマートホーム化したい家庭と相性がいい。", "単体表示だけの商品より高いが、記録まで使うなら納得しやすい。"]
         }),
         reviewCandidate(reviewCriteriaSets.thermometer, {
           label: "置くだけで見やすい",
@@ -285,8 +285,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B010CK58K4",
           amazonKeyword: "タニタ TT-559 温湿度計",
           source: { label: "タニタ公式仕様", url: "https://www.tanita.co.jp/product/hygrometer/3756/" },
-          scoreValues: [94, 76, 93, 82, 90],
-          scoreNotes: ["表示が大きく、離れた場所から確認しやすい。", "スマホ履歴は不要な人向け。", "電池を入れて置くだけで使いやすい。", "子供部屋や高齢者の部屋でも説明しやすい。", "単体用途なら価格とのバランスがいい。"]
+          notes: ["表示が大きく、離れた場所から確認しやすい。", "スマホ履歴は不要な人向け。", "電池を入れて置くだけで使いやすい。", "子供部屋や高齢者の部屋でも説明しやすい。", "単体用途なら価格とのバランスがいい。"]
         }),
         reviewCandidate(reviewCriteriaSets.thermometer, {
           label: "屋外も測れる",
@@ -297,8 +296,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B0BVLYPYT1",
           amazonKeyword: "SwitchBot 防水温湿度計",
           source: { label: "SwitchBot公式 防水温湿度計", url: "https://www.switchbot.jp/products/switchbot-indoor-outdoor-meter" },
-          scoreValues: [82, 91, 90, 88, 87],
-          scoreNotes: ["本体表示よりアプリ確認向き。", "屋外側の変化も履歴化しやすい。", "防水設計で設置場所の自由度が高い。", "ハブ連携で家族共有もしやすい。", "屋内だけならプラスやタニタも比較したい。"]
+          notes: ["本体表示よりアプリ確認向き。", "屋外側の変化も履歴化しやすい。", "防水設計で設置場所の自由度が高い。", "ハブ連携で家族共有もしやすい。", "屋内だけならプラスやタニタも比較したい。"]
         }),
         reviewCandidate(reviewCriteriaSets.thermometer, {
           label: "小さく安い",
@@ -309,8 +307,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B07L4L4X52",
           amazonKeyword: "SwitchBot 温湿度計",
           source: { label: "SwitchBot公式 温湿度計", url: "https://www.switchbot.jp/collections/automation/products/switchbot-meter" },
-          scoreValues: [78, 90, 92, 88, 92],
-          scoreNotes: ["表示の大きさはプラスに劣る。", "履歴管理を安く始めやすい。", "小型で置き場所を取りにくい。", "ハブ連携を考える家庭にも向く。", "価格を抑えたいなら有力。"]
+          notes: ["表示の大きさはプラスに劣る。", "履歴管理を安く始めやすい。", "小型で置き場所を取りにくい。", "ハブ連携を考える家庭にも向く。", "価格を抑えたいなら有力。"]
         }),
         reviewCandidate(reviewCriteriaSets.thermometer, {
           label: "手軽な単体表示",
@@ -321,8 +318,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B01H1R0K68",
           amazonKeyword: "ThermoPro TP50 温湿度計",
           source: { label: "ThermoPro公式", url: "https://buythermopro.com/" },
-          scoreValues: [84, 70, 86, 70, 92],
-          scoreNotes: ["机上で見る用途なら十分。", "履歴や通知は重視しない人向け。", "小型で置きやすい。", "共有より個人用の確認に向く。", "低価格で試しやすい。"]
+          notes: ["机上で見る用途なら十分。", "履歴や通知は重視しない人向け。", "小型で置きやすい。", "共有より個人用の確認に向く。", "低価格で試しやすい。"]
         })
       ],
       options: [
@@ -376,8 +372,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B00G65URYM",
           amazonKeyword: "アズマ工業 BA665 エアコンブラシ",
           source: { label: "アズマ工業商品情報", url: "https://as-kitchen.as-1.co.jp/shop/g/g63-1441-08/" },
-          scoreValues: [92, 92, 82, 90, 91],
-          scoreNotes: ["フィルター表面用として安全ラインを引きやすい。", "広い面を短時間で掃除しやすい。", "細い奥までは狙わない設計。", "内部に突っ込みにくい用途で案内しやすい。", "価格も導入しやすい。"]
+          notes: ["フィルター表面用として安全ラインを引きやすい。", "広い面を短時間で掃除しやすい。", "細い奥までは狙わない設計。", "内部に突っ込みにくい用途で案内しやすい。", "価格も導入しやすい。"]
         }),
         reviewCandidate(reviewCriteriaSets.brush, {
           label: "すき間仕上げ",
@@ -388,8 +383,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B0DZ5F5LJ2",
           amazonKeyword: "まめいた エアコンすきまブラシ",
           source: { label: "NITE 注意喚起", url: "https://www.nite.go.jp/jiko/chuikanki/press/2022fy/prs220707.html" },
-          scoreValues: [82, 78, 92, 78, 90],
-          scoreNotes: ["内部へ入れすぎない前提なら使いやすい。", "広いフィルター面は時間がかかる。", "細いすき間に届きやすい。", "力を入れすぎると部品を傷めやすい。", "安く買い足しやすい。"]
+          notes: ["内部へ入れすぎない前提なら使いやすい。", "広いフィルター面は時間がかかる。", "細いすき間に届きやすい。", "力を入れすぎると部品を傷めやすい。", "安く買い足しやすい。"]
         }),
         reviewCandidate(reviewCriteriaSets.brush, {
           label: "外装も一緒に",
@@ -400,8 +394,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B0CQNK583V",
           amazonKeyword: "レック 激落ちくん すきまブラシ エアコン",
           source: { label: "レック公式", url: "https://www.lecinc.co.jp/" },
-          scoreValues: [78, 80, 88, 76, 93],
-          scoreNotes: ["エアコン内部用ではなく外側掃除向き。", "細部のホコリ落としに使いやすい。", "サッシや外装にも流用しやすい。", "内部部品には使わない注意が必要。", "低価格で買い足しやすい。"]
+          notes: ["エアコン内部用ではなく外側掃除向き。", "細部のホコリ落としに使いやすい。", "サッシや外装にも流用しやすい。", "内部部品には使わない注意が必要。", "低価格で買い足しやすい。"]
         }),
         reviewCandidate(reviewCriteriaSets.brush, {
           label: "広い面に強い",
@@ -411,8 +404,7 @@ export const productCategories: ProductCategory[] = [
           referencePrice: "1,000円前後",
           amazonKeyword: "山崎産業 コンドル ハンディブラシ エアコン",
           source: { label: "山崎産業公式", url: "https://www.yamazaki-sangyo.co.jp/" },
-          scoreValues: [80, 86, 76, 82, 84],
-          scoreNotes: ["外側掃除用として使うなら安全。", "広い面のホコリ払いに向く。", "細い吹き出し口には不向き。", "柔らかめを選べば傷を抑えやすい。", "エアコン以外にも使える。"]
+          notes: ["外側掃除用として使うなら安全。", "広い面のホコリ払いに向く。", "細い吹き出し口には不向き。", "柔らかめを選べば傷を抑えやすい。", "エアコン以外にも使える。"]
         }),
         reviewCandidate(reviewCriteriaSets.brush, {
           label: "フィンは慎重に",
@@ -423,8 +415,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B079JK44WR",
           amazonKeyword: "BBK フィンブラシ B-26",
           source: { label: "BBKカタログ", url: "https://www.bbk.co.jp/japanese/product/docs/catalogvol7_03.pdf" },
-          scoreValues: [62, 82, 92, 58, 75],
-          scoreNotes: ["初心者には安全ラインを超えやすい。", "フィン清掃用途としては効率がある。", "細部には届くが扱いに注意。", "力加減を誤るとフィンを傷めやすい。", "必要な人だけ検討で十分。"]
+          notes: ["初心者には安全ラインを超えやすい。", "フィン清掃用途としては効率がある。", "細部には届くが扱いに注意。", "力加減を誤るとフィンを傷めやすい。", "必要な人だけ検討で十分。"]
         })
       ],
       options: [
@@ -454,157 +445,44 @@ export const productCategories: ProductCategory[] = [
   },
   {
     id: "drain-pump",
-    name: "因幡電工 ドレンホースクリーナー",
-    choiceName: "ドレンホースクリーナー",
-    brand: "因幡電工",
-    type: "support",
-    category: "drain",
-    description: "排水ホース先端の詰まりが疑われる水漏れ時に、外側から吸い出すための道具です。",
-    symptoms: ["水漏れ", "排水"],
-    safetyNote: "室内機の分解や高所作業が必要なら使用せず、専門業者へ相談してください。",
-    amazonKeyword: "因幡電工 ドレンホースクリーナー エアコン",
-    amazonAsin: "B01M1MQW78",
-    image: "/images/products/inaba-drain-cleaner.jpg",
-    whyPick: "水漏れ記事からの意図が強く、外側からの詰まり確認に絞って紹介しやすい。",
-    priceBand: "2,000〜4,000円台",
-    bestFor: "屋外側のドレンホース詰まりを外から吸い出したい人",
-    choiceGuide: {
-      intro: "ドレンホースクリーナーは、室内機を分解せず、屋外側のホース出口から詰まりを吸い出すための道具です。押し込むより吸い出す使い方を前提に選びます。",
-      regrets: ["ホース径が合わず、うまく密着しない", "安い吸引器で押し戻してしまい、室内側へ汚水が戻る不安がある"],
-      reviewCriteria: reviewCriteriaSets.drainCleaner,
-      reviewCandidates: [
-        reviewCandidate(reviewCriteriaSets.drainCleaner, {
-          label: "型番で選びやすい",
-          productName: "SANEI ドレンホースクリーナー PR871",
-          bestFor: "家庭用エアコンのドレンホース詰まりを外側から確認したい人",
-          usp: "公式でエアコンのドレンホース詰まり向けと確認しやすく、初心者にも説明しやすい定番。",
-          referencePrice: "2,700円前後",
-          amazonAsin: "B01M1MQW78",
-          amazonKeyword: "SANEI PR871 ドレンホースクリーナー",
-          source: { label: "SANEI公式 PR871", url: "https://www.sanei.ltd/products/pr871/" },
-          scoreValues: [94, 94, 90, 86, 90],
-          scoreNotes: ["吸い出す用途を説明しやすい。", "φ14・φ16系のホースで検討しやすい。", "押し込みより吸引前提で案内しやすい。", "手動式で保管しやすい。", "価格と用途の明確さのバランスがいい。"]
-        }),
-        reviewCandidate(reviewCriteriaSets.drainCleaner, {
-          label: "レビュー確認向き",
-          productName: "SANEI PR871 量販店流通品",
-          bestFor: "購入前に量販店レビューも見て安心したい人",
-          usp: "同じPR871でも販売店レビューを確認しやすく、実使用の声を見て選びたい人に向く。",
-          referencePrice: "2,500円前後",
-          amazonAsin: "B01M1MQW78",
-          amazonKeyword: "SANEI PR871 ドレンホースクリーナー",
-          source: { label: "ビックカメラ商品レビュー", url: "https://www.biccamera.com/bc/item/6511911/" },
-          scoreValues: [92, 94, 88, 86, 89],
-          scoreNotes: ["基本性能はPR871と同じ考え方。", "対応径を販売ページで確認しやすい。", "レビューを見て作業イメージを持ちやすい。", "保管性は標準的。", "価格差が小さい時はレビューの多い販売先が安心。"]
-        }),
-        reviewCandidate(reviewCriteriaSets.drainCleaner, {
-          label: "周辺部材も見る",
-          productName: "因幡電工 ドレン対策用品",
-          bestFor: "ホース径や周辺部材も合わせて見直したい人",
-          usp: "ドレンホースや防虫キャップなど周辺部材まで確認しやすく、再発予防と合わせて考えられる。",
-          referencePrice: "2,000〜4,000円台",
-          amazonKeyword: "因幡電工 ドレンホースクリーナー エアコン",
-          source: { label: "因幡電工 ドレン管製品", url: "https://www.inaba-denko.com/ja/product/category/830000" },
-          scoreValues: [84, 90, 86, 88, 84],
-          scoreNotes: ["クリーナー単体より周辺確認向き。", "ホース径や部材をまとめて見やすい。", "防虫・詰まり予防まで考えやすい。", "部材単位で保管しやすい。", "必要部材だけ買うなら無駄が少ない。"]
-        }),
-        reviewCandidate(reviewCriteriaSets.drainCleaner, {
-          label: "水まわりも兼用",
-          productName: "GAONA ドレンホース関連クリーナー",
-          bestFor: "カクダイ/GAONA系の水まわり部材も比較したい人",
-          usp: "水まわり部材ブランドとして探しやすく、ホース・接続部材と合わせて検討しやすい。",
-          referencePrice: "2,000〜4,000円台",
-          amazonKeyword: "GAONA ドレンホース クリーナー エアコン",
-          source: { label: "GAONA資料", url: "https://gaona.jp/wp/wp-content/uploads/2016/11/0fe9cc9c8bd061ad295e75d079b1844d.pdf" },
-          scoreValues: [82, 84, 84, 86, 82],
-          scoreNotes: ["商品型番はリンク先で確認したい。", "ホースや接続部材まで確認しやすい。", "押し戻しを避ける使い方を確認する。", "部材単位で保管しやすい。", "価格は販売先で差が出やすい。"]
-        }),
-        reviewCandidate(reviewCriteriaSets.drainCleaner, {
-          label: "工具店で探す",
-          productName: "ESCO ドレンホースクリーナー系",
-          bestFor: "工具店の型番商品から、仕様を見て選びたい人",
-          usp: "業務用品として探しやすく、ホース径や使用方法を販売ページで確認して選びやすい。",
-          referencePrice: "3,000円前後",
-          amazonKeyword: "ESCO ドレンホースクリーナー エアコン",
-          source: { label: "ESCO公式", url: "https://www.esco-net.com/" },
-          scoreValues: [82, 82, 84, 84, 78],
-          scoreNotes: ["仕様を見て吸引用途を確認したい。", "対応ホース径は販売ページで確認する。", "押し戻しにならない使い方を確認する。", "工具として保管しやすい。", "定番品より価格差が出やすい。"]
-        })
-      ],
-      options: [
-        {
-          label: "型番で安心",
-          productName: "SANEI PR871",
-          bestFor: "14・16mmのドレンホースで、用途が明記されたものを選びたい人",
-          reason: "公式情報でエアコンのドレンホース詰まり向けとして確認しやすく、型番指定で迷わず探せる候補です。",
-          amazonKeyword: "SANEI PR871 ドレンホースクリーナー",
-          source: { label: "SANEI公式 PR871", url: "https://www.sanei.ltd/products/pr871/" }
-        },
-        {
-          label: "配管材で探す",
-          productName: "因幡電工 ドレン対策用品",
-          bestFor: "ホース径や周辺部材も合わせて確認したい人",
-          reason: "因幡電工はドレンホースや周辺部材の情報がまとまっており、ホース側の状態確認と合わせて選びやすいです。",
-          amazonKeyword: "因幡電工 ドレンホースクリーナー エアコン",
-          source: { label: "因幡電工 ドレン管製品", url: "https://www.inaba-denko.com/ja/product/category/830000" }
-        }
-      ],
-      verdict: "道具単体で選ぶならSANEI PR871、ホース径や周辺部材も見直すなら因幡電工系の部材情報から確認すると安心です。"
-    }
-  },
-  {
-    id: "sanei-drain-cleaner-pr871",
     name: "SANEI ドレンホースクリーナー PR871",
     choiceName: "ドレンホースクリーナー",
     brand: "SANEI",
     type: "support",
     category: "drain",
-    description: "エアコンのドレンホース詰まりを外側から吸引して確認する、型番指定で探しやすい定番候補です。",
+    description: "排水ホース先端の詰まりが疑われる水漏れ時に、外側から吸い出して確認するための道具です。",
     symptoms: ["水漏れ", "排水", "予防"],
-    safetyNote: "ホース内へ空気を押し込む使い方は避け、室内側へ汚水が戻る不安がある時は専門業者へ相談してください。",
+    safetyNote: "ホース内へ空気を押し込む使い方は避け、室内機の分解や高所作業が必要なら専門業者へ相談してください。",
     amazonKeyword: "SANEI PR871 ドレンホースクリーナー エアコン",
     amazonAsin: "B01M1MQW78",
     image: "/images/products/inaba-drain-cleaner.jpg",
-    whyPick: "公式仕様でエアコンのドレンホース詰まり解消用、φ14・φ16mm用と確認できるため、水漏れ記事の型番導線に向く。",
+    whyPick: "公式仕様でエアコンのドレンホース詰まり解消用、φ14・φ16mm用と確認できるため、水漏れ記事から迷わず案内できる。",
     priceBand: "2,000〜4,000円台",
-    bestFor: "ドレンホース出口の詰まりが疑われる水漏れ",
-    cautions: ["ホース径が合うか確認", "ホースに破れや穴がないか確認", "室内機の分解が必要なら使わない"],
-    reviewSummary: "公式仕様で用途が明確。量販店レビューでも排水ホース詰まり用途の商品として確認できるため、汎用品より指名検索へつなげやすい候補。",
+    bestFor: "屋外側のドレンホース詰まりを外から吸い出したい人",
+    cautions: ["ホース径（φ14・φ16）が合うか確認", "ホースに破れや穴がないか確認", "室内機の分解が必要なら使わない"],
+    reviewSummary: "公式仕様で用途と対応径（φ14・φ16mm）を確認できる定番。量販店の販売ページでも排水ホース詰まり用途の商品として確認できます。",
     reviewSources: [
       { label: "SANEI公式 PR871", url: "https://www.sanei.ltd/products/pr871/" },
       { label: "ビックカメラ商品レビュー", url: "https://www.biccamera.com/bc/item/6511911/" }
     ],
     choiceGuide: {
-      intro: "PR871は型番指定で選びやすいドレンホースクリーナーです。比較するときは、ホース径に合うか、吸い出す使い方をしやすいかを見ます。",
-      regrets: ["用途が曖昧なポンプを買って、室内側に汚水が戻る不安が残る", "ホース径が合わず、先端が密着しない"],
+      intro: "ドレンホースクリーナーは、室内機を分解せず、屋外側のホース出口から詰まりを吸い出すための道具です。家庭用で公式に用途と対応径を確認できる定番はPR871に絞られるため、無理に候補を並べず、ホース径の確認と再発予防までセットで考えます。",
+      regrets: ["ホース径が合わず、うまく密着しない", "安い吸引器で押し戻してしまい、室内側へ汚水が戻る不安がある"],
       reviewCriteria: reviewCriteriaSets.drainCleaner,
       reviewCandidates: [
         reviewCandidate(reviewCriteriaSets.drainCleaner, {
-          label: "型番で選びやすい",
+          label: "詰まりを取る本命",
           productName: "SANEI ドレンホースクリーナー PR871",
           bestFor: "家庭用エアコンのドレンホース詰まりを外側から確認したい人",
-          usp: "公式でエアコンのドレンホース詰まり向けと確認しやすく、初心者にも説明しやすい定番。",
+          usp: "公式仕様でエアコンのドレンホース詰まり解消用・φ14/φ16mm用と確認できる、家庭用の定番。",
           referencePrice: "2,700円前後",
           amazonAsin: "B01M1MQW78",
           amazonKeyword: "SANEI PR871 ドレンホースクリーナー",
           source: { label: "SANEI公式 PR871", url: "https://www.sanei.ltd/products/pr871/" },
-          scoreValues: [94, 94, 90, 86, 90],
-          scoreNotes: ["吸い出す用途を説明しやすい。", "φ14・φ16系のホースで検討しやすい。", "押し込みより吸引前提で案内しやすい。", "手動式で保管しやすい。", "価格と用途の明確さのバランスがいい。"]
+          notes: ["押し込まず吸い出す使い方が公式に案内されている。", "φ14・φ16mmのドレンホースに対応。", "吸引前提なので室内側へ汚水を押し戻しにくい。", "手動式で電源不要、保管もしやすい。", "用途が明確な分、汎用ポンプより迷いが少ない。"]
         }),
         reviewCandidate(reviewCriteriaSets.drainCleaner, {
-          label: "レビュー確認向き",
-          productName: "SANEI PR871 量販店流通品",
-          bestFor: "購入前に量販店レビューも見て安心したい人",
-          usp: "同じPR871でも販売店レビューを確認しやすく、実使用の声を見て選びたい人に向く。",
-          referencePrice: "2,500円前後",
-          amazonAsin: "B01M1MQW78",
-          amazonKeyword: "SANEI PR871 ドレンホースクリーナー",
-          source: { label: "ビックカメラ商品レビュー", url: "https://www.biccamera.com/bc/item/6511911/" },
-          scoreValues: [92, 94, 88, 86, 89],
-          scoreNotes: ["基本性能はPR871と同じ考え方。", "対応径を販売ページで確認しやすい。", "レビューを見て作業イメージを持ちやすい。", "保管性は標準的。", "価格差が小さい時はレビューの多い販売先が安心。"]
-        }),
-        reviewCandidate(reviewCriteriaSets.drainCleaner, {
-          label: "予防も同時に",
+          label: "再発予防の部材",
           productName: "因幡電工 防虫ドレンキャップ DC-1416",
           bestFor: "詰まり解消後に虫やゴミの侵入も減らしたい人",
           usp: "クリーナーではなく予防部材。水漏れ再発予防までセットで考えたい時に見る候補。",
@@ -612,30 +490,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B003UL8ZQ2",
           amazonKeyword: "因幡電工 DC-1416 防虫ドレンキャップ",
           source: { label: "因幡電工ニュース", url: "https://www.inaba-denko.com/ja/news/detail/72" },
-          scoreValues: [70, 92, 82, 96, 94],
-          scoreNotes: ["詰まりを取る商品ではない。", "φ14・16系の予防部材として確認しやすい。", "目詰まり点検が必要。", "小さく保管しやすい。", "低価格で予防に足しやすい。"]
-        }),
-        reviewCandidate(reviewCriteriaSets.drainCleaner, {
-          label: "周辺部材も見る",
-          productName: "因幡電工 ドレン対策用品",
-          bestFor: "ホース径や周辺部材も合わせて見直したい人",
-          usp: "ドレンホースや接続部材まで確認しやすく、排水まわりをまとめて整えやすい。",
-          referencePrice: "2,000〜4,000円台",
-          amazonKeyword: "因幡電工 ドレンホース エアコン 部材",
-          source: { label: "因幡電工 ドレン管製品", url: "https://www.inaba-denko.com/ja/product/category/830000" },
-          scoreValues: [82, 90, 84, 88, 84],
-          scoreNotes: ["単体クリーナーより周辺確認向き。", "ホース径や部材をまとめて見やすい。", "詰まり原因を外側から考えやすい。", "必要部材だけ保管しやすい。", "販売先で価格差が出やすい。"]
-        }),
-        reviewCandidate(reviewCriteriaSets.drainCleaner, {
-          label: "工具店で探す",
-          productName: "ESCO ドレンホースクリーナー系",
-          bestFor: "工具店の型番商品から、仕様を見て選びたい人",
-          usp: "業務用品として探しやすく、ホース径や使用方法を販売ページで確認して選びやすい。",
-          referencePrice: "3,000円前後",
-          amazonKeyword: "ESCO ドレンホースクリーナー エアコン",
-          source: { label: "ESCO公式", url: "https://www.esco-net.com/" },
-          scoreValues: [82, 82, 84, 84, 78],
-          scoreNotes: ["仕様を見て吸引用途を確認したい。", "対応ホース径は販売ページで確認する。", "押し戻しにならない使い方を確認する。", "工具として保管しやすい。", "定番品より価格差が出やすい。"]
+          notes: ["詰まりを取る商品ではない点に注意。", "φ14・16系の予防部材として確認しやすい。", "取り付け後は目詰まり点検が必要。", "小さく保管しやすい。", "低価格で予防に足しやすい。"]
         })
       ],
       options: [
@@ -656,7 +511,7 @@ export const productCategories: ProductCategory[] = [
           source: { label: "因幡電工 ドレン管製品", url: "https://www.inaba-denko.com/ja/product/category/830000" }
         }
       ],
-      verdict: "いま水漏れしているならPR871、解消後の再発予防まで考えるなら防虫キャップも同時に見ます。"
+      verdict: "いま水漏れしているならPR871、解消後の再発予防まで考えるなら防虫キャップ（DC-1416）も同時に見ます。"
     }
   },
   {
@@ -689,8 +544,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B0F1TB3F2W",
           amazonKeyword: "山善 YMAG-8340 室外機カバー",
           source: { label: "山善公式 YMAG-8340", url: "https://yamazenbizcom.jp/item/QV827.html" },
-          scoreValues: [94, 90, 94, 82, 90],
-          scoreNotes: ["前面を囲い込みにくい。", "上面の日よけに使いやすい。", "マグネット式で導入しやすい。", "強風時や冬場の扱いは確認したい。", "日よけだけなら価格も軽い。"]
+          notes: ["前面を囲い込みにくい。", "上面の日よけに使いやすい。", "マグネット式で導入しやすい。", "強風時や冬場の扱いは確認したい。", "日よけだけなら価格も軽い。"]
         }),
         reviewCandidate(reviewCriteriaSets.outdoorCover, {
           label: "ワイド日よけ",
@@ -701,8 +555,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B0GR595MJM",
           amazonKeyword: "山善 ひさし付き ワイド マグネット 室外機カバー",
           source: { label: "山善公式 ひさし付き", url: "https://yamazenbizcom.jp/item/76124.html" },
-          scoreValues: [92, 94, 88, 84, 86],
-          scoreNotes: ["前面排熱を妨げにくい。", "広めの上面日よけに向く。", "サイズ確認は必要。", "屋外設置なので固定確認が大切。", "普通サイズより少し高め。"]
+          notes: ["前面排熱を妨げにくい。", "広めの上面日よけに向く。", "サイズ確認は必要。", "屋外設置なので固定確認が大切。", "普通サイズより少し高め。"]
         }),
         reviewCandidate(reviewCriteriaSets.outdoorCover, {
           label: "伸縮で合わせる",
@@ -713,8 +566,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B01MAWCMZ3",
           amazonKeyword: "タカラ産業 SLK85 室外機カバー",
           source: { label: "タカラ産業公式 SLK85", url: "https://www.takaranet.co.jp/slk.html" },
-          scoreValues: [90, 88, 90, 86, 84],
-          scoreNotes: ["通気を確保しやすい構造で検討できる。", "日よけと雪よけを兼ねやすい。", "伸縮で合わせやすい。", "屋外での固定確認は必要。", "サイズ調整込みで納得しやすい。"]
+          notes: ["通気を確保しやすい構造で検討できる。", "日よけと雪よけを兼ねやすい。", "伸縮で合わせやすい。", "屋外での固定確認は必要。", "サイズ調整込みで納得しやすい。"]
         }),
         reviewCandidate(reviewCriteriaSets.outdoorCover, {
           label: "見た目も整える",
@@ -725,8 +577,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B0B42CTJ5T",
           amazonKeyword: "山善 KAAC-90T 室外機カバー",
           source: { label: "YAMAZEN BOOK", url: "https://book.yamazen.co.jp/product/exterior/?o=name&s=0&sid=80" },
-          scoreValues: [74, 80, 72, 88, 72],
-          scoreNotes: ["前面や側面の風通し確認が必須。", "日よけより目隠し用途が強い。", "組み立てとサイズ確認が必要。", "アルミ製で耐候性を期待しやすい。", "日よけだけなら割高。"]
+          notes: ["前面や側面の風通し確認が必須。", "日よけより目隠し用途が強い。", "組み立てとサイズ確認が必要。", "アルミ製で耐候性を期待しやすい。", "日よけだけなら割高。"]
         }),
         reviewCandidate(reviewCriteriaSets.outdoorCover, {
           label: "貼るだけ簡易",
@@ -737,8 +588,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B0899QQX7G",
           amazonKeyword: "アーネスト 室外機 日よけフィルム A-77281",
           source: { label: "山善公式カテゴリ掲載", url: "https://yamazenbizcom.jp/category/30400/" },
-          scoreValues: [92, 82, 94, 76, 88],
-          scoreNotes: ["排熱口をふさがない。", "遮熱は上面中心。", "貼るだけで導入しやすい。", "劣化や貼り替えは見ておきたい。", "簡易対策として安い。"]
+          notes: ["排熱口をふさがない。", "遮熱は上面中心。", "貼るだけで導入しやすい。", "劣化や貼り替えは見ておきたい。", "簡易対策として安い。"]
         })
       ],
       options: [
@@ -791,12 +641,12 @@ export const productCategories: ProductCategory[] = [
           referencePrice: "11,000円前後",
           amazonAsin: "B0D9JDC17F",
           source: { label: "アイリスオーヤマ公式", url: "https://www.irisohyama.co.jp/products/support/4967576690119" },
-          scores: [
-            { label: "冷気循環力", score: 93, note: "15cmでも直進性が強く、エアコン併用の主役にしやすい。" },
-            { label: "静音性", score: 88, note: "DCモーターで低風量運転が扱いやすい。" },
-            { label: "首振り・操作性", score: 94, note: "上下左右首振りとリモコンで置き場所を選びにくい。" },
-            { label: "手入れ", score: 90, note: "分解丸洗いを訴求しており、夏前後の掃除がしやすい。" },
-            { label: "価格納得感", score: 88, note: "安さ最優先ではないが、機能差を考えると納得しやすい。" }
+          points: [
+            { label: "冷気循環力", note: "15cmでも直進性が強く、エアコン併用の主役にしやすい。" },
+            { label: "静音性", note: "DCモーターで低風量運転が扱いやすい。" },
+            { label: "首振り・操作性", note: "上下左右首振りとリモコンで置き場所を選びにくい。" },
+            { label: "手入れ", note: "分解丸洗いを訴求しており、夏前後の掃除がしやすい。" },
+            { label: "価格納得感", note: "安さ最優先ではないが、機能差を考えると納得しやすい。" }
           ]
         },
         {
@@ -807,12 +657,12 @@ export const productCategories: ProductCategory[] = [
           referencePrice: "6,000円前後",
           amazonAsin: "B0CY5D93HF",
           source: { label: "アイリスオーヤマ公式", url: "https://www.irisohyama.co.jp/circulator-i/circulator-i/" },
-          scores: [
-            { label: "冷気循環力", score: 86, note: "18畳目安で個室から小さめLDKまで使いやすい。" },
-            { label: "静音性", score: 78, note: "ACモーター系なので寝室の弱運転ではDC機に劣る。" },
-            { label: "首振り・操作性", score: 86, note: "上下左右首振りとリモコン付きで基本操作は十分。" },
-            { label: "手入れ", score: 80, note: "標準的。丸洗い重視なら上位機も比較したい。" },
-            { label: "価格納得感", score: 96, note: "価格とレビュー量のバランスが強い。" }
+          points: [
+            { label: "冷気循環力", note: "18畳目安で個室から小さめLDKまで使いやすい。" },
+            { label: "静音性", note: "ACモーター系なので寝室の弱運転ではDC機に劣る。" },
+            { label: "首振り・操作性", note: "上下左右首振りとリモコン付きで基本操作は十分。" },
+            { label: "手入れ", note: "標準的。丸洗い重視なら上位機も比較したい。" },
+            { label: "価格納得感", note: "価格とレビュー量のバランスが強い。" }
           ]
         },
         {
@@ -824,12 +674,12 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B0C42N45RF",
           amazonKeyword: "山善 YAR-CD20ES サーキュレーター",
           source: { label: "山善公式仕様", url: "https://book.yamazen.co.jp/product/detail/I00005380" },
-          scores: [
-            { label: "冷気循環力", score: 88, note: "20畳目安でリビング補助にも使いやすい。" },
-            { label: "静音性", score: 84, note: "DCモーター系として日常使いしやすい。" },
-            { label: "首振り・操作性", score: 92, note: "360度首振りで部屋干しや空気循環に強い。" },
-            { label: "手入れ", score: 94, note: "洗えるシリーズとして掃除しやすさが魅力。" },
-            { label: "価格納得感", score: 84, note: "安さより手入れと機能のバランスで選ぶ商品。" }
+          points: [
+            { label: "冷気循環力", note: "20畳目安でリビング補助にも使いやすい。" },
+            { label: "静音性", note: "DCモーター系として日常使いしやすい。" },
+            { label: "首振り・操作性", note: "360度首振りで部屋干しや空気循環に強い。" },
+            { label: "手入れ", note: "洗えるシリーズとして掃除しやすさが魅力。" },
+            { label: "価格納得感", note: "安さより手入れと機能のバランスで選ぶ商品。" }
           ]
         },
         {
@@ -840,12 +690,12 @@ export const productCategories: ProductCategory[] = [
           referencePrice: "22,000円前後",
           amazonAsin: "B00V7QD7II",
           source: { label: "Vornado公式", url: "https://vornado.jp/store/purchase?id=14" },
-          scores: [
-            { label: "冷気循環力", score: 98, note: "遠くまで空気を押す力は候補内でも強い。" },
-            { label: "静音性", score: 74, note: "強運転時は風量相応の音が出やすい。" },
-            { label: "首振り・操作性", score: 70, note: "首振りで広げるより、固定して循環させる設計。" },
-            { label: "手入れ", score: 84, note: "前面カバーを外して掃除できるが、国産小型機より大きい。" },
-            { label: "価格納得感", score: 72, note: "高めだが、広い部屋の循環力を買う商品。" }
+          points: [
+            { label: "冷気循環力", note: "遠くまで空気を押す力は候補内でも強い。" },
+            { label: "静音性", note: "強運転時は風量相応の音が出やすい。" },
+            { label: "首振り・操作性", note: "首振りで広げるより、固定して循環させる設計。" },
+            { label: "手入れ", note: "前面カバーを外して掃除できるが、国産小型機より大きい。" },
+            { label: "価格納得感", note: "高めだが、広い部屋の循環力を買う商品。" }
           ]
         },
         {
@@ -856,12 +706,12 @@ export const productCategories: ProductCategory[] = [
           referencePrice: "8,000円前後",
           amazonKeyword: "無印良品 MJ-OCF18 サーキュレーター",
           source: { label: "無印良品公式", url: "https://www.muji.com/jp/ja/store/cmdty/detail/4550584307980" },
-          scores: [
-            { label: "冷気循環力", score: 82, note: "18畳目安で個室から寝室には十分。" },
-            { label: "静音性", score: 88, note: "DCモーター系で弱運転の使いやすさが魅力。" },
-            { label: "首振り・操作性", score: 88, note: "360度首振りで置き場所を調整しやすい。" },
-            { label: "手入れ", score: 90, note: "分解しやすい構造を重視する人に向く。" },
-            { label: "価格納得感", score: 82, note: "機能とデザイン込みで納得できる人向け。" }
+          points: [
+            { label: "冷気循環力", note: "18畳目安で個室から寝室には十分。" },
+            { label: "静音性", note: "DCモーター系で弱運転の使いやすさが魅力。" },
+            { label: "首振り・操作性", note: "360度首振りで置き場所を調整しやすい。" },
+            { label: "手入れ", note: "分解しやすい構造を重視する人に向く。" },
+            { label: "価格納得感", note: "機能とデザイン込みで納得できる人向け。" }
           ]
         }
       ],
@@ -916,8 +766,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B0871Y33BP",
           amazonKeyword: "ELPA RC-AC38 エアコンリモコン",
           source: { label: "ELPA公式 RC-AC38", url: "https://www.elpa.co.jp/product/av01/elpa1362.html" },
-          scoreValues: [94, 92, 92, 92, 84],
-          scoreNotes: ["主要メーカー16社対応で比較しやすい。", "オートサーチ付きで設定しやすい。", "バックライト付き液晶で夜も見やすい。", "タイマーなど主な操作をカバーしやすい。", "安さ最優先より機能重視。"]
+          notes: ["主要メーカー16社対応で比較しやすい。", "オートサーチ付きで設定しやすい。", "バックライト付き液晶で夜も見やすい。", "タイマーなど主な操作をカバーしやすい。", "安さ最優先より機能重視。"]
         }),
         reviewCandidate(reviewCriteriaSets.remote, {
           label: "大画面で見やすい",
@@ -928,8 +777,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B01FVW89DQ",
           amazonKeyword: "オーム電機 OAR-N11 エアコン リモコン",
           source: { label: "オーム電機公式 OAR-N11", url: "https://www.ohm-electric.co.jp/product/c20/c2001/22591/" },
-          scoreValues: [90, 88, 94, 84, 90],
-          scoreNotes: ["15メーカー対応で候補にしやすい。", "シンプルボタンで迷いにくい。", "大画面液晶が強み。", "基本操作中心で見たい人向け。", "価格と使いやすさのバランスがいい。"]
+          notes: ["15メーカー対応で候補にしやすい。", "シンプルボタンで迷いにくい。", "大画面液晶が強み。", "基本操作中心で見たい人向け。", "価格と使いやすさのバランスがいい。"]
         }),
         reviewCandidate(reviewCriteriaSets.remote, {
           label: "低価格の定番",
@@ -940,8 +788,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B004VCZ8PK",
           amazonKeyword: "ELPA RC-32AC エアコン リモコン",
           source: { label: "エルパ・ダイレクト RC-32AC", url: "https://www.elpadirect.jp/products/4901087191611/" },
-          scoreValues: [86, 84, 82, 82, 94],
-          scoreNotes: ["対応可否を先に確認したい。", "基本設定ができれば十分な人向け。", "表示は上位機ほどではない。", "主な操作の復旧に向く。", "安く切り分けしやすい。"]
+          notes: ["対応可否を先に確認したい。", "基本設定ができれば十分な人向け。", "表示は上位機ほどではない。", "主な操作の復旧に向く。", "安く切り分けしやすい。"]
         }),
         reviewCandidate(reviewCriteriaSets.remote, {
           label: "簡単操作",
@@ -952,19 +799,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B001D2CTXA",
           amazonKeyword: "ELPA RC-22AC エアコン リモコン",
           source: { label: "ELPA取扱説明書", url: "https://www.elpa.co.jp/product/pdf/rc_22ac_spmanual.pdf" },
-          scoreValues: [82, 90, 82, 78, 90],
-          scoreNotes: ["対応機種確認は必須。", "操作を絞りたい人に向く。", "表示はシンプル。", "細かな機能は期待しすぎない。", "低価格で試しやすい。"]
-        }),
-        reviewCandidate(reviewCriteriaSets.remote, {
-          label: "まず電池も確認",
-          productName: "メーカー純正リモコン検索",
-          bestFor: "特殊リモコンや古い機種で汎用品が不安な人",
-          usp: "汎用品で動かない不安がある場合は、型番から純正・代替リモコンを探すほうが安心。",
-          referencePrice: "型番次第",
-          amazonKeyword: "エアコン 純正 リモコン 型番",
-          source: { label: "オーム電機 汎用リモコン設定", url: "https://www.ohm-electric.co.jp/support/setup/" },
-          scoreValues: [88, 74, 80, 92, 72],
-          scoreNotes: ["型番が合えば確実性が上がる。", "探す手間はかかる。", "表示やボタン配置が元に近い。", "特殊機能を使いたいなら純正寄り。", "価格は高くなることがある。"]
+          notes: ["対応機種確認は必須。", "操作を絞りたい人に向く。", "表示はシンプル。", "細かな機能は期待しすぎない。", "低価格で試しやすい。"]
         })
       ],
       options: [
@@ -985,7 +820,7 @@ export const productCategories: ProductCategory[] = [
           source: { label: "オーム電機公式 OAR-N11", url: "https://www.ohm-electric.co.jp/product/c20/c2001/22591/" }
         }
       ],
-      verdict: "主な操作だけ急ぎたいならELPA、表示の見やすさとボタンの分かりやすさを重視するならオーム電機を比較します。"
+      verdict: "主な操作だけ急ぎたいならELPA、表示の見やすさとボタンの分かりやすさを重視するならオーム電機を比較します。古い機種や特殊リモコンで汎用品が不安な時は、エアコン本体の型番からメーカー純正・代替リモコンを探すほうが確実です。"
     }
   },
   {
@@ -1589,8 +1424,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B0GKF7PS8Z",
           amazonKeyword: "コロナ CD-P6325 衣類乾燥除湿機",
           source: { label: "コロナ公式 Pシリーズ", url: "https://www.corona.co.jp/aircon/dehumidifier2/past/p/index.html" },
-          scoreValues: [90, 88, 84, 72, 92],
-          scoreNotes: ["梅雨から夏の除湿に向く。", "部屋干し用途で説明しやすい。", "タンク容量と排水頻度は確認。", "冬の低温時は方式上弱くなりやすい。", "価格と用途のバランスがいい。"]
+          notes: ["梅雨から夏の除湿に向く。", "部屋干し用途で説明しやすい。", "タンク容量と排水頻度は確認。", "冬の低温時は方式上弱くなりやすい。", "価格と用途のバランスがいい。"]
         }),
         reviewCandidate(reviewCriteriaSets.dehumidifier, {
           label: "部屋干し強化",
@@ -1601,8 +1435,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B0F6CLJ9GD",
           amazonKeyword: "コロナ CD-H1025 衣類乾燥除湿機",
           source: { label: "コロナ除湿機", url: "https://www.corona.co.jp/aircon/dehumidifier2/" },
-          scoreValues: [94, 92, 88, 74, 82],
-          scoreNotes: ["除湿力に余裕を持ちやすい。", "洗濯物が多い家庭向き。", "排水しやすさを確認したい。", "冬中心ならハイブリッドも比較。", "価格は上がるが用途が合えば納得しやすい。"]
+          notes: ["除湿力に余裕を持ちやすい。", "洗濯物が多い家庭向き。", "排水しやすさを確認したい。", "冬中心ならハイブリッドも比較。", "価格は上がるが用途が合えば納得しやすい。"]
         }),
         reviewCandidate(reviewCriteriaSets.dehumidifier, {
           label: "小部屋の定番",
@@ -1613,8 +1446,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B0D86RDSLM",
           amazonKeyword: "シャープ CV-S71 衣類乾燥除湿機",
           source: { label: "シャープ除湿機", url: "https://jp.sharp/joshitsu/" },
-          scoreValues: [84, 88, 82, 72, 86],
-          scoreNotes: ["小部屋中心なら十分検討できる。", "部屋干し用の導入候補にしやすい。", "タンクや排水の扱いを確認。", "冬場の使い方は方式を確認。", "小型として価格バランスがいい。"]
+          notes: ["小部屋中心なら十分検討できる。", "部屋干し用の導入候補にしやすい。", "タンクや排水の扱いを確認。", "冬場の使い方は方式を確認。", "小型として価格バランスがいい。"]
         }),
         reviewCandidate(reviewCriteriaSets.dehumidifier, {
           label: "冬も見る",
@@ -1625,8 +1457,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B0D176XZ9D",
           amazonKeyword: "パナソニック F-YHX200B 衣類乾燥除湿機",
           source: { label: "パナソニック除湿機", url: "https://panasonic.jp/joshitsu/" },
-          scoreValues: [92, 96, 86, 96, 66],
-          scoreNotes: ["除湿力は高めを期待しやすい。", "部屋干し重視の家庭向き。", "タンクや本体サイズを確認。", "冬まで使うなら強い候補。", "価格は高め。"]
+          notes: ["除湿力は高めを期待しやすい。", "部屋干し重視の家庭向き。", "タンクや本体サイズを確認。", "冬まで使うなら強い候補。", "価格は高め。"]
         }),
         reviewCandidate(reviewCriteriaSets.dehumidifier, {
           label: "低予算で試す",
@@ -1637,8 +1468,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B0C1S1PJG5",
           amazonKeyword: "アイリスオーヤマ IJC-P70 除湿機",
           source: { label: "アイリスオーヤマ除湿機", url: "https://www.irisohyama.co.jp/products/electrical-appliances/air-conditioning/dehumidifier/" },
-          scoreValues: [80, 78, 78, 70, 94],
-          scoreNotes: ["小部屋中心で見たい。", "大量部屋干しは上位機も比較。", "排水頻度を確認したい。", "冬向きではない。", "価格を抑えたい人に向く。"]
+          notes: ["小部屋中心で見たい。", "大量部屋干しは上位機も比較。", "排水頻度を確認したい。", "冬向きではない。", "価格を抑えたい人に向く。"]
         })
       ],
       options: [
@@ -1693,8 +1523,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B0BPK5C73Q",
           amazonKeyword: "シャープ FU-RC01 空気清浄機",
           source: { label: "シャープ公式 FU-RC01", url: "https://jp.sharp/kuusei/products/furc01/" },
-          scoreValues: [78, 82, 88, 90, 88],
-          scoreNotes: ["小空間向けとして使いやすい。", "フィルター交換費を確認したい。", "寝室でも置きやすい。", "加湿なしで手入れが軽め。", "小部屋用途なら納得しやすい。"]
+          notes: ["小空間向けとして使いやすい。", "フィルター交換費を確認したい。", "寝室でも置きやすい。", "加湿なしで手入れが軽め。", "小部屋用途なら納得しやすい。"]
         }),
         reviewCandidate(reviewCriteriaSets.airPurifier, {
           label: "部屋全体向き",
@@ -1705,8 +1534,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B0DP2KCT8V",
           amazonKeyword: "シャープ FU-T40 空気清浄機",
           source: { label: "シャープ空気清浄機", url: "https://jp.sharp/kuusei/" },
-          scoreValues: [90, 84, 84, 84, 86],
-          scoreNotes: ["部屋全体で使いやすい。", "交換フィルターの価格を確認。", "寝室では運転音も見たい。", "加湿なしで扱いやすい。", "リビング寄りなら小型より納得しやすい。"]
+          notes: ["部屋全体で使いやすい。", "交換フィルターの価格を確認。", "寝室では運転音も見たい。", "加湿なしで扱いやすい。", "リビング寄りなら小型より納得しやすい。"]
         }),
         reviewCandidate(reviewCriteriaSets.airPurifier, {
           label: "デザイン重視",
@@ -1717,8 +1545,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B08KPHZWHL",
           amazonKeyword: "Blueair Blue Max 3250i",
           source: { label: "Blueair公式", url: "https://www.blueair.jp/" },
-          scoreValues: [86, 82, 88, 82, 80],
-          scoreNotes: ["適用床面積はモデル確認が必要。", "フィルター入手性を見たい。", "弱運転の静音性を重視したい。", "デザインとアプリ連携が魅力。", "国産小型より価格は上がりやすい。"]
+          notes: ["適用床面積はモデル確認が必要。", "フィルター入手性を見たい。", "弱運転の静音性を重視したい。", "デザインとアプリ連携が魅力。", "国産小型より価格は上がりやすい。"]
         }),
         reviewCandidate(reviewCriteriaSets.airPurifier, {
           label: "海外定番",
@@ -1729,8 +1556,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B092D322HR",
           amazonKeyword: "Levoit Core 300S 空気清浄機",
           source: { label: "Levoit公式", url: "https://levoit.com/" },
-          scoreValues: [84, 78, 86, 82, 88],
-          scoreNotes: ["部屋サイズに合うか確認したい。", "交換フィルターの継続入手を確認。", "寝室向きの静音性を期待しやすい。", "アプリ操作を使いたい人向け。", "価格と機能のバランスがいい。"]
+          notes: ["部屋サイズに合うか確認したい。", "交換フィルターの継続入手を確認。", "寝室向きの静音性を期待しやすい。", "アプリ操作を使いたい人向け。", "価格と機能のバランスがいい。"]
         }),
         reviewCandidate(reviewCriteriaSets.airPurifier, {
           label: "空調メーカー",
@@ -1741,8 +1567,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B0DBQJBJ2Q",
           amazonKeyword: "ダイキン MC555A 空気清浄機",
           source: { label: "ダイキン空気清浄機", url: "https://www.daikinaircon.com/ca/" },
-          scoreValues: [92, 84, 82, 84, 74],
-          scoreNotes: ["広めの部屋でも見やすい候補。", "フィルターや消耗品を確認。", "寝室ではサイズと音を見たい。", "加湿なしで扱いやすい。", "価格は高め。"]
+          notes: ["広めの部屋でも見やすい候補。", "フィルターや消耗品を確認。", "寝室ではサイズと音を見たい。", "加湿なしで扱いやすい。", "価格は高め。"]
         })
       ],
       options: [
@@ -1797,8 +1622,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B099Q44KY9",
           amazonKeyword: "壁掛け用 エアコン 洗浄カバー 養生",
           source: { label: "エアコンカバーサービス商品情報", url: "https://aircon-cover.co.jp/product_sheet2/" },
-          scoreValues: [88, 86, 82, 78, 88],
-          scoreNotes: ["水はね対策として使いやすい。", "壁掛けサイズか確認したい。", "固定と排水ホースの扱いが大切。", "内部洗浄を安全にするものではない。", "家庭用の軽い掃除なら導入しやすい。"]
+          notes: ["水はね対策として使いやすい。", "壁掛けサイズか確認したい。", "固定と排水ホースの扱いが大切。", "内部洗浄を安全にするものではない。", "家庭用の軽い掃除なら導入しやすい。"]
         }),
         reviewCandidate(reviewCriteriaSets.cleaningCover, {
           label: "プロ用品を確認",
@@ -1809,8 +1633,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B09LQ63DVX",
           amazonKeyword: "BBK 壁掛用 エアコン 洗浄シート",
           source: { label: "BBKカタログ", url: "https://www.bbk.co.jp/japanese/product/docs/catalogvol7_03.pdf" },
-          scoreValues: [90, 88, 84, 70, 76],
-          scoreNotes: ["水はね対策としては本格的。", "サイズと用途の確認が必要。", "固定や排水の扱いを確認。", "初心者は内部洗浄に踏み込まない。", "価格は高め。"]
+          notes: ["水はね対策としては本格的。", "サイズと用途の確認が必要。", "固定や排水の扱いを確認。", "初心者は内部洗浄に踏み込まない。", "価格は高め。"]
         }),
         reviewCandidate(reviewCriteriaSets.cleaningCover, {
           label: "軽量シート",
@@ -1821,8 +1644,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B07C7P24SM",
           amazonKeyword: "横浜油脂 エアコン 洗浄シート 4697",
           source: { label: "横浜油脂工業資料", url: "https://www.yof-linda.co.jp/products/pdf/4697.pdf" },
-          scoreValues: [86, 84, 80, 74, 80],
-          scoreNotes: ["水はね対策に使いやすい。", "対応サイズを確認する。", "固定方法は作業前に確認。", "電装部への噴射は避ける。", "業務用品寄りとして価格を見る。"]
+          notes: ["水はね対策に使いやすい。", "対応サイズを確認する。", "固定方法は作業前に確認。", "電装部への噴射は避ける。", "業務用品寄りとして価格を見る。"]
         }),
         reviewCandidate(reviewCriteriaSets.cleaningCover, {
           label: "天カセ用は別物",
@@ -1833,8 +1655,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B09LLYRV7D",
           amazonKeyword: "SA-P01D エアコン 洗浄カバー",
           source: { label: "エアコンカバーサービス SA-P01D", url: "https://aircon-cover.co.jp/product_sheet2/" },
-          scoreValues: [92, 52, 82, 70, 50],
-          scoreNotes: ["天カセ用途なら本格的。", "家庭用壁掛けには合わない。", "固定は業務用途前提。", "初心者向けではない。", "価格が高く家庭用途には過剰。"]
+          notes: ["天カセ用途なら本格的。", "家庭用壁掛けには合わない。", "固定は業務用途前提。", "初心者向けではない。", "価格が高く家庭用途には過剰。"]
         }),
         reviewCandidate(reviewCriteriaSets.cleaningCover, {
           label: "まず外側だけ",
@@ -1845,8 +1666,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B0FBLYFZBG",
           amazonKeyword: "エアコン 掃除 養生 シート カバー",
           source: { label: "NITE 注意喚起", url: "https://www.nite.go.jp/jiko/chuikanki/press/2022fy/prs220707.html" },
-          scoreValues: [70, 88, 88, 94, 92],
-          scoreNotes: ["本格洗浄ではなく軽い保護向き。", "サイズに縛られにくい。", "固定は簡易的。", "内部洗浄へ進みにくく安全。", "低価格で始めやすい。"]
+          notes: ["本格洗浄ではなく軽い保護向き。", "サイズに縛られにくい。", "固定は簡易的。", "内部洗浄へ進みにくく安全。", "低価格で始めやすい。"]
         })
       ],
       options: [
@@ -1901,8 +1721,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B003UL8ZQ2",
           amazonKeyword: "因幡電工 DC-1416 防虫ドレンキャップ",
           source: { label: "因幡電工ニュース", url: "https://www.inaba-denko.com/ja/news/detail/72" },
-          scoreValues: [94, 84, 82, 90, 96],
-          scoreNotes: ["φ14・16兼用で合わせやすい。", "目詰まり点検は必要。", "外して確認しやすい形を選びたい。", "ホース径が合えば外れにくい。", "低価格で導入しやすい。"]
+          notes: ["φ14・16兼用で合わせやすい。", "目詰まり点検は必要。", "外して確認しやすい形を選びたい。", "ホース径が合えば外れにくい。", "低価格で導入しやすい。"]
         }),
         reviewCandidate(reviewCriteriaSets.drainCap, {
           label: "ポコポコ音も見る",
@@ -1913,20 +1732,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B005F65PRA",
           amazonKeyword: "因幡電工 DHB-1416 音止ちゃん",
           source: { label: "ベストパーツ DHB-1416", url: "https://www.best-parts-ec.jp/products/detail/4187" },
-          scoreValues: [88, 86, 78, 86, 86],
-          scoreNotes: ["対応ホースを確認したい。", "弁構造は点検が必要。", "定期的に外して確認したい。", "接続条件が合えば安定しやすい。", "音も気になる人には納得しやすい。"]
-        }),
-        reviewCandidate(reviewCriteriaSets.drainCap, {
-          label: "掃除しやすさ",
-          productName: "ビバホーム 防虫ドレンキャップ DC-1416",
-          bestFor: "販売ページでサイズと注意点を確認しながら買いたい人",
-          usp: "因幡電工DC-1416を量販店ページで確認でき、サイズと定期清掃の注意を見ながら選べる。",
-          referencePrice: "500円前後",
-          amazonAsin: "B003UL8ZQ2",
-          amazonKeyword: "屋外用ドレンホース 防虫ドレンキャップ DC-1416",
-          source: { label: "ビバホーム商品情報", url: "https://www.vivahome.com/electrical-materials-air-conditioning/electrical-materials-air-conditioning-7/electrical-materials-air-conditioning-7-3/60008747.html" },
-          scoreValues: [94, 84, 84, 90, 94],
-          scoreNotes: ["定番径で選びやすい。", "詰まり防止に定期清掃が必要。", "販売ページで仕様確認しやすい。", "合う径なら使いやすい。", "価格が軽い。"]
+          notes: ["対応ホースを確認したい。", "弁構造は点検が必要。", "定期的に外して確認したい。", "接続条件が合えば安定しやすい。", "音も気になる人には納得しやすい。"]
         }),
         reviewCandidate(reviewCriteriaSets.drainCap, {
           label: "ホース交換も一緒",
@@ -1937,19 +1743,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B01J7E6XMS",
           amazonKeyword: "GAONA ドレンホース 防虫キャップ",
           source: { label: "GAONA資料", url: "https://gaona.jp/wp/wp-content/uploads/2016/11/0fe9cc9c8bd061ad295e75d079b1844d.pdf" },
-          scoreValues: [82, 82, 78, 84, 82],
-          scoreNotes: ["対応径を確認したい。", "部材が増えるほど点検が必要。", "ホース交換と一緒に見やすい。", "接続部の状態確認が大切。", "単体より費用は上がる。"]
-        }),
-        reviewCandidate(reviewCriteriaSets.drainCap, {
-          label: "詰まり対策優先",
-          productName: "目の粗い防虫キャップ系",
-          bestFor: "土やホコリが多く、細かすぎる網の詰まりが不安な人",
-          usp: "防虫性だけを上げすぎると排水を妨げるため、点検しやすい形を優先したい。",
-          referencePrice: "500〜1,000円前後",
-          amazonKeyword: "エアコン ドレンホース 防虫キャップ 掃除しやすい",
-          source: { label: "因幡電工 ドレン管製品", url: "https://www.inaba-denko.com/ja/product/category/830000" },
-          scoreValues: [78, 92, 90, 78, 88],
-          scoreNotes: ["汎用品は径確認が必要。", "詰まりにくさを優先しやすい。", "外して点検しやすい形を選ぶ。", "固定力は商品差がある。", "低価格で比較しやすい。"]
+          notes: ["対応径を確認したい。", "部材が増えるほど点検が必要。", "ホース交換と一緒に見やすい。", "接続部の状態確認が大切。", "単体より費用は上がる。"]
         })
       ],
       options: [
@@ -2004,8 +1798,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B00N3TWFTY",
           amazonKeyword: "WAKI 防振ゴム 室外機",
           source: { label: "WAKI公式", url: "https://www.waki-diy.co.jp/" },
-          scoreValues: [90, 86, 86, 84, 90],
-          scoreNotes: ["厚みがあるものを選ぶと変化を感じやすい。", "水平設置を崩さない確認が必要。", "耐荷重を確認したい。", "室外機を安全に持ち上げられるかが大切。", "低価格で試しやすい。"]
+          notes: ["厚みがあるものを選ぶと変化を感じやすい。", "水平設置を崩さない確認が必要。", "耐荷重を確認したい。", "室外機を安全に持ち上げられるかが大切。", "低価格で試しやすい。"]
         }),
         reviewCandidate(reviewCriteriaSets.vibrationPad, {
           label: "設備部材で見る",
@@ -2016,8 +1809,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B005ABAM20",
           amazonKeyword: "因幡電工 室外機 防振パッド",
           source: { label: "因幡電工 空調部材", url: "https://www.inaba-denko.com/ja/product/" },
-          scoreValues: [88, 88, 90, 82, 84],
-          scoreNotes: ["室外機向け部材として探しやすい。", "置台との相性を確認したい。", "耐荷重を見やすい販売先を選ぶ。", "設置作業は慎重に。", "汎用品より価格は上がることがある。"]
+          notes: ["室外機向け部材として探しやすい。", "置台との相性を確認したい。", "耐荷重を見やすい販売先を選ぶ。", "設置作業は慎重に。", "汎用品より価格は上がることがある。"]
         }),
         reviewCandidate(reviewCriteriaSets.vibrationPad, {
           label: "業務用品から探す",
@@ -2028,8 +1820,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B00B4T99Y4",
           amazonKeyword: "TRUSCO 防振ゴム 室外機",
           source: { label: "モノタロウ 防振材", url: "https://www.monotaro.com/s/c-122485/" },
-          scoreValues: [86, 86, 90, 78, 86],
-          scoreNotes: ["防振材として選びやすい。", "安定性はサイズ選び次第。", "耐荷重を確認しやすい。", "室外機用途か販売先で確認。", "価格とサイズ展開のバランスがいい。"]
+          notes: ["防振材として選びやすい。", "安定性はサイズ選び次第。", "耐荷重を確認しやすい。", "室外機用途か販売先で確認。", "価格とサイズ展開のバランスがいい。"]
         }),
         reviewCandidate(reviewCriteriaSets.vibrationPad, {
           label: "大判マット",
@@ -2040,8 +1831,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B0F12VPTQB",
           amazonKeyword: "室外機 防振マット 厚手",
           source: { label: "モノタロウ 防振材", url: "https://www.monotaro.com/s/c-122485/" },
-          scoreValues: [84, 78, 84, 82, 84],
-          scoreNotes: ["面で支える用途に向く。", "排水や水平を妨げない確認が必要。", "室外機重量に耐えるか確認。", "カットや設置の手間がある。", "軽い振動なら試しやすい。"]
+          notes: ["面で支える用途に向く。", "排水や水平を妨げない確認が必要。", "室外機重量に耐えるか確認。", "カットや設置の手間がある。", "軽い振動なら試しやすい。"]
         }),
         reviewCandidate(reviewCriteriaSets.vibrationPad, {
           label: "小型ゴム板",
@@ -2052,8 +1842,7 @@ export const productCategories: ProductCategory[] = [
           amazonAsin: "B003OBKX0E",
           amazonKeyword: "光 防振ゴム KGB 室外機",
           source: { label: "光公式", url: "https://www.hikari-net.co.jp/" },
-          scoreValues: [82, 84, 82, 88, 90],
-          scoreNotes: ["軽い振動対策として試しやすい。", "脚ごとの水平確認が必要。", "耐荷重とサイズを確認する。", "小型で設置しやすい。", "低価格で買い足しやすい。"]
+          notes: ["軽い振動対策として試しやすい。", "脚ごとの水平確認が必要。", "耐荷重とサイズを確認する。", "小型で設置しやすい。", "低価格で買い足しやすい。"]
         })
       ],
       options: [
@@ -2079,11 +1868,7 @@ export const productCategories: ProductCategory[] = [
   }
 ];
 
-const supportIndexHiddenIds = new Set(["sanei-drain-cleaner-pr871"]);
-
-export const supportProducts = productCategories.filter(
-  (product) => product.type !== "replacement" && !supportIndexHiddenIds.has(product.id)
-);
+export const supportProducts = productCategories.filter((product) => product.type !== "replacement");
 export const replacementProducts = productCategories.filter((product) => product.type === "replacement");
 
 export function productsForSymptom(symptom: string) {

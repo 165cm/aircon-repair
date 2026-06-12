@@ -2698,6 +2698,16 @@ h3 {
   gap: 16px;
 }
 
+.review-method-note,
+.amazon-check-note {
+  margin-top: 8px;
+  border-left: 3px solid var(--line);
+  padding-left: 10px;
+  color: var(--ink-soft, #555);
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
 .review-criteria-strip {
   display: flex;
   flex-wrap: wrap;
