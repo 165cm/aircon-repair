@@ -7,7 +7,13 @@ products: ["aircon-6tatami", "aircon-10tatami", "aircon-14tatami"]
 difficulty: "beginner"
 risk: "low"
 recommendedCta: "contractor"
+quickAnswer:
+  - "「工事費込み」でも配管延長・電源工事・撤去処分は追加になりやすい。"
+  - "見積もり前に設置場所の写真を撮っておくと差額トラブルを防げる。"
+  - "総額＝本体＋標準工事＋追加工事＋撤去処分で比較する。"
+relatedArticles: ["call-contractor", "aircon-6jou-choose", "aircon-14jou-choose"]
 pubDate: "2026-05-17"
+updatedDate: "2026-06-12"
 ---
 
 エアコンの購入で「工事費込み」と書かれていても、現地の状況によって追加費用が発生することがあります。事前に確認しておくことで、見積もりと実際の請求額の差を防ぎやすくなります。

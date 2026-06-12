@@ -7,7 +7,13 @@ products: ["aircon-6tatami", "aircon-8tatami", "aircon-10tatami", "aircon-14tata
 difficulty: "beginner"
 risk: "low"
 recommendedCta: "products"
+quickAnswer:
+  - "エアコンの省エネ性能はインバーター化以降に大きく進化。"
+  - "購入から10年以上＋不調なら、修理と買い替えの比較を同時に進める。"
+  - "迷ったら本体の製造年シールを確認し、年式で判断する。"
+relatedArticles: ["electric-bill-high", "how-aircon-works", "aircon-maker-compare"]
 pubDate: "2026-05-17"
+updatedDate: "2026-06-12"
 ---
 
 エアコンは100年以上かけて進化してきた家電です。「うちのエアコン古いけど買い替えるべき？」という判断をするとき、技術の歴史を知っておくと電気代との兼ね合いがわかりやすくなります。ざっくりした雑学として読んでもらえたら十分です。
