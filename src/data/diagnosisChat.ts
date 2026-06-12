@@ -12,9 +12,12 @@ export type RecommendationKind =
   | "replacement" // 畳数比較で買い替え
   | "cleaning"; // プロの分解クリーニング
 
-// 講師の発話。text は台本、fromItem は diagnosis.ts の配列を流用（文章を二重定義しない）
+// 講師の発話。text は台本、variants は同じ場面の言い回し違い（表示時にランダムで1つ選ぶ）、
+// timeGreeting は時間帯あいさつ（朝/昼/夜で変わる）、fromItem は diagnosis.ts の配列を流用（文章を二重定義しない）
 export type InstructorMessage =
   | { text: string }
+  | { variants: string[] }
+  | { timeGreeting: true }
   | { fromItem: { field: "safeChecks" | "stopSigns" | "repairSignals" | "replacementSignals"; as: "list" } };
 
 // タップ式クイックリプライ
@@ -51,6 +54,39 @@ export type DiagnosisChatScript = {
   nodes: Record<string, ChatNode>;
 };
 
+// 終端でCTAのあとに添える、保健室の先生らしい締めのひとこと（表示時にランダムで1つ選ぶ）
+export const farewells: Record<RecommendationKind, string[]> = {
+  "stop-call-pro": [
+    "連絡先のメモまでできたら、あとは無理しないで休んでくださいね。お大事に。",
+    "ここまで自分で判断できれば十分です。あとはプロに任せましょう。お大事に。",
+    "怖かったですね。でも、止める判断ができたのは満点です。お大事に。"
+  ],
+  repair: [
+    "症状のメモまで準備できれば、相談は半分終わったようなものです。お大事に。",
+    "また様子が変わったら、いつでも保健室に来てくださいね。",
+    "電話の前に深呼吸をひとつ。メモがあれば落ち着いて話せますよ。"
+  ],
+  "diy-wait": [
+    "今日は自分でよく確認できましたね。はなまるです。",
+    "落ち着いて対処できていて、えらいです。また何かあったらいつでもどうぞ。",
+    "無理のない範囲で様子を見てあげてください。先生はいつでもここにいます。"
+  ],
+  products: [
+    "道具は急いで買わなくて大丈夫。部屋に合うかだけ、ゆっくり確かめてくださいね。",
+    "買う前に型番とサイズの確認だけ忘れずに。それさえ合えば失敗しにくいですよ。"
+  ],
+  replacement: [
+    "大きな買い物なので、今日は比較するだけでも一歩前進です。",
+    "焦らなくて大丈夫。迷ったらまた整理しに来てくださいね。",
+    "総額で比べる癖がつけば、あとで後悔しにくいですよ。応援しています。"
+  ],
+  cleaning: [
+    "においの相談はよくあることなので、恥ずかしがらなくて大丈夫ですよ。",
+    "無理にスプレーしなかったのは正しい判断です。お大事に。",
+    "プロに頼むのはサボりじゃなくて、エアコンへの思いやりです。"
+  ]
+};
+
 export const diagnosisChat: DiagnosisChatScript = {
   startNodeId: "greeting",
   nodes: {
@@ -60,7 +96,14 @@ export const diagnosisChat: DiagnosisChatScript = {
       kind: "question",
       teacher: "netsugashi-reitaro",
       messages: [
-        { text: "すずね先生です。まず、いちばん近い症状はどれですか？" },
+        { timeGreeting: true },
+        {
+          variants: [
+            "今日はどうしましたか？いちばん近い症状を教えてください。",
+            "エアコンの調子、心配ですよね。まず、いちばん近い症状はどれですか？",
+            "ゆっくりで大丈夫ですよ。いちばん近い症状を選んでください。"
+          ]
+        },
         { text: "選んだあとに、止めるサイン、安全に見られる場所、修理か買い替えかを順番に聞きます。" }
       ],
       quickReplies: [
@@ -81,7 +124,13 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "not-cooling",
       teacher: "tomuro-mamoru",
       messages: [
-        { text: "冷えないんですね。暑い日は不安になりますよね。" },
+        {
+          variants: [
+            "冷えないんですね。暑い日は不安になりますよね。",
+            "冷えないと、部屋にいるだけで体力を使いますよね。",
+            "冷えない相談は、この保健室でいちばん多いんですよ。一緒に見ていきましょう。"
+          ]
+        },
         { text: "最初に、体と家を守るための危ないサインだけ確認します。" },
         { text: "焦げ臭い、ブレーカーが落ちる、室外機がまったく動かない。この中に近いものはありますか？" }
       ],
@@ -174,7 +223,13 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "diy-wait",
       teacher: "kazetooshi-kiyoshi",
       messages: [
-        { text: "冷えてきたんですね。よかった、まずはひと安心です。" },
+        {
+          variants: [
+            "冷えてきたんですね。よかった、まずはひと安心です。",
+            "冷えてきましたか。それを聞けて、先生もほっとしました。",
+            "よかった！風が戻ってきたなら、まずは合格点です。"
+          ]
+        },
         { text: "この場合は大きな修理より、風の通り道が詰まっていた可能性があります。" },
         { text: "フィルターは月1回くらい見るだけでも違います。今日は無理な出費なしで大丈夫そうです。" }
       ],
@@ -256,7 +311,13 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "water-leak",
       teacher: "tomuro-mamoru",
       messages: [
-        { text: "水漏れですね。床や壁が濡れると焦りますよね。" },
+        {
+          variants: [
+            "水漏れですね。床や壁が濡れると焦りますよね。",
+            "水漏れは見つけた瞬間がいちばん慌てますよね。落ち着いて一緒に見ましょう。",
+            "ポタポタ落ちる音、気になりますよね。まずタオルで受けながらで大丈夫です。"
+          ]
+        },
         { text: "まずは電気まわりに近いかを確認します。水と電気が近い時は、自分で原因を探さないほうが安全です。" },
         { text: "水がコンセント近くにある、天井や壁から出る、高い場所で作業が必要。どれかありますか？" }
       ],
@@ -347,7 +408,13 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "diy-wait",
       teacher: "mizumichi-nukeru",
       messages: [
-        { text: "水が止まったんですね。よかった、床の被害が広がらずに済みそうです。" },
+        {
+          variants: [
+            "水が止まったんですね。よかった、床の被害が広がらずに済みそうです。",
+            "止まりましたか。自分で原因に気づけたの、すごいことですよ。",
+            "ひと安心ですね。濡れた床はゆっくり拭いて、滑らないように気をつけて。"
+          ]
+        },
         { text: "ドレンホースの先端がふさがると、水の逃げ道がなくなって室内側に戻ることがあります。" },
         { text: "今後は強い雨の後や夏の前に、先端だけ軽く見ておくと安心です。" }
       ],
@@ -423,7 +490,13 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "noise",
       teacher: "tomuro-mamoru",
       messages: [
-        { text: "異音ですね。音は不安になりやすいので、まず危険な音かどうかを分けましょう。" },
+        {
+          variants: [
+            "異音ですね。音は不安になりやすいので、まず危険な音かどうかを分けましょう。",
+            "いつもと違う音は気になりますよね。まず、危険な音かどうかだけ分けましょう。",
+            "音の相談ですね。耳で気づけたのは早期発見です。順番に確認しましょう。"
+          ]
+        },
         { text: "金属がこすれる音、焦げ臭い、煙や火花。このあたりは使用停止を優先します。" },
         { text: "どれか近いものはありますか？" }
       ],
@@ -512,7 +585,13 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "diy-wait",
       teacher: "netsugashi-reitaro",
       messages: [
-        { text: "音が弱まったんですね。よかったです。" },
+        {
+          variants: [
+            "音が弱まったんですね。よかったです。",
+            "静かになりましたか。原因が外側で済んで何よりです。",
+            "よかった。音の正体がわかると、急に安心しますよね。"
+          ]
+        },
         { text: "物が当たっていたり、フィルターが浮いていたりすると、思ったより大きな音が出ることがあります。" },
         { text: "今は買うものなしで大丈夫。再発した時のために、音のタイミングだけメモしておきましょう。" }
       ],
@@ -568,7 +647,13 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "remote",
       teacher: "tomuro-mamoru",
       messages: [
-        { text: "リモコン不調ですね。まずは安く済むことが多い症状です。" },
+        {
+          variants: [
+            "リモコン不調ですね。まずは安く済むことが多い症状です。",
+            "リモコンが効かないと地味に困りますよね。実は、安く済むことが多い症状です。",
+            "大丈夫、リモコンの相談は軽く済むケースが多いんですよ。"
+          ]
+        },
         { text: "ただし、本体側に異常がある場合は話が変わります。" },
         { text: "本体が焦げ臭い、変な音がする、電源が入らない。どれかありますか？" }
       ],
@@ -658,7 +743,13 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "diy-wait",
       teacher: "netsugashi-reitaro",
       messages: [
-        { text: "動いたんですね。よかった、まずは大きな故障ではなさそうです。" },
+        {
+          variants: [
+            "動いたんですね。よかった、まずは大きな故障ではなさそうです。",
+            "直りましたか。電池だけで済むと、なんだか得した気分ですよね。",
+            "よかった。リモコンの不調は電池が原因のことが本当に多いんです。"
+          ]
+        },
         { text: "この場合は、電池切れや接触不良だった可能性があります。" },
         { text: "また反応が悪くなる時は、送信部が光るかを確認して、必要ならリモコン交換を検討しましょう。" }
       ],
@@ -735,7 +826,13 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "cleaning",
       teacher: "tomuro-mamoru",
       messages: [
-        { text: "掃除やカビ臭ですね。においがあると気になりますよね。" },
+        {
+          variants: [
+            "掃除やカビ臭ですね。においがあると気になりますよね。",
+            "カビ臭は、気になりだすと止まらないですよね。落ち着いて整理しましょう。",
+            "掃除の相談ですね。やる気があるうちに、安全な範囲だけ決めておきましょう。"
+          ]
+        },
         { text: "ただ、掃除は『外側だけ』と『内部』で安全度が大きく変わります。" },
         { text: "内部にスプレーしたい、奥のファンを洗いたい。どちらかありますか？" }
       ],
@@ -840,7 +937,13 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "diy-wait",
       teacher: "kazetooshi-kiyoshi",
       messages: [
-        { text: "においが減ったんですね。よかったです。" },
+        {
+          variants: [
+            "においが減ったんですね。よかったです。",
+            "減りましたか。鼻が覚えているうちに対処できて何よりです。",
+            "よかった。外側のお手入れだけで変わると、ちょっと嬉しいですよね。"
+          ]
+        },
         { text: "ホコリや湿気が原因なら、フィルター掃除と送風だけで軽くなることがあります。" },
         { text: "奥は触らず、定期的に外側だけ整えるのが安全なコツです。" }
       ],
