@@ -7,7 +7,13 @@ products: ["filter-brush", "aircon-cleaning-cover", "sharp-air-purifier", "therm
 difficulty: "beginner"
 risk: "low"
 recommendedCta: "contractor"
+quickAnswer:
+  - "焦げ臭い・甘い化学臭は即使用停止して業者相談。"
+  - "カビ・ホコリ臭はフィルター掃除と送風乾燥で改善することが多い。"
+  - "掃除しても残る臭いはプロの分解クリーニングへ。"
+relatedArticles: ["filter-cleaning", "cleaning-spray-risk", "call-contractor"]
 pubDate: "2026-05-17"
+updatedDate: "2026-06-12"
 ---
 
 エアコンをつけた瞬間に臭いがする場合、原因はほとんどがフィルターや熱交換器表面に溜まったホコリ・カビです。臭いの種類で原因をある程度絞れます。

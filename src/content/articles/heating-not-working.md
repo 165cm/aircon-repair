@@ -7,7 +7,13 @@ products: ["thermo-hygrometer", "circulator", "outdoor-cover", "aircon-10tatami"
 difficulty: "beginner"
 risk: "medium"
 recommendedCta: "contractor"
+quickAnswer:
+  - "温風が10〜20分止まるのは霜取り運転。故障ではない。"
+  - "冬の暖房不調は室外機まわり（雪・落ち葉）の確認が最優先。"
+  - "焦げ臭い・ブレーカーが落ちる時は即停止して相談。"
+relatedArticles: ["outdoor-unit-check", "not-cooling", "electric-bill-high"]
 pubDate: "2026-05-17"
+updatedDate: "2026-06-12"
 ---
 
 エアコンの暖房が効かない時、冷房と仕組みが逆になるため確認場所も変わります。冬の暖房不調は室外機の状態が大きく影響します。

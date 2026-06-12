@@ -7,7 +7,13 @@ products: ["aircon-6tatami", "aircon-10tatami", "aircon-14tatami"]
 difficulty: "beginner"
 risk: "high"
 recommendedCta: "contractor"
+quickAnswer:
+  - "焦げ臭い・煙・繰り返すブレーカー落ちは、確認より相談を優先。"
+  - "型番・年式・症状・いつからをメモしてから連絡すると話が早い。"
+  - "10年以上の機種は修理見積もりと買い替え総額を同時に比べる。"
+relatedArticles: ["not-cooling", "water-leak", "installation-cost"]
 pubDate: "2026-05-16"
+updatedDate: "2026-06-12"
 ---
 
 この章では、エアコンの不調を「自分で様子を見る」「専門業者へ相談する」「買い替えも比較する」に分けます。
