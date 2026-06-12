@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { diagnosisChat } from "@data/diagnosisChat";
+import { diagnosisChat, farewells } from "@data/diagnosisChat";
 import { diagnosisItems } from "@data/diagnosis";
 import { teachers } from "@data/teachers";
 import { productCategories, productUrl } from "@data/products";
@@ -101,7 +101,7 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
   </div>
 </section>
 
-<script define:vars={{ script: diagnosisChat, symptomData, teacherData, productData, affiliateUrls, articleTitleBySlug, basePath, chatDomId, isCompact: compact }}>
+<script define:vars={{ script: diagnosisChat, farewells, symptomData, teacherData, productData, affiliateUrls, articleTitleBySlug, basePath, chatDomId, isCompact: compact }}>
   const rootEl = document.getElementById(chatDomId);
   const logEl = rootEl?.querySelector(".chat-log");
   const repliesEl = rootEl?.querySelector(".chat-replies");
@@ -129,10 +129,24 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
     );
   }
 
+  function pick(items) {
+    return items[Math.floor(Math.random() * items.length)];
+  }
+
+  // 朝・昼・夜であいさつを変える（保健室らしい生身の応対のため）
+  function timeGreetingText() {
+    const hour = new Date().getHours();
+    if (hour >= 5 && hour < 11) return "おはようございます。エアコン保健室のすずねです。";
+    if (hour >= 11 && hour < 18) return "こんにちは。エアコン保健室のすずねです。";
+    return "こんばんは、遅い時間までおつかれさまです。エアコン保健室のすずねです。";
+  }
+
   // InstructorMessage[] -> {html, isList}[] （1メッセージ1吹き出し）
   function messagesToBubbles(node) {
     return node.messages
       .map((m) => {
+        if (m.timeGreeting) return { html: `<p>${esc(timeGreetingText())}</p>`, isList: false };
+        if (m.variants) return { html: `<p>${esc(pick(m.variants))}</p>`, isList: false };
         if (m.text) return { html: `<p>${esc(m.text)}</p>`, isList: false };
         if (m.fromItem && node.symptom) {
           const items = symptomData[node.symptom]?.[m.fromItem.field] ?? [];
@@ -246,11 +260,18 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
     stepEls.push(step);
 
     const bubbles = messagesToBubbles(node);
-    const typingDelay = reducedMotion ? 0 : 380;
-    const gapDelay = reducedMotion ? 0 : 80;
+    const gapDelay = reducedMotion ? 0 : 90;
+
+    // 文の長さに合わせて「考えてから話す」間を作る（一律の機械的な間にしない）
+    const typingDurationFor = (html) => {
+      if (reducedMotion) return 0;
+      const textLength = html.replace(/<[^>]*>/g, "").length;
+      return Math.min(900, 280 + textLength * 9);
+    };
 
     for (let i = 0; i < bubbles.length; i++) {
       const { html, isList } = bubbles[i];
+      const typingDelay = typingDurationFor(html);
       if (typingDelay > 0) {
         const typingEl = showTypingIn(bubbleGroup);
         await sleep(typingDelay);
@@ -261,7 +282,7 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
     }
 
     if (node.kind === "terminal" && node.actions.length > 0) {
-      if (typingDelay > 0) await sleep(gapDelay * 2);
+      if (gapDelay > 0) await sleep(gapDelay * 2);
       const rec = node.recommendation;
       const toneClass = rec === "stop-call-pro" ? " danger" : "";
       const actionsDiv = document.createElement("div");
@@ -269,6 +290,26 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
       actionsDiv.innerHTML = node.actions.map(actionToAnchorHTML).join("");
       bubbleGroup.appendChild(actionsDiv);
       scrollToLatest();
+    }
+
+    // 終端は事務的に終わらせず、保健室らしいひとことで締める
+    if (node.kind === "terminal") {
+      const farewellPool = farewells[node.recommendation] ?? [];
+      if (farewellPool.length > 0) {
+        const farewellHtml = `<p>${esc(pick(farewellPool))}</p>`;
+        const typingDelay = typingDurationFor(farewellHtml);
+        if (typingDelay > 0) {
+          await sleep(gapDelay * 3);
+          const typingEl = showTypingIn(bubbleGroup);
+          await sleep(typingDelay);
+          typingEl.remove();
+        }
+        const bubble = document.createElement("div");
+        bubble.className = "chat-bubble chat-bubble-farewell";
+        bubble.innerHTML = farewellHtml;
+        bubbleGroup.appendChild(bubble);
+        scrollToLatest();
+      }
     }
   }
 
@@ -626,6 +667,14 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
     border-top: 1px solid rgb(var(--brand-rgb) / 0.1);
     padding-top: 6px;
     margin-top: 3px;
+  }
+
+  /* 締めのひとこと（CTAの後ろに置く、少し控えめな吹き出し） */
+  .chat-log :global(.chat-bubble-farewell) {
+    background: var(--brand-soft);
+    border: 1px solid rgb(var(--brand-rgb) / 0.14);
+    color: var(--brand-dark);
+    font-size: 0.92em;
   }
 
   /* タイピングインジケーター */
