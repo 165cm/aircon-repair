@@ -65,6 +65,7 @@ const jsonLd = [
     headline: article.data.title,
     description: article.data.description,
     datePublished: article.data.pubDate.toISOString(),
+    dateModified: (article.data.updatedDate ?? article.data.pubDate).toISOString(),
     author: {
       "@type": "Organization",
       name: affiliate.siteName
@@ -114,6 +115,11 @@ const jsonLd = [
       <span class="tag">危険度: {riskLabel}</span>
       <span class="tag">{article.data.difficulty === "beginner" ? "初心者向け" : "一歩詳しく"}</span>
       {article.data.symptoms.map((symptom) => <span class="tag">{symptom}</span>)}
+      <span class="tag">
+        {article.data.updatedDate
+          ? `更新日: ${article.data.updatedDate.toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" })}`
+          : `公開日: ${article.data.pubDate.toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" })}`}
+      </span>
     </div>
   </section>
   <section class="container article-body">

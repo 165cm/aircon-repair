@@ -6,7 +6,7 @@ import ProductGrid from "@components/ProductGrid.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { amazonProductUrl, amazonSearchUrl } from "@data/affiliate";
 import { getProductRelatedArticles, getRelatedProductsForProduct } from "@data/internalLinks";
-import { categoryLabels, productCategories, type ProductCategory } from "@data/products";
+import { categoryLabels, priceCheckedAtLabel, productCategories, type ProductCategory } from "@data/products";
 import { absoluteUrl, sitePath } from "@utils/paths";
 
 export function getStaticPaths() {
@@ -58,7 +58,7 @@ const lineupAmazonUrl = (item: NonNullable<ProductCategory["modelPurchaseGuide"]
   amazonSearchUrl(item.amazonKeyword);
 const defaultReviewCriteria = ["用途適合", "使いやすさ", "手入れ", "安全性", "価格納得感"];
 const displayReviewCriteria = choiceGuide?.reviewCriteria ?? (choiceGuide ? defaultReviewCriteria : undefined);
-const generatedReviewCandidates = choiceGuide?.options.map((option, index) => {
+const generatedReviewCandidates = choiceGuide?.options.map((option) => {
   const optionNotes = [
     option.bestFor,
     option.pros?.[0] ?? option.reason,
@@ -75,19 +75,14 @@ const generatedReviewCandidates = choiceGuide?.options.map((option, index) => {
     referencePrice: product.priceBand ?? "リンク先で確認",
     amazonKeyword: option.amazonKeyword,
     source: option.source,
-    scores: defaultReviewCriteria.map((label, scoreIndex) => ({
+    points: defaultReviewCriteria.map((label, noteIndex) => ({
       label,
-      score: Math.max(76, 90 - index * 3 - scoreIndex),
-      note: optionNotes[scoreIndex] ?? option.reason
+      note: optionNotes[noteIndex] ?? option.reason
     }))
   };
 }) ?? [];
-const reviewCandidates = (choiceGuide?.reviewCandidates ?? generatedReviewCandidates)
-  .map((candidate) => ({
-    ...candidate,
-    totalScore: Math.round(candidate.scores.reduce((sum, score) => sum + score.score, 0) / candidate.scores.length)
-  }))
-  .sort((a, b) => b.totalScore - a.totalScore);
+// 候補は編集部が用途別に選んだ順（先頭が本命）。独自の採点・順位付けは行わない。
+const reviewCandidates = choiceGuide?.reviewCandidates ?? generatedReviewCandidates;
 const topReviewCandidates = reviewCandidates.slice(0, 2);
 const runnerUpCandidates = reviewCandidates.slice(2);
 const purchaseChecks = isReplacement
@@ -218,7 +213,7 @@ const jsonLd = [{
               <h3>参考にした情報</h3>
               <ul class="source-list">
                 {product.reviewSources.map((source) => (
-                  <li><a href={source.url} rel="sponsored nofollow noopener" target="_blank">{source.label}</a></li>
+                  <li><a href={source.url} rel="noopener" target="_blank">{source.label}</a></li>
                 ))}
               </ul>
             </div>
@@ -242,9 +237,10 @@ const jsonLd = [{
     <section id="choice-guide" class="container section choice-guide">
       <div class="section-header compact">
         <div>
-          <p class="eyebrow">{reviewCandidates.length > 2 ? "5候補比較" : "迷わない2択"}</p>
+          <p class="eyebrow">{reviewCandidates.length > 2 ? `${reviewCandidates.length}候補を比較` : "迷わない2択"}</p>
           <h2>{reviewCandidates.length > 2 ? `${productDisplayName}のおすすめ候補を比較` : `${productDisplayName}はどちらを選ぶ？`}</h2>
           <p>{choiceGuide.intro}</p>
+          <p class="review-method-note">候補は公式仕様・公的機関の注意喚起をもとに用途別に選んでいます（独自の採点は行いません）。参考価格は{priceCheckedAtLabel}時点の確認値です。最新の価格・在庫はリンク先で確認してください。</p>
         </div>
       </div>
       <div class="choice-guide-layout">
@@ -257,7 +253,7 @@ const jsonLd = [{
         {reviewCandidates.length > 0 ? (
           <>
             {displayReviewCriteria && (
-              <div class="review-criteria-strip" aria-label="採点項目">
+              <div class="review-criteria-strip" aria-label="比較で見た観点">
                 {displayReviewCriteria.map((criterion) => <span>{criterion}</span>)}
               </div>
             )}
@@ -272,7 +268,7 @@ const jsonLd = [{
                   <p class="choice-option-fit">{candidate.bestFor}</p>
                   <p>{candidate.usp}</p>
                   <ul class="review-note-list">
-                    {candidate.scores.slice(0, 3).map((score) => <li>{score.note}</li>)}
+                    {candidate.points.slice(0, 3).map((point) => <li>{point.note}</li>)}
                   </ul>
                   <div class="choice-option-actions">
                     <a
@@ -291,7 +287,7 @@ const jsonLd = [{
                       data-slot-index={index + 1}
                       data-recommendation-role="review-top-candidate"
                     >
-                      Amazonで評判を見る
+                      Amazonで今の価格を見る
                     </a>
                     {candidate.source && <a class="inline-link" href={candidate.source.url} rel="noopener" target="_blank">公式情報を見る</a>}
                   </div>
@@ -325,7 +321,7 @@ const jsonLd = [{
                         data-slot-index={index + 3}
                         data-recommendation-role="review-runner-candidate"
                       >
-                        Amazonで評判を見る
+                        Amazonで価格と評判を見る
                       </a>
                       {candidate.source && <a class="inline-link" href={candidate.source.url} rel="noopener" target="_blank">公式情報を見る</a>}
                     </div>
@@ -397,6 +393,7 @@ const jsonLd = [{
           <p class="eyebrow">メーカーで選ぶ</p>
           <h2>この畳数でおすすめの3メーカー</h2>
           <p>同じ畳数でも、部屋の使い方や設置条件で合うメーカーは変わります。まずは自分の部屋に近い条件から比べてください。</p>
+          <p class="amazon-check-note">「Amazonで探す」は検索結果ページに移動します。型落ちや本体のみの出品も混ざるため、<strong>①「標準工事費込み」の表記 ②型番・畳数の一致 ③販売元と工事・保証の条件</strong>の3点を確認してから選んでください。</p>
         </div>
       </div>
       <div class="maker-recommendation-grid">
@@ -492,6 +489,7 @@ const jsonLd = [{
           <div>
             <p class="eyebrow">畳数ラインナップ</p>
             <h3>パワー不足が不安なら、同じシリーズで一段上も見る</h3>
+            <p class="amazon-check-note">リンク先はAmazonの検索結果です。型番の一致と「標準工事費込み」の表記、販売元の工事・保証条件を確認してから選んでください。</p>
           </div>
           <span>現在: {modelPurchaseGuide.capacityLabel}</span>
         </div>

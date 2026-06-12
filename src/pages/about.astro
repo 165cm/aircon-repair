@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import { priceCheckedAtLabel } from "@data/products";
 import { sitePath } from "@utils/paths";
 
 const profilePoints = [
@@ -13,6 +14,14 @@ const editorialRules = [
   "自分で確認できる範囲と、専門業者・資格者へ相談すべき範囲を記事内で分けます。",
   "メーカー公式、公的機関、販売ページ、仕様情報を確認し、価格・在庫・仕様はリンク先での再確認を促します。",
   "商品紹介では、価格を固定表示せず、用途・注意点・向いている症状を優先して説明します。"
+];
+
+const productSelectionRules = [
+  "商品候補は、メーカー公式の仕様情報と、NITEなど公的機関の注意喚起を根拠に、用途別に選定しています。",
+  "全商品の実機テストは行っていません。そのため独自の採点・点数付けはせず、公式仕様で確認できる事実と注意点だけを比較に使います。",
+  "同じ商品を別の候補として水増しすること、実体のないカテゴリ名を商品として並べることはしません。",
+  `参考価格・型番・ASINは定期的に見直します（最終確認日: ${priceCheckedAtLabel}）。最新の価格・在庫は必ずリンク先で確認してください。`,
+  "紹介よりも安全を優先します。商品で解決できない症状では、購入ではなく業者相談・使用中止を案内します。"
 ];
 
 const transparencyItems = [
@@ -71,6 +80,16 @@ const transparencyItems = [
         <h2>専門業者へ任せる内容</h2>
         <p>電気工事、冷媒充填・回収、基板修理、内部分解洗浄、高所作業、200Vまわりの判断は、専門業者・資格者へ相談する前提で案内します。</p>
       </div>
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="panel">
+      <p class="eyebrow">商品の選び方</p>
+      <h2>商品候補の選定方法</h2>
+      <ul class="check-list">
+        {productSelectionRules.map((rule) => <li>{rule}</li>)}
+      </ul>
     </div>
   </section>
 
