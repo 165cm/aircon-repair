@@ -19,7 +19,8 @@ const articles = defineCollection({
     boardImage: z.string().optional(),
     boardAlt: z.string().optional(),
     relatedArticles: z.array(z.string()).default([]),
-    pubDate: z.coerce.date()
+    pubDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional()
   })
 });
 

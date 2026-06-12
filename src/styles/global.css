@@ -587,6 +587,26 @@ h3 {
   line-height: 1.65;
 }
 
+.article-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 0.92rem;
+}
+
+.article-content th,
+.article-content td {
+  border: 1px solid var(--line);
+  padding: 8px 10px;
+  text-align: left;
+  line-height: 1.6;
+}
+
+.article-content th {
+  background: var(--surface-soft);
+  font-weight: 800;
+}
+
 .article-table-list {
   display: grid;
   gap: 8px;
