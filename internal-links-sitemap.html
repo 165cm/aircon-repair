@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>内部リンク サイトマップ（マインドマップ）| エアコン修理サイト</title>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<style>
+  :root {
+    --bg: #0f1419;
+    --panel: #1a2129;
+    --panel-border: #2c3640;
+    --text: #e6edf3;
+    --text-dim: #9aa7b2;
+    --accent: #4dabf7;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; background: var(--bg); color: var(--text); font-family: "Hiragino Sans", "Noto Sans JP", "Segoe UI", sans-serif; overflow: hidden; }
+  #app { display: flex; height: 100vh; }
+
+  /* Sidebar */
+  #sidebar {
+    width: 320px;
+    flex: 0 0 320px;
+    background: var(--panel);
+    border-right: 1px solid var(--panel-border);
+    padding: 16px;
+    overflow-y: auto;
+    z-index: 10;
+  }
+  #sidebar h1 { font-size: 16px; margin: 0 0 4px; }
+  #sidebar .sub { font-size: 12px; color: var(--text-dim); margin: 0 0 14px; }
+  #sidebar h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--text-dim); margin: 16px 0 8px; border-bottom: 1px solid var(--panel-border); padding-bottom: 4px; }
+
+  #search {
+    width: 100%; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--panel-border);
+    background: #0d1218; color: var(--text); font-size: 13px;
+  }
+  #search:focus { outline: 1px solid var(--accent); }
+
+  .filter-row { display: flex; align-items: center; gap: 8px; font-size: 12.5px; margin: 6px 0; cursor: pointer; }
+  .filter-row input { accent-color: var(--accent); }
+  .swatch { display: inline-block; width: 12px; height: 12px; border-radius: 3px; flex: 0 0 12px; }
+  .line-swatch { display: inline-block; width: 22px; height: 2px; flex: 0 0 22px; }
+
+  .legend-group { display: flex; align-items: center; gap: 8px; font-size: 12.5px; margin: 5px 0; }
+
+  #info-panel {
+    font-size: 12.5px; line-height: 1.6;
+  }
+  #info-panel .empty { color: var(--text-dim); }
+  #info-panel .node-title { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+  #info-panel .node-url { color: var(--accent); font-size: 11.5px; word-break: break-all; display: block; margin-bottom: 8px; }
+  #info-panel .stat-row { display: flex; justify-content: space-between; padding: 2px 0; border-bottom: 1px dashed var(--panel-border); }
+  #info-panel ul { margin: 4px 0 10px; padding-left: 18px; }
+  #info-panel li { margin: 2px 0; }
+  #info-panel .edge-type-label { font-size: 10.5px; color: var(--text-dim); margin-left: 4px; }
+  #info-panel a { color: var(--text); text-decoration: none; }
+  #info-panel a:hover { color: var(--accent); text-decoration: underline; }
+  #info-panel .badge {
+    display: inline-block; font-size: 10px; padding: 1px 6px; border-radius: 10px; margin-left: 6px; background: #2c3640; color: var(--text-dim);
+  }
+  #info-panel .badge.orphan { background: #5c1f1f; color: #ffb4b4; }
+
+  .reset-btn {
+    margin-top: 10px; width: 100%; padding: 6px; font-size: 12px; border-radius: 6px; border: 1px solid var(--panel-border);
+    background: #0d1218; color: var(--text); cursor: pointer;
+  }
+  .reset-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Graph */
+  #graph-wrap { flex: 1; position: relative; }
+  svg { display: block; width: 100%; height: 100%; }
+  .node circle { stroke: #0f1419; stroke-width: 1.5px; cursor: pointer; }
+  .node text {
+    font-size: 10px; fill: var(--text); pointer-events: none; paint-order: stroke;
+    stroke: var(--bg); stroke-width: 3px;
+  }
+  .node.dimmed { opacity: 0.08; }
+  .link.dimmed { opacity: 0.03; }
+  .link { fill: none; }
+
+  #tooltip {
+    position: absolute; pointer-events: none; background: rgba(15,20,25,0.95); border: 1px solid var(--panel-border);
+    padding: 6px 10px; border-radius: 6px; font-size: 12px; max-width: 280px; display: none; z-index: 20;
+  }
+
+  #stats-bar {
+    position: absolute; bottom: 10px; left: 10px; font-size: 11px; color: var(--text-dim);
+    background: rgba(26,33,41,0.8); padding: 6px 10px; border-radius: 6px; border: 1px solid var(--panel-border);
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <aside id="sidebar">
+    <h1>内部リンク サイトマップ</h1>
+    <p class="sub">記事23本・商品21点・ハブページ8つの内部リンク関係をマインドマップ化したものです。ノードをクリックすると詳細とつながりが表示されます。</p>
+
+    <input id="search" type="text" placeholder="記事・商品名で検索...">
+
+    <h2>表示するリンクの種類</h2>
+    <label class="filter-row"><input type="checkbox" data-edge-type="nav" checked> <span class="line-swatch" style="background:#5b6b7a"></span> ナビゲーション（ハブ→記事/商品）</label>
+    <label class="filter-row"><input type="checkbox" data-edge-type="article-article" checked> <span class="line-swatch" style="background:#4dabf7"></span> 記事 → 記事（関連3本）</label>
+    <label class="filter-row"><input type="checkbox" data-edge-type="article-product" checked> <span class="line-swatch" style="background:#51cf66"></span> 記事 → 商品</label>
+    <label class="filter-row"><input type="checkbox" data-edge-type="product-article" checked> <span class="line-swatch" style="background:#ffa94d"></span> 商品 → 記事</label>
+    <label class="filter-row"><input type="checkbox" data-edge-type="product-product" checked> <span class="line-swatch" style="background:#cc5de8"></span> 商品 → 関連商品</label>
+
+    <h2>ノードの色（カテゴリ）</h2>
+    <div class="legend-group"><span class="swatch" style="background:#8a98a8"></span> ハブページ</div>
+    <div class="legend-group"><span class="swatch" style="background:#4dabf7"></span> 記事: 基礎知識</div>
+    <div class="legend-group"><span class="swatch" style="background:#ff6b6b"></span> 記事: 症状</div>
+    <div class="legend-group"><span class="swatch" style="background:#20c997"></span> 記事: 掃除・予防</div>
+    <div class="legend-group"><span class="swatch" style="background:#ffd43b"></span> 記事: 節電</div>
+    <div class="legend-group"><span class="swatch" style="background:#9775fa"></span> 記事: 買い替え</div>
+    <div class="legend-group"><span class="swatch" style="background:#22b8cf"></span> 記事: 求人・仕事</div>
+    <div class="legend-group"><span class="swatch" style="background:#69db7c"></span> 商品: 補助用品</div>
+    <div class="legend-group"><span class="swatch" style="background:#f783ac"></span> 商品: 本体候補</div>
+    <p class="sub" style="margin-top:6px;">円の大きさ＝そのページへの内部リンク本数（被リンク数）。小さいノードは内部リンクが少なめです。</p>
+
+    <h2>詳細</h2>
+    <div id="info-panel"><p class="empty">ノードをクリックすると、そのページの内部リンク一覧が表示されます。</p></div>
+    <button class="reset-btn" id="reset-btn">選択をリセット</button>
+  </aside>
+
+  <div id="graph-wrap">
+    <svg id="graph"></svg>
+    <div id="tooltip"></div>
+    <div id="stats-bar"></div>
+  </div>
+</div>
+
+<script>
+const DATA = {"nodes": [{"id": "hub-home", "label": "ホーム", "type": "hub", "group": "hub", "url": "/", "indeg": 0, "outdeg": 22}, {"id": "hub-articles", "label": "記事一覧", "type": "hub", "group": "hub", "url": "/articles/", "indeg": 1, "outdeg": 26}, {"id": "hub-basics", "label": "基礎知識コース", "type": "hub", "group": "hub", "url": "/basics/", "indeg": 1, "outdeg": 21}, {"id": "hub-by-size", "label": "畳数で選ぶ", "type": "hub", "group": "hub", "url": "/by-size/", "indeg": 4, "outdeg": 17}, {"id": "hub-cleaning", "label": "掃除・予防", "type": "hub", "group": "hub", "url": "/cleaning-prevention/", "indeg": 1, "outdeg": 15}, {"id": "hub-jobs", "label": "求人・仕事", "type": "hub", "group": "hub", "url": "/jobs/", "indeg": 1, "outdeg": 2}, {"id": "hub-products", "label": "商品比較", "type": "hub", "group": "hub", "url": "/products/", "indeg": 4, "outdeg": 23}, {"id": "hub-diagnosis", "label": "症状診断チャット", "type": "hub", "group": "hub", "url": "/diagnosis/", "indeg": 2, "outdeg": 17}, {"id": "aircon-10jou-choose", "label": "10畳のリビングに合うエアコンの選び方", "type": "article", "group": "buying", "url": "/articles/aircon-10jou-choose/", "indeg": 13, "outdeg": 5}, {"id": "aircon-14jou-choose", "label": "14畳のLDKに合うエアコンの選び方", "type": "article", "group": "buying", "url": "/articles/aircon-14jou-choose/", "indeg": 9, "outdeg": 5}, {"id": "aircon-18jou-choose", "label": "18畳以上のLDK・大空間に合うエアコンの選び方", "type": "article", "group": "buying", "url": "/articles/aircon-18jou-choose/", "indeg": 5, "outdeg": 5}, {"id": "aircon-6jou-choose", "label": "6畳の寝室に合うエアコンの選び方", "type": "article", "group": "buying", "url": "/articles/aircon-6jou-choose/", "indeg": 9, "outdeg": 5}, {"id": "aircon-8jou-choose", "label": "8畳の子供部屋・書斎に合うエアコンの選び方", "type": "article", "group": "buying", "url": "/articles/aircon-8jou-choose/", "indeg": 5, "outdeg": 5}, {"id": "aircon-history", "label": "エアコンの歴史と技術革新", "type": "article", "group": "basics", "url": "/articles/aircon-history/", "indeg": 5, "outdeg": 5}, {"id": "aircon-maker-compare", "label": "Amazonで買うエアコンメーカー比較", "type": "article", "group": "buying", "url": "/articles/aircon-maker-compare/", "indeg": 14, "outdeg": 5}, {"id": "call-contractor", "label": "エアコン修理を呼ぶ目安と依頼前メモ", "type": "article", "group": "basics", "url": "/articles/call-contractor/", "indeg": 17, "outdeg": 3}, {"id": "cleaning-spray-risk", "label": "エアコン掃除スプレーを使う前に知るリスク", "type": "article", "group": "cleaning", "url": "/articles/cleaning-spray-risk/", "indeg": 14, "outdeg": 5}, {"id": "cleaning-staff-career", "label": "エアコンクリーニングスタッフ求人の見方", "type": "article", "group": "career", "url": "/articles/cleaning-staff-career/", "indeg": 3, "outdeg": 3}, {"id": "drain-hose", "label": "ドレンホース詰まりの見分け方", "type": "article", "group": "cleaning", "url": "/articles/drain-hose/", "indeg": 8, "outdeg": 5}, {"id": "electric-bill-high", "label": "エアコンの電気代が高いときの原因と節電チェック", "type": "article", "group": "energy-saving", "url": "/articles/electric-bill-high/", "indeg": 10, "outdeg": 5}, {"id": "filter-cleaning", "label": "エアコンフィルター掃除の基本", "type": "article", "group": "cleaning", "url": "/articles/filter-cleaning/", "indeg": 13, "outdeg": 5}, {"id": "heating-not-working", "label": "エアコン暖房が効かない時の原因と安全チェック", "type": "article", "group": "symptom", "url": "/articles/heating-not-working/", "indeg": 2, "outdeg": 5}, {"id": "how-aircon-works", "label": "高校生レベルで分かるエアコンの仕組み", "type": "article", "group": "basics", "url": "/articles/how-aircon-works/", "indeg": 5, "outdeg": 5}, {"id": "hvac-career-start", "label": "エアコン修理エンジニアの仕事入門", "type": "article", "group": "career", "url": "/articles/hvac-career-start/", "indeg": 3, "outdeg": 3}, {"id": "installation-cost", "label": "エアコン取り付け工事費の相場", "type": "article", "group": "buying", "url": "/articles/installation-cost/", "indeg": 22, "outdeg": 5}, {"id": "not-cooling", "label": "エアコンが冷えないときの原因と安全チェック", "type": "article", "group": "symptom", "url": "/articles/not-cooling/", "indeg": 16, "outdeg": 5}, {"id": "outdoor-unit-check", "label": "室外機まわりで冷房効率を落とさない確認", "type": "article", "group": "cleaning", "url": "/articles/outdoor-unit-check/", "indeg": 11, "outdeg": 5}, {"id": "remote-not-working", "label": "エアコンのリモコンが効かない時の切り分け", "type": "article", "group": "symptom", "url": "/articles/remote-not-working/", "indeg": 5, "outdeg": 4}, {"id": "smell-odor", "label": "エアコンの臭いの原因と自分でできる範囲の対処", "type": "article", "group": "symptom", "url": "/articles/smell-odor/", "indeg": 8, "outdeg": 5}, {"id": "strange-noise", "label": "エアコンの異音で止めるべき音・様子を見る音", "type": "article", "group": "symptom", "url": "/articles/strange-noise/", "indeg": 5, "outdeg": 4}, {"id": "water-leak", "label": "エアコンから水漏れするときの応急確認", "type": "article", "group": "symptom", "url": "/articles/water-leak/", "indeg": 9, "outdeg": 5}, {"id": "thermo-hygrometer", "label": "SwitchBot 温湿度計", "type": "product", "group": "support", "url": "/products/thermo-hygrometer/", "indeg": 19, "outdeg": 6}, {"id": "filter-brush", "label": "アズマ工業 エアコンブラシ", "type": "product", "group": "support", "url": "/products/filter-brush/", "indeg": 12, "outdeg": 6}, {"id": "drain-pump", "label": "ドレンホースクリーナー", "type": "product", "group": "support", "url": "/products/drain-pump/", "indeg": 6, "outdeg": 5}, {"id": "outdoor-cover", "label": "室外機カバー", "type": "product", "group": "support", "url": "/products/outdoor-cover/", "indeg": 8, "outdeg": 6}, {"id": "circulator", "label": "サーキュレーター", "type": "product", "group": "support", "url": "/products/circulator/", "indeg": 20, "outdeg": 6}, {"id": "remote-battery", "label": "汎用エアコンリモコン", "type": "product", "group": "support", "url": "/products/remote-battery/", "indeg": 4, "outdeg": 5}, {"id": "corona-dehumidifier", "label": "コロナ 衣類乾燥除湿機", "type": "product", "group": "support", "url": "/products/corona-dehumidifier/", "indeg": 3, "outdeg": 6}, {"id": "sharp-air-purifier", "label": "空気清浄機（加湿なし）", "type": "product", "group": "support", "url": "/products/sharp-air-purifier/", "indeg": 6, "outdeg": 6}, {"id": "aircon-cleaning-cover", "label": "掃除用 養生カバー", "type": "product", "group": "support", "url": "/products/aircon-cleaning-cover/", "indeg": 6, "outdeg": 6}, {"id": "drain-insect-cap", "label": "ドレンホース防虫キャップ", "type": "product", "group": "support", "url": "/products/drain-insect-cap/", "indeg": 5, "outdeg": 5}, {"id": "outdoor-vibration-pad", "label": "室外機用 防振ゴム", "type": "product", "group": "support", "url": "/products/outdoor-vibration-pad/", "indeg": 5, "outdeg": 6}, {"id": "aircon-6tatami", "label": "6畳用 ルームエアコン候補", "type": "product", "group": "replacement", "url": "/products/aircon-6tatami/", "indeg": 8, "outdeg": 6}, {"id": "daikin-e-6tatami-s225ates", "label": "ダイキン Eシリーズ 6畳候補", "type": "product", "group": "replacement", "url": "/products/daikin-e-6tatami-s225ates/", "indeg": 3, "outdeg": 6}, {"id": "mitsubishi-gv-6tatami-msz-gv2225", "label": "三菱 霧ヶ峰GV 6畳候補", "type": "product", "group": "replacement", "url": "/products/mitsubishi-gv-6tatami-msz-gv2225/", "indeg": 3, "outdeg": 6}, {"id": "aircon-8tatami", "label": "8畳用 ルームエアコン候補", "type": "product", "group": "replacement", "url": "/products/aircon-8tatami/", "indeg": 5, "outdeg": 6}, {"id": "aircon-10tatami", "label": "10畳用 ルームエアコン候補", "type": "product", "group": "replacement", "url": "/products/aircon-10tatami/", "indeg": 13, "outdeg": 6}, {"id": "daikin-e-10tatami-s285ates", "label": "ダイキン Eシリーズ 10畳候補", "type": "product", "group": "replacement", "url": "/products/daikin-e-10tatami-s285ates/", "indeg": 3, "outdeg": 6}, {"id": "mitsubishi-gv-10tatami-msz-gv2825", "label": "三菱 霧ヶ峰GV 10畳候補", "type": "product", "group": "replacement", "url": "/products/mitsubishi-gv-10tatami-msz-gv2825/", "indeg": 3, "outdeg": 6}, {"id": "aircon-14tatami", "label": "14畳用 省エネエアコン候補", "type": "product", "group": "replacement", "url": "/products/aircon-14tatami/", "indeg": 8, "outdeg": 6}, {"id": "daikin-e-14tatami-s405atep", "label": "ダイキン Eシリーズ 14畳候補", "type": "product", "group": "replacement", "url": "/products/daikin-e-14tatami-s405atep/", "indeg": 3, "outdeg": 6}, {"id": "aircon-18tatami", "label": "18畳以上 大型エアコン候補", "type": "product", "group": "replacement", "url": "/products/aircon-18tatami/", "indeg": 5, "outdeg": 6}], "edges": [{"source": "hub-home", "target": "hub-diagnosis", "type": "nav"}, {"source": "hub-home", "target": "hub-by-size", "type": "nav"}, {"source": "hub-home", "target": "hub-cleaning", "type": "nav"}, {"source": "hub-home", "target": "hub-products", "type": "nav"}, {"source": "hub-home", "target": "hub-basics", "type": "nav"}, {"source": "hub-home", "target": "hub-articles", "type": "nav"}, {"source": "hub-home", "target": "hub-jobs", "type": "nav"}, {"source": "hub-articles", "target": "hub-diagnosis", "type": "nav"}, {"source": "hub-articles", "target": "hub-by-size", "type": "nav"}, {"source": "hub-articles", "target": "hub-products", "type": "nav"}, {"source": "hub-basics", "target": "hub-products", "type": "nav"}, {"source": "hub-basics", "target": "hub-by-size", "type": "nav"}, {"source": "hub-by-size", "target": "hub-products", "type": "nav"}, {"source": "hub-products", "target": "hub-by-size", "type": "nav"}, {"source": "hub-home", "target": "not-cooling", "type": "nav"}, {"source": "hub-home", "target": "water-leak", "type": "nav"}, {"source": "hub-home", "target": "strange-noise", "type": "nav"}, {"source": "hub-home", "target": "remote-not-working", "type": "nav"}, {"source": "hub-home", "target": "call-contractor", "type": "nav"}, {"source": "hub-home", "target": "installation-cost", "type": "nav"}, {"source": "hub-home", "target": "outdoor-unit-check", "type": "nav"}, {"source": "hub-home", "target": "aircon-maker-compare", "type": "nav"}, {"source": "hub-home", "target": "aircon-6jou-choose", "type": "nav"}, {"source": "hub-home", "target": "aircon-10jou-choose", "type": "nav"}, {"source": "hub-home", "target": "aircon-14jou-choose", "type": "nav"}, {"source": "hub-home", "target": "filter-cleaning", "type": "nav"}, {"source": "hub-home", "target": "drain-hose", "type": "nav"}, {"source": "hub-home", "target": "cleaning-spray-risk", "type": "nav"}, {"source": "hub-home", "target": "electric-bill-high", "type": "nav"}, {"source": "hub-articles", "target": "aircon-10jou-choose", "type": "nav"}, {"source": "hub-articles", "target": "aircon-14jou-choose", "type": "nav"}, {"source": "hub-articles", "target": "aircon-18jou-choose", "type": "nav"}, {"source": "hub-articles", "target": "aircon-6jou-choose", "type": "nav"}, {"source": "hub-articles", "target": "aircon-8jou-choose", "type": "nav"}, {"source": "hub-articles", "target": "aircon-history", "type": "nav"}, {"source": "hub-articles", "target": "aircon-maker-compare", "type": "nav"}, {"source": "hub-articles", "target": "call-contractor", "type": "nav"}, {"source": "hub-articles", "target": "cleaning-spray-risk", "type": "nav"}, {"source": "hub-articles", "target": "cleaning-staff-career", "type": "nav"}, {"source": "hub-articles", "target": "drain-hose", "type": "nav"}, {"source": "hub-articles", "target": "electric-bill-high", "type": "nav"}, {"source": "hub-articles", "target": "filter-cleaning", "type": "nav"}, {"source": "hub-articles", "target": "heating-not-working", "type": "nav"}, {"source": "hub-articles", "target": "how-aircon-works", "type": "nav"}, {"source": "hub-articles", "target": "hvac-career-start", "type": "nav"}, {"source": "hub-articles", "target": "installation-cost", "type": "nav"}, {"source": "hub-articles", "target": "not-cooling", "type": "nav"}, {"source": "hub-articles", "target": "outdoor-unit-check", "type": "nav"}, {"source": "hub-articles", "target": "remote-not-working", "type": "nav"}, {"source": "hub-articles", "target": "smell-odor", "type": "nav"}, {"source": "hub-articles", "target": "strange-noise", "type": "nav"}, {"source": "hub-articles", "target": "water-leak", "type": "nav"}, {"source": "hub-basics", "target": "how-aircon-works", "type": "nav"}, {"source": "hub-basics", "target": "aircon-history", "type": "nav"}, {"source": "hub-basics", "target": "filter-cleaning", "type": "nav"}, {"source": "hub-basics", "target": "outdoor-unit-check", "type": "nav"}, {"source": "hub-basics", "target": "drain-hose", "type": "nav"}, {"source": "hub-basics", "target": "cleaning-spray-risk", "type": "nav"}, {"source": "hub-basics", "target": "not-cooling", "type": "nav"}, {"source": "hub-basics", "target": "water-leak", "type": "nav"}, {"source": "hub-basics", "target": "strange-noise", "type": "nav"}, {"source": "hub-basics", "target": "remote-not-working", "type": "nav"}, {"source": "hub-basics", "target": "smell-odor", "type": "nav"}, {"source": "hub-basics", "target": "heating-not-working", "type": "nav"}, {"source": "hub-basics", "target": "electric-bill-high", "type": "nav"}, {"source": "hub-basics", "target": "aircon-6jou-choose", "type": "nav"}, {"source": "hub-basics", "target": "aircon-10jou-choose", "type": "nav"}, {"source": "hub-basics", "target": "aircon-14jou-choose", "type": "nav"}, {"source": "hub-basics", "target": "call-contractor", "type": "nav"}, {"source": "hub-basics", "target": "installation-cost", "type": "nav"}, {"source": "hub-basics", "target": "aircon-18jou-choose", "type": "nav"}, {"source": "hub-by-size", "target": "aircon-6jou-choose", "type": "nav"}, {"source": "hub-by-size", "target": "aircon-8jou-choose", "type": "nav"}, {"source": "hub-by-size", "target": "aircon-10jou-choose", "type": "nav"}, {"source": "hub-by-size", "target": "aircon-14jou-choose", "type": "nav"}, {"source": "hub-by-size", "target": "aircon-18jou-choose", "type": "nav"}, {"source": "hub-by-size", "target": "aircon-maker-compare", "type": "nav"}, {"source": "hub-by-size", "target": "aircon-6tatami", "type": "nav"}, {"source": "hub-by-size", "target": "daikin-e-6tatami-s225ates", "type": "nav"}, {"source": "hub-by-size", "target": "mitsubishi-gv-6tatami-msz-gv2225", "type": "nav"}, {"source": "hub-by-size", "target": "aircon-8tatami", "type": "nav"}, {"source": "hub-by-size", "target": "aircon-10tatami", "type": "nav"}, {"source": "hub-by-size", "target": "daikin-e-10tatami-s285ates", "type": "nav"}, {"source": "hub-by-size", "target": "mitsubishi-gv-10tatami-msz-gv2825", "type": "nav"}, {"source": "hub-by-size", "target": "aircon-14tatami", "type": "nav"}, {"source": "hub-by-size", "target": "daikin-e-14tatami-s405atep", "type": "nav"}, {"source": "hub-by-size", "target": "aircon-18tatami", "type": "nav"}, {"source": "hub-cleaning", "target": "filter-cleaning", "type": "nav"}, {"source": "hub-cleaning", "target": "outdoor-unit-check", "type": "nav"}, {"source": "hub-cleaning", "target": "drain-hose", "type": "nav"}, {"source": "hub-cleaning", "target": "cleaning-spray-risk", "type": "nav"}, {"source": "hub-cleaning", "target": "thermo-hygrometer", "type": "nav"}, {"source": "hub-cleaning", "target": "filter-brush", "type": "nav"}, {"source": "hub-cleaning", "target": "drain-pump", "type": "nav"}, {"source": "hub-cleaning", "target": "outdoor-cover", "type": "nav"}, {"source": "hub-cleaning", "target": "circulator", "type": "nav"}, {"source": "hub-cleaning", "target": "remote-battery", "type": "nav"}, {"source": "hub-cleaning", "target": "corona-dehumidifier", "type": "nav"}, {"source": "hub-cleaning", "target": "sharp-air-purifier", "type": "nav"}, {"source": "hub-cleaning", "target": "aircon-cleaning-cover", "type": "nav"}, {"source": "hub-cleaning", "target": "drain-insect-cap", "type": "nav"}, {"source": "hub-cleaning", "target": "outdoor-vibration-pad", "type": "nav"}, {"source": "hub-jobs", "target": "hvac-career-start", "type": "nav"}, {"source": "hub-jobs", "target": "cleaning-staff-career", "type": "nav"}, {"source": "hub-products", "target": "thermo-hygrometer", "type": "nav"}, {"source": "hub-products", "target": "filter-brush", "type": "nav"}, {"source": "hub-products", "target": "drain-pump", "type": "nav"}, {"source": "hub-products", "target": "outdoor-cover", "type": "nav"}, {"source": "hub-products", "target": "circulator", "type": "nav"}, {"source": "hub-products", "target": "remote-battery", "type": "nav"}, {"source": "hub-products", "target": "corona-dehumidifier", "type": "nav"}, {"source": "hub-products", "target": "sharp-air-purifier", "type": "nav"}, {"source": "hub-products", "target": "aircon-cleaning-cover", "type": "nav"}, {"source": "hub-products", "target": "drain-insect-cap", "type": "nav"}, {"source": "hub-products", "target": "outdoor-vibration-pad", "type": "nav"}, {"source": "hub-products", "target": "aircon-6tatami", "type": "nav"}, {"source": "hub-products", "target": "daikin-e-6tatami-s225ates", "type": "nav"}, {"source": "hub-products", "target": "mitsubishi-gv-6tatami-msz-gv2225", "type": "nav"}, {"source": "hub-products", "target": "aircon-8tatami", "type": "nav"}, {"source": "hub-products", "target": "aircon-10tatami", "type": "nav"}, {"source": "hub-products", "target": "daikin-e-10tatami-s285ates", "type": "nav"}, {"source": "hub-products", "target": "mitsubishi-gv-10tatami-msz-gv2825", "type": "nav"}, {"source": "hub-products", "target": "aircon-14tatami", "type": "nav"}, {"source": "hub-products", "target": "daikin-e-14tatami-s405atep", "type": "nav"}, {"source": "hub-products", "target": "aircon-18tatami", "type": "nav"}, {"source": "hub-products", "target": "aircon-maker-compare", "type": "nav"}, {"source": "hub-diagnosis", "target": "call-contractor", "type": "nav"}, {"source": "hub-diagnosis", "target": "cleaning-spray-risk", "type": "nav"}, {"source": "hub-diagnosis", "target": "drain-hose", "type": "nav"}, {"source": "hub-diagnosis", "target": "filter-cleaning", "type": "nav"}, {"source": "hub-diagnosis", "target": "not-cooling", "type": "nav"}, {"source": "hub-diagnosis", "target": "outdoor-unit-check", "type": "nav"}, {"source": "hub-diagnosis", "target": "remote-not-working", "type": "nav"}, {"source": "hub-diagnosis", "target": "strange-noise", "type": "nav"}, {"source": "hub-diagnosis", "target": "water-leak", "type": "nav"}, {"source": "hub-diagnosis", "target": "aircon-10tatami", "type": "nav"}, {"source": "hub-diagnosis", "target": "aircon-6tatami", "type": "nav"}, {"source": "hub-diagnosis", "target": "circulator", "type": "nav"}, {"source": "hub-diagnosis", "target": "drain-pump", "type": "nav"}, {"source": "hub-diagnosis", "target": "filter-brush", "type": "nav"}, {"source": "hub-diagnosis", "target": "outdoor-cover", "type": "nav"}, {"source": "hub-diagnosis", "target": "remote-battery", "type": "nav"}, {"source": "hub-diagnosis", "target": "thermo-hygrometer", "type": "nav"}, {"source": "not-cooling", "target": "filter-cleaning", "type": "article-article", "label": "deep-dive"}, {"source": "not-cooling", "target": "outdoor-unit-check", "type": "article-article", "label": "safe-check"}, {"source": "not-cooling", "target": "call-contractor", "type": "article-article", "label": "decision"}, {"source": "water-leak", "target": "drain-hose", "type": "article-article", "label": "deep-dive"}, {"source": "water-leak", "target": "cleaning-spray-risk", "type": "article-article", "label": "safe-check"}, {"source": "water-leak", "target": "call-contractor", "type": "article-article", "label": "decision"}, {"source": "strange-noise", "target": "call-contractor", "type": "article-article", "label": "decision"}, {"source": "strange-noise", "target": "outdoor-unit-check", "type": "article-article", "label": "safe-check"}, {"source": "strange-noise", "target": "not-cooling", "type": "article-article", "label": "deep-dive"}, {"source": "electric-bill-high", "target": "filter-cleaning", "type": "article-article", "label": "deep-dive"}, {"source": "electric-bill-high", "target": "outdoor-unit-check", "type": "article-article", "label": "safe-check"}, {"source": "electric-bill-high", "target": "aircon-history", "type": "article-article", "label": "decision"}, {"source": "how-aircon-works", "target": "not-cooling", "type": "article-article", "label": "deep-dive"}, {"source": "how-aircon-works", "target": "water-leak", "type": "article-article", "label": "safe-check"}, {"source": "how-aircon-works", "target": "electric-bill-high", "type": "article-article", "label": "decision"}, {"source": "filter-cleaning", "target": "smell-odor", "type": "article-article", "label": "deep-dive"}, {"source": "filter-cleaning", "target": "cleaning-spray-risk", "type": "article-article", "label": "safe-check"}, {"source": "filter-cleaning", "target": "not-cooling", "type": "article-article", "label": "decision"}, {"source": "outdoor-unit-check", "target": "not-cooling", "type": "article-article", "label": "deep-dive"}, {"source": "outdoor-unit-check", "target": "electric-bill-high", "type": "article-article", "label": "safe-check"}, {"source": "outdoor-unit-check", "target": "aircon-history", "type": "article-article", "label": "decision"}, {"source": "drain-hose", "target": "water-leak", "type": "article-article", "label": "deep-dive"}, {"source": "drain-hose", "target": "cleaning-spray-risk", "type": "article-article", "label": "safe-check"}, {"source": "drain-hose", "target": "call-contractor", "type": "article-article", "label": "decision"}, {"source": "smell-odor", "target": "filter-cleaning", "type": "article-article", "label": "deep-dive"}, {"source": "smell-odor", "target": "cleaning-spray-risk", "type": "article-article", "label": "safe-check"}, {"source": "smell-odor", "target": "call-contractor", "type": "article-article", "label": "decision"}, {"source": "remote-not-working", "target": "call-contractor", "type": "article-article", "label": "decision"}, {"source": "remote-not-working", "target": "not-cooling", "type": "article-article", "label": "deep-dive"}, {"source": "remote-not-working", "target": "how-aircon-works", "type": "article-article", "label": "safe-check"}, {"source": "heating-not-working", "target": "not-cooling", "type": "article-article", "label": "deep-dive"}, {"source": "heating-not-working", "target": "outdoor-unit-check", "type": "article-article", "label": "safe-check"}, {"source": "heating-not-working", "target": "call-contractor", "type": "article-article", "label": "decision"}, {"source": "call-contractor", "target": "not-cooling", "type": "article-article", "label": "deep-dive"}, {"source": "call-contractor", "target": "water-leak", "type": "article-article", "label": "safe-check"}, {"source": "call-contractor", "target": "installation-cost", "type": "article-article", "label": "decision"}, {"source": "aircon-6jou-choose", "target": "aircon-8jou-choose", "type": "article-article", "label": "deep-dive"}, {"source": "aircon-6jou-choose", "target": "installation-cost", "type": "article-article", "label": "safe-check"}, {"source": "aircon-6jou-choose", "target": "aircon-history", "type": "article-article", "label": "decision"}, {"source": "aircon-8jou-choose", "target": "aircon-6jou-choose", "type": "article-article", "label": "deep-dive"}, {"source": "aircon-8jou-choose", "target": "aircon-10jou-choose", "type": "article-article", "label": "safe-check"}, {"source": "aircon-8jou-choose", "target": "installation-cost", "type": "article-article", "label": "decision"}, {"source": "aircon-10jou-choose", "target": "aircon-8jou-choose", "type": "article-article", "label": "deep-dive"}, {"source": "aircon-10jou-choose", "target": "aircon-14jou-choose", "type": "article-article", "label": "safe-check"}, {"source": "aircon-10jou-choose", "target": "installation-cost", "type": "article-article", "label": "decision"}, {"source": "aircon-14jou-choose", "target": "aircon-10jou-choose", "type": "article-article", "label": "deep-dive"}, {"source": "aircon-14jou-choose", "target": "aircon-18jou-choose", "type": "article-article", "label": "safe-check"}, {"source": "aircon-14jou-choose", "target": "installation-cost", "type": "article-article", "label": "decision"}, {"source": "aircon-18jou-choose", "target": "aircon-14jou-choose", "type": "article-article", "label": "deep-dive"}, {"source": "aircon-18jou-choose", "target": "installation-cost", "type": "article-article", "label": "safe-check"}, {"source": "aircon-18jou-choose", "target": "call-contractor", "type": "article-article", "label": "decision"}, {"source": "installation-cost", "target": "aircon-6jou-choose", "type": "article-article", "label": "deep-dive"}, {"source": "installation-cost", "target": "aircon-10jou-choose", "type": "article-article", "label": "safe-check"}, {"source": "installation-cost", "target": "aircon-14jou-choose", "type": "article-article", "label": "decision"}, {"source": "aircon-maker-compare", "target": "installation-cost", "type": "article-article", "label": "safe-check"}, {"source": "aircon-maker-compare", "target": "aircon-10jou-choose", "type": "article-article", "label": "deep-dive"}, {"source": "aircon-maker-compare", "target": "cleaning-spray-risk", "type": "article-article", "label": "decision"}, {"source": "aircon-history", "target": "electric-bill-high", "type": "article-article", "label": "deep-dive"}, {"source": "aircon-history", "target": "installation-cost", "type": "article-article", "label": "safe-check"}, {"source": "aircon-history", "target": "aircon-10jou-choose", "type": "article-article", "label": "decision"}, {"source": "cleaning-spray-risk", "target": "filter-cleaning", "type": "article-article", "label": "deep-dive"}, {"source": "cleaning-spray-risk", "target": "smell-odor", "type": "article-article", "label": "safe-check"}, {"source": "cleaning-spray-risk", "target": "call-contractor", "type": "article-article", "label": "decision"}, {"source": "hvac-career-start", "target": "cleaning-staff-career", "type": "article-article", "label": "deep-dive"}, {"source": "hvac-career-start", "target": "call-contractor", "type": "article-article", "label": "safe-check"}, {"source": "hvac-career-start", "target": "installation-cost", "type": "article-article", "label": "decision"}, {"source": "cleaning-staff-career", "target": "hvac-career-start", "type": "article-article", "label": "deep-dive"}, {"source": "cleaning-staff-career", "target": "filter-cleaning", "type": "article-article", "label": "safe-check"}, {"source": "cleaning-staff-career", "target": "cleaning-spray-risk", "type": "article-article", "label": "decision"}, {"source": "not-cooling", "target": "thermo-hygrometer", "type": "article-product", "label": "measure"}, {"source": "not-cooling", "target": "filter-brush", "type": "article-product", "label": "action"}, {"source": "water-leak", "target": "drain-pump", "type": "article-product", "label": "action"}, {"source": "water-leak", "target": "drain-insect-cap", "type": "article-product", "label": "safety"}, {"source": "strange-noise", "target": "outdoor-vibration-pad", "type": "article-product", "label": "safety"}, {"source": "electric-bill-high", "target": "thermo-hygrometer", "type": "article-product", "label": "measure"}, {"source": "electric-bill-high", "target": "circulator", "type": "article-product", "label": "comfort"}, {"source": "how-aircon-works", "target": "thermo-hygrometer", "type": "article-product", "label": "measure"}, {"source": "how-aircon-works", "target": "filter-brush", "type": "article-product", "label": "action"}, {"source": "filter-cleaning", "target": "filter-brush", "type": "article-product", "label": "action"}, {"source": "filter-cleaning", "target": "aircon-cleaning-cover", "type": "article-product", "label": "safety"}, {"source": "outdoor-unit-check", "target": "outdoor-cover", "type": "article-product", "label": "action"}, {"source": "outdoor-unit-check", "target": "outdoor-vibration-pad", "type": "article-product", "label": "safety"}, {"source": "drain-hose", "target": "drain-pump", "type": "article-product", "label": "action"}, {"source": "drain-hose", "target": "drain-insect-cap", "type": "article-product", "label": "safety"}, {"source": "smell-odor", "target": "filter-brush", "type": "article-product", "label": "action"}, {"source": "smell-odor", "target": "sharp-air-purifier", "type": "article-product", "label": "comfort"}, {"source": "remote-not-working", "target": "remote-battery", "type": "article-product", "label": "action"}, {"source": "heating-not-working", "target": "thermo-hygrometer", "type": "article-product", "label": "measure"}, {"source": "heating-not-working", "target": "circulator", "type": "article-product", "label": "comfort"}, {"source": "aircon-6jou-choose", "target": "aircon-6tatami", "type": "article-product", "label": "replacement"}, {"source": "aircon-6jou-choose", "target": "thermo-hygrometer", "type": "article-product", "label": "measure"}, {"source": "aircon-8jou-choose", "target": "aircon-8tatami", "type": "article-product", "label": "replacement"}, {"source": "aircon-8jou-choose", "target": "circulator", "type": "article-product", "label": "comfort"}, {"source": "aircon-10jou-choose", "target": "aircon-10tatami", "type": "article-product", "label": "replacement"}, {"source": "aircon-10jou-choose", "target": "circulator", "type": "article-product", "label": "comfort"}, {"source": "aircon-14jou-choose", "target": "aircon-14tatami", "type": "article-product", "label": "replacement"}, {"source": "aircon-14jou-choose", "target": "circulator", "type": "article-product", "label": "comfort"}, {"source": "aircon-18jou-choose", "target": "aircon-18tatami", "type": "article-product", "label": "replacement"}, {"source": "aircon-18jou-choose", "target": "circulator", "type": "article-product", "label": "comfort"}, {"source": "installation-cost", "target": "aircon-6tatami", "type": "article-product", "label": "replacement"}, {"source": "installation-cost", "target": "aircon-10tatami", "type": "article-product", "label": "replacement"}, {"source": "aircon-maker-compare", "target": "aircon-10tatami", "type": "article-product", "label": "replacement"}, {"source": "aircon-maker-compare", "target": "aircon-14tatami", "type": "article-product", "label": "replacement"}, {"source": "aircon-history", "target": "aircon-10tatami", "type": "article-product", "label": "replacement"}, {"source": "aircon-history", "target": "aircon-14tatami", "type": "article-product", "label": "replacement"}, {"source": "cleaning-spray-risk", "target": "aircon-cleaning-cover", "type": "article-product", "label": "safety"}, {"source": "cleaning-spray-risk", "target": "filter-brush", "type": "article-product", "label": "action"}, {"source": "thermo-hygrometer", "target": "not-cooling", "type": "product-article"}, {"source": "thermo-hygrometer", "target": "electric-bill-high", "type": "product-article"}, {"source": "thermo-hygrometer", "target": "how-aircon-works", "type": "product-article"}, {"source": "filter-brush", "target": "filter-cleaning", "type": "product-article"}, {"source": "filter-brush", "target": "not-cooling", "type": "product-article"}, {"source": "filter-brush", "target": "smell-odor", "type": "product-article"}, {"source": "drain-pump", "target": "water-leak", "type": "product-article"}, {"source": "drain-pump", "target": "drain-hose", "type": "product-article"}, {"source": "drain-pump", "target": "call-contractor", "type": "product-article"}, {"source": "drain-insect-cap", "target": "water-leak", "type": "product-article"}, {"source": "drain-insect-cap", "target": "drain-hose", "type": "product-article"}, {"source": "drain-insect-cap", "target": "cleaning-spray-risk", "type": "product-article"}, {"source": "outdoor-cover", "target": "outdoor-unit-check", "type": "product-article"}, {"source": "outdoor-cover", "target": "not-cooling", "type": "product-article"}, {"source": "outdoor-cover", "target": "electric-bill-high", "type": "product-article"}, {"source": "outdoor-vibration-pad", "target": "strange-noise", "type": "product-article"}, {"source": "outdoor-vibration-pad", "target": "outdoor-unit-check", "type": "product-article"}, {"source": "outdoor-vibration-pad", "target": "call-contractor", "type": "product-article"}, {"source": "circulator", "target": "electric-bill-high", "type": "product-article"}, {"source": "circulator", "target": "not-cooling", "type": "product-article"}, {"source": "circulator", "target": "aircon-10jou-choose", "type": "product-article"}, {"source": "remote-battery", "target": "remote-not-working", "type": "product-article"}, {"source": "remote-battery", "target": "call-contractor", "type": "product-article"}, {"source": "remote-battery", "target": "how-aircon-works", "type": "product-article"}, {"source": "aircon-cleaning-cover", "target": "cleaning-spray-risk", "type": "product-article"}, {"source": "aircon-cleaning-cover", "target": "filter-cleaning", "type": "product-article"}, {"source": "aircon-cleaning-cover", "target": "smell-odor", "type": "product-article"}, {"source": "sharp-air-purifier", "target": "smell-odor", "type": "product-article"}, {"source": "sharp-air-purifier", "target": "filter-cleaning", "type": "product-article"}, {"source": "sharp-air-purifier", "target": "cleaning-spray-risk", "type": "product-article"}, {"source": "corona-dehumidifier", "target": "electric-bill-high", "type": "product-article"}, {"source": "corona-dehumidifier", "target": "smell-odor", "type": "product-article"}, {"source": "corona-dehumidifier", "target": "not-cooling", "type": "product-article"}, {"source": "aircon-6tatami", "target": "aircon-6jou-choose", "type": "product-article"}, {"source": "aircon-6tatami", "target": "installation-cost", "type": "product-article"}, {"source": "aircon-6tatami", "target": "aircon-maker-compare", "type": "product-article"}, {"source": "daikin-e-6tatami-s225ates", "target": "aircon-6jou-choose", "type": "product-article"}, {"source": "daikin-e-6tatami-s225ates", "target": "installation-cost", "type": "product-article"}, {"source": "daikin-e-6tatami-s225ates", "target": "aircon-maker-compare", "type": "product-article"}, {"source": "mitsubishi-gv-6tatami-msz-gv2225", "target": "aircon-6jou-choose", "type": "product-article"}, {"source": "mitsubishi-gv-6tatami-msz-gv2225", "target": "installation-cost", "type": "product-article"}, {"source": "mitsubishi-gv-6tatami-msz-gv2225", "target": "aircon-maker-compare", "type": "product-article"}, {"source": "aircon-8tatami", "target": "aircon-8jou-choose", "type": "product-article"}, {"source": "aircon-8tatami", "target": "installation-cost", "type": "product-article"}, {"source": "aircon-8tatami", "target": "aircon-maker-compare", "type": "product-article"}, {"source": "aircon-10tatami", "target": "aircon-10jou-choose", "type": "product-article"}, {"source": "aircon-10tatami", "target": "installation-cost", "type": "product-article"}, {"source": "aircon-10tatami", "target": "aircon-maker-compare", "type": "product-article"}, {"source": "daikin-e-10tatami-s285ates", "target": "aircon-10jou-choose", "type": "product-article"}, {"source": "daikin-e-10tatami-s285ates", "target": "installation-cost", "type": "product-article"}, {"source": "daikin-e-10tatami-s285ates", "target": "aircon-maker-compare", "type": "product-article"}, {"source": "mitsubishi-gv-10tatami-msz-gv2825", "target": "aircon-10jou-choose", "type": "product-article"}, {"source": "mitsubishi-gv-10tatami-msz-gv2825", "target": "installation-cost", "type": "product-article"}, {"source": "mitsubishi-gv-10tatami-msz-gv2825", "target": "aircon-maker-compare", "type": "product-article"}, {"source": "aircon-14tatami", "target": "aircon-14jou-choose", "type": "product-article"}, {"source": "aircon-14tatami", "target": "installation-cost", "type": "product-article"}, {"source": "aircon-14tatami", "target": "aircon-maker-compare", "type": "product-article"}, {"source": "daikin-e-14tatami-s405atep", "target": "aircon-14jou-choose", "type": "product-article"}, {"source": "daikin-e-14tatami-s405atep", "target": "installation-cost", "type": "product-article"}, {"source": "daikin-e-14tatami-s405atep", "target": "aircon-maker-compare", "type": "product-article"}, {"source": "aircon-18tatami", "target": "aircon-18jou-choose", "type": "product-article"}, {"source": "aircon-18tatami", "target": "installation-cost", "type": "product-article"}, {"source": "aircon-18tatami", "target": "aircon-maker-compare", "type": "product-article"}, {"source": "thermo-hygrometer", "target": "filter-brush", "type": "product-product"}, {"source": "thermo-hygrometer", "target": "circulator", "type": "product-product"}, {"source": "thermo-hygrometer", "target": "outdoor-cover", "type": "product-product"}, {"source": "filter-brush", "target": "aircon-cleaning-cover", "type": "product-product"}, {"source": "filter-brush", "target": "sharp-air-purifier", "type": "product-product"}, {"source": "filter-brush", "target": "thermo-hygrometer", "type": "product-product"}, {"source": "aircon-cleaning-cover", "target": "filter-brush", "type": "product-product"}, {"source": "aircon-cleaning-cover", "target": "sharp-air-purifier", "type": "product-product"}, {"source": "aircon-cleaning-cover", "target": "thermo-hygrometer", "type": "product-product"}, {"source": "sharp-air-purifier", "target": "filter-brush", "type": "product-product"}, {"source": "sharp-air-purifier", "target": "aircon-cleaning-cover", "type": "product-product"}, {"source": "sharp-air-purifier", "target": "corona-dehumidifier", "type": "product-product"}, {"source": "corona-dehumidifier", "target": "sharp-air-purifier", "type": "product-product"}, {"source": "corona-dehumidifier", "target": "thermo-hygrometer", "type": "product-product"}, {"source": "corona-dehumidifier", "target": "circulator", "type": "product-product"}, {"source": "drain-pump", "target": "drain-insect-cap", "type": "product-product"}, {"source": "drain-pump", "target": "thermo-hygrometer", "type": "product-product"}, {"source": "drain-insect-cap", "target": "drain-pump", "type": "product-product"}, {"source": "drain-insect-cap", "target": "outdoor-cover", "type": "product-product"}, {"source": "outdoor-cover", "target": "outdoor-vibration-pad", "type": "product-product"}, {"source": "outdoor-cover", "target": "thermo-hygrometer", "type": "product-product"}, {"source": "outdoor-cover", "target": "circulator", "type": "product-product"}, {"source": "outdoor-vibration-pad", "target": "outdoor-cover", "type": "product-product"}, {"source": "outdoor-vibration-pad", "target": "thermo-hygrometer", "type": "product-product"}, {"source": "outdoor-vibration-pad", "target": "circulator", "type": "product-product"}, {"source": "circulator", "target": "thermo-hygrometer", "type": "product-product"}, {"source": "circulator", "target": "outdoor-cover", "type": "product-product"}, {"source": "circulator", "target": "aircon-10tatami", "type": "product-product"}, {"source": "remote-battery", "target": "thermo-hygrometer", "type": "product-product"}, {"source": "remote-battery", "target": "filter-brush", "type": "product-product"}, {"source": "aircon-6tatami", "target": "aircon-8tatami", "type": "product-product"}, {"source": "aircon-6tatami", "target": "aircon-10tatami", "type": "product-product"}, {"source": "aircon-6tatami", "target": "thermo-hygrometer", "type": "product-product"}, {"source": "daikin-e-6tatami-s225ates", "target": "mitsubishi-gv-6tatami-msz-gv2225", "type": "product-product"}, {"source": "daikin-e-6tatami-s225ates", "target": "aircon-6tatami", "type": "product-product"}, {"source": "daikin-e-6tatami-s225ates", "target": "thermo-hygrometer", "type": "product-product"}, {"source": "mitsubishi-gv-6tatami-msz-gv2225", "target": "daikin-e-6tatami-s225ates", "type": "product-product"}, {"source": "mitsubishi-gv-6tatami-msz-gv2225", "target": "aircon-6tatami", "type": "product-product"}, {"source": "mitsubishi-gv-6tatami-msz-gv2225", "target": "thermo-hygrometer", "type": "product-product"}, {"source": "aircon-8tatami", "target": "aircon-6tatami", "type": "product-product"}, {"source": "aircon-8tatami", "target": "aircon-10tatami", "type": "product-product"}, {"source": "aircon-8tatami", "target": "circulator", "type": "product-product"}, {"source": "aircon-10tatami", "target": "aircon-8tatami", "type": "product-product"}, {"source": "aircon-10tatami", "target": "aircon-14tatami", "type": "product-product"}, {"source": "aircon-10tatami", "target": "circulator", "type": "product-product"}, {"source": "daikin-e-10tatami-s285ates", "target": "mitsubishi-gv-10tatami-msz-gv2825", "type": "product-product"}, {"source": "daikin-e-10tatami-s285ates", "target": "aircon-10tatami", "type": "product-product"}, {"source": "daikin-e-10tatami-s285ates", "target": "circulator", "type": "product-product"}, {"source": "mitsubishi-gv-10tatami-msz-gv2825", "target": "daikin-e-10tatami-s285ates", "type": "product-product"}, {"source": "mitsubishi-gv-10tatami-msz-gv2825", "target": "aircon-10tatami", "type": "product-product"}, {"source": "mitsubishi-gv-10tatami-msz-gv2825", "target": "circulator", "type": "product-product"}, {"source": "aircon-14tatami", "target": "aircon-10tatami", "type": "product-product"}, {"source": "aircon-14tatami", "target": "aircon-18tatami", "type": "product-product"}, {"source": "aircon-14tatami", "target": "circulator", "type": "product-product"}, {"source": "daikin-e-14tatami-s405atep", "target": "aircon-14tatami", "type": "product-product"}, {"source": "daikin-e-14tatami-s405atep", "target": "aircon-18tatami", "type": "product-product"}, {"source": "daikin-e-14tatami-s405atep", "target": "circulator", "type": "product-product"}, {"source": "aircon-18tatami", "target": "aircon-14tatami", "type": "product-product"}, {"source": "aircon-18tatami", "target": "daikin-e-14tatami-s405atep", "type": "product-product"}, {"source": "aircon-18tatami", "target": "circulator", "type": "product-product"}]};
+
+const groupColor = {
+  hub: "#8a98a8",
+  basics: "#4dabf7",
+  symptom: "#ff6b6b",
+  cleaning: "#20c997",
+  "energy-saving": "#ffd43b",
+  buying: "#9775fa",
+  career: "#22b8cf",
+  support: "#69db7c",
+  replacement: "#f783ac"
+};
+
+const edgeColor = {
+  nav: "#5b6b7a",
+  "article-article": "#4dabf7",
+  "article-product": "#51cf66",
+  "product-article": "#ffa94d",
+  "product-product": "#cc5de8"
+};
+
+const typeOrder = { hub: 0, article: 1, product: 2 };
+
+const nodes = DATA.nodes.map(d => ({...d}));
+const nodeById = new Map(nodes.map(n => [n.id, n]));
+
+// content in-degree (excluding nav) used for sizing
+const contentIndeg = new Map();
+DATA.edges.forEach(e => {
+  if (e.type !== "nav") {
+    contentIndeg.set(e.target, (contentIndeg.get(e.target) || 0) + 1);
+  }
+});
+
+function nodeRadius(d) {
+  if (d.type === "hub") return 22;
+  const ci = contentIndeg.get(d.id) || 0;
+  return 6 + Math.min(ci, 20) * 0.9;
+}
+
+const links = DATA.edges.map(e => ({...e}));
+
+const width = window.innerWidth - 320;
+const height = window.innerHeight;
+
+const svg = d3.select("#graph")
+  .attr("viewBox", [0, 0, width, height]);
+
+const g = svg.append("g");
+
+svg.call(d3.zoom()
+  .scaleExtent([0.15, 4])
+  .on("zoom", (event) => g.attr("transform", event.transform)));
+
+// Arrow markers per edge type
+const defs = svg.append("defs");
+Object.entries(edgeColor).forEach(([type, color]) => {
+  defs.append("marker")
+    .attr("id", `arrow-${type}`)
+    .attr("viewBox", "0 -5 10 10")
+    .attr("refX", 8)
+    .attr("refY", 0)
+    .attr("markerWidth", 6)
+    .attr("markerHeight", 6)
+    .attr("orient", "auto")
+    .append("path")
+    .attr("d", "M0,-5L10,0L0,5")
+    .attr("fill", color);
+});
+
+const simulation = d3.forceSimulation(nodes)
+  .force("link", d3.forceLink(links).id(d => d.id).distance(l => l.type === "nav" ? 90 : 70).strength(l => l.type === "nav" ? 0.15 : 0.35))
+  .force("charge", d3.forceManyBody().strength(-160))
+  .force("center", d3.forceCenter(width / 2, height / 2))
+  .force("collide", d3.forceCollide(d => nodeRadius(d) + 4));
+
+const linkGroup = g.append("g").attr("class", "links");
+const nodeGroup = g.append("g").attr("class", "nodes");
+
+const linkSel = linkGroup.selectAll("path")
+  .data(links)
+  .join("path")
+  .attr("class", d => `link link-${d.type}`)
+  .attr("stroke", d => edgeColor[d.type])
+  .attr("stroke-width", d => d.type === "nav" ? 0.6 : 1.3)
+  .attr("stroke-opacity", d => d.type === "nav" ? 0.25 : 0.55)
+  .attr("marker-end", d => `url(#arrow-${d.type})`);
+
+const nodeSel = nodeGroup.selectAll("g.node")
+  .data(nodes)
+  .join("g")
+  .attr("class", "node")
+  .call(drag(simulation));
+
+nodeSel.append("circle")
+  .attr("r", nodeRadius)
+  .attr("fill", d => groupColor[d.group] || "#ccc")
+  .attr("stroke", d => d.type === "hub" ? "#fff" : "#0f1419")
+  .attr("stroke-width", d => d.type === "hub" ? 2 : 1.2);
+
+nodeSel.append("text")
+  .attr("dy", d => -(nodeRadius(d) + 4))
+  .attr("text-anchor", "middle")
+  .text(d => d.type === "hub" ? `[${d.label}]` : (d.label.length > 14 ? d.label.slice(0, 13) + "…" : d.label));
+
+nodeSel.on("click", (event, d) => selectNode(d));
+
+nodeSel.on("mouseover", (event, d) => {
+  tooltip.style.display = "block";
+  tooltip.innerHTML = `<strong>${d.label}</strong><br><span style="color:#9aa7b2">${d.url}</span><br>被リンク(コンテンツ内): ${contentIndeg.get(d.id) || 0} / 発リンク総数: ${d.outdeg}`;
+});
+nodeSel.on("mousemove", (event) => {
+  tooltip.style.left = (event.pageX + 14) + "px";
+  tooltip.style.top = (event.pageY + 8) + "px";
+});
+nodeSel.on("mouseout", () => { tooltip.style.display = "none"; });
+
+const tooltip = document.getElementById("tooltip");
+
+simulation.on("tick", () => {
+  linkSel.attr("d", d => {
+    const sx = d.source.x, sy = d.source.y, tx = d.target.x, ty = d.target.y;
+    const dx = tx - sx, dy = ty - sy;
+    const dr = Math.sqrt(dx*dx + dy*dy) || 1;
+    // slight curve so bidirectional edges don't fully overlap
+    const curve = Math.min(dr * 0.18, 40);
+    const mx = (sx + tx) / 2 + (dy / dr) * curve * (d.type === "nav" ? 0 : 1) * (d.curveSign || 1);
+    const my = (sy + ty) / 2 - (dx / dr) * curve * (d.type === "nav" ? 0 : 1) * (d.curveSign || 1);
+    return `M${sx},${sy} Q${mx},${my} ${tx},${ty}`;
+  });
+  nodeSel.attr("transform", d => `translate(${d.x},${d.y})`);
+});
+
+// alternate curve direction for opposite-direction pairs (e.g. article-article mutual links)
+const pairSeen = new Set();
+links.forEach(l => {
+  const key1 = `${l.source.id || l.source}->${l.target.id || l.target}`;
+  const key2 = `${l.target.id || l.target}->${l.source.id || l.source}`;
+  if (pairSeen.has(key2)) {
+    l.curveSign = -1;
+  } else {
+    l.curveSign = 1;
+  }
+  pairSeen.add(key1);
+});
+
+function drag(sim) {
+  function dragstarted(event, d) {
+    if (!event.active) sim.alphaTarget(0.2).restart();
+    d.fx = d.x; d.fy = d.y;
+  }
+  function dragged(event, d) { d.fx = event.x; d.fy = event.y; }
+  function dragended(event, d) {
+    if (!event.active) sim.alphaTarget(0);
+    d.fx = null; d.fy = null;
+  }
+  return d3.drag().on("start", dragstarted).on("drag", dragged).on("end", dragended);
+}
+
+// ----- Filters -----
+const activeTypes = new Set(["nav", "article-article", "article-product", "product-article", "product-product"]);
+document.querySelectorAll('input[data-edge-type]').forEach(cb => {
+  cb.addEventListener("change", () => {
+    const type = cb.dataset.edgeType;
+    if (cb.checked) activeTypes.add(type); else activeTypes.delete(type);
+    applyEdgeFilter();
+  });
+});
+
+function applyEdgeFilter() {
+  linkSel.style("display", d => activeTypes.has(d.type) ? null : "none");
+}
+
+// ----- Selection / highlight -----
+let selectedId = null;
+
+function selectNode(d) {
+  selectedId = d.id;
+  highlight();
+  renderInfo(d);
+}
+
+function highlight() {
+  if (!selectedId) {
+    nodeSel.classed("dimmed", false);
+    linkSel.classed("dimmed", false);
+    return;
+  }
+  const neighborIds = new Set([selectedId]);
+  links.forEach(l => {
+    const s = l.source.id || l.source, t = l.target.id || l.target;
+    if (s === selectedId) neighborIds.add(t);
+    if (t === selectedId) neighborIds.add(s);
+  });
+  nodeSel.classed("dimmed", d => !neighborIds.has(d.id));
+  linkSel.classed("dimmed", l => {
+    const s = l.source.id || l.source, t = l.target.id || l.target;
+    return !(s === selectedId || t === selectedId);
+  });
+}
+
+document.getElementById("reset-btn").addEventListener("click", () => {
+  selectedId = null;
+  highlight();
+  document.getElementById("info-panel").innerHTML = '<p class="empty">ノードをクリックすると、そのページの内部リンク一覧が表示されます。</p>';
+  document.getElementById("search").value = "";
+});
+
+const edgeTypeLabel = {
+  "nav": "ナビゲーション",
+  "article-article": "関連記事",
+  "article-product": "関連商品",
+  "product-article": "関連記事",
+  "product-product": "関連商品"
+};
+
+function renderInfo(d) {
+  const outs = links.filter(l => (l.source.id || l.source) === d.id);
+  const ins = links.filter(l => (l.target.id || l.target) === d.id);
+  const ci = contentIndeg.get(d.id) || 0;
+  const orphanBadge = (d.type !== "hub" && ci === 0)
+    ? '<span class="badge orphan">コンテンツからの被リンクなし</span>' : "";
+
+  const outsByType = {};
+  outs.forEach(l => {
+    if (l.type === "nav") return;
+    (outsByType[l.type] = outsByType[l.type] || []).push(l);
+  });
+  const insByType = {};
+  ins.forEach(l => {
+    if (l.type === "nav") return;
+    (insByType[l.type] = insByType[l.type] || []).push(l);
+  });
+  const navIn = ins.filter(l => l.type === "nav");
+  const navOut = outs.filter(l => l.type === "nav");
+
+  function listLinks(arr, dir) {
+    return arr.map(l => {
+      const otherId = dir === "out" ? (l.target.id || l.target) : (l.source.id || l.source);
+      const other = nodeById.get(otherId);
+      const labelTxt = l.label ? `<span class="edge-type-label">(${l.label})</span>` : "";
+      return `<li><a href="#" data-goto="${otherId}">${other.label}</a>${labelTxt}</li>`;
+    }).join("");
+  }
+
+  let html = `<div class="node-title">${d.label}</div>`;
+  html += `<span class="node-url">${d.url}${orphanBadge}</span>`;
+  html += `<div class="stat-row"><span>被リンク（記事/商品リンクのみ）</span><strong>${ci}</strong></div>`;
+  html += `<div class="stat-row"><span>発リンク総数</span><strong>${d.outdeg}</strong></div>`;
+
+  Object.entries(outsByType).forEach(([type, arr]) => {
+    html += `<h2 style="margin-top:10px;">→ ${edgeTypeLabel[type]} (${arr.length})</h2><ul>${listLinks(arr, "out")}</ul>`;
+  });
+  Object.entries(insByType).forEach(([type, arr]) => {
+    html += `<h2 style="margin-top:10px;">← ${edgeTypeLabel[type]}元 (${arr.length})</h2><ul>${listLinks(arr, "in")}</ul>`;
+  });
+  if (navOut.length) {
+    html += `<h2 style="margin-top:10px;">→ ナビゲーション (${navOut.length})</h2><ul>${listLinks(navOut, "out")}</ul>`;
+  }
+  if (navIn.length) {
+    html += `<h2 style="margin-top:10px;">← ナビゲーション元 (${navIn.length})</h2><ul>${listLinks(navIn, "in")}</ul>`;
+  }
+
+  const panel = document.getElementById("info-panel");
+  panel.innerHTML = html;
+  panel.querySelectorAll("[data-goto]").forEach(a => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      const target = nodeById.get(a.dataset.goto);
+      if (target) selectNode(target);
+    });
+  });
+}
+
+// ----- Search -----
+document.getElementById("search").addEventListener("input", (e) => {
+  const q = e.target.value.trim().toLowerCase();
+  if (!q) {
+    nodeSel.classed("dimmed", false);
+    return;
+  }
+  selectedId = null;
+  linkSel.classed("dimmed", true);
+  nodeSel.classed("dimmed", d => !(d.label.toLowerCase().includes(q) || d.id.toLowerCase().includes(q)));
+});
+
+// ----- Stats bar -----
+const orphans = nodes.filter(n => n.type !== "hub" && (contentIndeg.get(n.id) || 0) === 0);
+document.getElementById("stats-bar").innerHTML =
+  `ノード: ${nodes.length}（記事23・商品21・ハブ8） / リンク: ${links.length}` +
+  (orphans.length ? ` / <span style="color:#ffb4b4;">コンテンツ被リンク0: ${orphans.map(o=>o.label).join("、")}</span>` : "");
+
+applyEdgeFilter();
+</script>
+</body>
+</html>
