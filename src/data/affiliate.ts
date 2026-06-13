@@ -19,6 +19,20 @@ export const affiliate = {
 export const isAmazonConfigured =
   affiliate.amazonTrackingId !== "YOUR-AMAZON-ASSOCIATE-ID-22";
 
+// 検索エンジン登録とアクセス計測の設定。
+// 値が空文字のうちは <head> に何も出力されないため、安全にコミットできる。
+// 取得したIDを貼るだけで有効化される。
+export const analytics = {
+  // Google Search Console: HTMLタグ確認の content 値だけ（例: <meta name="google-site-verification" content="ここ">）
+  googleSiteVerification: "",
+  // Bing Webmaster Tools: 確認用 meta の content 値（msvalidate.01）
+  bingSiteVerification: "",
+  // Google Analytics 4 の測定ID（G-XXXXXXXXXX）。アクセス数・流入元の計測用。
+  ga4MeasurementId: "",
+  // Microsoft Clarity のプロジェクトID（任意）。ヒートマップ・行動記録用。
+  clarityProjectId: ""
+};
+
 export function amazonSearchUrl(keyword: string) {
   const params = new URLSearchParams({
     k: keyword,
