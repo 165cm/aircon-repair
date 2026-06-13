@@ -28,7 +28,7 @@ export const analytics = {
   // Bing Webmaster Tools: 確認用 meta の content 値（msvalidate.01）
   bingSiteVerification: "",
   // Google Analytics 4 の測定ID（G-XXXXXXXXXX）。アクセス数・流入元の計測用。
-  ga4MeasurementId: "",
+  ga4MeasurementId: "G-RGPGP9ZZG2",
   // Microsoft Clarity のプロジェクトID（任意）。ヒートマップ・行動記録用。
   clarityProjectId: ""
 };
