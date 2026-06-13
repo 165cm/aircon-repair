@@ -1,5 +1,5 @@
 ---
-import { affiliate } from "@data/affiliate";
+import { affiliate, analytics } from "@data/affiliate";
 import { absoluteUrl, sitePath } from "@utils/paths";
 import ChatFloat from "@components/ChatFloat.astro";
 import "@styles/global.css";
@@ -99,6 +99,12 @@ const footerSiteMap = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {analytics.googleSiteVerification && (
+      <meta name="google-site-verification" content={analytics.googleSiteVerification} />
+    )}
+    {analytics.bingSiteVerification && (
+      <meta name="msvalidate.01" content={analytics.bingSiteVerification} />
+    )}
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
@@ -112,6 +118,15 @@ const footerSiteMap = [
     <link rel="icon" href={sitePath("/favicon.png")} type="image/png" />
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
     {breadcrumbJsonLd && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />}
+    {analytics.ga4MeasurementId && (
+      <Fragment>
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${analytics.ga4MeasurementId}`}></script>
+        <script is:inline set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${analytics.ga4MeasurementId}');`} />
+      </Fragment>
+    )}
+    {analytics.clarityProjectId && (
+      <script is:inline set:html={`(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","${analytics.clarityProjectId}");`} />
+    )}
   </head>
   <body>
     <header class="site-header">
