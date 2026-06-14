@@ -11,6 +11,8 @@ quickAnswer:
   - "温風が10〜20分止まるのは霜取り運転。故障ではない。"
   - "冬の暖房不調は室外機まわり（雪・落ち葉）の確認が最優先。"
   - "焦げ臭い・ブレーカーが落ちる時は即停止して相談。"
+boardImage: "/images/articles/heating-not-working-board.webp"
+boardAlt: "暖房が効かない時に室外機と風の流れを確認する図解"
 relatedArticles: ["outdoor-unit-check", "not-cooling", "electric-bill-high"]
 pubDate: "2026-05-17"
 updatedDate: "2026-06-12"

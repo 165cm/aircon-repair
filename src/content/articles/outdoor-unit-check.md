@@ -11,6 +11,8 @@ quickAnswer:
   - "室外機の吹き出し口の前はふさがない。物をどけるだけで冷えが戻ることがある。"
   - "夏は直射日光、冬は雪と落ち葉、台風後は飛来物を確認。"
   - "内部に手を入れる・高圧洗浄機を当てるのはNG。"
+boardImage: "/images/articles/outdoor-unit-check-board.webp"
+boardAlt: "室外機まわりの風通しを確認する図解"
 relatedArticles: ["not-cooling", "electric-bill-high", "strange-noise"]
 pubDate: "2026-05-16"
 updatedDate: "2026-06-12"

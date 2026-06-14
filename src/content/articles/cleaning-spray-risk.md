@@ -11,6 +11,8 @@ quickAnswer:
   - "洗浄スプレーは電装部品への液入りで故障・発火の恐れ。当サイトは推奨しない。"
   - "自分でやるのはフィルター・外装・室外機まわりまで。"
   - "内部のカビ・ファンの汚れはプロの分解クリーニングへ。"
+boardImage: "/images/articles/cleaning-spray-risk-board.webp"
+boardAlt: "エアコン洗浄スプレーを内部に噴くリスクを示す図解"
 relatedArticles: ["smell-odor", "filter-cleaning", "cleaning-staff-career"]
 pubDate: "2026-05-16"
 updatedDate: "2026-06-12"

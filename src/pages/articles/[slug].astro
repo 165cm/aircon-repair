@@ -58,12 +58,47 @@ const doNotTouchNotes = article.data.category === "cleaning"
 const consultNotes = showReplacementGuide
   ? ["危険サインがあれば修理相談を優先する。", "10年以上・複数症状・高額見積もりなら買い替えも同時に比べる。", "判断に迷う時は、診断チャットで症状を選び直す。"]
   : ["外側確認で改善しなければ、無理せず相談へ進む。", "必要なら関連記事で基礎を確認する。", "判断に迷う時は、診断チャットで症状を選び直す。"];
-const jsonLd = [
+// Discover露出の前提となる記事画像（横長サムネ/図解）。新画像を入れたらboardImage経由で自動反映される。
+const articleImageUrl = absoluteUrl(articleThumbnail(article));
+
+// 全記事同一の定型FAQをやめ、その記事固有のquickAnswerから先頭の質問を組み立てる。
+const faqEntities: Record<string, unknown>[] = [];
+if (hasQuickAnswer) {
+  faqEntities.push({
+    "@type": "Question",
+    name: `${article.data.title}で、まず確認することは？`,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: article.data.quickAnswer.join(" ")
+    }
+  });
+}
+faqEntities.push(
+  {
+    "@type": "Question",
+    name: "初心者が自分で修理してもよいですか？",
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: "当サイトでは分解修理、電気配線、冷媒、内部洗浄を初心者へ推奨しません。安全にできる確認に留め、危険サインがある場合は専門業者へ相談してください。"
+    }
+  },
+  {
+    "@type": "Question",
+    name: "商品リンクには広告が含まれますか？",
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: "はい。Amazonアソシエイトを含む広告・アフィリエイトリンクが含まれる場合があります。"
+    }
+  }
+);
+
+const jsonLd: Record<string, unknown>[] = [
   {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: article.data.title,
     description: article.data.description,
+    image: [articleImageUrl],
     datePublished: article.data.pubDate.toISOString(),
     dateModified: (article.data.updatedDate ?? article.data.pubDate).toISOString(),
     author: {
@@ -72,7 +107,11 @@ const jsonLd = [
     },
     publisher: {
       "@type": "Organization",
-      name: affiliate.siteName
+      name: affiliate.siteName,
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteUrl("/images/brand/aircon-hokenshitsu-logo.png")
+      }
     },
     mentions: relatedProducts.map((product) => ({
       "@type": "Thing",
@@ -84,26 +123,29 @@ const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "初心者が自分で修理してもよいですか？",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "当サイトでは分解修理、電気配線、冷媒、内部洗浄を初心者へ推奨しません。安全にできる確認に留め、危険サインがある場合は専門業者へ相談してください。"
-        }
-      },
-      {
-        "@type": "Question",
-        name: "商品リンクには広告が含まれますか？",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "はい。Amazonアソシエイトを含む広告・アフィリエイトリンクが含まれる場合があります。"
-        }
-      }
-    ]
+    mainEntity: faqEntities
   }
 ];
+
+// 症状・掃除・節電の手順性のある記事は、quickAnswerを安全チェック手順としてHowToでも記述する。
+const isProceduralArticle =
+  ["symptom", "cleaning", "energy-saving"].includes(article.data.category) &&
+  article.data.quickAnswer.length >= 2;
+if (isProceduralArticle) {
+  jsonLd.push({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: `${article.data.title}の安全チェック手順`,
+    description: article.data.description,
+    image: [articleImageUrl],
+    step: article.data.quickAnswer.map((text, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: `手順${index + 1}`,
+      text
+    }))
+  });
+}
 ---
 
 <BaseLayout title={article.data.title} description={article.data.description} canonical={canonical} jsonLd={jsonLd} breadcrumbs={breadcrumbs}>

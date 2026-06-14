@@ -11,6 +11,8 @@ quickAnswer:
   - "室内機からの水漏れは、まずドレンホース先端の詰まりを疑う。"
   - "確認するのは外に出ている先端だけ。壁の中や高所は触らない。"
   - "水がコンセントに近い時は確認より先に運転停止。"
+boardImage: "/images/articles/drain-hose-board.webp"
+boardAlt: "ドレンホース先端の詰まりを外から確認する図解"
 relatedArticles: ["water-leak", "filter-cleaning", "call-contractor"]
 pubDate: "2026-05-16"
 updatedDate: "2026-06-12"
