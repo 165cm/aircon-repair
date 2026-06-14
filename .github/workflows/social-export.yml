@@ -1,0 +1,44 @@
+name: Social export (X 手動投稿用)
+
+# X APIの無料枠は廃止・URL付き投稿は有料のため、自動投稿はしない。
+# 毎日「今日コピペする1件」を生成してStep Summary/outboxに出すだけ(完全無料)。
+on:
+  schedule:
+    - cron: "0 9 * * *" # 18:00 JST 毎日
+  workflow_dispatch:
+    inputs:
+      driver:
+        description: "manual-export(状態更新あり) / dry-run(表示のみ)"
+        type: choice
+        options: [manual-export, dry-run]
+        default: manual-export
+
+permissions:
+  contents: write # post-state.json / outbox を書き戻すため
+
+concurrency:
+  group: social-export
+  cancel-in-progress: false
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Regenerate post queue (verify)
+        run: node scripts/generate-social.mjs --check
+      - name: Select next post
+        run: node scripts/post-next.mjs
+        env:
+          POST_DRIVER: ${{ inputs.driver || 'manual-export' }}
+      - name: Commit state
+        if: ${{ (inputs.driver || 'manual-export') != 'dry-run' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/post-state.json data/outbox || true
+          git diff --staged --quiet || git commit -m "chore(social): export next X post [skip ci]"
+          git push

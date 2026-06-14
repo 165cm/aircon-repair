@@ -1,0 +1,686 @@
+[
+  {
+    "id": "electric-bill-high__question-hook",
+    "articleSlug": "electric-bill-high",
+    "variant": "question-hook",
+    "text": "「節電」で困っていませんか？\nフィルター・設定・室外機を確認。\n→原因と対処を整理しました\nhttps://aircon-hokenshitsu.com/articles/electric-bill-high/\n#エアコン #電気代 #節電",
+    "imagePath": "/images/articles/electric-bill-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/electric-bill-board.webp",
+    "hash": "38a671b4b6c1"
+  },
+  {
+    "id": "outdoor-unit-check__quick-answer",
+    "articleSlug": "outdoor-unit-check",
+    "variant": "quick-answer",
+    "text": "室外機の吹き出し口の前はふさがない。物をどけるだけで冷えが戻ることがある。\n・夏は直射日光、冬は雪と落ち葉、台風後は飛来物を確認。\n・内部に手を入れる・高圧洗浄機を当てるのはNG。\n→詳しい安全手順はこちら\nhttps://aircon-hokenshitsu.com/articles/outdoor-unit-check/\n#エアコン掃除 #エアコン #エアコンクリーニング",
+    "imagePath": "/images/articles/outdoor-unit-check-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/outdoor-unit-check-board.webp",
+    "hash": "51923fb93568"
+  },
+  {
+    "id": "outdoor-unit-check__safe-check",
+    "articleSlug": "outdoor-unit-check",
+    "variant": "safe-check",
+    "text": "室外機まわりで冷房効率を落とさない確認\n室外機の前後スペースの目安、直射日光対策、季節ごとのチェックポイント、日よけ・防振ゴムの選び方を初心者向けにまとめます。\n→記事で確認\nhttps://aircon-hokenshitsu.com/articles/outdoor-unit-check/\n#エアコン掃除 #エアコン #エアコンクリーニング",
+    "imagePath": "/images/articles/outdoor-unit-check-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/outdoor-unit-check-board.webp",
+    "hash": "39bac9e74848"
+  },
+  {
+    "id": "aircon-14jou-choose__quick-answer",
+    "articleSlug": "aircon-14jou-choose",
+    "variant": "quick-answer",
+    "text": "14畳用は4.0kWクラス。200V機が中心。\n・200V専用コンセントの有無を最初に確認。\n・10年以上＋複数症状なら修理と買い替えを同時比較。\n→詳しい安全手順はこちら\nhttps://aircon-hokenshitsu.com/articles/aircon-14jou-choose/\n#エアコン #エアコン買い替え #エアコン選び",
+    "imagePath": "/images/articles/aircon-14jou-choose-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/aircon-14jou-choose-board.webp",
+    "hash": "39b0f291ebd2"
+  },
+  {
+    "id": "remote-not-working__safe-check",
+    "articleSlug": "remote-not-working",
+    "variant": "safe-check",
+    "text": "エアコンのリモコンが効かない時の切り分け｜まず確認すること\n1. 電池を新しいものに替える\n2. スマホカメラ越しに送信部が光るか確認する\n3. 本体の応急運転ボタンで反応するか確認する\n→続きと相談の目安はこちら\nhttps://aircon-hokenshitsu.com/articles/remote-not-working/\n#エアコン #エアコン修理 #猛暑対策",
+    "imagePath": "/images/articles/remote-not-working-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/remote-not-working-board.webp",
+    "hash": "4bb3e89fe790"
+  },
+  {
+    "id": "cleaning-spray-risk__safe-check",
+    "articleSlug": "cleaning-spray-risk",
+    "variant": "safe-check",
+    "text": "エアコン掃除スプレーを使う前に知るリスク\n市販のエアコン洗浄スプレーで起こり得る故障・発火リスクの理由、自分でできる掃除との線引き、プロのクリーニングとの違いを解説します。\n→記事で確認\nhttps://aircon-hokenshitsu.com/articles/cleaning-spray-risk/\n#エアコン掃除 #エアコン #エアコンクリーニング",
+    "imagePath": "/images/articles/cleaning-spray-risk-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/cleaning-spray-risk-board.webp",
+    "hash": "552dabf454f4"
+  },
+  {
+    "id": "aircon-maker-compare__quick-answer",
+    "articleSlug": "aircon-maker-compare",
+    "variant": "quick-answer",
+    "text": "迷ったら、修理窓口や部品供給の情報が探しやすい国内大手メーカーを優先すると安心です。\n→詳しい安全手順はこちら\nhttps://aircon-hokenshitsu.com/articles/aircon-maker-compare/\n#エアコン #エアコン買い替え #エアコン選び",
+    "imagePath": "/images/articles/aircon-maker-compare-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/aircon-maker-compare-board.webp",
+    "hash": "dd103b88da26"
+  },
+  {
+    "id": "cleaning-spray-risk__risk-warning",
+    "articleSlug": "cleaning-spray-risk",
+    "variant": "risk-warning",
+    "text": "⚠️エアコン掃除スプレーを使う前に知るリスク\n洗浄スプレーは電装部品への液入りで故障・発火の恐れ。当サイトは推奨しない。\n迷ったら使用を止めて確認を。\n→危険サインの見分け方\nhttps://aircon-hokenshitsu.com/articles/cleaning-spray-risk/\n#エアコン掃除 #エアコン #エアコンクリーニング",
+    "imagePath": "/images/articles/cleaning-spray-risk-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/cleaning-spray-risk-board.webp",
+    "hash": "cf2cdc3dce34"
+  },
+  {
+    "id": "aircon-18jou-choose__safe-check",
+    "articleSlug": "aircon-18jou-choose",
+    "variant": "safe-check",
+    "text": "18畳以上のLDK・大空間に合うエアコンの選び方\n18畳、20畳以上の大空間向けに、能力、200V、追加工事費、家庭用か業務用かの判断を整理します。\n→記事で確認\nhttps://aircon-hokenshitsu.com/articles/aircon-18jou-choose/\n#エアコン #エアコン買い替え #エアコン選び",
+    "imagePath": "/images/articles/aircon-18jou-choose-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/aircon-18jou-choose-board.webp",
+    "hash": "61d2f9211182"
+  },
+  {
+    "id": "filter-cleaning__safe-check",
+    "articleSlug": "filter-cleaning",
+    "variant": "safe-check",
+    "text": "エアコンフィルター掃除の基本｜まず確認すること\n1. フィルターと外装だけを安全に掃除する\n2. 送風運転で内部を乾燥させる\n3. においが強い場合は使用頻度と設置年数をメモする\n→続きと相談の目安はこちら\nhttps://aircon-hokenshitsu.com/articles/filter-cleaning/\n#エアコン掃除 #エアコン #エアコンクリーニング",
+    "imagePath": "/images/articles/filter-cleaning-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/filter-cleaning-board.webp",
+    "hash": "b76550d050d1"
+  },
+  {
+    "id": "aircon-maker-compare__safe-check",
+    "articleSlug": "aircon-maker-compare",
+    "variant": "safe-check",
+    "text": "Amazonで買うエアコンメーカー比較：修理目線で選ぶ安心ブランド\nAmazon.co.jpでエアコン本体を選ぶ前に、主要メーカーの強み、清潔機能、お掃除ロボットの是非、修理・サポート面の安心感を比較します。\n→記事で確認\nhttps://aircon-hokenshitsu.com/articles/aircon-maker-compare/\n#エアコン #エアコン買い替え #エアコン選び",
+    "imagePath": "/images/articles/aircon-maker-compare-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/aircon-maker-compare-board.webp",
+    "hash": "afd3d0e54559"
+  },
+  {
+    "id": "aircon-8jou-choose__question-hook",
+    "articleSlug": "aircon-8jou-choose",
+    "variant": "question-hook",
+    "text": "「買い替え」で困っていませんか？\n8畳用は2.5kWクラス。木造なら基本これ。\n→原因と対処を整理しました\nhttps://aircon-hokenshitsu.com/articles/aircon-8jou-choose/\n#エアコン #エアコン買い替え #エアコン選び",
+    "imagePath": "/images/articles/aircon-8jou-choose-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/aircon-8jou-choose-board.webp",
+    "hash": "977bcbe156ba"
+  },
+  {
+    "id": "smell-odor__question-hook",
+    "articleSlug": "smell-odor",
+    "variant": "question-hook",
+    "text": "「におい」で困っていませんか？\n焦げ臭い・甘い化学臭は即使用停止して業者相談。\n→原因と対処を整理しました\nhttps://aircon-hokenshitsu.com/articles/smell-odor/\n#エアコン #エアコン修理 #猛暑対策",
+    "imagePath": "/images/articles/smell-odor-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/smell-odor-board.webp",
+    "hash": "c51cc752839c"
+  },
+  {
+    "id": "hvac-career-start__question-hook",
+    "articleSlug": "hvac-career-start",
+    "variant": "question-hook",
+    "text": "「求人」で困っていませんか？\n未経験入口は「修理サービス補助」「設置工事補助」「クリーニング補助」の3つ。\n→原因と対処を整理しました\nhttps://aircon-hokenshitsu.com/articles/hvac-career-start/\n#エアコン #求人 #エアコンクリーニング",
+    "imagePath": "/images/articles/hvac-career-start-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/hvac-career-start-board.webp",
+    "hash": "7c2169e5e622"
+  },
+  {
+    "id": "aircon-6jou-choose__question-hook",
+    "articleSlug": "aircon-6jou-choose",
+    "variant": "question-hook",
+    "text": "「買い替え」で困っていませんか？\n独立した6畳なら2.2kW（6畳用）で十分。\n→原因と対処を整理しました\nhttps://aircon-hokenshitsu.com/articles/aircon-6jou-choose/\n#エアコン #エアコン買い替え #エアコン選び",
+    "imagePath": "/images/articles/aircon-6jou-choose-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/aircon-6jou-choose-board.webp",
+    "hash": "c4e21521fe62"
+  },
+  {
+    "id": "how-aircon-works__question-hook",
+    "articleSlug": "how-aircon-works",
+    "variant": "question-hook",
+    "text": "「仕組み」で困っていませんか？\n冷房は熱を外へ運ぶ仕組み。\n→原因と対処を整理しました\nhttps://aircon-hokenshitsu.com/articles/how-aircon-works/\n#エアコン #エアコンの仕組み",
+    "imagePath": "/images/articles/how-aircon-works-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/how-aircon-works-board.webp",
+    "hash": "3dbe11b98200"
+  },
+  {
+    "id": "aircon-10jou-choose__question-hook",
+    "articleSlug": "aircon-10jou-choose",
+    "variant": "question-hook",
+    "text": "「買い替え」で困っていませんか？\n独立した10畳なら2.8kW（10畳用）が基準。\n→原因と対処を整理しました\nhttps://aircon-hokenshitsu.com/articles/aircon-10jou-choose/\n#エアコン #エアコン買い替え #エアコン選び",
+    "imagePath": "/images/articles/aircon-10jou-choose-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/aircon-10jou-choose-board.webp",
+    "hash": "99e910e90c48"
+  },
+  {
+    "id": "not-cooling__quick-answer",
+    "articleSlug": "not-cooling",
+    "variant": "quick-answer",
+    "text": "設定 → フィルター → 室外機。\n・冷媒・配線・内部は触らない。\n・暑さが続くときは避暑を優先。\n→詳しい安全手順はこちら\nhttps://aircon-hokenshitsu.com/articles/not-cooling/\n#エアコン #エアコン修理 #猛暑対策",
+    "imagePath": "/images/articles/not-cooling-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/not-cooling-board.webp",
+    "hash": "56852c830890"
+  },
+  {
+    "id": "aircon-10jou-choose__safe-check",
+    "articleSlug": "aircon-10jou-choose",
+    "variant": "safe-check",
+    "text": "10畳のリビングに合うエアコンの選び方\n10畳前後のリビングに合うエアコンを、LDK、日当たり、能力不足、工事費込みの見方から解説します。\n→記事で確認\nhttps://aircon-hokenshitsu.com/articles/aircon-10jou-choose/\n#エアコン #エアコン買い替え #エアコン選び",
+    "imagePath": "/images/articles/aircon-10jou-choose-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/aircon-10jou-choose-board.webp",
+    "hash": "786ac63afeb5"
+  },
+  {
+    "id": "water-leak__risk-warning",
+    "articleSlug": "water-leak",
+    "variant": "risk-warning",
+    "text": "⚠️エアコンから水漏れするときの応急確認\n室内機の分解が必要\n迷ったら使用を止めて確認を。\n→危険サインの見分け方\nhttps://aircon-hokenshitsu.com/articles/water-leak/\n#エアコン #エアコン修理 #猛暑対策",
+    "imagePath": "/images/articles/water-leak-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/water-leak-board.webp",
+    "hash": "6979e04b5ec6"
+  },
+  {
+    "id": "strange-noise__safe-check",
+    "articleSlug": "strange-noise",
+    "variant": "safe-check",
+    "text": "エアコンの異音で止めるべき音・様子を見る音｜まず確認すること\n1. 室外機の周りに接触している物がないか確認する\n2. フィルターや前面パネルがきちんとはまっているか見る\n→続きと相談の目安はこちら\nhttps://aircon-hokenshitsu.com/articles/strange-noise/\n#エアコン #エアコン修理 #猛暑対策",
+    "imagePath": "/images/articles/strange-noise-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/strange-noise-board.webp",
+    "hash": "3b3d31be5181"
+  },
+  {
+    "id": "call-contractor__quick-answer",
+    "articleSlug": "call-contractor",
+    "variant": "quick-answer",
+    "text": "焦げ臭い・煙・繰り返すブレーカー落ちは、確認より相談を優先。\n・型番・年式・症状・いつからをメモしてから連絡すると話が早い。\n・10年以上の機種は修理見積もりと買い替え総額を同時に比べる。\n→詳しい安全手順はこちら\nhttps://aircon-hokenshitsu.com/articles/call-contractor/\n#エアコン #エアコンの仕組み",
+    "imagePath": "",
+    "imageUrl": "",
+    "hash": "6e81a7102e97"
+  },
+  {
+    "id": "aircon-18jou-choose__question-hook",
+    "articleSlug": "aircon-18jou-choose",
+    "variant": "question-hook",
+    "text": "「買い替え」で困っていませんか？\n18畳用は5.6kWクラス・200V電源が前提。\n→原因と対処を整理しました\nhttps://aircon-hokenshitsu.com/articles/aircon-18jou-choose/\n#エアコン #エアコン買い替え #エアコン選び",
+    "imagePath": "/images/articles/aircon-18jou-choose-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/aircon-18jou-choose-board.webp",
+    "hash": "45647d35fb46"
+  },
+  {
+    "id": "water-leak__question-hook",
+    "articleSlug": "water-leak",
+    "variant": "question-hook",
+    "text": "「水漏れ」で困っていませんか？\nまず床・家電・電源を守る。\n→原因と対処を整理しました\nhttps://aircon-hokenshitsu.com/articles/water-leak/\n#エアコン #エアコン修理 #猛暑対策",
+    "imagePath": "/images/articles/water-leak-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/water-leak-board.webp",
+    "hash": "2db2ae3d318e"
+  },
+  {
+    "id": "remote-not-working__question-hook",
+    "articleSlug": "remote-not-working",
+    "variant": "question-hook",
+    "text": "「リモコン」で困っていませんか？\nまず新品電池に交換。リモコン不調の原因はこれが最多。\n→原因と対処を整理しました\nhttps://aircon-hokenshitsu.com/articles/remote-not-working/\n#エアコン #エアコン修理 #猛暑対策",
+    "imagePath": "/images/articles/remote-not-working-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/remote-not-working-board.webp",
+    "hash": "73f83b73a045"
+  },
+  {
+    "id": "heating-not-working__quick-answer",
+    "articleSlug": "heating-not-working",
+    "variant": "quick-answer",
+    "text": "温風が10〜20分止まるのは霜取り運転。故障ではない。\n・冬の暖房不調は室外機まわり（雪・落ち葉）の確認が最優先。\n・焦げ臭い・ブレーカーが落ちる時は即停止して相談。\n→詳しい安全手順はこちら\nhttps://aircon-hokenshitsu.com/articles/heating-not-working/\n#エアコン #エアコン修理 #猛暑対策",
+    "imagePath": "/images/articles/heating-not-working-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/heating-not-working-board.webp",
+    "hash": "1edc35873a4e"
+  },
+  {
+    "id": "hvac-career-start__safe-check",
+    "articleSlug": "hvac-career-start",
+    "variant": "safe-check",
+    "text": "エアコン修理エンジニアの仕事入門\n空調設備やエアコン修理の仕事に興味がある人向けに、職種の違い、1日の流れ、関わる資格、未経験求人のチェックリストを解説します。\n→記事で確認\nhttps://aircon-hokenshitsu.com/articles/hvac-career-start/\n#エアコン #求人 #エアコンクリーニング",
+    "imagePath": "/images/articles/hvac-career-start-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/hvac-career-start-board.webp",
+    "hash": "ab34cac782c9"
+  },
+  {
+    "id": "smell-odor__safe-check",
+    "articleSlug": "smell-odor",
+    "variant": "safe-check",
+    "text": "エアコンの臭いの原因と自分でできる範囲の対処\nエアコンをつけた時の酸っぱい臭い、カビ臭、ホコリ臭の原因と、初心者が安全にできる確認・対処の範囲を整理します。\n→記事で確認\nhttps://aircon-hokenshitsu.com/articles/smell-odor/\n#エアコン #エアコン修理 #猛暑対策",
+    "imagePath": "/images/articles/smell-odor-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/smell-odor-board.webp",
+    "hash": "7e20efa82a6c"
+  },
+  {
+    "id": "cleaning-staff-career__safe-check",
+    "articleSlug": "cleaning-staff-career",
+    "variant": "safe-check",
+    "text": "エアコンクリーニングスタッフ求人の見方\nエアコンクリーニングの仕事に興味がある初心者向けに、作業の流れ、収入の仕組み、研修や保険など求人で確認すべき点、危ない求人のサインを整理します。\n→記事で確認\nhttps://aircon-hokenshitsu.com/articles/cleaning-staff-career/\n#エアコン #求人 #エアコンクリーニング",
+    "imagePath": "/images/articles/cleaning-staff-career-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/cleaning-staff-career-board.webp",
+    "hash": "8531b42292c4"
+  },
+  {
+    "id": "how-aircon-works__quick-answer",
+    "articleSlug": "how-aircon-works",
+    "variant": "quick-answer",
+    "text": "冷房は熱を外へ運ぶ仕組み。\n・見るのは空気・熱・水の外側。\n・分解するためではなく判断するために学ぶ。\n→詳しい安全手順はこちら\nhttps://aircon-hokenshitsu.com/articles/how-aircon-works/\n#エアコン #エアコンの仕組み",
+    "imagePath": "/images/articles/how-aircon-works-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/how-aircon-works-board.webp",
+    "hash": "b7ab73b7aabe"
+  },
+  {
+    "id": "electric-bill-high__quick-answer",
+    "articleSlug": "electric-bill-high",
+    "variant": "quick-answer",
+    "text": "フィルター・設定・室外機を確認。\n・節電は我慢ではなく効率化。\n・10年以上使っているなら買い替えも比較。\n→詳しい安全手順はこちら\nhttps://aircon-hokenshitsu.com/articles/electric-bill-high/\n#エアコン #電気代 #節電",
+    "imagePath": "/images/articles/electric-bill-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/electric-bill-board.webp",
+    "hash": "ce34c80209eb"
+  },
+  {
+    "id": "drain-hose__quick-answer",
+    "articleSlug": "drain-hose",
+    "variant": "quick-answer",
+    "text": "室内機からの水漏れは、まずドレンホース先端の詰まりを疑う。\n・確認するのは外に出ている先端だけ。壁の中や高所は触らない。\n・水がコンセントに近い時は確認より先に運転停止。\n→詳しい安全手順はこちら\nhttps://aircon-hokenshitsu.com/articles/drain-hose/\n#エアコン掃除 #エアコン #エアコンクリーニング",
+    "imagePath": "/images/articles/drain-hose-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/drain-hose-board.webp",
+    "hash": "dccf875613bd"
+  },
+  {
+    "id": "call-contractor__risk-warning",
+    "articleSlug": "call-contractor",
+    "variant": "risk-warning",
+    "text": "⚠️エアコン修理を呼ぶ目安と依頼前メモ\n焦げ臭い・煙・繰り返すブレーカー落ちは、確認より相談を優先。\n迷ったら使用を止めて確認を。\n→危険サインの見分け方\nhttps://aircon-hokenshitsu.com/articles/call-contractor/\n#エアコン #エアコンの仕組み",
+    "imagePath": "",
+    "imageUrl": "",
+    "hash": "e69f1eae7d6c"
+  },
+  {
+    "id": "smell-odor__quick-answer",
+    "articleSlug": "smell-odor",
+    "variant": "quick-answer",
+    "text": "焦げ臭い・甘い化学臭は即使用停止して業者相談。\n・カビ・ホコリ臭はフィルター掃除と送風乾燥で改善することが多い。\n・掃除しても残る臭いはプロの分解クリーニングへ。\n→詳しい安全手順はこちら\nhttps://aircon-hokenshitsu.com/articles/smell-odor/\n#エアコン #エアコン修理 #猛暑対策",
+    "imagePath": "/images/articles/smell-odor-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/smell-odor-board.webp",
+    "hash": "6734742df464"
+  },
+  {
+    "id": "aircon-history__quick-answer",
+    "articleSlug": "aircon-history",
+    "variant": "quick-answer",
+    "text": "エアコンの省エネ性能はインバーター化以降に大きく進化。\n・購入から10年以上＋不調なら、修理と買い替えの比較を同時に進める。\n・迷ったら本体の製造年シールを確認し、年式で判断する。\n→詳しい安全手順はこちら\nhttps://aircon-hokenshitsu.com/articles/aircon-history/\n#エアコン #エアコンの仕組み",
+    "imagePath": "",
+    "imageUrl": "",
+    "hash": "68d34bdbe3d7"
+  },
+  {
+    "id": "cleaning-staff-career__quick-answer",
+    "articleSlug": "cleaning-staff-career",
+    "variant": "quick-answer",
+    "text": "仕事の核心は洗浄より「養生と電装部品の保護」。研修の質がすべて。\n・歩合制は単価×件数だけでなく、閑散期と移動時間の扱いを確認。\n・研修なし・道具自費・保険不明の3つがそろう求人は避ける。\n→詳しい安全手順はこちら\nhttps://aircon-hokenshitsu.com/articles/cleaning-staff-career/\n#エアコン #求人 #エアコンクリーニング",
+    "imagePath": "/images/articles/cleaning-staff-career-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/cleaning-staff-career-board.webp",
+    "hash": "5ae6402f6170"
+  },
+  {
+    "id": "aircon-8jou-choose__quick-answer",
+    "articleSlug": "aircon-8jou-choose",
+    "variant": "quick-answer",
+    "text": "8畳用は2.5kWクラス。木造なら基本これ。\n・鉄筋・北向き・夜だけなら6畳用で足りることも。\n・木造最上階・西日・在宅勤務なら10畳用も比較。\n→詳しい安全手順はこちら\nhttps://aircon-hokenshitsu.com/articles/aircon-8jou-choose/\n#エアコン #エアコン買い替え #エアコン選び",
+    "imagePath": "/images/articles/aircon-8jou-choose-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/aircon-8jou-choose-board.webp",
+    "hash": "41a814c24eab"
+  },
+  {
+    "id": "not-cooling__question-hook",
+    "articleSlug": "not-cooling",
+    "variant": "question-hook",
+    "text": "「冷えない」で困っていませんか？\n設定 → フィルター → 室外機。\n→原因と対処を整理しました\nhttps://aircon-hokenshitsu.com/articles/not-cooling/\n#エアコン #エアコン修理 #猛暑対策",
+    "imagePath": "/images/articles/not-cooling-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/not-cooling-board.webp",
+    "hash": "3e32dac2ca41"
+  },
+  {
+    "id": "outdoor-unit-check__question-hook",
+    "articleSlug": "outdoor-unit-check",
+    "variant": "question-hook",
+    "text": "「室外機」で困っていませんか？\n室外機の吹き出し口の前はふさがない。物をどけるだけで冷えが戻ることがある。\n→原因と対処を整理しました\nhttps://aircon-hokenshitsu.com/articles/outdoor-unit-check/\n#エアコン掃除 #エアコン #エアコンクリーニング",
+    "imagePath": "/images/articles/outdoor-unit-check-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/outdoor-unit-check-board.webp",
+    "hash": "9f28da88d426"
+  },
+  {
+    "id": "installation-cost__quick-answer",
+    "articleSlug": "installation-cost",
+    "variant": "quick-answer",
+    "text": "「工事費込み」でも配管延長・電源工事・撤去処分は追加になりやすい。\n・見積もり前に設置場所の写真を撮っておくと差額トラブルを防げる。\n・総額＝本体＋標準工事＋追加工事＋撤去処分で比較する。\n→詳しい安全手順はこちら\nhttps://aircon-hokenshitsu.com/articles/installation-cost/\n#エアコン #エアコン買い替え #エアコン選び",
+    "imagePath": "/images/articles/installation-cost-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/installation-cost-board.webp",
+    "hash": "57c405db354c"
+  },
+  {
+    "id": "water-leak__quick-answer",
+    "articleSlug": "water-leak",
+    "variant": "quick-answer",
+    "text": "まず床・家電・電源を守る。\n・見てよいのはホース先端だけ。\n・水が電源に近いなら使用停止。\n→詳しい安全手順はこちら\nhttps://aircon-hokenshitsu.com/articles/water-leak/\n#エアコン #エアコン修理 #猛暑対策",
+    "imagePath": "/images/articles/water-leak-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/water-leak-board.webp",
+    "hash": "d3c9789be407"
+  },
+  {
+    "id": "not-cooling__safe-check",
+    "articleSlug": "not-cooling",
+    "variant": "safe-check",
+    "text": "エアコンが冷えないときの原因と安全チェック｜まず確認すること\n1. フィルターにホコリが詰まっていないか確認する\n2. 室外機の前後に荷物や草木がないか確認する\n→続きと相談の目安はこちら\nhttps://aircon-hokenshitsu.com/articles/not-cooling/\n#エアコン #エアコン修理 #猛暑対策",
+    "imagePath": "/images/articles/not-cooling-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/not-cooling-board.webp",
+    "hash": "c8478223cd54"
+  },
+  {
+    "id": "aircon-14jou-choose__question-hook",
+    "articleSlug": "aircon-14jou-choose",
+    "variant": "question-hook",
+    "text": "「買い替え」で困っていませんか？\n14畳用は4.0kWクラス。200V機が中心。\n→原因と対処を整理しました\nhttps://aircon-hokenshitsu.com/articles/aircon-14jou-choose/\n#エアコン #エアコン買い替え #エアコン選び",
+    "imagePath": "/images/articles/aircon-14jou-choose-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/aircon-14jou-choose-board.webp",
+    "hash": "3bd085718336"
+  },
+  {
+    "id": "aircon-6jou-choose__quick-answer",
+    "articleSlug": "aircon-6jou-choose",
+    "variant": "quick-answer",
+    "text": "独立した6畳なら2.2kW（6畳用）で十分。\n・西日・最上階・古い木造なら8畳用も比較。\n・迷ったらダイキンEか三菱GVのスタンダード機。\n→詳しい安全手順はこちら\nhttps://aircon-hokenshitsu.com/articles/aircon-6jou-choose/\n#エアコン #エアコン買い替え #エアコン選び",
+    "imagePath": "/images/articles/aircon-6jou-choose-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/aircon-6jou-choose-board.webp",
+    "hash": "78d85ba2f48b"
+  },
+  {
+    "id": "call-contractor__question-hook",
+    "articleSlug": "call-contractor",
+    "variant": "question-hook",
+    "text": "「修理」で困っていませんか？\n焦げ臭い・煙・繰り返すブレーカー落ちは、確認より相談を優先。\n→原因と対処を整理しました\nhttps://aircon-hokenshitsu.com/articles/call-contractor/\n#エアコン #エアコンの仕組み",
+    "imagePath": "",
+    "imageUrl": "",
+    "hash": "c890cb200cba"
+  },
+  {
+    "id": "drain-hose__question-hook",
+    "articleSlug": "drain-hose",
+    "variant": "question-hook",
+    "text": "「水漏れ」で困っていませんか？\n室内機からの水漏れは、まずドレンホース先端の詰まりを疑う。\n→原因と対処を整理しました\nhttps://aircon-hokenshitsu.com/articles/drain-hose/\n#エアコン掃除 #エアコン #エアコンクリーニング",
+    "imagePath": "/images/articles/drain-hose-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/drain-hose-board.webp",
+    "hash": "0a07c309d384"
+  },
+  {
+    "id": "installation-cost__safe-check",
+    "articleSlug": "installation-cost",
+    "variant": "safe-check",
+    "text": "エアコン取り付け工事費の相場と確認すべきポイント\nエアコン購入時の標準工事費、追加工事費の目安と、工事前に確認しておくと安心なチェックリストをまとめます。\n→記事で確認\nhttps://aircon-hokenshitsu.com/articles/installation-cost/\n#エアコン #エアコン買い替え #エアコン選び",
+    "imagePath": "/images/articles/installation-cost-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/installation-cost-board.webp",
+    "hash": "93c03721099b"
+  },
+  {
+    "id": "installation-cost__question-hook",
+    "articleSlug": "installation-cost",
+    "variant": "question-hook",
+    "text": "「買い替え」で困っていませんか？\n「工事費込み」でも配管延長・電源工事・撤去処分は追加になりやすい。\n→原因と対処を整理しました\nhttps://aircon-hokenshitsu.com/articles/installation-cost/\n#エアコン #エアコン買い替え #エアコン選び",
+    "imagePath": "/images/articles/installation-cost-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/installation-cost-board.webp",
+    "hash": "2cb10066d285"
+  },
+  {
+    "id": "call-contractor__safe-check",
+    "articleSlug": "call-contractor",
+    "variant": "safe-check",
+    "text": "エアコン修理を呼ぶ目安と依頼前メモ\n修理業者やメーカーへ相談するべき危険サイン、修理・掃除・買い替えの分け方、依頼前にメモしておく情報をまとめます。\n→記事で確認\nhttps://aircon-hokenshitsu.com/articles/call-contractor/\n#エアコン #エアコンの仕組み",
+    "imagePath": "",
+    "imageUrl": "",
+    "hash": "f06fc39891e0"
+  },
+  {
+    "id": "cleaning-spray-risk__question-hook",
+    "articleSlug": "cleaning-spray-risk",
+    "variant": "question-hook",
+    "text": "「におい」で困っていませんか？\n洗浄スプレーは電装部品への液入りで故障・発火の恐れ。当サイトは推奨しない。\n→原因と対処を整理しました\nhttps://aircon-hokenshitsu.com/articles/cleaning-spray-risk/\n#エアコン掃除 #エアコン #エアコンクリーニング",
+    "imagePath": "/images/articles/cleaning-spray-risk-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/cleaning-spray-risk-board.webp",
+    "hash": "8ded72480f5b"
+  },
+  {
+    "id": "how-aircon-works__safe-check",
+    "articleSlug": "how-aircon-works",
+    "variant": "safe-check",
+    "text": "高校生レベルで分かるエアコンの仕組み\nエアコンが部屋を冷やす仕組みを、熱の移動、空気の通り道、水の排出、自分で見てよい範囲に分けてやさしく説明します。\n→記事で確認\nhttps://aircon-hokenshitsu.com/articles/how-aircon-works/\n#エアコン #エアコンの仕組み",
+    "imagePath": "/images/articles/how-aircon-works-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/how-aircon-works-board.webp",
+    "hash": "f620b8b31756"
+  },
+  {
+    "id": "filter-cleaning__risk-warning",
+    "articleSlug": "filter-cleaning",
+    "variant": "risk-warning",
+    "text": "⚠️エアコンフィルター掃除の基本\n市販スプレーを電装部品にかける必要がある\n迷ったら使用を止めて確認を。\n→危険サインの見分け方\nhttps://aircon-hokenshitsu.com/articles/filter-cleaning/\n#エアコン掃除 #エアコン #エアコンクリーニング",
+    "imagePath": "/images/articles/filter-cleaning-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/filter-cleaning-board.webp",
+    "hash": "1c999fc23452"
+  },
+  {
+    "id": "aircon-14jou-choose__safe-check",
+    "articleSlug": "aircon-14jou-choose",
+    "variant": "safe-check",
+    "text": "14畳のLDKに合うエアコンの選び方\n14畳LDK向けエアコンの能力、200V電源、室外機スペース、修理より買い替えを選ぶ目安をまとめます。\n→記事で確認\nhttps://aircon-hokenshitsu.com/articles/aircon-14jou-choose/\n#エアコン #エアコン買い替え #エアコン選び",
+    "imagePath": "/images/articles/aircon-14jou-choose-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/aircon-14jou-choose-board.webp",
+    "hash": "17f3332dc1a0"
+  },
+  {
+    "id": "aircon-history__question-hook",
+    "articleSlug": "aircon-history",
+    "variant": "question-hook",
+    "text": "「買い替え」で困っていませんか？\nエアコンの省エネ性能はインバーター化以降に大きく進化。\n→原因と対処を整理しました\nhttps://aircon-hokenshitsu.com/articles/aircon-history/\n#エアコン #エアコンの仕組み",
+    "imagePath": "",
+    "imageUrl": "",
+    "hash": "c3b1c066bf92"
+  },
+  {
+    "id": "remote-not-working__quick-answer",
+    "articleSlug": "remote-not-working",
+    "variant": "quick-answer",
+    "text": "まず新品電池に交換。リモコン不調の原因はこれが最多。\n・スマホカメラで送信部が光るかを見れば、リモコン側か本体側か分けられる。\n→詳しい安全手順はこちら\nhttps://aircon-hokenshitsu.com/articles/remote-not-working/\n#エアコン #エアコン修理 #猛暑対策",
+    "imagePath": "/images/articles/remote-not-working-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/remote-not-working-board.webp",
+    "hash": "825a88291a4f"
+  },
+  {
+    "id": "aircon-8jou-choose__safe-check",
+    "articleSlug": "aircon-8jou-choose",
+    "variant": "safe-check",
+    "text": "8畳の子供部屋・書斎に合うエアコンの選び方\n8畳用エアコンを選ぶ時の能力、6畳用との違い、10畳用へ上げる目安をまとめます。\n→記事で確認\nhttps://aircon-hokenshitsu.com/articles/aircon-8jou-choose/\n#エアコン #エアコン買い替え #エアコン選び",
+    "imagePath": "/images/articles/aircon-8jou-choose-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/aircon-8jou-choose-board.webp",
+    "hash": "54f81690d2eb"
+  },
+  {
+    "id": "remote-not-working__risk-warning",
+    "articleSlug": "remote-not-working",
+    "variant": "risk-warning",
+    "text": "⚠️エアコンのリモコンが効かない時の切り分け\n本体側の電源が入らない\n迷ったら使用を止めて確認を。\n→危険サインの見分け方\nhttps://aircon-hokenshitsu.com/articles/remote-not-working/\n#エアコン #エアコン修理 #猛暑対策",
+    "imagePath": "/images/articles/remote-not-working-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/remote-not-working-board.webp",
+    "hash": "4363150590a9"
+  },
+  {
+    "id": "strange-noise__risk-warning",
+    "articleSlug": "strange-noise",
+    "variant": "risk-warning",
+    "text": "⚠️エアコンの異音で止めるべき音・様子を見る音\n金属音、焦げ臭さ、煙、火花がある\n迷ったら使用を止めて確認を。\n→危険サインの見分け方\nhttps://aircon-hokenshitsu.com/articles/strange-noise/\n#エアコン #エアコン修理 #猛暑対策",
+    "imagePath": "/images/articles/strange-noise-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/strange-noise-board.webp",
+    "hash": "f124b56e3259"
+  },
+  {
+    "id": "electric-bill-high__safe-check",
+    "articleSlug": "electric-bill-high",
+    "variant": "safe-check",
+    "text": "エアコンの電気代が高いときの原因と節電チェック\nエアコンの電気代が急に上がったときに、初心者でも安全に確認できるフィルター、設定、室外機まわりの見直し方をまとめます。\n→記事で確認\nhttps://aircon-hokenshitsu.com/articles/electric-bill-high/\n#エアコン #電気代 #節電",
+    "imagePath": "/images/articles/electric-bill-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/electric-bill-board.webp",
+    "hash": "432fe5957b08"
+  },
+  {
+    "id": "hvac-career-start__quick-answer",
+    "articleSlug": "hvac-career-start",
+    "variant": "quick-answer",
+    "text": "未経験入口は「修理サービス補助」「設置工事補助」「クリーニング補助」の3つ。\n・電源工事は電気工事士の資格が必要。誰がやるのかを求人で確認。\n→詳しい安全手順はこちら\nhttps://aircon-hokenshitsu.com/articles/hvac-career-start/\n#エアコン #求人 #エアコンクリーニング",
+    "imagePath": "/images/articles/hvac-career-start-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/hvac-career-start-board.webp",
+    "hash": "38f67d0b7e09"
+  },
+  {
+    "id": "filter-cleaning__question-hook",
+    "articleSlug": "filter-cleaning",
+    "variant": "question-hook",
+    "text": "「におい」で困っていませんか？\nフィルター掃除は冷え・におい・電気代に効く、最優先のセルフメンテ。\n→原因と対処を整理しました\nhttps://aircon-hokenshitsu.com/articles/filter-cleaning/\n#エアコン掃除 #エアコン #エアコンクリーニング",
+    "imagePath": "/images/articles/filter-cleaning-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/filter-cleaning-board.webp",
+    "hash": "bf9e50c10ab8"
+  },
+  {
+    "id": "strange-noise__quick-answer",
+    "articleSlug": "strange-noise",
+    "variant": "quick-answer",
+    "text": "金属音や焦げ臭さがあれば停止。\n・運転中のファンには触らない。\n・音の種類とタイミングをメモ。\n→詳しい安全手順はこちら\nhttps://aircon-hokenshitsu.com/articles/strange-noise/\n#エアコン #エアコン修理 #猛暑対策",
+    "imagePath": "/images/articles/strange-noise-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/strange-noise-board.webp",
+    "hash": "fbea5e16d8e8"
+  },
+  {
+    "id": "cleaning-spray-risk__quick-answer",
+    "articleSlug": "cleaning-spray-risk",
+    "variant": "quick-answer",
+    "text": "洗浄スプレーは電装部品への液入りで故障・発火の恐れ。当サイトは推奨しない。\n・自分でやるのはフィルター・外装・室外機まわりまで。\n・内部のカビ・ファンの汚れはプロの分解クリーニングへ。\n→詳しい安全手順はこちら\nhttps://aircon-hokenshitsu.com/articles/cleaning-spray-risk/\n#エアコン掃除 #エアコン #エアコンクリーニング",
+    "imagePath": "/images/articles/cleaning-spray-risk-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/cleaning-spray-risk-board.webp",
+    "hash": "13b110f9665e"
+  },
+  {
+    "id": "not-cooling__risk-warning",
+    "articleSlug": "not-cooling",
+    "variant": "risk-warning",
+    "text": "⚠️エアコンが冷えないときの原因と安全チェック\n室外機が動かない、焦げ臭い、ブレーカーが落ちる\n迷ったら使用を止めて確認を。\n→危険サインの見分け方\nhttps://aircon-hokenshitsu.com/articles/not-cooling/\n#エアコン #エアコン修理 #猛暑対策",
+    "imagePath": "/images/articles/not-cooling-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/not-cooling-board.webp",
+    "hash": "279294a0c8d7"
+  },
+  {
+    "id": "aircon-18jou-choose__quick-answer",
+    "articleSlug": "aircon-18jou-choose",
+    "variant": "quick-answer",
+    "text": "18畳用は5.6kWクラス・200V電源が前提。\n・吹き抜け・26畳超は家庭用の限界も視野に。\n・大型機ほど追加工事費の影響が大きい。\n→詳しい安全手順はこちら\nhttps://aircon-hokenshitsu.com/articles/aircon-18jou-choose/\n#エアコン #エアコン買い替え #エアコン選び",
+    "imagePath": "/images/articles/aircon-18jou-choose-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/aircon-18jou-choose-board.webp",
+    "hash": "a9b904ff6652"
+  },
+  {
+    "id": "water-leak__safe-check",
+    "articleSlug": "water-leak",
+    "variant": "safe-check",
+    "text": "エアコンから水漏れするときの応急確認｜まず確認すること\n1. 室内機の下に家電や紙類を置かない\n2. ドレンホース先端が水や泥でふさがっていないか外側から見る\n3. フィルターを外して乾いたホコリを掃除する\n→続きと相談の目安はこちら\nhttps://aircon-hokenshitsu.com/articles/water-leak/\n#エアコン #エアコン修理 #猛暑対策",
+    "imagePath": "/images/articles/water-leak-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/water-leak-board.webp",
+    "hash": "1484297bddf0"
+  },
+  {
+    "id": "strange-noise__question-hook",
+    "articleSlug": "strange-noise",
+    "variant": "question-hook",
+    "text": "「異音」で困っていませんか？\n金属音や焦げ臭さがあれば停止。\n→原因と対処を整理しました\nhttps://aircon-hokenshitsu.com/articles/strange-noise/\n#エアコン #エアコン修理 #猛暑対策",
+    "imagePath": "/images/articles/strange-noise-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/strange-noise-board.webp",
+    "hash": "c381ac618fef"
+  },
+  {
+    "id": "cleaning-staff-career__question-hook",
+    "articleSlug": "cleaning-staff-career",
+    "variant": "question-hook",
+    "text": "「求人」で困っていませんか？\n仕事の核心は洗浄より「養生と電装部品の保護」。研修の質がすべて。\n→原因と対処を整理しました\nhttps://aircon-hokenshitsu.com/articles/cleaning-staff-career/\n#エアコン #求人 #エアコンクリーニング",
+    "imagePath": "/images/articles/cleaning-staff-career-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/cleaning-staff-career-board.webp",
+    "hash": "f38a69e380a8"
+  },
+  {
+    "id": "heating-not-working__question-hook",
+    "articleSlug": "heating-not-working",
+    "variant": "question-hook",
+    "text": "「暖房」で困っていませんか？\n温風が10〜20分止まるのは霜取り運転。故障ではない。\n→原因と対処を整理しました\nhttps://aircon-hokenshitsu.com/articles/heating-not-working/\n#エアコン #エアコン修理 #猛暑対策",
+    "imagePath": "/images/articles/heating-not-working-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/heating-not-working-board.webp",
+    "hash": "5cb305d5d91f"
+  },
+  {
+    "id": "heating-not-working__safe-check",
+    "articleSlug": "heating-not-working",
+    "variant": "safe-check",
+    "text": "エアコン暖房が効かない時の原因と安全チェック\nエアコンの暖房が温まらない、風が冷たい、霜取り運転が多い時に、初心者が安全に確認できることをまとめます。\n→記事で確認\nhttps://aircon-hokenshitsu.com/articles/heating-not-working/\n#エアコン #エアコン修理 #猛暑対策",
+    "imagePath": "/images/articles/heating-not-working-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/heating-not-working-board.webp",
+    "hash": "1a50b18d2ca5"
+  },
+  {
+    "id": "filter-cleaning__quick-answer",
+    "articleSlug": "filter-cleaning",
+    "variant": "quick-answer",
+    "text": "フィルター掃除は冷え・におい・電気代に効く、最優先のセルフメンテ。\n・掃除機でホコリ→汚れが強ければ水洗い→完全に乾かして戻す。\n→詳しい安全手順はこちら\nhttps://aircon-hokenshitsu.com/articles/filter-cleaning/\n#エアコン掃除 #エアコン #エアコンクリーニング",
+    "imagePath": "/images/articles/filter-cleaning-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/filter-cleaning-board.webp",
+    "hash": "c3f6c7acd837"
+  },
+  {
+    "id": "drain-hose__safe-check",
+    "articleSlug": "drain-hose",
+    "variant": "safe-check",
+    "text": "ドレンホース詰まりの見分け方\nエアコン水漏れの原因になりやすいドレンホースについて、詰まりのサイン、外側から安全に確認・解消できる範囲、業者に任せる判断を解説します。\n→記事で確認\nhttps://aircon-hokenshitsu.com/articles/drain-hose/\n#エアコン掃除 #エアコン #エアコンクリーニング",
+    "imagePath": "/images/articles/drain-hose-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/drain-hose-board.webp",
+    "hash": "d9cb693114db"
+  },
+  {
+    "id": "aircon-6jou-choose__safe-check",
+    "articleSlug": "aircon-6jou-choose",
+    "variant": "safe-check",
+    "text": "6畳の寝室に合うエアコンの選び方\n6畳の寝室・子供部屋・書斎に合うエアコンを、能力、設置条件、予算、買い替え目安から選ぶ方法を整理します。\n→記事で確認\nhttps://aircon-hokenshitsu.com/articles/aircon-6jou-choose/\n#エアコン #エアコン買い替え #エアコン選び",
+    "imagePath": "/images/articles/aircon-6jou-choose-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/aircon-6jou-choose-board.webp",
+    "hash": "d90dc3e5120b"
+  },
+  {
+    "id": "aircon-history__safe-check",
+    "articleSlug": "aircon-history",
+    "variant": "safe-check",
+    "text": "エアコンの歴史と技術革新：消費電力の推移で見る買い替えの目安\n1902年の誕生から現代のスマートエアコンまで、主な技術革新を時間軸で解説。消費電力の推移から、あなたのエアコンの買い替え時期を判断する目安にもなります。\n→記事で確認\nhttps://aircon-hokenshitsu.com/articles/aircon-history/\n#エアコン #エアコンの仕組み",
+    "imagePath": "",
+    "imageUrl": "",
+    "hash": "07d58dac8a7d"
+  },
+  {
+    "id": "aircon-10jou-choose__quick-answer",
+    "articleSlug": "aircon-10jou-choose",
+    "variant": "quick-answer",
+    "text": "独立した10畳なら2.8kW（10畳用）が基準。\n・LDK続き・吹き抜け・西日なら14畳用も比較。\n・工事費込み表示の範囲を先に確認する。\n→詳しい安全手順はこちら\nhttps://aircon-hokenshitsu.com/articles/aircon-10jou-choose/\n#エアコン #エアコン買い替え #エアコン選び",
+    "imagePath": "/images/articles/aircon-10jou-choose-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/aircon-10jou-choose-board.webp",
+    "hash": "406f4c4a459a"
+  },
+  {
+    "id": "aircon-maker-compare__question-hook",
+    "articleSlug": "aircon-maker-compare",
+    "variant": "question-hook",
+    "text": "「買い替え」で困っていませんか？\n迷ったら、修理窓口や部品供給の情報が探しやすい国内大手メーカーを優先すると安心です。\n→原因と対処を整理しました\nhttps://aircon-hokenshitsu.com/articles/aircon-maker-compare/\n#エアコン #エアコン買い替え #エアコン選び",
+    "imagePath": "/images/articles/aircon-maker-compare-board.webp",
+    "imageUrl": "https://aircon-hokenshitsu.com/images/articles/aircon-maker-compare-board.webp",
+    "hash": "a632c9330e37"
+  }
+]
