@@ -11,6 +11,8 @@ quickAnswer:
   - "8畳用は2.5kWクラス。木造なら基本これ。"
   - "鉄筋・北向き・夜だけなら6畳用で足りることも。"
   - "木造最上階・西日・在宅勤務なら10畳用も比較。"
+boardImage: "/images/articles/aircon-8jou-choose-board.webp"
+boardAlt: "8畳の子供部屋・書斎に合うエアコンの図解"
 pubDate: "2026-05-16"
 updatedDate: "2026-06-12"
 ---

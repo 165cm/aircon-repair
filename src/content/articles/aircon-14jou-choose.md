@@ -11,6 +11,8 @@ quickAnswer:
   - "14畳用は4.0kWクラス。200V機が中心。"
   - "200V専用コンセントの有無を最初に確認。"
   - "10年以上＋複数症状なら修理と買い替えを同時比較。"
+boardImage: "/images/articles/aircon-14jou-choose-board.webp"
+boardAlt: "14畳のLDKに合うエアコンの図解"
 pubDate: "2026-05-16"
 updatedDate: "2026-06-12"
 ---

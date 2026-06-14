@@ -11,6 +11,8 @@ quickAnswer:
   - "独立した6畳なら2.2kW（6畳用）で十分。"
   - "西日・最上階・古い木造なら8畳用も比較。"
   - "迷ったらダイキンEか三菱GVのスタンダード機。"
+boardImage: "/images/articles/aircon-6jou-choose-board.webp"
+boardAlt: "6畳の寝室に合うエアコンの図解"
 pubDate: "2026-05-16"
 updatedDate: "2026-06-12"
 ---

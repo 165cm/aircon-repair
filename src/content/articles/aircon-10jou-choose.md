@@ -11,6 +11,8 @@ quickAnswer:
   - "独立した10畳なら2.8kW（10畳用）が基準。"
   - "LDK続き・吹き抜け・西日なら14畳用も比較。"
   - "工事費込み表示の範囲を先に確認する。"
+boardImage: "/images/articles/aircon-10jou-choose-board.webp"
+boardAlt: "10畳のリビングに合うエアコンの図解"
 pubDate: "2026-05-16"
 updatedDate: "2026-06-12"
 ---

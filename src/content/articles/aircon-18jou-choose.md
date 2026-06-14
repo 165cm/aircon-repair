@@ -11,6 +11,8 @@ quickAnswer:
   - "18畳用は5.6kWクラス・200V電源が前提。"
   - "吹き抜け・26畳超は家庭用の限界も視野に。"
   - "大型機ほど追加工事費の影響が大きい。"
+boardImage: "/images/articles/aircon-18jou-choose-board.webp"
+boardAlt: "18畳以上の大空間に合うエアコンの図解"
 pubDate: "2026-05-16"
 updatedDate: "2026-06-12"
 ---

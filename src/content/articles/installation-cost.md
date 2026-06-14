@@ -12,6 +12,8 @@ quickAnswer:
   - "見積もり前に設置場所の写真を撮っておくと差額トラブルを防げる。"
   - "総額＝本体＋標準工事＋追加工事＋撤去処分で比較する。"
 relatedArticles: ["call-contractor", "aircon-6jou-choose", "aircon-14jou-choose"]
+boardImage: "/images/articles/installation-cost-board.webp"
+boardAlt: "エアコン取り付け工事の費用と作業の図解"
 pubDate: "2026-05-17"
 updatedDate: "2026-06-12"
 ---
