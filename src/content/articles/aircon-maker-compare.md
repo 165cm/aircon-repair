@@ -14,6 +14,8 @@ quickAnswer:
   - "お掃除ロボットはフィルター掃除の手間を減らしますが、内部のファンや熱交換器の汚れまで不要にする機能ではありません。"
   - "Amazonでは本体価格だけでなく、標準工事の範囲、販売元、保証、既設機撤去、100V/200V条件を必ず確認します。"
 relatedArticles: ["installation-cost", "aircon-10jou-choose", "cleaning-spray-risk"]
+boardImage: "/images/articles/aircon-maker-compare-board.webp"
+boardAlt: "エアコンメーカーを見比べる図解"
 pubDate: "2026-05-21"
 ---
 
