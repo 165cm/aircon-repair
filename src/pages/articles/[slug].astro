@@ -148,7 +148,7 @@ if (isProceduralArticle) {
 }
 ---
 
-<BaseLayout title={article.data.title} description={article.data.description} canonical={canonical} jsonLd={jsonLd} breadcrumbs={breadcrumbs}>
+<BaseLayout title={article.data.title} description={article.data.description} canonical={canonical} jsonLd={jsonLd} ogImage={articleThumbnail(article)} breadcrumbs={breadcrumbs}>
   <section class="container section">
     <p class="eyebrow">{categoryLabel}</p>
     <h1>{article.data.title}</h1>

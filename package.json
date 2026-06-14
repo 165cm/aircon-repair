@@ -8,6 +8,8 @@
     "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
     "postinstall": "node scripts/patch-rollup-wasm.mjs",
     "check:amazon": "node scripts/check-amazon-links.mjs",
+    "generate:social": "node scripts/generate-social.mjs",
+    "check:social": "node scripts/generate-social.mjs --check",
     "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview --host 127.0.0.1"
   },
   "dependencies": {

@@ -1,0 +1,60 @@
+name: YouTube upload (無料API・opt-in)
+
+# 動画(Kling/Gemini等で手動生成)をYouTubeへ無料APIでアップロードする。
+# 動画ファイルはgitに入れず、GitHub Releaseのアセットとして添付しておき、
+# このワークフローでダウンロード→videos.insert する。
+# 事前準備(ユーザー作業): Google Cloudプロジェクト + OAuth同意画面 + リフレッシュトークン取得。
+# repo secrets: YT_CLIENT_ID / YT_CLIENT_SECRET / YT_REFRESH_TOKEN
+on:
+  workflow_dispatch:
+    inputs:
+      article_slug:
+        description: "data/youtube-meta.json のarticleSlug(タイトル/説明文の出典)"
+        required: true
+        type: string
+      release_tag:
+        description: "動画ファイルを添付したReleaseのタグ"
+        required: true
+        type: string
+      asset_name:
+        description: "Releaseアセットのファイル名(例: not-cooling.mp4)"
+        required: true
+        type: string
+      privacy:
+        description: "公開範囲"
+        type: choice
+        options: [private, unlisted, public]
+        default: unlisted
+
+permissions:
+  contents: read
+
+concurrency:
+  group: youtube-upload
+  cancel-in-progress: false
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Download video asset from Release
+        run: |
+          mkdir -p /tmp/video
+          gh release download "${{ inputs.release_tag }}" \
+            --pattern "${{ inputs.asset_name }}" \
+            --dir /tmp/video
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: Upload to YouTube
+        run: node scripts/youtube-upload.mjs
+        env:
+          ARTICLE_SLUG: ${{ inputs.article_slug }}
+          VIDEO_PATH: /tmp/video/${{ inputs.asset_name }}
+          PRIVACY: ${{ inputs.privacy }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
