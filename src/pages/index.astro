@@ -106,6 +106,7 @@ const jsonLd = {
   "@type": "WebSite",
   name: affiliate.siteName,
   url: affiliate.siteUrl,
+  sameAs: [affiliate.xUrl],
   potentialAction: {
     "@type": "SearchAction",
     target: `${affiliate.siteUrl}/articles/?q={search_term_string}`,
