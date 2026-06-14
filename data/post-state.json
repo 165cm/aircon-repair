@@ -1,5 +1,11 @@
 {
-  "posted": [],
-  "cursor": 0,
-  "lastRunAt": null
+  "posted": [
+    {
+      "id": "electric-bill-high__question-hook",
+      "articleSlug": "electric-bill-high",
+      "postedAt": "2026-06-14T05:39:11.550Z"
+    }
+  ],
+  "cursor": 1,
+  "lastRunAt": "2026-06-14T05:39:11.550Z"
 }
