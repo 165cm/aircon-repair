@@ -13,7 +13,9 @@ export const affiliate = {
   contractorAffiliateUrl: serviceAffiliateUrls.contractor,
   cleaningAffiliateUrl: serviceAffiliateUrls.cleaning,
   jobAffiliateUrl: serviceAffiliateUrls.jobs,
-  contactFormUrl: "/contact/"
+  contactFormUrl: "/contact/",
+  xUrl: "https://x.com/aircon_hoken",
+  xHandle: "@aircon_hoken"
 };
 
 export const isAmazonConfigured =

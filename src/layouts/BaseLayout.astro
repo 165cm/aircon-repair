@@ -196,6 +196,9 @@ const footerSiteMap = [
         <div class="footer-about">
           <h2>{affiliate.siteName}</h2>
           <p>保健室だよりのように、エアコンの不調を安全確認、修理相談、買い替え検討の順番で整理する相談ノートです。</p>
+          <p class="footer-social">
+            <a href={affiliate.xUrl} target="_blank" rel="me noopener">X（旧Twitter）で発信中 {affiliate.xHandle}</a>
+          </p>
         </div>
         <nav class="footer-sitemap" aria-label="フッターサイトマップ">
           {footerSiteMap.map((group) => (
