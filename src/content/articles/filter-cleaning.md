@@ -11,6 +11,8 @@ quickAnswer:
   - "フィルター掃除は冷え・におい・電気代に効く、最優先のセルフメンテ。"
   - "掃除機でホコリ→汚れが強ければ水洗い→完全に乾かして戻す。"
   - "夏の使用期は2週間に1回が目安。奥のフィンやファンは触らない。"
+boardImage: "/images/articles/filter-cleaning-board.webp"
+boardAlt: "エアコンのフィルターを外して掃除機で掃除する図解"
 relatedArticles: ["smell-odor", "not-cooling", "cleaning-spray-risk"]
 pubDate: "2026-05-16"
 updatedDate: "2026-06-12"

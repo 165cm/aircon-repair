@@ -11,6 +11,8 @@ quickAnswer:
   - "まず新品電池に交換。リモコン不調の原因はこれが最多。"
   - "スマホカメラで送信部が光るかを見れば、リモコン側か本体側か分けられる。"
   - "本体が焦げ臭い・ブレーカーが落ちる時はリモコンの問題ではない。即停止。"
+boardImage: "/images/articles/remote-not-working-board.webp"
+boardAlt: "エアコンのリモコンの電池を交換して切り分ける図解"
 relatedArticles: ["not-cooling", "call-contractor"]
 pubDate: "2026-05-16"
 updatedDate: "2026-06-12"
