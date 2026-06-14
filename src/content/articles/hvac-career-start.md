@@ -12,6 +12,8 @@ quickAnswer:
   - "電源工事は電気工事士の資格が必要。誰がやるのかを求人で確認。"
   - "高収入の数字より、研修・保険・安全教育の有無で会社を選ぶ。"
 relatedArticles: ["cleaning-staff-career", "how-aircon-works", "aircon-history"]
+boardImage: "/images/articles/hvac-career-start-board.webp"
+boardAlt: "エアコン修理・設置エンジニアの仕事を示す図解"
 pubDate: "2026-05-16"
 updatedDate: "2026-06-12"
 ---
