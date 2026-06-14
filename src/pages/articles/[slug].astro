@@ -183,7 +183,6 @@ if (isProceduralArticle) {
           hasBoardImage && (
             <figure class="board-figure board-figure-intro">
               <img src={sitePath(article.data.boardImage)} alt={article.data.boardAlt ?? `${article.data.title}の図解`} loading="eager" />
-              <figcaption>{article.data.boardAlt ?? "この記事の要点を図解で整理しています。"}</figcaption>
             </figure>
           )
         }

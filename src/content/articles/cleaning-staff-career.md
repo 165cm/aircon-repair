@@ -12,6 +12,8 @@ quickAnswer:
   - "歩合制は単価×件数だけでなく、閑散期と移動時間の扱いを確認。"
   - "研修なし・道具自費・保険不明の3つがそろう求人は避ける。"
 relatedArticles: ["hvac-career-start", "cleaning-spray-risk", "filter-cleaning"]
+boardImage: "/images/articles/cleaning-staff-career-board.webp"
+boardAlt: "エアコンクリーニングスタッフの仕事を示す図解"
 pubDate: "2026-05-16"
 updatedDate: "2026-06-12"
 ---
