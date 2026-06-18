@@ -85,12 +85,16 @@ const articlePlans: Record<string, ArticlePlan> = {
     products: [["aircon-10tatami", "replacement"], ["circulator", "comfort"]]
   },
   "aircon-14jou-choose": {
-    articles: [["aircon-10jou-choose", "deep-dive"], ["aircon-18jou-choose", "safe-check"], ["installation-cost", "decision"]],
+    articles: [["aircon-ldk-choose", "deep-dive"], ["aircon-18jou-choose", "safe-check"], ["installation-cost", "decision"]],
     products: [["aircon-14tatami", "replacement"], ["circulator", "comfort"]]
   },
   "aircon-18jou-choose": {
-    articles: [["aircon-14jou-choose", "deep-dive"], ["installation-cost", "safe-check"], ["call-contractor", "decision"]],
+    articles: [["aircon-ldk-choose", "deep-dive"], ["installation-cost", "safe-check"], ["call-contractor", "decision"]],
     products: [["aircon-18tatami", "replacement"], ["circulator", "comfort"]]
+  },
+  "aircon-ldk-choose": {
+    articles: [["aircon-14jou-choose", "deep-dive"], ["aircon-18jou-choose", "safe-check"], ["installation-cost", "decision"]],
+    products: [["aircon-14tatami", "replacement"], ["aircon-18tatami", "replacement"]]
   },
   "installation-cost": {
     articles: [["aircon-6jou-choose", "deep-dive"], ["aircon-10jou-choose", "safe-check"], ["aircon-14jou-choose", "decision"]],
