@@ -49,8 +49,13 @@
       "id": "filter-cleaning__safe-check",
       "articleSlug": "filter-cleaning",
       "postedAt": "2026-06-22T14:43:00.622Z"
+    },
+    {
+      "id": "aircon-maker-compare__safe-check",
+      "articleSlug": "aircon-maker-compare",
+      "postedAt": "2026-06-23T12:09:16.586Z"
     }
   ],
-  "cursor": 10,
-  "lastRunAt": "2026-06-22T14:43:00.622Z"
+  "cursor": 11,
+  "lastRunAt": "2026-06-23T12:09:16.586Z"
 }
