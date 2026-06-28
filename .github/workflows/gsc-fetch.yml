@@ -1,0 +1,43 @@
+name: GSC fetch (検索needs更新)
+
+# 週次で Google Search Console のデータを取得し、コンテンツ機会(data/gsc-content-ideas.json)を更新する。
+# 記事執筆はここではしない(Claude Code セッションの gsc-content スキルで実施し PR レビュー経由で公開)。
+on:
+  schedule:
+    - cron: "0 21 * * 1" # 毎週月曜 06:00 JST
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "取得日数(既定28)"
+        type: string
+        default: "28"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gsc-fetch
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Fetch GSC data
+        run: node scripts/fetch-gsc.mjs --days=${{ inputs.days || '28' }}
+        env:
+          GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+          GSC_SERVICE_ACCOUNT_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+      - name: Build content ideas
+        run: node scripts/gsc-content-ideas.mjs
+      - name: Commit data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/gsc data/gsc-content-ideas.json || true
+          git diff --staged --quiet || git commit -m "chore(gsc): refresh search console data and content ideas [skip ci]"
+          git push

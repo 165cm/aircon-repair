@@ -4,3 +4,10 @@ docs/
 .astro/
 .DS_Store
 npm-debug.log*
+
+# GSC サービスアカウント鍵などの秘密ファイル(誤コミット防止。鍵はenv経由で渡す)
+*service-account*.json
+*gsc-key*.json
+*.serviceaccount.json
+.env
+.env.*
