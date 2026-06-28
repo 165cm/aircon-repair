@@ -10,6 +10,9 @@
     "check:amazon": "node scripts/check-amazon-links.mjs",
     "generate:social": "node scripts/generate-social.mjs",
     "check:social": "node scripts/generate-social.mjs --check",
+    "gsc:fetch": "node scripts/fetch-gsc.mjs",
+    "gsc:ideas": "node scripts/gsc-content-ideas.mjs",
+    "check:gsc": "node scripts/gsc-content-ideas.mjs --check",
     "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview --host 127.0.0.1"
   },
   "dependencies": {

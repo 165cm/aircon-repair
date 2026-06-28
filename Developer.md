@@ -79,6 +79,33 @@
 - 変更後は少なくとも対象ページ、ホーム、診断、商品導線、畳数導線の主要CTAが崩れていないか確認します。
 - 外部リンクの `rel` と `target`、`data-cvr-action` の付与漏れも確認対象です。
 
+## GSC連動コンテンツ拡充
+
+Google Search Console (GSC) の検索パフォーマンスを読み取り、検索需要に基づいて記事を増やす/改善する仕組みです。自動公開はせず、必ずPRレビューを挟みます。
+
+### 構成
+
+- `scripts/fetch-gsc.mjs` — GSC Search Analytics API からクエリ別/ページ別データを取得し `data/gsc/queries.json`・`data/gsc/pages.json` に保存します。サービスアカウント方式で、依存追加なし（`node:crypto` でJWT(RS256)を自作してトークン交換）。
+- `scripts/gsc-content-ideas.mjs` — 上記データと既存記事(`src/content/articles/*.md`)を突き合わせ、「未カバーの高需要クエリ(新規候補)」「順位が伸びない既存記事(リライト候補)」を `data/gsc-content-ideas.json` に優先度順で出力します。
+- `.claude/skills/gsc-content/SKILL.md` — Claude Code が上記データを基に記事ドラフトを書き、`npm run build` で検証し、PRを作るためのスキル。安全方針・文体・スキーマ準拠を明記しています。
+- `.github/workflows/gsc-fetch.yml` — 週次でデータを更新し `data/` にコミットするワークフロー（記事執筆はしない）。
+- npm scripts: `npm run gsc:fetch` / `npm run gsc:ideas` / `npm run check:gsc`。
+
+### セットアップ
+
+1. **GCPでサービスアカウント作成**: Google Cloud で「Search Console API」を有効化し、サービスアカウントを作成してJSON鍵をダウンロードします。
+2. **GSC側でユーザー追加**: Search Console の対象プロパティ → 設定 → ユーザーと権限 で、上記サービスアカウントのメールアドレス（`xxx@xxx.iam.gserviceaccount.com`）を「制限付き」以上で追加します。**これをしないとAPIが403を返します。**
+3. **シークレット登録**: GitHub の Secrets に以下を登録します。
+   - `GSC_SERVICE_ACCOUNT_JSON`: 鍵JSONの中身（文字列）
+   - `GSC_SITE_URL`: 例 `sc-domain:aircon-hokenshitsu.com`（ドメインプロパティ）または `https://aircon-hokenshitsu.com/`（URLプレフィックス）
+4. **ローカル実行**: 上記2つを環境変数に設定して `npm run gsc:fetch`。`GSC_SERVICE_ACCOUNT_JSON` には鍵JSONファイルのパスも指定できます。
+
+鍵JSON・アクセストークンは絶対にコミットしません（`.gitignore` で `*service-account*.json` 等を除外済み）。コミットするのは集計済みの `data/gsc/` と `data/gsc-content-ideas.json` のみです。
+
+### 使い方（記事を増やす）
+
+Claude Code セッションで `gsc-content` スキルを起動すると、データ取得 → テーマ選定 → ドラフト作成 → ビルド検証 → PR作成まで案内します。GSCの所有権確認メタタグが必要な場合は `src/data/affiliate.ts` の `googleSiteVerification` に設定します（値はコミット可否を運用方針に合わせて判断）。
+
 ## Gitでの注意
 
 - 既存の未追跡ファイルが残っている場合があります。作業に関係ないものは削除・整形しないでください。
