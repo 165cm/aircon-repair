@@ -74,8 +74,13 @@
       "id": "aircon-6jou-choose__question-hook",
       "articleSlug": "aircon-6jou-choose",
       "postedAt": "2026-06-27T10:58:36.870Z"
+    },
+    {
+      "id": "how-aircon-works__question-hook",
+      "articleSlug": "how-aircon-works",
+      "postedAt": "2026-06-28T11:08:56.635Z"
     }
   ],
-  "cursor": 15,
-  "lastRunAt": "2026-06-27T10:58:36.870Z"
+  "cursor": 16,
+  "lastRunAt": "2026-06-28T11:08:56.635Z"
 }
