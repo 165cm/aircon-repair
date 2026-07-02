@@ -94,8 +94,13 @@
       "id": "aircon-10jou-choose__safe-check",
       "articleSlug": "aircon-10jou-choose",
       "postedAt": "2026-07-01T12:10:12.392Z"
+    },
+    {
+      "id": "water-leak__risk-warning",
+      "articleSlug": "water-leak",
+      "postedAt": "2026-07-02T11:35:14.269Z"
     }
   ],
-  "cursor": 19,
-  "lastRunAt": "2026-07-01T12:10:12.392Z"
+  "cursor": 20,
+  "lastRunAt": "2026-07-02T11:35:14.269Z"
 }
