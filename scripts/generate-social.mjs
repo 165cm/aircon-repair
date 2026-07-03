@@ -163,8 +163,12 @@ async function loadArticles() {
 }
 
 // --- 投稿バリアント生成 ---
+// 記事URLにはCVR計測用のUTMパラメータを付与する(どのバリアントが相談/購入導線クリックに繋がったかをGA側で追跡するため)。
+// Xは全URLをt.co(加重23文字)に短縮するため、クエリ文字列を足しても280字加重カウントには影響しない。
+function urlFor(article, variant) {
+  return `${SITE_URL}/articles/${article.slug}/?utm_source=x&utm_medium=social&utm_content=${variant}`;
+}
 function buildXPosts(article, diag) {
-  const url = `${SITE_URL}/articles/${article.slug}/`;
   const tags = tagsFor(article.category);
   const qa = Array.isArray(article.quickAnswer) ? article.quickAnswer : [];
   const symptoms = Array.isArray(article.symptoms) ? article.symptoms : [];
@@ -185,28 +189,28 @@ function buildXPosts(article, diag) {
   if (qa.length) {
     const hook = qa[0];
     const bullets = qa.slice(1).map((b) => `・${b}`);
-    push("quick-answer", fitPost(hook, bullets, "→詳しい安全手順はこちら", url, tags));
+    push("quick-answer", fitPost(hook, bullets, "→詳しい安全手順はこちら", urlFor(article, "quick-answer"), tags));
   }
   // 2. safe-check (diagnosisのsafeChecksがあれば数値リスト、なければdescription)
   if (d.safeChecks && d.safeChecks.length) {
     const hook = `${article.title}｜まず確認すること`;
     const bullets = d.safeChecks.map((s, i) => `${i + 1}. ${s}`);
-    push("safe-check", fitPost(hook, bullets, "→続きと相談の目安はこちら", url, tags));
+    push("safe-check", fitPost(hook, bullets, "→続きと相談の目安はこちら", urlFor(article, "safe-check"), tags));
   } else if (article.description) {
-    push("safe-check", fitPost(article.title, [article.description], "→記事で確認", url, tags));
+    push("safe-check", fitPost(article.title, [article.description], "→記事で確認", urlFor(article, "safe-check"), tags));
   }
   // 3. question-hook
   {
     const topic = symptoms[0] ?? article.title;
     const hook = `「${topic}」で困っていませんか？`;
     const bullets = [qa[0] ?? article.description].filter(Boolean);
-    push("question-hook", fitPost(hook, bullets, "→原因と対処を整理しました", url, tags));
+    push("question-hook", fitPost(hook, bullets, "→原因と対処を整理しました", urlFor(article, "question-hook"), tags));
   }
   // 4. risk-warning (risk:high か stopSigns があるときだけ)
   if (article.risk === "high" || (d.stopSigns && d.stopSigns.length)) {
     const hook = `⚠️${article.title}`;
     const bullets = [d.stopSigns?.[0] ?? qa[0] ?? article.description, "迷ったら使用を止めて確認を。"].filter(Boolean);
-    push("risk-warning", fitPost(hook, bullets, "→危険サインの見分け方", url, tags));
+    push("risk-warning", fitPost(hook, bullets, "→危険サインの見分け方", urlFor(article, "risk-warning"), tags));
   }
   return posts;
 }

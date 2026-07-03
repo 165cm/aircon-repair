@@ -106,6 +106,57 @@ Google Search Console (GSC) の検索パフォーマンスを読み取り、検�
 
 Claude Code セッションで `gsc-content` スキルを起動すると、データ取得 → テーマ選定 → ドラフト作成 → ビルド検証 → PR作成まで案内します。GSCの所有権確認メタタグが必要な場合は `src/data/affiliate.ts` の `googleSiteVerification` に設定します（値はコミット可否を運用方針に合わせて判断）。
 
+## X運用（X MCP・集客ブリーフィング）
+
+`@aircon_hoken` のX投稿は、X APIの無料枠廃止(2026年時点でURL付き投稿は$0.20/件の従量課金)を理由に、
+**書き込みAPIを使わず完全手動コピペで運用**している。この方針は変えない。X MCPは「投稿の自動化」
+ではなく「今日コピペする1件の質を上げるリサーチ・下書き支援」のためだけに使う。
+
+### 既存の投稿パイプライン(自動生成・自動投稿はしない)
+
+- `scripts/generate-social.mjs` — 記事フロントマターから4パターンのX投稿文(quick-answer / safe-check /
+  question-hook / risk-warning)を生成し `data/x-posts.json` に書き出す。記事URLには
+  `?utm_source=x&utm_medium=social&utm_content=<variant>` を付与しており、GA側でどのバリアントが
+  実際のCVR(`data-cvr-action`)に繋がったか追跡できる。
+- `scripts/post-next.mjs` — 未投稿のうち「次の1件」を選び `data/outbox/<date>.md` と
+  GitHub Step Summaryに書き出す(投稿そのものは行わない)。
+- `.github/workflows/social-export.yml` — 毎日18:00 JSTに上記を実行し、`data/post-state.json` と
+  `data/outbox/` をコミットする。
+- npm scripts: `npm run generate:social` / `npm run check:social`。記事を追加・更新したら
+  `npm run generate:social` を実行して `data/x-posts.json` / `data/youtube-meta.json` を
+  再生成し、差分をコミットする(既存記事の内容変更を含む大きな差分になりやすいので、
+  無関係な変更と混ぜずに単独でコミットするとレビューしやすい)。
+
+### X MCPのセットアップ（読み取り専用）
+
+X公式は2026年6月30日にホスト型MCPサーバーをローンチした(`docs.x.com/tools/mcp` 参照)。
+ただし書き込み対応の有無は情報が流動的なため、**このリポジトリでは「Read only」権限のみ**を前提にする。
+
+1. `developer.x.com` の Developer Portal でアプリを作成する。
+   - **アプリの権限は必ず「Read only（読み取りのみ）」**にする。「Read and Write」は選ばない
+     (書き込み権限を持たせるとAPI従量課金・誤投稿・アカウント停止のリスクがあるが、
+     このスキルの用途では読み取りだけで十分)。
+   - コールバックURLは `http://localhost:8080/callback`。
+2. 発行されたクライアントID/クライアントシークレットは、ローカルの `.env`(`.gitignore`済み)に
+   `X_CLIENT_ID` / `X_CLIENT_SECRET` として保存する。**リポジトリにコミットしない。**
+3. Claude Codeで接続する。まず公式ホスト型MCPを試し、動作しない/機能不足なら読み取り専用スコープ
+   (`tweet.read users.read offline.access` 程度)のコミュニティ製MCPサーバーに切り替える。
+4. `/mcp` で接続を確認し、OAuthのブラウザ許可画面で認証を完了する。
+5. 接続後は `.claude/skills/x-growth-brief/SKILL.md` のスキルで「本日の投稿ブリーフィング」を
+   毎朝生成する。書き込み系ツールが見えても呼び出さない。
+
+### 集客(CVR)を伸ばすための運用ルール
+
+- 投稿には**必ず板書画像(`public/images/articles/*-board.webp`)を添付**する。リンクカード任せに
+  しない(2026年のXはリンク単体投稿を評価減点する傾向がある)。
+- 投稿後30分はリプライを見て早めに返信する(会話滞在時間がエンゲージメント評価に有利に働く)。
+- 投稿頻度は1日1投稿を維持し、`data/gsc-content-ideas.json` の高需要テーマから週1回だけ
+  スレッド化して深掘りする(頻度でなく質を上げる方針)。
+- 投稿URLのUTMパラメータ(`utm_content=<variant>`)とGAのCVRイベントを突き合わせ、
+  「伸びたが集客に繋がらない」投稿と「集客に繋がった」投稿を区別して次のフック改善に反映する。
+- クライアントID/Secret・アクセストークンは絶対にコミットしない。コミット前に `git status` で
+  意図しないシークレットファイルが含まれていないか確認する。
+
 ## Gitでの注意
 
 - 既存の未追跡ファイルが残っている場合があります。作業に関係ないものは削除・整形しないでください。
