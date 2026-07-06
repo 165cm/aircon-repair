@@ -1,46 +1,118 @@
 {
   "meta": {
     "siteUrl": "sc-domain:aircon-hokenshitsu.com",
-    "startDate": "2026-05-31",
-    "endDate": "2026-06-27",
-    "fetchedAt": "2026-06-29T22:08:52.843Z"
+    "startDate": "2026-06-07",
+    "endDate": "2026-07-04",
+    "fetchedAt": "2026-07-06T22:13:44.919Z"
   },
   "rows": [
     {
       "page": "https://aircon-hokenshitsu.com/products/mitsubishi-gv-10tatami-msz-gv2825/",
       "query": "msz gv2825 w 口コミ",
       "clicks": 2,
-      "impressions": 9,
-      "ctr": 0.2222,
-      "position": 9.56
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-choose/",
-      "query": "ldk エアコン おすすめ",
-      "clicks": 1,
-      "impressions": 8,
-      "ctr": 0.125,
-      "position": 9.13
+      "impressions": 19,
+      "ctr": 0.1053,
+      "position": 10
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-choose/",
       "query": "エアコン ldk",
       "clicks": 0,
-      "impressions": 7,
+      "impressions": 11,
       "ctr": 0,
-      "position": 8.43
+      "position": 9.09
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-choose/",
+      "query": "ldk エアコン おすすめ",
+      "clicks": 1,
+      "impressions": 9,
+      "ctr": 0.1111,
+      "position": 9.22
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-choose/",
       "query": "ldk エアコン",
       "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 7.33
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "排水管付きエアコン 見分け方",
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 8.67
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "ドレンホース 掃除",
+      "clicks": 0,
+      "impressions": 7,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/heating-not-working/",
+      "query": "エアコン 暖まらない",
+      "clicks": 0,
       "impressions": 5,
       "ctr": 0,
-      "position": 7.2
+      "position": 44.2
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/products/drain-pump/",
+      "query": "ドレンホースクリーナー",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-choose/",
+      "query": "ldk 18畳 吹き抜け エアコン",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 11
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン ドレンホース詰まり 確認",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 11.33
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
+      "query": "エアコン おすすめ 6畳 寝室",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 19
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
       "query": "エアコン 子供部屋 6畳",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 23
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-choose/",
+      "query": "ldk 20畳 吹き抜け エアコン",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 19.5
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-choose/",
+      "query": "吹き抜け エアコン 畳数",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
@@ -56,19 +128,19 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
-      "query": "排水管付きエアコン 見分け方",
+      "query": "ドレンホース掃除",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 9.5
+      "position": 2
     },
     {
-      "page": "https://aircon-hokenshitsu.com/articles/heating-not-working/",
-      "query": "エアコン 暖まらない",
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "排水 管 付き エアコン 見分け 方",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 46
+      "position": 9
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/installation-cost/",
@@ -87,20 +159,12 @@
       "position": 38
     },
     {
-      "page": "https://aircon-hokenshitsu.com/articles/aircon-18jou-choose/",
-      "query": "ldk 18畳 吹き抜け エアコン",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 18
-    },
-    {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
-      "query": "6畳 ベッド 配置 エアコン",
+      "query": "6畳 寝室 エアコン 位置",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 52
+      "position": 9
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
@@ -109,30 +173,6 @@
       "impressions": 1,
       "ctr": 0,
       "position": 34
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
-      "query": "寝室用エアコン 6畳 おすすめ",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 75
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-choose/",
-      "query": "ldk 18畳 吹き抜け エアコン",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 14
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-choose/",
-      "query": "ldk 20畳 吹き抜け エアコン",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 18
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-choose/",
@@ -151,12 +191,36 @@
       "position": 12
     },
     {
-      "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-choose/",
-      "query": "吹き抜け エアコン 畳数",
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコンのホースから水が出ない",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 20
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコンドレンホース",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "クーラーホースから水が出ない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "ダイキンエアコンドレンホース",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
@@ -168,11 +232,19 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
-      "query": "排水 管 付き エアコン 見分け 方",
+      "query": "冷房室外機から水が出ない",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 9
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/heating-not-working/",
+      "query": "エアコン暖房 効かない 冷房は効く",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 58
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/installation-cost/",
@@ -215,20 +287,20 @@
       "position": 70
     },
     {
+      "page": "https://aircon-hokenshitsu.com/products/drain-pump/",
+      "query": "エアコンホース掃除の仕方",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
       "page": "https://aircon-hokenshitsu.com/products/mitsubishi-gv-10tatami-msz-gv2825/",
       "query": "msz gv2825 口コミ",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 11
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/products/remote-battery/",
-      "query": "elpa エアコンリモコン 反応 しない",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 41
     }
   ]
 }
