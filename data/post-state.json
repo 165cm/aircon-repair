@@ -124,8 +124,13 @@
       "id": "remote-not-working__question-hook",
       "articleSlug": "remote-not-working",
       "postedAt": "2026-07-07T11:52:10.791Z"
+    },
+    {
+      "id": "heating-not-working__quick-answer",
+      "articleSlug": "heating-not-working",
+      "postedAt": "2026-07-08T11:06:44.058Z"
     }
   ],
-  "cursor": 25,
-  "lastRunAt": "2026-07-07T11:52:10.791Z"
+  "cursor": 26,
+  "lastRunAt": "2026-07-08T11:06:44.058Z"
 }
