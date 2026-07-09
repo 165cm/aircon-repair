@@ -129,8 +129,13 @@
       "id": "heating-not-working__quick-answer",
       "articleSlug": "heating-not-working",
       "postedAt": "2026-07-08T11:06:44.058Z"
+    },
+    {
+      "id": "hvac-career-start__safe-check",
+      "articleSlug": "hvac-career-start",
+      "postedAt": "2026-07-09T12:05:10.511Z"
     }
   ],
-  "cursor": 26,
-  "lastRunAt": "2026-07-08T11:06:44.058Z"
+  "cursor": 27,
+  "lastRunAt": "2026-07-09T12:05:10.511Z"
 }
