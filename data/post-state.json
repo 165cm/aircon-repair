@@ -134,8 +134,13 @@
       "id": "hvac-career-start__safe-check",
       "articleSlug": "hvac-career-start",
       "postedAt": "2026-07-09T12:05:10.511Z"
+    },
+    {
+      "id": "smell-odor__safe-check",
+      "articleSlug": "smell-odor",
+      "postedAt": "2026-07-10T11:53:07.305Z"
     }
   ],
-  "cursor": 27,
-  "lastRunAt": "2026-07-09T12:05:10.511Z"
+  "cursor": 28,
+  "lastRunAt": "2026-07-10T11:53:07.305Z"
 }
