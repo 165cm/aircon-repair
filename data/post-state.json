@@ -139,8 +139,13 @@
       "id": "smell-odor__safe-check",
       "articleSlug": "smell-odor",
       "postedAt": "2026-07-10T11:53:07.305Z"
+    },
+    {
+      "id": "cleaning-staff-career__safe-check",
+      "articleSlug": "cleaning-staff-career",
+      "postedAt": "2026-07-11T10:16:15.930Z"
     }
   ],
-  "cursor": 28,
-  "lastRunAt": "2026-07-10T11:53:07.305Z"
+  "cursor": 29,
+  "lastRunAt": "2026-07-11T10:16:15.930Z"
 }
