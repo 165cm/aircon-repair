@@ -1,8 +1,16 @@
 ---
+import { getCollection } from "astro:content";
 import DiagnosisChat from "@components/DiagnosisChat.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { affiliate } from "@data/affiliate";
+import { getCanonicalArticles } from "@data/internalLinks";
+import { articleThumbnail } from "@utils/articles";
 import { sitePath } from "@utils/paths";
+
+const latestArticles = getCanonicalArticles(await getCollection("articles"))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf() || a.data.title.localeCompare(b.data.title, "ja"))
+  .slice(0, 5);
+const shortDate = new Intl.DateTimeFormat("ja-JP", { month: "numeric", day: "numeric" });
 
 const routeGroups = [
   {
@@ -159,6 +167,36 @@ const jsonLd = {
     </div>
   </section>
 
+  <section class="latest-articles" aria-labelledby="latest-articles-title">
+    <div class="container latest-articles-inner">
+      <div class="latest-articles-heading">
+        <span>NEW</span>
+        <h2 id="latest-articles-title">新着記事</h2>
+      </div>
+      <div class="latest-articles-list">
+        {
+          latestArticles.map((article, index) => (
+            <a
+              href={sitePath(`/articles/${article.slug}/`)}
+              data-cvr-action="home_latest_article_click"
+              data-action-kind="safe"
+              data-source-slug="home"
+              data-slot-index={index + 1}
+              data-item-id={article.slug}
+            >
+              <img src={sitePath(articleThumbnail(article))} alt="" width="96" height="54" loading="lazy" />
+              <span>
+                <time datetime={article.data.pubDate.toISOString()}>{shortDate.format(article.data.pubDate)}</time>
+                <strong>{article.data.title}</strong>
+              </span>
+            </a>
+          ))
+        }
+      </div>
+      <a class="latest-articles-more" href={sitePath("/articles/")}>一覧</a>
+    </div>
+  </section>
+
   <section class="container section home-chat-section">
     <DiagnosisChat startClosed={false} showHeader={false} />
   </section>
@@ -220,3 +258,113 @@ const jsonLd = {
     });
   </script>
 </BaseLayout>
+
+<style>
+  .latest-articles {
+    border-block: 1px solid var(--paper-line);
+    background: var(--paper);
+  }
+
+  .latest-articles-inner {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 14px;
+    padding-block: 12px;
+  }
+
+  .latest-articles-heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+  }
+
+  .latest-articles-heading span {
+    border-radius: 999px;
+    padding: 2px 7px;
+    background: var(--danger);
+    color: white;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+  }
+
+  .latest-articles-heading h2 {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .latest-articles-list {
+    display: flex;
+    gap: 8px;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  .latest-articles-list > a {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    flex: 0 0 min(250px, 76vw);
+    align-items: center;
+    gap: 8px;
+    min-height: 58px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 5px;
+    background: white;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .latest-articles-list > a:hover {
+    border-color: var(--brand-line);
+    background: var(--brand-soft);
+  }
+
+  .latest-articles-list img {
+    width: 64px;
+    height: 44px;
+    border-radius: 5px;
+    object-fit: cover;
+  }
+
+  .latest-articles-list a > span {
+    display: grid;
+    gap: 1px;
+    min-width: 0;
+  }
+
+  .latest-articles-list time {
+    color: var(--muted);
+    font-size: 0.7rem;
+    line-height: 1.2;
+  }
+
+  .latest-articles-list strong {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 0.78rem;
+    line-height: 1.35;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .latest-articles-more {
+    font-size: 0.8rem;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 760px) {
+    .latest-articles-inner {
+      grid-template-columns: 1fr auto;
+    }
+
+    .latest-articles-list {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+  }
+</style>
