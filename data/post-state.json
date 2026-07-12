@@ -144,8 +144,13 @@
       "id": "cleaning-staff-career__safe-check",
       "articleSlug": "cleaning-staff-career",
       "postedAt": "2026-07-11T10:16:15.930Z"
+    },
+    {
+      "id": "how-aircon-works__quick-answer",
+      "articleSlug": "how-aircon-works",
+      "postedAt": "2026-07-12T10:35:52.693Z"
     }
   ],
-  "cursor": 29,
-  "lastRunAt": "2026-07-11T10:16:15.930Z"
+  "cursor": 30,
+  "lastRunAt": "2026-07-12T10:35:52.693Z"
 }
