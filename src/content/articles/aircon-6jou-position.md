@@ -13,7 +13,7 @@ quickAnswer:
   - "室内機だけでなく、室外機と配管経路も同時に見る。"
   - "壁の強度・配線・配管穴は工事業者に確認してもらう。"
 boardImage: "/images/articles/aircon-6jou-position-board.webp"
-boardAlt: "6畳寝室で風をベッドの横へ流す配置と、頭へ直接当たる避けたい配置を比べた板書図解"
+boardAlt: "6畳寝室で室内機をベッドの側面・足元寄りに置く配置と、枕に正対して置く配置を比べた板書図解"
 relatedArticles: ["aircon-6jou-choose", "installation-cost", "not-cooling"]
 pubDate: "2026-07-12"
 ---
