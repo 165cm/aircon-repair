@@ -13,7 +13,7 @@ quickAnswer:
   - "水がコンセントに近い時は確認より先に運転停止。"
 boardImage: "/images/articles/drain-hose-board.webp"
 boardAlt: "ドレンホース先端の詰まりを外から確認する図解"
-relatedArticles: ["water-leak", "filter-cleaning", "call-contractor"]
+relatedArticles: ["drain-hose-cleaning", "water-leak", "aircon-drain-pipe-identify", "filter-cleaning", "call-contractor"]
 pubDate: "2026-05-16"
 updatedDate: "2026-06-12"
 ---
@@ -71,3 +71,5 @@ updatedDate: "2026-06-12"
 - 水がコンセント・延長コードの近くにかかる
 
 この場合は内部の詰まり、ドレンパンの汚れ、設置勾配の問題など、外側からは直せない原因が考えられます。水漏れを放置するとカビ、壁紙の剥がれ、床材の傷み、階下への漏水につながるため、止まらない時は早めに相談しましょう。症状の伝え方は[業者を呼ぶ目安と依頼前メモ](/articles/call-contractor/)にまとめています。
+
+実際に掃除する前に、[ドレンホースの掃除方法と作業を止める条件](/articles/drain-hose-cleaning/)も確認してください。

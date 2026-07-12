@@ -14,6 +14,7 @@ quickAnswer:
   - "ベッドはエアコンの真下か対角に置き、風が体に直接当たらないようにする。"
 boardImage: "/images/articles/aircon-6jou-choose-board.webp"
 boardAlt: "6畳の寝室に合うエアコンの図解"
+relatedArticles: ["aircon-6jou-position", "installation-cost", "not-cooling"]
 pubDate: "2026-05-16"
 updatedDate: "2026-06-18"
 ---
@@ -79,3 +80,5 @@ updatedDate: "2026-06-18"
 ## 購入前チェック
 
 標準工事込みか、配管穴があるか、室外機置き場が確保できるかを確認します。賃貸では管理会社への確認も必要です。工事費の内訳は[取り付け工事費の相場](/articles/installation-cost/)で確認できます。
+
+寝室で風が直接当たらない置き方は、[6畳寝室のエアコン設置位置](/articles/aircon-6jou-position/)で確認できます。
