@@ -149,8 +149,13 @@
       "id": "how-aircon-works__quick-answer",
       "articleSlug": "how-aircon-works",
       "postedAt": "2026-07-12T10:35:52.693Z"
+    },
+    {
+      "id": "electric-bill-high__quick-answer",
+      "articleSlug": "electric-bill-high",
+      "postedAt": "2026-07-13T12:07:54.800Z"
     }
   ],
-  "cursor": 30,
-  "lastRunAt": "2026-07-12T10:35:52.693Z"
+  "cursor": 31,
+  "lastRunAt": "2026-07-13T12:07:54.800Z"
 }
