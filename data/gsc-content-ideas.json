@@ -1,13 +1,24 @@
 {
   "meta": {
     "siteUrl": "sc-domain:aircon-hokenshitsu.com",
-    "startDate": "2026-06-07",
-    "endDate": "2026-07-04",
-    "fetchedAt": "2026-07-06T22:13:44.919Z",
-    "generatedAt": "2026-07-06T22:13:44.978Z",
+    "startDate": "2026-06-14",
+    "endDate": "2026-07-11",
+    "fetchedAt": "2026-07-13T21:57:29.929Z",
+    "generatedAt": "2026-07-13T21:57:29.992Z",
     "minImpressions": 20,
-    "articleCount": 24,
-    "ideaCount": 0
+    "articleCount": 29,
+    "ideaCount": 1
   },
-  "ideas": []
+  "ideas": [
+    {
+      "type": "new",
+      "query": "msz gv2825 w 口コミ",
+      "impressions": 20,
+      "clicks": 2,
+      "ctr": 0.1,
+      "position": 10.05,
+      "suggestedCategory": "symptom",
+      "score": 27
+    }
+  ]
 }
