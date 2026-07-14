@@ -154,8 +154,13 @@
       "id": "electric-bill-high__quick-answer",
       "articleSlug": "electric-bill-high",
       "postedAt": "2026-07-13T12:07:54.800Z"
+    },
+    {
+      "id": "drain-hose__quick-answer",
+      "articleSlug": "drain-hose",
+      "postedAt": "2026-07-14T10:48:10.019Z"
     }
   ],
-  "cursor": 31,
-  "lastRunAt": "2026-07-13T12:07:54.800Z"
+  "cursor": 32,
+  "lastRunAt": "2026-07-14T10:48:10.019Z"
 }
