@@ -169,8 +169,13 @@
       "id": "smell-odor__quick-answer",
       "articleSlug": "smell-odor",
       "postedAt": "2026-07-16T11:01:54.050Z"
+    },
+    {
+      "id": "aircon-history__quick-answer",
+      "articleSlug": "aircon-history",
+      "postedAt": "2026-07-17T10:48:25.156Z"
     }
   ],
-  "cursor": 34,
-  "lastRunAt": "2026-07-16T11:01:54.050Z"
+  "cursor": 35,
+  "lastRunAt": "2026-07-17T10:48:25.156Z"
 }
