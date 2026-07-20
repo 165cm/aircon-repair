@@ -1,24 +1,58 @@
 {
   "meta": {
     "siteUrl": "sc-domain:aircon-hokenshitsu.com",
-    "startDate": "2026-06-14",
-    "endDate": "2026-07-11",
-    "fetchedAt": "2026-07-13T21:57:29.929Z",
-    "generatedAt": "2026-07-13T21:57:29.992Z",
+    "startDate": "2026-06-21",
+    "endDate": "2026-07-18",
+    "fetchedAt": "2026-07-20T22:00:12.111Z",
+    "generatedAt": "2026-07-20T22:00:12.191Z",
     "minImpressions": 20,
     "articleCount": 29,
-    "ideaCount": 1
+    "ideaCount": 4
   },
   "ideas": [
     {
       "type": "new",
       "query": "msz gv2825 w 口コミ",
-      "impressions": 20,
+      "impressions": 33,
       "clicks": 2,
-      "ctr": 0.1,
-      "position": 10.05,
+      "ctr": 0.0606,
+      "position": 9.36,
       "suggestedCategory": "symptom",
-      "score": 27
+      "score": 47
+    },
+    {
+      "type": "new",
+      "query": "ドレンホースクリーナー",
+      "impressions": 23,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 3,
+      "suggestedCategory": "symptom",
+      "score": 35
+    },
+    {
+      "type": "rewrite",
+      "query": "排水管付きエアコン 見分け方",
+      "impressions": 34,
+      "clicks": 2,
+      "ctr": 0.0588,
+      "position": 7.5,
+      "matchedSlug": "aircon-drain-pipe-identify",
+      "matchedUrl": "https://aircon-hokenshitsu.com/articles/aircon-drain-pipe-identify/",
+      "suggestedCategory": "basics",
+      "score": 32
+    },
+    {
+      "type": "rewrite",
+      "query": "6畳 寝室 エアコン 位置",
+      "impressions": 23,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 9.52,
+      "matchedSlug": "aircon-6jou-choose",
+      "matchedUrl": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
+      "suggestedCategory": "buying",
+      "score": 23
     }
   ]
 }
