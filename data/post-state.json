@@ -194,8 +194,13 @@
       "id": "outdoor-unit-check__question-hook",
       "articleSlug": "outdoor-unit-check",
       "postedAt": "2026-07-21T11:09:59.110Z"
+    },
+    {
+      "id": "installation-cost__quick-answer",
+      "articleSlug": "installation-cost",
+      "postedAt": "2026-07-22T11:10:47.819Z"
     }
   ],
-  "cursor": 39,
-  "lastRunAt": "2026-07-21T11:09:59.110Z"
+  "cursor": 40,
+  "lastRunAt": "2026-07-22T11:10:47.819Z"
 }
