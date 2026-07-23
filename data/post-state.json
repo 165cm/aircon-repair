@@ -199,8 +199,13 @@
       "id": "installation-cost__quick-answer",
       "articleSlug": "installation-cost",
       "postedAt": "2026-07-22T11:10:47.819Z"
+    },
+    {
+      "id": "water-leak__quick-answer",
+      "articleSlug": "water-leak",
+      "postedAt": "2026-07-23T11:11:51.041Z"
     }
   ],
-  "cursor": 40,
-  "lastRunAt": "2026-07-22T11:10:47.819Z"
+  "cursor": 41,
+  "lastRunAt": "2026-07-23T11:11:51.041Z"
 }
