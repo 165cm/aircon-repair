@@ -204,8 +204,13 @@
       "id": "water-leak__quick-answer",
       "articleSlug": "water-leak",
       "postedAt": "2026-07-23T11:11:51.041Z"
+    },
+    {
+      "id": "not-cooling__safe-check",
+      "articleSlug": "not-cooling",
+      "postedAt": "2026-07-24T11:04:18.800Z"
     }
   ],
-  "cursor": 41,
-  "lastRunAt": "2026-07-23T11:11:51.041Z"
+  "cursor": 42,
+  "lastRunAt": "2026-07-24T11:04:18.800Z"
 }
