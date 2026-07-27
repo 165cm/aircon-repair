@@ -219,8 +219,13 @@
       "id": "aircon-6jou-choose__quick-answer",
       "articleSlug": "aircon-6jou-choose",
       "postedAt": "2026-07-26T10:45:40.390Z"
+    },
+    {
+      "id": "call-contractor__question-hook",
+      "articleSlug": "call-contractor",
+      "postedAt": "2026-07-27T12:24:58.438Z"
     }
   ],
-  "cursor": 44,
-  "lastRunAt": "2026-07-26T10:45:40.390Z"
+  "cursor": 45,
+  "lastRunAt": "2026-07-27T12:24:58.438Z"
 }
