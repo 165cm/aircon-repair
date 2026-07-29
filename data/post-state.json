@@ -229,8 +229,13 @@
       "id": "drain-hose__question-hook",
       "articleSlug": "drain-hose",
       "postedAt": "2026-07-28T11:19:09.354Z"
+    },
+    {
+      "id": "installation-cost__safe-check",
+      "articleSlug": "installation-cost",
+      "postedAt": "2026-07-29T11:27:19.915Z"
     }
   ],
-  "cursor": 46,
-  "lastRunAt": "2026-07-28T11:19:09.354Z"
+  "cursor": 47,
+  "lastRunAt": "2026-07-29T11:27:19.915Z"
 }
