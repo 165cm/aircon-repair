@@ -234,8 +234,13 @@
       "id": "installation-cost__safe-check",
       "articleSlug": "installation-cost",
       "postedAt": "2026-07-29T11:27:19.915Z"
+    },
+    {
+      "id": "call-contractor__safe-check",
+      "articleSlug": "call-contractor",
+      "postedAt": "2026-07-30T11:08:52.165Z"
     }
   ],
-  "cursor": 47,
-  "lastRunAt": "2026-07-29T11:27:19.915Z"
+  "cursor": 48,
+  "lastRunAt": "2026-07-30T11:08:52.165Z"
 }
