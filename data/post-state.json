@@ -244,8 +244,13 @@
       "id": "installation-cost__question-hook",
       "articleSlug": "installation-cost",
       "postedAt": "2026-07-31T11:29:59.261Z"
+    },
+    {
+      "id": "cleaning-spray-risk__question-hook",
+      "articleSlug": "cleaning-spray-risk",
+      "postedAt": "2026-08-01T10:42:07.428Z"
     }
   ],
-  "cursor": 49,
-  "lastRunAt": "2026-07-31T11:29:59.261Z"
+  "cursor": 50,
+  "lastRunAt": "2026-08-01T10:42:07.428Z"
 }
