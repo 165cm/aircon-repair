@@ -7,6 +7,7 @@ products: ["aircon-18tatami", "aircon-14tatami", "circulator"]
 difficulty: "intermediate"
 risk: "medium"
 recommendedCta: "products"
+kazamiIntro: "広い部屋は、力が足りないと一日じゅう動きっぱなしになります。電気代にもひびくので、能力選びは慎重にいきましょう。"
 quickAnswer:
   - "18畳用は5.6kWクラス・200V電源が前提。"
   - "吹き抜け・26畳超は家庭用の限界も視野に。"

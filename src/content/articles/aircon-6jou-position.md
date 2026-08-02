@@ -8,6 +8,7 @@ difficulty: "beginner"
 risk: "medium"
 recommendedCta: "products"
 teacher: "kazetooshi-kiyoshi"
+kazamiIntro: "風が顔に当たって夜中に目が覚める。あれ、置き場所で防げます。工事の前に決めておけば、あとから直さずに済みます。"
 quickAnswer:
   - "ベッドの頭側へ風が直撃する位置を避ける。"
   - "室内機だけでなく、室外機と配管経路も同時に見る。"

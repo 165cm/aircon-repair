@@ -8,6 +8,7 @@ difficulty: "beginner"
 risk: "medium"
 recommendedCta: "products"
 teacher: "kaikae-shinji"
+kazamiIntro: "うちは何畳用なんだろう。ここがいちばん迷うところですよね。広さだけでなく、熱の入り方まで見ると答えを出しやすくなります。"
 quickAnswer:
   - "畳数表示だけでなく、キッチン熱・日射・吹き抜けを見る。"
   - "条件が重なるLDKは一段上の能力も比較する。"

@@ -8,6 +8,7 @@ difficulty: "beginner"
 risk: "medium"
 recommendedCta: "products"
 teacher: "kaikae-shinji"
+kazamiIntro: "口コミは数が多くて、どれを信じればいいか迷いますよね。直す側が気にしている点だけ、先にお伝えします。"
 quickAnswer:
   - "独立した10畳前後で基本性能を重視する人の比較候補。"
   - "口コミは本体だけでなく、設置工事と室外機音を分けて読む。"

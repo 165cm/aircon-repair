@@ -7,6 +7,7 @@ products: ["aircon-8tatami", "aircon-6tatami", "aircon-10tatami"]
 difficulty: "beginner"
 risk: "medium"
 recommendedCta: "products"
+kazamiIntro: "8畳は、6畳用で足りるか10畳用にするかで迷うサイズです。部屋の条件しだいなので、そこを一緒に見ていきましょう。"
 quickAnswer:
   - "8畳用は2.5kWクラス。木造なら基本これ。"
   - "鉄筋・北向き・夜だけなら6畳用で足りることも。"

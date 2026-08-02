@@ -8,6 +8,7 @@ difficulty: "beginner"
 risk: "high"
 recommendedCta: "contractor"
 teacher: "tomuro-mamoru"
+kazamiIntro: "聞き慣れない音がすると、不安になりますよね。音の種類で、様子を見ていいものと、すぐ止めたほうがいいものが分かれます。どんな音だったか思い出しながら読んでください。"
 quickAnswer:
   - "金属音や焦げ臭さがあれば停止。"
   - "運転中のファンには触らない。"

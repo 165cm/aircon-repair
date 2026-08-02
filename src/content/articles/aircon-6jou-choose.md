@@ -7,6 +7,7 @@ products: ["aircon-6tatami", "circulator", "thermo-hygrometer"]
 difficulty: "beginner"
 risk: "medium"
 recommendedCta: "products"
+kazamiIntro: "6畳なら6畳用で合っていることがほとんどです。ただ寝室は、風の当たり方まで考えておくと、眠りやすさが変わりますよ。"
 quickAnswer:
   - "独立した6畳なら2.2kW（6畳用）で十分。"
   - "西日・最上階・古い木造なら8畳用も比較。"

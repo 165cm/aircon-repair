@@ -8,6 +8,7 @@ difficulty: "beginner"
 risk: "low"
 recommendedCta: "learn"
 teacher: "netsugashi-reitaro"
+kazamiIntro: "仕組みなんて知らなくていい、と思うかもしれません。でもこれが分かると、次に困ったとき「どこを見ればいいか」が自分で分かるようになります。"
 quickAnswer:
   - "冷房は熱を外へ運ぶ仕組み。"
   - "見るのは空気・熱・水の外側。"

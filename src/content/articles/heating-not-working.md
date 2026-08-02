@@ -7,6 +7,7 @@ products: ["thermo-hygrometer", "circulator", "outdoor-cover", "aircon-10tatami"
 difficulty: "beginner"
 risk: "medium"
 recommendedCta: "contractor"
+kazamiIntro: "寒い日に暖房が効かないと、家じゅう凍えますよね。暖房は冷房と違って、温まるまで時間がかかるだけのこともあります。落ち着いて見ていきましょう。"
 quickAnswer:
   - "温風が10〜20分止まるのは霜取り運転。故障ではない。"
   - "冬の暖房不調は室外機まわり（雪・落ち葉）の確認が最優先。"

@@ -7,6 +7,7 @@ products: ["outdoor-cover", "outdoor-vibration-pad", "thermo-hygrometer"]
 difficulty: "beginner"
 risk: "medium"
 recommendedCta: "products"
+kazamiIntro: "室外機は、置いたらそれきり忘れてしまいますよね。実はここがふさがっているだけで、冷房の効きは落ちます。まわりを片づけるだけでも変わりますよ。"
 quickAnswer:
   - "室外機の吹き出し口の前はふさがない。物をどけるだけで冷えが戻ることがある。"
   - "夏は直射日光、冬は雪と落ち葉、台風後は飛来物を確認。"

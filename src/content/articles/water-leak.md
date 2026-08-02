@@ -8,6 +8,7 @@ difficulty: "beginner"
 risk: "medium"
 recommendedCta: "contractor"
 teacher: "mizumichi-nukeru"
+kazamiIntro: "床が濡れていくのを見ると、焦りますよね。まずは電源まわりから水を遠ざけて、タオルを1枚。原因さがしは、そのあとで大丈夫です。"
 quickAnswer:
   - "まず床・家電・電源を守る。"
   - "見てよいのはホース先端だけ。"

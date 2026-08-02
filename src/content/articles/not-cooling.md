@@ -8,6 +8,7 @@ difficulty: "beginner"
 risk: "medium"
 recommendedCta: "products"
 teacher: "netsugashi-reitaro"
+kazamiIntro: "この暑さの中で冷えないのは、本当にこたえますよね。ただ、冷えない＝故障とは限りません。設定と風の通り道から、順番に見ていきましょう。"
 quickAnswer:
   - "設定 → フィルター → 室外機。"
   - "冷媒・配線・内部は触らない。"

@@ -7,6 +7,7 @@ products: ["aircon-10tatami", "circulator", "thermo-hygrometer"]
 difficulty: "beginner"
 risk: "medium"
 recommendedCta: "products"
+kazamiIntro: "同じ10畳でも、必要な力は部屋によって変わります。数字だけで決めず、日当たりと間取りも一緒に見ておきましょう。"
 quickAnswer:
   - "独立した10畳なら2.8kW（10畳用）が基準。"
   - "LDK続き・吹き抜け・西日なら14畳用も比較。"

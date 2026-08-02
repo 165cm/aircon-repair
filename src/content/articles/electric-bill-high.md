@@ -8,6 +8,7 @@ difficulty: "beginner"
 risk: "low"
 recommendedCta: "products"
 teacher: "netsugashi-reitaro"
+kazamiIntro: "請求を見て、ぎょっとしましたよね。エアコンの電気代は、使い方と汚れでけっこう変わります。我慢する前に、見直せるところを探しましょう。"
 quickAnswer:
   - "フィルター・設定・室外機を確認。"
   - "節電は我慢ではなく効率化。"
