@@ -5,6 +5,7 @@ import EmergencyAlert from "@components/EmergencyAlert.astro";
 import KazamiSpeech from "@components/KazamiSpeech.astro";
 import NextActionCard from "@components/NextActionCard.astro";
 import RevenueCta from "@components/RevenueCta.astro";
+import AmazonLink from "@components/AmazonLink.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { affiliate } from "@data/affiliate";
 import { getArticleRecommendations, getCanonicalArticles, getProductRecommendations } from "@data/internalLinks";
@@ -238,22 +239,49 @@ if (isProceduralArticle) {
             <div>
               <h2 id="mini-product-title">確認に使える道具</h2>
               <div class="mini-product-list">
-                {relatedProducts.map((product) => (
-                  <a
-                    class="mini-product-card"
-                    href={sitePath(`/products/${product.id}/`)}
-                    data-cvr-action="article_intro_product_detail_click"
-                    data-action-kind={product.type === "replacement" ? "replacement" : "products"}
-                    data-source-slug={article.slug}
-                    data-slot-index={relatedProducts.findIndex((candidate) => candidate.id === product.id) + 1}
-                    data-recommendation-role={relatedProductRecommendations.find((recommendation) => recommendation.product.id === product.id)?.role}
-                    data-item-id={product.id}
-                  >
-                    <strong>{product.name}</strong>
-                    <span>{product.description}</span>
-                    <small>{product.safetyNote}</small>
-                  </a>
-                ))}
+                {relatedProducts.map((product, index) => {
+                  const recommendation = relatedProductRecommendations[index];
+                  return (
+                    <article class="mini-product-card">
+                      {product.image && (
+                        <img
+                          class="mini-product-image"
+                          src={sitePath(product.image)}
+                          alt={`${product.name}を使う場面のイメージイラスト`}
+                          loading="lazy"
+                        />
+                      )}
+                      <div class="mini-product-copy">
+                        <strong>{product.name}</strong>
+                        <span>{product.description}</span>
+                        <small>{product.safetyNote}</small>
+                      </div>
+                      <div class="mini-product-actions">
+                        <a
+                          class="inline-link"
+                          href={sitePath(`/products/${product.id}/`)}
+                          data-cvr-action="article_intro_product_detail_click"
+                          data-action-kind={product.type === "replacement" ? "replacement" : "products"}
+                          data-source-slug={article.slug}
+                          data-slot-index={index + 1}
+                          data-recommendation-role={recommendation?.role}
+                          data-item-id={product.id}
+                        >
+                          選び方を見る
+                        </a>
+                        <AmazonLink
+                          product={product}
+                          label="Amazonで確認"
+                          pageType="article"
+                          linkPosition="article-product-illustration"
+                          sourceSlug={article.slug}
+                          slotIndex={index + 1}
+                          recommendationRole={recommendation?.role}
+                        />
+                      </div>
+                    </article>
+                  );
+                })}
               </div>
             </div>
             <a
