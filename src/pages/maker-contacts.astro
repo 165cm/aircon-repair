@@ -1,0 +1,157 @@
+---
+import KazamiSpeech from "@components/KazamiSpeech.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { affiliate } from "@data/affiliate";
+import { makerContacts } from "@data/makerContacts";
+import { absoluteUrl, sitePath } from "@utils/paths";
+
+const breadcrumbs = [
+  { label: "ホーム", href: "/" },
+  { label: "メーカー問い合わせ先" }
+];
+
+const memoItems = [
+  { label: "型番", body: "室内機の前面カバーを開けた内側か、本体の側面・下面のシール。" },
+  { label: "買った年", body: "分からなければ「たぶん◯年くらい」で大丈夫です。" },
+  { label: "症状", body: "「冷えない」より「30分運転してもぬるい風しか出ない」。" },
+  { label: "いつから", body: "急に、だんだん、去年から。時期が分かると原因を絞れます。" },
+  { label: "エラー表示", body: "本体やリモコンに出ている数字・記号をそのまま伝えます。" },
+  { label: "試したこと", body: "設定、フィルター掃除、室外機まわり。ここまでは伝えると早いです。" }
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "エアコンメーカーの問い合わせ先一覧",
+  url: absoluteUrl("/maker-contacts/"),
+  itemListElement: makerContacts.map((maker, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: maker.name,
+    url: maker.repairUrl
+  }))
+};
+---
+
+<BaseLayout
+  title="エアコンメーカーの問い合わせ先一覧"
+  description="ダイキン、パナソニック、三菱電機、日立など、家庭用エアコン主要メーカーの修理受付・サポート窓口へのリンク集。連絡前に用意するメモと、賃貸のときの連絡先も整理します。"
+  jsonLd={jsonLd}
+  breadcrumbs={breadcrumbs}
+>
+  <section class="container article-head">
+    <p class="eyebrow">困ったときの連絡先</p>
+    <h1>エアコンメーカーの問い合わせ先</h1>
+    <p class="article-meta"><span class="article-risk">自分で直そうとしなくて大丈夫</span></p>
+  </section>
+
+  <section class="container section maker-contact-body">
+    <KazamiSpeech>
+      設定、フィルター、室外機まわりを見ても直らないなら、そこから先は道具と資格がいる作業です。無理せずメーカーに見てもらいましょう。
+    </KazamiSpeech>
+
+    <div class="notice danger maker-contact-stop">
+      <strong>先に確認してください</strong>
+      <p>焦げ臭い、煙、火花、ブレーカーが繰り返し落ちる、電源まわりに水がある。ひとつでも当てはまるときは、連絡より先に運転を止めてください。</p>
+    </div>
+
+    <section class="paper-panel maker-contact-first" aria-labelledby="who-first-title">
+      <h2 id="who-first-title">どこに連絡する？</h2>
+      <ol class="maker-contact-order">
+        <li>
+          <strong>賃貸・社宅に住んでいる</strong>
+          <span>まず管理会社か大家さんへ。備え付けのエアコンは大家さんの持ち物なので、勝手に修理を頼むと費用の話でもめることがあります。</span>
+        </li>
+        <li>
+          <strong>買ってから1年以内、または延長保証に入っている</strong>
+          <span>買ったお店へ。保証の範囲内なら無料で直ることがあります。</span>
+        </li>
+        <li>
+          <strong>それ以外</strong>
+          <span>メーカーの修理窓口へ。下の一覧から選んでください。</span>
+        </li>
+      </ol>
+    </section>
+
+    <section class="paper-panel maker-contact-memo" aria-labelledby="memo-title">
+      <h2 id="memo-title">連絡する前に、これだけメモ</h2>
+      <p>そろっていると、電話の途中で本体を見に行かずに済みます。</p>
+      <dl>
+        {memoItems.map((item) => (
+          <div>
+            <dt>{item.label}</dt>
+            <dd>{item.body}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+
+    <section aria-labelledby="maker-list-title">
+      <h2 id="maker-list-title">メーカー別の窓口</h2>
+      <p class="maker-list-note">
+        リンク先は各メーカーの公式ページです。電話番号は変わることがあるので、このページには載せず、公式ページで最新の番号を見てもらう形にしています。
+      </p>
+      <ul class="maker-contact-list">
+        {makerContacts.map((maker) => (
+          <li class="maker-contact-card">
+            <div class="maker-contact-head">
+              <h3>{maker.name}</h3>
+              <p class="maker-contact-brands">{maker.brands.join("・")}</p>
+            </div>
+            <p class="maker-contact-note">{maker.note}</p>
+            {maker.tel && <p class="maker-contact-tel"><a href={`tel:${maker.tel.replace(/[^0-9]/g, "")}`}>{maker.tel}</a></p>}
+            <div class="maker-contact-links">
+              <a
+                class="button"
+                href={maker.repairUrl}
+                target="_blank"
+                rel="noopener"
+                data-cvr-action="maker_repair_click"
+                data-action-kind="contractor"
+                data-item-id={maker.id}
+              >
+                修理を申し込む
+              </a>
+              {maker.supportUrl !== maker.repairUrl && (
+                <a
+                  class="inline-link"
+                  href={maker.supportUrl}
+                  target="_blank"
+                  rel="noopener"
+                  data-cvr-action="maker_support_click"
+                  data-action-kind="safe"
+                  data-item-id={maker.id}
+                >
+                  取説・FAQを見る
+                </a>
+              )}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="paper-panel maker-contact-fallback" aria-labelledby="fallback-title">
+      <h2 id="fallback-title">一覧にないとき・型番が分からないとき</h2>
+      <ul>
+        <li>本体に書かれたメーカー名で検索し、必ず公式サイトの窓口から申し込んでください。検索結果の上位に、メーカー名を使った修理代行の広告が並ぶことがあります。</li>
+        <li>型番は、室内機の前面カバーを開けた内側か、本体の側面・下面のシールにあります。脚立が必要な高さなら、無理せず写真だけ撮ってください。</li>
+        <li>取り付けた業者が分かるなら、その業者に連絡するのがいちばん早いこともあります。</li>
+        <li>メーカーの部品保有期間は製造終了からおおむね10年です。それより古いと、修理できても部品がないことがあります。</li>
+      </ul>
+    </section>
+
+    <section class="paper-panel maker-contact-next" aria-labelledby="next-title">
+      <h2 id="next-title">次に見るページ</h2>
+      <ul>
+        <li><a href={sitePath("/articles/call-contractor/")}>修理を呼ぶ目安を見る</a></li>
+        <li><a href={sitePath("/by-size/")}>10年以上なら、買い替えも比べる</a></li>
+        <li><a href={sitePath("/#chat-title")} data-cvr-action="three_minute_diagnosis_start" data-action-kind="safe">症状を風見先生に相談する</a></li>
+      </ul>
+    </section>
+
+    <p class="maker-contact-disclaimer">
+      {affiliate.siteName}は各メーカーとの提携・代理店関係はありません。このページのリンクに広告は含みません。窓口の内容や受付時間は変わることがあるため、最終的な確認は各メーカーの公式ページでお願いします。
+    </p>
+  </section>
+</BaseLayout>

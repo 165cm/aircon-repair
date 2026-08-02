@@ -64,9 +64,19 @@ const kazamiIntro = article.data.risk === "high"
 const safeCheckNotes = article.data.category === "buying"
   ? ["部屋の畳数、置き場所、コンセントの形をメモする。", "修理の見積もりと、本体＋工事費を並べて比べる。", "急がず、標準工事に入らない費用まで聞いておく。"]
   : ["外から見える範囲だけ確認する。", "型番、買った年、症状、いつからかをメモする。", "暑いとき・水が出ているときは、先に人と床を守る。"];
-const doNotTouchNotes = article.data.category === "cleaning"
-  ? ["中のファンや金属部分、電気の部品にスプレーしない。", "分解しての洗浄や、脚立での高い作業はしない。", "カビ臭が残るときは、内部清掃の相談に切り替える。"]
-  : ["配管、基板、電源まわり、室外機の中は触らない。", "焦げ臭い・煙・火花・金属音・電源まわりの水があれば使用停止。", "原因が分からないまま運転を続けない。"];
+// 「触ってはいけない場所」を並べても、読者はもともと触らない。
+// それより「直らないなら、なぜ人に頼むのか・どこに頼むのか」を出す。
+const nextStepNotes = article.data.category === "cleaning"
+  ? [
+      "内部の洗浄は、分解して電装部品を養生しないとできません。",
+      "市販スプレーを奥まで吹くと、かえって故障の原因になります。",
+      "カビ臭が残るときは、内部清掃を頼むほうが結果的に安く済みます。"
+    ]
+  : [
+      "冷媒や配管は、圧力の測定とフロン類の資格がいる作業です。",
+      "基板や電源まわりは、通電したままの測定と部品交換が必要です。",
+      "賃貸なら管理会社か大家さんへ、持ち家ならメーカー窓口へ連絡します。"
+    ];
 // Discover露出の前提となる記事画像（横長サムネ/図解）。新画像を入れたらboardImage経由で自動反映される。
 const articleImageUrl = absoluteUrl(articleThumbnail(article));
 
@@ -199,14 +209,23 @@ if (isProceduralArticle) {
         {kazamiIntro}
       </KazamiSpeech>
       <Content />
-      <section class="care-sheet" aria-label="自分で見ていい範囲と、触らない場所">
+      <section class="care-sheet" aria-label="自分で見ていい範囲と、直らないときの連絡先">
         <div>
           <h2>ここまでは見てOK</h2>
           <ul>{safeCheckNotes.map((note) => <li>{note}</li>)}</ul>
         </div>
-        <div class="danger-note">
-          <h2>ここからは触らない</h2>
-          <ul>{doNotTouchNotes.map((note) => <li>{note}</li>)}</ul>
+        <div class="next-note">
+          <h2>直らないときは</h2>
+          <ul>{nextStepNotes.map((note) => <li>{note}</li>)}</ul>
+          <a
+            class="inline-link"
+            href={sitePath("/maker-contacts/")}
+            data-cvr-action="article_care_sheet_maker_click"
+            data-action-kind="contractor"
+            data-source-slug={article.slug}
+          >
+            メーカーの問い合わせ先を見る
+          </a>
         </div>
       </section>
       {
