@@ -38,44 +38,27 @@ const breadcrumbJsonLd = breadcrumbs && breadcrumbs.length > 0
     }
   : null;
 
+// フッターは「探す入口」に絞る。記事の網羅リンクは各ページと記事一覧に任せ、
+// スマホで指が届く長さ（1グループ4件まで）を上限にする。
 const footerSiteMap = [
   {
     id: "symptoms",
     heading: "症状から調べる",
     links: [
-      { label: "症状別診断", href: "/diagnosis/" },
-      { label: "冷えない・効きが悪い", href: "/articles/not-cooling/" },
-      { label: "水漏れしている", href: "/articles/water-leak/" },
-      { label: "異音がする", href: "/articles/strange-noise/" },
-      { label: "暖房が効かない", href: "/articles/heating-not-working/" },
-      { label: "リモコンが効かない", href: "/articles/remote-not-working/" },
+      { label: "症状から相談する", href: "/diagnosis/" },
+      { label: "冷えない", href: "/articles/not-cooling/" },
+      { label: "水もれ", href: "/articles/water-leak/" },
       { label: "修理を呼ぶ目安", href: "/articles/call-contractor/" }
     ]
   },
   {
     id: "buying",
-    heading: "買い替え・備え",
+    heading: "買い替え・掃除",
     links: [
-      { label: "畳数でエアコンを選ぶ", href: "/by-size/" },
-      { label: "エアコンメーカー比較", href: "/articles/aircon-maker-compare/" },
-      { label: "取り付け工事費の確認", href: "/articles/installation-cost/" },
-      { label: "6畳用の選び方", href: "/articles/aircon-6jou-choose/" },
-      { label: "10畳用の選び方", href: "/articles/aircon-10jou-choose/" },
-      { label: "14畳用の選び方", href: "/articles/aircon-14jou-choose/" },
-      { label: "補助用品・本体候補", href: "/products/" }
-    ]
-  },
-  {
-    id: "learn",
-    heading: "基礎知識・掃除予防",
-    links: [
+      { label: "畳数で選ぶ", href: "/by-size/" },
+      { label: "掃除・故障予防", href: "/cleaning-prevention/" },
       { label: "エアコンの基礎知識", href: "/basics/" },
-      { label: "掃除・故障予防まとめ", href: "/cleaning-prevention/" },
-      { label: "フィルター掃除の基本", href: "/articles/filter-cleaning/" },
-      { label: "掃除スプレーの注意点", href: "/articles/cleaning-spray-risk/" },
-      { label: "室外機まわりの確認", href: "/articles/outdoor-unit-check/" },
-      { label: "ドレンホースの確認", href: "/articles/drain-hose/" },
-      { label: "電気代が高い時の確認", href: "/articles/electric-bill-high/" }
+      { label: "補助用品・本体候補", href: "/products/" }
     ]
   },
   {
@@ -87,8 +70,7 @@ const footerSiteMap = [
       { label: "広告表記・免責事項", href: "/disclaimer/" },
       { label: "プライバシーポリシー", href: "/privacy/" },
       { label: "お問い合わせ", href: "/contact/" },
-      { label: "求人・副業入門", href: "/jobs/" },
-      { label: "XMLサイトマップ（検索エンジン用）", href: "/sitemap.xml" }
+      { label: "求人・副業入門", href: "/jobs/" }
     ]
   }
 ];
@@ -140,18 +122,19 @@ const footerSiteMap = [
           <span class="brand-wordmark">{affiliate.siteName}</span>
         </a>
         <nav class="nav-links" aria-label="主要ナビゲーション">
-          <a class="nav-consult-link" href={sitePath("/#chat-title")} data-cvr-action="three_minute_diagnosis_start" data-action-kind="safe">風見先生の3分問診</a>
           <a href={sitePath("/by-size/")}>畳数で選ぶ</a>
           <a href={sitePath("/basics/")}>基礎知識</a>
           <a href={sitePath("/cleaning-prevention/")}>掃除・予防</a>
           <a href={sitePath("/products/")}>商品比較</a>
-          <a href={sitePath("/jobs/")}>求人・副業</a>
-          <a href={sitePath("/disclaimer/")}>広告表記</a>
         </nav>
+        <a class="nav-consult-link" href={sitePath("/#chat-title")} data-cvr-action="three_minute_diagnosis_start" data-action-kind="safe">症状を相談</a>
       </div>
     </header>
     <div class="ad-disclosure">
-      <div class="container">{affiliate.disclosure}</div>
+      <div class="container">
+        {affiliate.disclosureShort}
+        <a href={sitePath("/disclaimer/")}>詳しく</a>
+      </div>
     </div>
     {breadcrumbs && breadcrumbs.length > 0 && (
       <nav aria-label="パンくずリスト" class="breadcrumb">
@@ -198,7 +181,7 @@ const footerSiteMap = [
       <div class="container footer-content">
         <div class="footer-about">
           <h2>{affiliate.siteName}</h2>
-          <p>現役修理技師の知見をもとに、風見先生がエアコンの不調を安全確認、修理相談、買い替え検討の順番で整理します。</p>
+          <p>エアコンの困りごとを、風見先生が「止める・確かめる・呼ぶ」の順に整理します。あぶない分解や電気まわりの作業はすすめません。</p>
           <small class="footer-character-note">※風見正治（風見先生）は当サイトのイメージキャラクターで、実在の人物ではありません。</small>
           <p class="footer-social">
             <a href={affiliate.xUrl} target="_blank" rel="me noopener">X（旧Twitter）で発信中 {affiliate.xHandle}</a>

@@ -16,7 +16,7 @@ const terms = typeof limit === "number" ? glossaryTerms.slice(0, limit) : glossa
   <div class="glossary-list">
     {terms.map((item) => (
       <details class="glossary-item">
-        <summary class="glossary-term">{item.term}<span class="glossary-hint">{item.plain}</span></summary>
+        <summary class="glossary-term"><span class="glossary-word">{item.term}</span><span class="glossary-hint">{item.plain}</span></summary>
         <div class="glossary-body">
           <p>{item.note}</p>
         </div>
@@ -89,7 +89,12 @@ const terms = typeof limit === "number" ? glossaryTerms.slice(0, limit) : glossa
   transform: rotate(90deg);
 }
 
+.glossary-word {
+  flex: none;
+}
+
 .glossary-hint {
+  min-width: 0;
   font-size: 0.82rem;
   font-weight: 400;
   color: var(--brand-dark);

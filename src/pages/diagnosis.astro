@@ -1,90 +1,35 @@
 ---
-import ActionPanel, { type ActionItem } from "@components/ActionPanel.astro";
 import DiagnosisChat from "@components/DiagnosisChat.astro";
+import EmergencyAlert from "@components/EmergencyAlert.astro";
 import GlossaryBox from "@components/GlossaryBox.astro";
 import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
-
-const symptomActions = [
-  {
-    kind: "safe",
-    label: "冷えない・暑い",
-    href: "#not-cooling",
-    body: "熱中症リスクを優先し、風と室外機を確認",
-    action: "diagnosis_quick_not_cooling_click",
-    icon: "cooling",
-    primary: true
-  },
-  {
-    kind: "contractor",
-    label: "水漏れする",
-    href: "#water-leak",
-    body: "電源付近を避け、外側の排水だけ確認",
-    action: "diagnosis_quick_water_leak_click",
-    icon: "leak"
-  },
-  {
-    kind: "contractor",
-    label: "異音・振動",
-    href: "#noise",
-    body: "金属音や焦げ臭さは使用停止を優先",
-    action: "diagnosis_quick_noise_click",
-    icon: "noise"
-  },
-  {
-    kind: "products",
-    label: "リモコン不調",
-    href: "#remote",
-    body: "電池交換と送信部確認で低リスクに切り分け",
-    action: "diagnosis_quick_remote_click",
-    icon: "remote"
-  }
-] satisfies ActionItem[];
 ---
 
 <BaseLayout
   title="症状を相談する"
-  description="冷えない、水漏れ、異音、リモコン不調、掃除の悩みを選び、風見先生と安全確認、修理相談、買い替え検討の順に整理できます。"
+  description="冷えない、水もれ、変な音、リモコン不調、カビ臭。症状を選ぶだけで、風見先生が自分で見ていい範囲と、修理を呼ぶ目安を整理します。"
   ogImage="/images/articles/basics-symptom-types.webp"
 >
-  <section class="container hero diagnosis-hero">
-    <div>
-      <p class="eyebrow">エアコン保健室</p>
-      <h1>症状を相談する</h1>
-      <p class="lead">この診断は修理手順ではなく、安全な切り分けです。冷媒は熱を運ぶガス、基板は電子部品の板です。どちらも初心者が触る場所ではありません。</p>
-      <div class="hero-actions">
-        <a class="button" href="#chat-title" data-cvr-action="diagnosis_start_click" data-action-kind="safe">風見先生に相談する</a>
-        <a class="button warm" href="#danger-signs" data-cvr-action="diagnosis_danger_signs_click" data-action-kind="contractor">危険サインを見る</a>
-      </div>
-    </div>
-    <div class="panel visual-panel safe-check-visual" aria-label="安全な確認用品の写真イメージ"></div>
-  </section>
-
-  <section class="container section tight-section">
-    <ActionPanel
-      eyebrow="相談メモの入口"
-      title="近い症状から、同じ順番で確認します"
-      description="危険な分解作業に進む前に、外側から見られる範囲、修理相談、買い替え検討をひとつの流れで整理します。"
-      items={symptomActions}
-      compact
-    />
+  <section class="container article-head">
+    <p class="eyebrow">風見先生の3分問診</p>
+    <h1>症状を相談する</h1>
+    <p class="lead">直し方ではなく、「今どうするか」を決める相談です。あぶないサインから順番に見ていきます。</p>
   </section>
 
   <section class="container section">
-    <DiagnosisChat />
+    <DiagnosisChat showHeader={false} startClosed={false} />
   </section>
 
-  <section id="danger-signs" class="container section">
+  <section class="container section">
+    <EmergencyAlert />
+  </section>
+
+  <section class="container section">
     <GlossaryBox limit={6} />
   </section>
 
   <section class="container section">
-    <div class="grid two">
-      <div class="notice danger">
-        <h2>すぐ止めるサイン</h2>
-        <p>焦げ臭い、煙、火花、ブレーカーが繰り返し落ちる、金属音が続く、水が電源まわりにかかる時は使用を止めて相談してください。</p>
-      </div>
-      <RevenueCta variant="contractor" />
-    </div>
+    <RevenueCta variant="contractor" />
   </section>
 </BaseLayout>

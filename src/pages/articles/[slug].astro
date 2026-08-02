@@ -4,8 +4,6 @@ import GlossaryBox from "@components/GlossaryBox.astro";
 import EmergencyAlert from "@components/EmergencyAlert.astro";
 import KazamiSpeech from "@components/KazamiSpeech.astro";
 import NextActionCard from "@components/NextActionCard.astro";
-import ProductCard from "@components/ProductCard.astro";
-import QuickDiagnosisCard from "@components/QuickDiagnosisCard.astro";
 import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { affiliate } from "@data/affiliate";
@@ -34,7 +32,6 @@ const breadcrumbs = [
   { label: article.data.title }
 ];
 const ctaVariant = article.data.recommendedCta === "jobs" ? "jobs" : article.data.recommendedCta === "products" ? "products" : "contractor";
-const showReplacement = article.data.symptoms.includes("冷えない") || article.data.symptoms.includes("修理");
 const teacher = healthRoomTeacher;
 const nextLessons = getArticleRecommendations(article.slug, article, allArticles);
 const showReplacementGuide = article.data.category === "symptom" || article.data.category === "energy-saving";
@@ -53,23 +50,23 @@ const riskLabel = {
 }[article.data.risk];
 const hasQuickAnswer = article.data.quickAnswer.length > 0;
 const hasBoardImage = Boolean(article.data.boardImage);
-const concernText = article.data.symptoms.length > 0
-  ? `${article.data.symptoms.slice(0, 2).join("・")}。これって故障？ 自分で確認しても大丈夫？`
-  : `${article.data.title}。まず何を確認すればいい？`;
-const quickDiagnosisOptions = [
-  { label: "自分で確認できる範囲を知りたい", href: "#article-main", description: "外側から順番に確認" },
-  { label: "危険な症状か確認したい", href: "#danger-signs", description: "使用停止のサインを見る" },
-  { label: "修理や買い替えの目安を知りたい", href: "#next-action", description: "次に取る行動を選ぶ" }
-];
+// 風見先生の一言。記事ごとの状況に合わせて短く1文だけ置く。
+const kazamiIntro = article.data.risk === "high"
+  ? "あぶないサインが出ているなら、まず運転を止めましょう。原因さがしは、そのあとで大丈夫です。"
+  : {
+      buying: "あわてて決めなくて大丈夫です。部屋の広さと、本体・工事を合わせた総額から見ていきましょう。",
+      cleaning: "掃除は、手が届く範囲だけで十分です。奥のほうは、私たちの仕事にしてください。",
+      career: "現場の話をしますね。どんな仕事か、まずはざっと見てみましょう。",
+      basics: "むずかしい理屈は置いておいて、まず使うときに困らないところから見ていきましょう。",
+      "energy-saving": "電気代は、使い方と汚れで変わります。今日からできるところだけ拾っていきましょう。",
+      symptom: "この症状だけで、故障とは決まりません。外から見える範囲から、順番にいきましょう。"
+    }[article.data.category];
 const safeCheckNotes = article.data.category === "buying"
-  ? ["部屋の畳数、設置場所、コンセント形状をメモする。", "修理見積もりと新品本体、工事費を同じ紙で比べる。", "急いで買わず、標準工事に含まれない費用を確認する。"]
-  : ["外側から見える範囲だけ確認する。", "型番、購入年、症状、発生した時間をメモする。", "暑さや水濡れがある時は、先に人と床を守る。"];
+  ? ["部屋の畳数、置き場所、コンセントの形をメモする。", "修理の見積もりと、本体＋工事費を並べて比べる。", "急がず、標準工事に入らない費用まで聞いておく。"]
+  : ["外から見える範囲だけ確認する。", "型番、買った年、症状、いつからかをメモする。", "暑いとき・水が出ているときは、先に人と床を守る。"];
 const doNotTouchNotes = article.data.category === "cleaning"
-  ? ["内部ファン、熱交換器、電装部品へスプレーしない。", "分解洗浄や高所作業は自分で進めない。", "カビ臭が残る時は、内部清掃の相談へ切り替える。"]
-  : ["冷媒配管、基板、電源配線、室外機の中は触らない。", "焦げ臭い、煙、火花、金属音、水が電源付近にある時は使用停止。", "原因が分からないまま運転を続けない。"];
-const consultNotes = showReplacementGuide
-  ? ["危険サインがあれば修理相談を優先する。", "10年以上・複数症状・高額見積もりなら買い替えも同時に比べる。", "判断に迷う時は、診断チャットで症状を選び直す。"]
-  : ["外側確認で改善しなければ、無理せず相談へ進む。", "必要なら関連記事で基礎を確認する。", "判断に迷う時は、診断チャットで症状を選び直す。"];
+  ? ["中のファンや金属部分、電気の部品にスプレーしない。", "分解しての洗浄や、脚立での高い作業はしない。", "カビ臭が残るときは、内部清掃の相談に切り替える。"]
+  : ["配管、基板、電源まわり、室外機の中は触らない。", "焦げ臭い・煙・火花・金属音・電源まわりの水があれば使用停止。", "原因が分からないまま運転を続けない。"];
 // Discover露出の前提となる記事画像（横長サムネ/図解）。新画像を入れたらboardImage経由で自動反映される。
 const articleImageUrl = absoluteUrl(articleThumbnail(article));
 
@@ -161,84 +158,61 @@ if (isProceduralArticle) {
 ---
 
 <BaseLayout title={article.data.title} description={article.data.description} canonical={canonical} jsonLd={jsonLd} ogImage={articleThumbnail(article)} breadcrumbs={breadcrumbs}>
-  <section class="container section">
+  <section class="container article-head">
     <p class="eyebrow">{categoryLabel}</p>
     <h1>{article.data.title}</h1>
     <p class="lead">{article.data.description}</p>
-    <div class="tag-list">
-      <span class="tag">危険度: {riskLabel}</span>
-      <span class="tag">{article.data.difficulty === "beginner" ? "初心者向け" : "一歩詳しく"}</span>
-      {article.data.symptoms.map((symptom) => <span class="tag">{symptom}</span>)}
-      <span class="tag">
+    <p class="article-meta">
+      <span class:list={["article-risk", `article-risk-${article.data.risk}`]}>危険度: {riskLabel}</span>
+      <span>
         {article.data.updatedDate
-          ? `更新日: ${article.data.updatedDate.toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" })}`
-          : `公開日: ${article.data.pubDate.toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" })}`}
+          ? `更新 ${article.data.updatedDate.toLocaleDateString("ja-JP", { year: "numeric", month: "numeric", day: "numeric" })}`
+          : `公開 ${article.data.pubDate.toLocaleDateString("ja-JP", { year: "numeric", month: "numeric", day: "numeric" })}`}
       </span>
-    </div>
+    </p>
   </section>
   <section class="container article-body">
     <article class="article-content">
-      <div class="article-opening">
-        <blockquote class="article-concern">{concernText}</blockquote>
-        <KazamiSpeech tone={article.data.risk === "high" ? "warning" : "normal"}>
-          この症状だけでは、まだ故障とは断定できません。危険なサインを先に見て、安全な範囲から順番に確認しましょう。
-        </KazamiSpeech>
-        <QuickDiagnosisCard options={quickDiagnosisOptions} sourceSlug={article.slug} />
-        <EmergencyAlert />
-        <section class="what-you-will-learn" aria-labelledby="what-you-will-learn-title">
-          <p class="eyebrow">この記事で分かること</p>
-          <h2 id="what-you-will-learn-title">確認できる範囲と、相談へ切り替える目安</h2>
-          <ul>
-            <li>自分で確認できる範囲</li>
-            <li>故障の可能性</li>
-            <li>修理を呼ぶ目安</li>
-            <li>使用を止める条件</li>
-            <li>買い替えを考える条件</li>
-          </ul>
-        </section>
-      </div>
       <div id="article-main"></div>
-      <div class:list={["article-intro-strip", !(hasQuickAnswer && hasBoardImage) && "article-intro-strip-single"]}>
-        {
-          hasQuickAnswer && (
-            <section class="lesson-summary" aria-labelledby="quick-answer-title">
-              <h2 id="quick-answer-title">今日の結論</h2>
-              <ul>
-                {article.data.quickAnswer.map((answer) => (
-                  <li>{answer}</li>
-                ))}
-              </ul>
-            </section>
-          )
-        }
-        {
-          hasBoardImage && (
-            <figure class="board-figure board-figure-intro">
-              <img src={sitePath(article.data.boardImage)} alt={article.data.boardAlt ?? `${article.data.title}の図解`} loading="eager" />
-            </figure>
-          )
-        }
-      </div>
+      {
+        hasQuickAnswer && (
+          <section class="lesson-summary" aria-labelledby="quick-answer-title">
+            <h2 id="quick-answer-title">先に結論</h2>
+            <ul>
+              {article.data.quickAnswer.map((answer) => (
+                <li>{answer}</li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+      <EmergencyAlert compact />
+      {
+        hasBoardImage && (
+          <figure class="board-figure board-figure-intro">
+            <img src={sitePath(article.data.boardImage)} alt={article.data.boardAlt ?? `${article.data.title}の図解`} loading="lazy" />
+          </figure>
+        )
+      }
+      <KazamiSpeech tone={article.data.risk === "high" ? "warning" : "normal"}>
+        {kazamiIntro}
+      </KazamiSpeech>
       <Content />
-      <section class="care-sheet" aria-label="安全確認と次の相談">
+      <section class="care-sheet" aria-label="自分で見ていい範囲と、触らない場所">
         <div>
-          <h2>安全に確認</h2>
+          <h2>ここまでは見てOK</h2>
           <ul>{safeCheckNotes.map((note) => <li>{note}</li>)}</ul>
         </div>
         <div class="danger-note">
-          <h2>触らない場所</h2>
+          <h2>ここからは触らない</h2>
           <ul>{doNotTouchNotes.map((note) => <li>{note}</li>)}</ul>
-        </div>
-        <div>
-          <h2>次に相談する</h2>
-          <ul>{consultNotes.map((note) => <li>{note}</li>)}</ul>
         </div>
       </section>
       {
         relatedProducts.length > 0 && (
           <aside class="mini-product-cta" aria-labelledby="mini-product-title">
             <div>
-              <h2 id="mini-product-title">次の処置に使う候補</h2>
+              <h2 id="mini-product-title">確認に使える道具</h2>
               <div class="mini-product-list">
                 {relatedProducts.map((product) => (
                   <a
@@ -273,12 +247,13 @@ if (isProceduralArticle) {
           </aside>
         )
       }
+      <div id="next-action"><NextActionCard sourceSlug={article.slug} /></div>
       {
         showReplacementGuide && (
           <aside class="replacement-check" aria-labelledby="replacement-check-title">
             <div class="replacement-check-head">
               <h2 id="replacement-check-title">修理より買い替えが早いかも</h2>
-              <p>10年以上・修理費高め・部屋に合わない。ひとつでも当てはまるなら、修理待ちの間に本体候補も見ておくと安心です。</p>
+              <p>10年以上・修理費が高い・部屋に合わない。ひとつでも当てはまるなら、修理を待つあいだに本体も見ておくと落ち着いて選べます。</p>
             </div>
             <div class="replacement-check-grid">
               <span>📅 10年以上</span>
@@ -297,6 +272,18 @@ if (isProceduralArticle) {
                 data-item-id="by-size"
               >
                 畳数から買い替え候補を見る
+              </a>
+              <a
+                class="inline-link"
+                href={sitePath("/articles/installation-cost/")}
+                data-cvr-action="article_replacement_cost_click"
+                data-action-kind="replacement"
+                data-source-slug={article.slug}
+                data-slot-index="1"
+                data-recommendation-role="replacement"
+                data-item-id="installation-cost"
+              >
+                工事費のめやすも見る
               </a>
             </div>
           </aside>
@@ -333,21 +320,15 @@ if (isProceduralArticle) {
             <h2 id="teacher-title">{teacher.name}先生</h2>
             <p class="teacher-subject">{teacher.subject}</p>
           </div>
-          <blockquote>{teacher.catchphrase}</blockquote>
           <p class="teacher-profile-summary">{teacher.profile}</p>
           <details class="teacher-details">
-            <summary>風見先生の自己紹介を読む</summary>
+            <summary>風見先生について</summary>
             <div class="teacher-details-body">
               {teacher.detailProfile.map((detail) => <p>{detail}</p>)}
             </div>
           </details>
         </div>
       </section>
-      <div id="next-action"><NextActionCard sourceSlug={article.slug} /></div>
-      <div class="school-greeting school-greeting-end" aria-label="相談メモの終わり">
-        <strong>相談メモはここまで</strong>
-        <span>迷う時は、使用を止めてから次の相談へ進みましょう。</span>
-      </div>
     </article>
     <details class="article-sidebar-toggle">
       <summary aria-label="補助情報を開閉" title="補助情報">
@@ -359,80 +340,4 @@ if (isProceduralArticle) {
       </aside>
     </details>
   </section>
-  {
-    relatedProducts.length > 0 && (
-      <section class="container section" id="mentioned-products">
-        <div class="section-header">
-          <div>
-            <h2>関連商品</h2>
-            <p>本文で触れた確認に使いやすい候補だけを絞っています。</p>
-          </div>
-        </div>
-        <div class="grid curation-product-grid">
-          {relatedProductRecommendations.map((recommendation, index) => (
-            <ProductCard
-              product={recommendation.product}
-              pageType={`article-${article.slug}`}
-              linkPosition="mentioned-products"
-              variant="curation"
-              sourceSlug={article.slug}
-              slotIndex={index + 1}
-              recommendationRole={recommendation.role}
-            />
-          ))}
-        </div>
-      </section>
-    )
-  }
-  {
-    showReplacement && (
-      <section class="container section" id="replacement">
-        <div class="section-header">
-          <div>
-            <p class="eyebrow">買い替え比較</p>
-            <h2>買い替えを検討するなら、まず比較記事へ</h2>
-            <p>部屋の広さ、工事費、年式を見てから候補を絞ると判断しやすくなります。</p>
-          </div>
-        </div>
-        <div class="replacement-link-grid">
-          <a
-            href={sitePath("/by-size/")}
-            data-cvr-action="article_replacement_by_size_click"
-            data-action-kind="replacement"
-            data-source-slug={article.slug}
-            data-slot-index="1"
-            data-recommendation-role="replacement"
-            data-item-id="by-size"
-          >
-            <strong>畳数で買い替え候補を比べる</strong>
-            <small>6畳・8畳・10畳・14畳など、部屋の広さから選ぶ。</small>
-          </a>
-          <a
-            href={sitePath("/articles/installation-cost/")}
-            data-cvr-action="article_replacement_cost_click"
-            data-action-kind="replacement"
-            data-source-slug={article.slug}
-            data-slot-index="2"
-            data-recommendation-role="replacement"
-            data-item-id="installation-cost"
-          >
-            <strong>工事費の見方を確認する</strong>
-            <small>標準工事、追加工事、電源条件まで先に見る。</small>
-          </a>
-          <a
-            href={sitePath("/articles/aircon-history/")}
-            data-cvr-action="article_replacement_age_click"
-            data-action-kind="replacement"
-            data-source-slug={article.slug}
-            data-slot-index="3"
-            data-recommendation-role="replacement"
-            data-item-id="aircon-history"
-          >
-            <strong>年式と省エネ性能を確認する</strong>
-            <small>古い機種の電気代や買い替え目安を整理する。</small>
-          </a>
-        </div>
-      </section>
-    )
-  }
 </BaseLayout>

@@ -1,145 +1,55 @@
 ---
-import { getCollection } from "astro:content";
 import DiagnosisChat from "@components/DiagnosisChat.astro";
 import EmergencyAlert from "@components/EmergencyAlert.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { affiliate } from "@data/affiliate";
-import { getCanonicalArticles } from "@data/internalLinks";
-import { articleThumbnail } from "@utils/articles";
 import { sitePath } from "@utils/paths";
 
-const latestArticles = getCanonicalArticles(await getCollection("articles"))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf() || a.data.title.localeCompare(b.data.title, "ja"))
-  .slice(0, 5);
-const shortDate = new Intl.DateTimeFormat("ja-JP", { month: "numeric", day: "numeric" });
+// 検索から来た読者が最初に押す入口。チャットの症状（not-cooling / water-leak / noise / remote / cleaning）に合わせ、
+// 追加の1件だけ記事へ逃がす。数を増やすほど迷うので、6件で固定する。
+const heroSymptoms = [
+  { label: "冷えない", body: "風がぬるい・効かない", symptom: "not-cooling", href: "#chat-title" },
+  { label: "水が漏れる", body: "室内機や壁から落ちる", symptom: "water-leak", href: "#chat-title" },
+  { label: "変な音がする", body: "ガタガタ・キーン", symptom: "noise", href: "#chat-title" },
+  { label: "リモコンが効かない", body: "反応しない・表示が出ない", symptom: "remote", href: "#chat-title" },
+  { label: "においが気になる", body: "カビ臭い・すっぱい", symptom: "cleaning", href: "#chat-title" },
+  { label: "電気代が高い", body: "先月より急に上がった", href: "/articles/electric-bill-high/" }
+];
 
-const routeGroups = [
+// 相談のあとに読むページ。3枚だけに絞り、1枚3リンクまでにする。
+const nextSteps = [
   {
-    label: "症状",
-    title: "いまの困りごと",
-    body: "冷えない、水もれ、変な音、リモコン不調を安全確認から見ます。",
+    label: "読む",
+    title: "症状をくわしく読む",
+    body: "チャットのあと、同じ症状をじっくり確認したいときに。",
     links: [
-      { label: "症状チェック", href: "/diagnosis/" },
       { label: "冷えない", href: "/articles/not-cooling/" },
       { label: "水もれ", href: "/articles/water-leak/" },
-      { label: "変な音", href: "/articles/strange-noise/" },
-      { label: "リモコン", href: "/articles/remote-not-working/" }
+      { label: "変な音", href: "/articles/strange-noise/" }
     ]
   },
   {
-    label: "安全",
-    title: "止める？相談する？",
-    body: "こげ臭い、火花、水が電源近くにある時は、先に止めます。",
+    label: "呼ぶ",
+    title: "修理を頼むか決める",
+    body: "自分で見られる範囲を越えたら、頼む目安と費用を先に見ます。",
     links: [
-      { label: "あぶないサイン", href: "/diagnosis/#danger-signs" },
-      { label: "相談の目安", href: "/articles/call-contractor/" },
-      { label: "工事費を見る", href: "/articles/installation-cost/" },
-      { label: "室外機を見る", href: "/articles/outdoor-unit-check/" }
+      { label: "修理を呼ぶ目安", href: "/articles/call-contractor/" },
+      { label: "工事費のめやす", href: "/articles/installation-cost/" },
+      { label: "室外機の確認", href: "/articles/outdoor-unit-check/" }
     ]
   },
   {
-    label: "買替",
-    title: "修理費が高い時",
-    body: "10年以上、いくつか症状がある、高い見積もりなら買い替えも見ます。",
+    label: "替える",
+    title: "買い替えも比べる",
+    body: "10年以上使っている、見積もりが高い。そんなときの比べ方です。",
     links: [
       { label: "畳数で選ぶ", href: "/by-size/" },
-      { label: "LDK早見表", href: "/articles/aircon-ldk-size-guide/" },
-      { label: "メーカーを見る", href: "/articles/aircon-maker-compare/" },
-      { label: "6畳", href: "/articles/aircon-6jou-choose/" },
-      { label: "10畳", href: "/articles/aircon-10jou-choose/" },
-      { label: "14畳", href: "/articles/aircon-14jou-choose/" }
-    ]
-  },
-  {
-    label: "予防",
-    title: "掃除・電気代・水",
-    body: "分解しない範囲で、フィルター、ホース、室外機まわりを整えます。",
-    links: [
-      { label: "掃除と予防", href: "/cleaning-prevention/" },
-      { label: "フィルター", href: "/articles/filter-cleaning/" },
-      { label: "ドレンホース", href: "/articles/drain-hose/" },
-      { label: "ホースの掃除", href: "/articles/drain-hose-cleaning/" },
-      { label: "スプレー注意", href: "/articles/cleaning-spray-risk/" },
-      { label: "電気代が高い", href: "/articles/electric-bill-high/" }
-    ]
-  },
-  {
-    label: "道具",
-    title: "道具と本体候補",
-    body: "確認に使う道具と買い替え候補は、診断後に見ます。",
-    links: [
-      { label: "商品比較", href: "/products/" },
-      { label: "補助用品", href: "/products/#support" },
-      { label: "本体候補", href: "/products/#replacement" },
-      { label: "基礎知識", href: "/basics/" }
-    ]
-  },
-  {
-    label: "案内",
-    title: "記事とサイト案内",
-    body: "もっと読みたい時や、運営方針、広告表記を確認したい時はこちらです。",
-    links: [
-      { label: "記事一覧", href: "/articles/" },
-      { label: "運営方針", href: "/about/" },
-      { label: "求人・副業", href: "/jobs/" },
-      { label: "広告表記", href: "/disclaimer/" }
+      { label: "メーカー比較", href: "/articles/aircon-maker-compare/" },
+      { label: "掃除と予防", href: "/cleaning-prevention/" }
     ]
   }
 ];
-const heroSymptoms = [
-  {
-    label: "冷えない・風がぬるい",
-    symptom: "not-cooling",
-    href: "#chat-title",
-    body: "設定・風量・室外機を確認",
-    action: "hero_symptom_click"
-  },
-  {
-    label: "水が漏れる",
-    symptom: "water-leak",
-    href: "#chat-title",
-    body: "室内機や壁から水が落ちる",
-    action: "hero_symptom_click"
-  },
-  {
-    label: "変な音がする",
-    symptom: "noise",
-    href: "#chat-title",
-    body: "音の種類と発生場所を確認",
-    action: "hero_symptom_click"
-  },
-  {
-    label: "リモコンが効かない",
-    symptom: "remote",
-    href: "#chat-title",
-    body: "電池・受光部・応急運転を確認",
-    action: "hero_symptom_click"
-  },
-  {
-    label: "電源が入らない",
-    href: "/diagnosis/#danger-signs",
-    body: "ブレーカーと危険サインを確認",
-    action: "hero_symptom_click"
-  },
-  {
-    label: "においが気になる",
-    href: "/articles/smell-odor/",
-    body: "カビ臭・焦げ臭さを切り分け",
-    action: "hero_symptom_click"
-  },
-  {
-    label: "電気代が高い",
-    href: "/articles/electric-bill-high/",
-    body: "設定・汚れ・使い方を確認",
-    action: "hero_symptom_click"
-  },
-  {
-    label: "修理か買い替えか迷う",
-    href: "/articles/call-contractor/",
-    body: "年式・費用・症状で判断",
-    action: "hero_symptom_click"
-  }
-];
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -156,7 +66,7 @@ const jsonLd = {
 
 <BaseLayout
   title={affiliate.siteName}
-  description="エアコンの冷えない、水漏れ、異音、掃除の悩みを保健室の先生と安全に切り分け、修理相談か買い替え検討かを落ち着いて整理する初心者向けサイト。"
+  description="冷えない、水もれ、変な音。エアコンの困りごとを風見先生が3分で整理して、自分で見ていい範囲と、修理を呼ぶ目安、買い替えの考え方まで案内します。"
   jsonLd={jsonLd}
 >
   <section class="kazami-hero" aria-labelledby="home-title">
@@ -164,9 +74,8 @@ const jsonLd = {
       <div class="kazami-hero-copy">
         <p class="eyebrow">現場の知見をもとに、風見先生が案内</p>
         <h1 id="home-title">そのエアコン、<br />夏バテしてませんか？</h1>
-        <p class="lead">冷えない、水が漏れる、変な音がする。安全に確認できることと、修理を呼ぶ目安を整理します。</p>
-        <blockquote>「まずは症状を聞かせてください。順番に診ていきましょう。」</blockquote>
-        <a class="button" href="#chat-title" data-cvr-action="three_minute_diagnosis_start" data-action-kind="safe">風見先生の3分問診を始める</a>
+        <p class="lead">どこまで自分で見ていいか、いつ修理を呼べばいいか。症状を選ぶだけで、風見先生が順番に整理します。</p>
+        <a class="button" href="#chat-title" data-cvr-action="three_minute_diagnosis_start" data-action-kind="safe">3分の問診をはじめる</a>
       </div>
     </div>
     <div class="kazami-hero-shade" aria-hidden="true"></div>
@@ -174,15 +83,11 @@ const jsonLd = {
   </section>
 
   <section class="container symptom-section" aria-labelledby="symptom-title">
-    <div class="section-header">
-      <div>
-        <p class="eyebrow">いまの症状から選ぶ</p>
-        <h2 id="symptom-title">どの不調に近いですか？</h2>
-      </div>
-    </div>
-    <div class="home-hero-symptoms" aria-label="症状を選んで確認を始める">
+    <h2 id="symptom-title">いま、どれに近いですか？</h2>
+    <p class="symptom-section-note">押すと、その症状から風見先生の問診がはじまります。</p>
+    <div class="home-hero-symptoms" aria-label="症状を選んで相談を始める">
       {heroSymptoms.map((item) => (
-        <a href={sitePath(item.href)} data-diagnosis-symptom={item.symptom} data-cvr-action={item.action} data-action-kind="safe">
+        <a href={sitePath(item.href)} data-diagnosis-symptom={item.symptom} data-cvr-action="hero_symptom_click" data-action-kind="safe">
           <strong>{item.label}</strong><span>{item.body}</span><i aria-hidden="true">→</i>
         </a>
       ))}
@@ -193,52 +98,15 @@ const jsonLd = {
     <EmergencyAlert />
   </section>
 
-  <section class="latest-articles" aria-labelledby="latest-articles-title">
-    <div class="container latest-articles-inner">
-      <div class="latest-articles-heading">
-        <span>NEW</span>
-        <h2 id="latest-articles-title">新着記事</h2>
-      </div>
-      <div class="latest-articles-list">
-        {
-          latestArticles.map((article, index) => (
-            <a
-              href={sitePath(`/articles/${article.slug}/`)}
-              data-cvr-action="home_latest_article_click"
-              data-action-kind="safe"
-              data-source-slug="home"
-              data-slot-index={index + 1}
-              data-item-id={article.slug}
-            >
-              <img src={sitePath(articleThumbnail(article))} alt="" width="96" height="54" loading="lazy" />
-              <span>
-                <time datetime={article.data.pubDate.toISOString()}>{shortDate.format(article.data.pubDate)}</time>
-                <strong>{article.data.title}</strong>
-              </span>
-            </a>
-          ))
-        }
-      </div>
-      <a class="latest-articles-more" href={sitePath("/articles/")}>一覧</a>
-    </div>
-  </section>
-
   <section class="container section home-chat-section">
     <DiagnosisChat startClosed={false} showHeader={false} />
   </section>
 
   <section class="container section home-route-section" aria-labelledby="route-title">
-    <div class="section-header">
-      <div>
-        <p class="eyebrow">目的別リンク</p>
-        <h2 id="route-title">次に見るページを選ぶ</h2>
-        <p>相談のあとに詳しく読むページを、悩み別にまとめました。気になる行を押すと、そのページへ移動します。</p>
-      </div>
-      <a href={sitePath("/articles/")}>記事一覧へ</a>
-    </div>
+    <h2 id="route-title">相談のあとに読むページ</h2>
     <div class="home-route-grid">
       {
-        routeGroups.map((group) => (
+        nextSteps.map((group) => (
           <article class="home-route-card">
             <div>
               <span>{group.label}</span>
@@ -254,13 +122,7 @@ const jsonLd = {
         ))
       }
     </div>
-    <div class="home-route-footer">
-      <div>
-        <strong>まだ迷うときは、症状から相談できます。</strong>
-        <span>使用停止・修理相談・買い替え比較のどれを先に見るか、チャットで絞ります。</span>
-      </div>
-      <a href="#chat-title" data-cvr-action="three_minute_diagnosis_start" data-action-kind="safe">風見先生の3分問診へ戻る</a>
-    </div>
+    <p class="home-route-more"><a href={sitePath("/articles/")}>記事をぜんぶ見る</a></p>
   </section>
 
   <script>
@@ -284,114 +146,3 @@ const jsonLd = {
     });
   </script>
 </BaseLayout>
-
-<style>
-  .latest-articles {
-    border-block: 1px solid var(--paper-line);
-    background: var(--paper);
-  }
-
-  .latest-articles-inner {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    align-items: center;
-    gap: 14px;
-    padding-block: 12px;
-  }
-
-  .latest-articles-heading {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    white-space: nowrap;
-  }
-
-  .latest-articles-heading span {
-    border-radius: 999px;
-    padding: 2px 7px;
-    background: var(--danger);
-    color: white;
-    font-size: 0.68rem;
-    font-weight: 900;
-    letter-spacing: 0.08em;
-  }
-
-  .latest-articles-heading h2 {
-    margin: 0;
-    font-size: 0.95rem;
-  }
-
-  .latest-articles-list {
-    display: flex;
-    gap: 8px;
-    min-width: 0;
-    overflow-x: auto;
-    scrollbar-width: thin;
-  }
-
-  .latest-articles-list > a {
-    display: grid;
-    grid-template-columns: 64px 1fr;
-    flex: 0 0 min(250px, 76vw);
-    align-items: center;
-    gap: 8px;
-    min-height: 58px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 5px;
-    background: white;
-    color: var(--ink);
-    text-decoration: none;
-  }
-
-  .latest-articles-list > a:hover {
-    border-color: var(--brand-line);
-    background: var(--brand-soft);
-  }
-
-  .latest-articles-list img {
-    width: 64px;
-    height: 44px;
-    border-radius: 5px;
-    object-fit: contain;
-    background: var(--surface-soft);
-  }
-
-  .latest-articles-list a > span {
-    display: grid;
-    gap: 1px;
-    min-width: 0;
-  }
-
-  .latest-articles-list time {
-    color: var(--muted);
-    font-size: 0.7rem;
-    line-height: 1.2;
-  }
-
-  .latest-articles-list strong {
-    display: -webkit-box;
-    overflow: hidden;
-    font-size: 0.78rem;
-    line-height: 1.35;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-  }
-
-  .latest-articles-more {
-    font-size: 0.8rem;
-    font-weight: 800;
-    white-space: nowrap;
-  }
-
-  @media (max-width: 760px) {
-    .latest-articles-inner {
-      grid-template-columns: 1fr auto;
-    }
-
-    .latest-articles-list {
-      grid-column: 1 / -1;
-      grid-row: 2;
-    }
-  }
-</style>

@@ -50,9 +50,10 @@
 .kazami-hero-copy h1 {
   max-width: 11em;
   color: var(--navy);
-  font-size: clamp(2.65rem, 5.5vw, 5rem);
-  line-height: 1.12;
-  letter-spacing: -0.045em;
+  /* 「夏バテしてませんか？」が2行目に収まるサイズに抑える */
+  font-size: clamp(2.2rem, 4.2vw, 3.8rem);
+  line-height: 1.2;
+  letter-spacing: -0.04em;
 }
 
 .kazami-hero-copy .lead {
@@ -62,15 +63,8 @@
   font-weight: 750;
 }
 
-.kazami-hero-copy blockquote {
-  width: fit-content;
-  margin: 22px 0;
-  border-left: 4px solid var(--sky);
-  border-radius: 0 8px 8px 0;
-  padding: 12px 16px;
-  background: rgb(255 255 255 / 78%);
-  color: var(--navy);
-  font-weight: 850;
+.kazami-hero-copy .button {
+  margin-top: 20px;
 }
 
 .kazami-hero-background {
@@ -95,14 +89,25 @@
 .symptom-section { padding-block: 34px 20px; }
 .emergency-section { padding-block: 8px 38px; }
 
+.symptom-section h2 {
+  margin-bottom: 4px;
+  font-size: clamp(1.35rem, 4.6vw, 1.9rem);
+}
+
+.symptom-section-note {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
 .symptom-section .home-hero-symptoms {
   max-width: none;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .symptom-section .home-hero-symptoms a {
   position: relative;
-  min-height: 112px;
+  min-height: 104px;
   background: #fff;
 }
 
@@ -143,6 +148,30 @@
 .emergency-alert ul { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 14px 0 0; padding-left: 1.2rem; }
 .emergency-alert li { font-weight: 800; }
 
+/* 記事本文用のたたんだ版。見出し1行で危険を伝え、詳細は開いて読む。 */
+.emergency-alert-compact { display: block; padding: 0; }
+
+.emergency-alert-compact summary {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 16px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.emergency-alert-compact summary::-webkit-details-marker { display: none; }
+
+.emergency-alert-compact summary span:last-child {
+  display: grid;
+  gap: 2px;
+}
+
+.emergency-alert-compact strong { color: #8f382f; font-size: 1rem; line-height: 1.45; }
+.emergency-alert-compact small { color: var(--muted); font-size: .8rem; }
+.emergency-alert-compact .emergency-alert-icon { flex: none; width: 34px; height: 34px; font-size: 1.2rem; }
+.emergency-alert-compact ul { display: grid; gap: 4px; margin: 0; padding: 0 16px 16px 2.4rem; }
+
 .kazami-speech {
   display: grid;
   grid-template-columns: 88px 1fr;
@@ -159,20 +188,32 @@
 .kazami-speech p { margin: 4px 0 0; color: var(--ink); font-weight: 700; }
 .kazami-speech-warning { border-color: #e19a61; background: #fff8f1; }
 
-.article-concern {
+/* 記事の書き出し。h1・説明・危険度と更新日だけにして、答えを早く見せる。 */
+.article-head { padding: 26px 0 18px; }
+.article-head h1 { margin: 6px 0 10px; font-size: clamp(1.6rem, 5.2vw, 2.4rem); line-height: 1.35; }
+.article-head .lead { margin: 0 0 12px; font-size: 1rem; }
+
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  align-items: center;
   margin: 0;
-  border-left: 5px solid var(--sky);
-  padding: 12px 18px;
-  background: #f6fbfe;
-  color: var(--navy);
-  font-size: 1.14rem;
-  font-weight: 850;
+  color: var(--muted);
+  font-size: .8rem;
 }
 
-.article-opening { display: grid; gap: 16px; margin-bottom: 24px; }
+.article-risk {
+  border-radius: 999px;
+  padding: 2px 10px;
+  background: var(--brand-soft);
+  color: var(--brand-dark);
+  font-weight: 800;
+}
 
-.quick-diagnosis-card,
-.what-you-will-learn,
+.article-risk-medium { background: #fff3e2; color: #96551b; }
+.article-risk-high { background: #fdeceb; color: #9c3f38; }
+
 .next-action-card {
   border: 1px solid var(--brand-line);
   border-radius: 12px;
@@ -180,15 +221,7 @@
   background: #fff;
 }
 
-.quick-diagnosis-card h2,
-.what-you-will-learn h2,
 .next-action-card h2 { font-size: 1.4rem; }
-.quick-diagnosis-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 14px; }
-.quick-diagnosis-options a { position: relative; display: grid; gap: 2px; min-height: 64px; align-content: center; border: 1px solid var(--line); border-radius: 8px; padding: 10px 40px 10px 12px; color: var(--ink); text-decoration: none; }
-.quick-diagnosis-options a:hover { border-color: var(--sky); background: var(--cool); }
-.quick-diagnosis-options span { color: var(--muted); font-size: .82rem; }
-.quick-diagnosis-options .quick-diagnosis-arrow { position: absolute; right: 14px; top: 50%; translate: 0 -50%; color: var(--sky); font-size: 1.2rem; }
-.what-you-will-learn ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px 20px; margin-bottom: 0; }
 .next-action-card { display: grid; gap: 18px; margin-top: 28px; background: linear-gradient(135deg, #fff, var(--cool)); }
 .next-action-card p { margin-bottom: 0; }
 .next-action-links { display: flex; flex-wrap: wrap; gap: 10px; }
@@ -199,23 +232,27 @@
 .character-disclaimer { margin: 12px 0 0; color: var(--muted); font-size: .78rem; line-height: 1.65; }
 
 @media (max-width: 820px) {
-  .kazami-hero-grid { min-height: 0; padding-block: 36px 24px; }
+  .kazami-hero-grid { min-height: 0; padding-block: 28px 20px; }
   .kazami-hero-copy { width: 100%; }
-  .kazami-hero-copy h1 { font-size: clamp(2.4rem, 11vw, 4rem); }
+  .kazami-hero-copy h1 { font-size: clamp(2.2rem, 10vw, 3.4rem); }
   .kazami-hero-shade { display: none; }
   .kazami-hero-background { position: relative; inset: auto; z-index: auto; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; }
   .symptom-section .home-hero-symptoms { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 520px) {
-  .kazami-hero-copy blockquote { font-size: .92rem; }
+  /* 「夏バテしてませんか？」を1行に収め、3行見出しの折れを防ぐ */
+  .kazami-hero-copy h1 { font-size: 7.8vw; }
+  .kazami-hero-copy .lead { font-size: .95rem; }
+  .symptom-section { padding-block: 26px 16px; }
   .symptom-section .home-hero-symptoms { gap: 8px; }
-  .symptom-section .home-hero-symptoms a { min-height: 104px; padding: 12px; }
-  .symptom-section .home-hero-symptoms strong { font-size: .95rem; }
+  .symptom-section .home-hero-symptoms a { min-height: 92px; padding: 12px; }
+  .symptom-section .home-hero-symptoms strong { font-size: 1rem; }
+  .symptom-section .home-hero-symptoms span { font-size: .82rem; }
   .emergency-alert { grid-template-columns: 1fr; padding: 18px; }
   .emergency-alert ul { display: grid; gap: 4px; }
-  .kazami-speech { grid-template-columns: 68px 1fr; padding: 12px; }
-  .kazami-speech img { width: 68px; height: 68px; }
+  .kazami-speech { grid-template-columns: 60px 1fr; padding: 12px; }
+  .kazami-speech img { width: 60px; height: 60px; }
   .quick-diagnosis-options, .what-you-will-learn ul { grid-template-columns: 1fr; }
   .kazami-profile-card { grid-template-columns: 1fr; }
 }
@@ -256,11 +293,10 @@ svg {
 
 .nav {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  min-height: 68px;
+  gap: 16px;
+  min-height: 60px;
 }
 
 .brand {
@@ -301,48 +337,71 @@ svg {
 
 .nav-links {
   display: flex;
-  flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 14px;
+  gap: 18px;
   min-width: 0;
+  margin-left: auto;
   font-size: 0.94rem;
 }
 
 .nav-links a {
   color: var(--muted);
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .nav-links a:hover {
   color: var(--brand-dark);
 }
 
-.nav-links .nav-consult-link {
+/* 主導線は常に1本だけ。スマホではこれとロゴしか出さない。 */
+.nav-consult-link {
   display: inline-flex;
+  flex: none;
   align-items: center;
-  min-height: 30px;
-  border: 1px solid var(--brand-line);
+  min-height: 40px;
   border-radius: 999px;
-  padding: 2px 10px;
-  background: var(--brand-soft);
-  color: var(--brand-dark);
+  padding: 0 16px;
+  background: var(--brand);
+  color: #fff;
+  font-size: 0.92rem;
   font-weight: 900;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
-.nav-links .nav-consult-link:hover {
-  border-color: var(--brand);
-  background: #dcecf1;
+.nav-consult-link:hover {
+  background: var(--brand-dark);
+  color: #fff;
 }
 
 .ad-disclosure {
-  border-bottom: 1px solid #e9d8a6;
-  background: #fff8dc;
-  color: #5f4a13;
-  font-size: 0.88rem;
+  border-bottom: 1px solid #ece2c8;
+  background: #fdf8ec;
+  color: #77673f;
+  font-size: 0.72rem;
+  line-height: 1.5;
 }
 
 .ad-disclosure .container {
-  padding: 9px 0;
+  padding: 5px 0;
+}
+
+.ad-disclosure a {
+  margin-left: 6px;
+  color: inherit;
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .nav-links {
+    display: none;
+  }
+
+  .brand-mark {
+    width: 38px;
+    height: 38px;
+  }
 }
 
 .breadcrumb {
@@ -1176,6 +1235,28 @@ h3 {
   line-height: 1.35;
 }
 
+/* 基礎知識の章カード内。深掘り記事は開くまで畳んでおく。 */
+.chapter-more {
+  margin-top: 10px;
+  border-top: 1px dashed var(--line);
+  padding-top: 10px;
+}
+
+.chapter-more summary {
+  color: var(--brand-dark);
+  font-size: 0.92rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.chapter-more ul {
+  display: grid;
+  gap: 6px;
+  margin: 10px 0 0;
+  padding-left: 1.2rem;
+  font-size: 0.94rem;
+}
+
 .paper-panel {
   border: 1px solid var(--paper-line);
   border-radius: 8px;
@@ -1190,17 +1271,21 @@ h3 {
   padding-top: 22px;
 }
 
+.home-route-section > h2 {
+  margin-bottom: 14px;
+  font-size: clamp(1.3rem, 4.2vw, 1.7rem);
+}
+
 .home-route-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 14px;
 }
 
 .home-route-card {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(170px, 1fr);
-  gap: 14px;
-  align-items: start;
+  gap: 12px;
+  align-content: start;
   border: 1px solid var(--paper-line);
   border-radius: 8px;
   padding: 16px;
@@ -1297,58 +1382,17 @@ h3 {
   outline-offset: 2px;
 }
 
-.home-route-footer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px 18px;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 14px;
-  border: 1px solid var(--brand-line);
-  border-radius: 8px;
-  padding: 14px 16px;
-  background: var(--brand-soft);
-  color: var(--muted);
-  font-weight: 800;
+.home-route-more {
+  margin: 16px 0 0;
+  text-align: center;
 }
 
-.home-route-footer div {
-  display: grid;
-  gap: 2px;
-  min-width: 240px;
-}
-
-.home-route-footer strong {
-  color: var(--brand-dark);
-}
-
-.home-route-footer span {
-  line-height: 1.55;
-}
-
-.home-route-footer a {
+.home-route-more a {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   min-height: 44px;
-  border: 2px solid var(--brand);
-  border-radius: 8px;
-  padding: 8px 18px;
-  background: var(--brand);
-  color: #fff;
-  font-weight: 900;
-  line-height: 1.25;
-  text-decoration: none;
-}
-
-.home-route-footer a:hover {
-  background: var(--brand-dark);
-  border-color: var(--brand-dark);
-}
-
-.home-route-footer a:focus-visible {
-  outline: 2px solid var(--brand-dark);
-  outline-offset: 2px;
+  color: var(--brand-dark);
+  font-weight: 800;
 }
 
 .home-care-flow .section-header {
@@ -1617,18 +1661,6 @@ h3 {
   font-size: 0.84rem;
   font-weight: 750;
   line-height: 1.55;
-}
-
-.article-intro-strip {
-  display: grid;
-  grid-template-columns: minmax(210px, 0.9fr) minmax(0, 1.1fr);
-  gap: 12px;
-  align-items: stretch;
-  margin-bottom: 18px;
-}
-
-.article-intro-strip-single {
-  grid-template-columns: minmax(0, 1fr);
 }
 
 .lesson-summary {
@@ -1994,154 +2026,27 @@ h3 {
   color: #315d64;
 }
 
-.action-panel {
-  display: grid;
-  grid-template-columns: minmax(320px, 0.62fr) minmax(0, 1fr);
-  grid-template-areas:
-    "media copy"
-    "media actions";
-  gap: 18px 28px;
-  align-items: start;
-  border: 1px solid var(--brand-line);
-  border-radius: 8px;
-  padding: 22px;
-  background:
-    linear-gradient(rgb(var(--brand-rgb) / 0.045) 1px, transparent 1px) 0 20px / 100% 30px,
-    var(--paper);
-  box-shadow: var(--shadow);
-}
 
-.compact-action-panel {
-  grid-template-columns: 1fr;
-  grid-template-areas:
-    "copy"
-    "actions";
-}
 
-.action-panel-image {
-  grid-area: media;
-  width: 100%;
-  height: 100%;
-  min-height: 330px;
-  border-radius: 8px;
-  object-fit: cover;
-}
 
-.action-panel-copy {
-  grid-area: copy;
-  align-self: center;
-  max-width: 760px;
-  padding-top: 6px;
-}
 
-.action-panel-copy p:not(.eyebrow) {
-  margin: 10px 0 0;
-  color: var(--muted);
-}
 
-.action-grid {
-  grid-area: actions;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 12px;
-}
 
-.compact-action-panel .action-grid {
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-}
 
-.action-card {
-  display: grid;
-  grid-template-columns: 44px minmax(0, 1fr);
-  gap: 14px;
-  align-items: start;
-  min-height: 118px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 16px;
-  background: rgba(255, 255, 255, 0.82);
-  color: var(--ink);
-  text-decoration: none;
-}
 
-.action-card:hover {
-  border-color: var(--brand);
-  transform: translateY(-1px);
-}
 
-.action-card strong,
-.action-card small {
-  display: block;
-  word-break: keep-all;
-}
 
-.action-card strong {
-  font-size: 1.08rem;
-  line-height: 1.35;
-  overflow-wrap: anywhere;
-}
 
-.action-card small {
-  margin-top: 6px;
-  color: var(--muted);
-  font-size: 0.92rem;
-  line-height: 1.6;
-}
 
-.action-card.primary-action {
-  border-color: var(--brand);
-  background: var(--brand-soft);
-}
 
-.action-icon {
-  width: 38px;
-  height: 38px;
-  border-radius: 8px;
-  background-color: #e9f3f5;
-  background-image: url("data:image/svg+xml,%3Csvg width='96' height='24' viewBox='0 0 96 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230b4d4a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12l5 5L20 6'/%3E%3Cpath d='M28 18v-7l8-6 8 6v7'/%3E%3Cpath d='M32 18v-5h8v5'/%3E%3Cpath d='M54 7h12v10H54z'/%3E%3Cpath d='M57 10h6M57 14h4'/%3E%3Cpath d='M76 17h16M78 17V8h12v9M81 11h6'/%3E%3C/g%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-size: 152px 38px;
-  background-position: 0 50%;
-}
 
-.action-card[data-action-kind="contractor"] .action-icon {
-  background-color: #fff2e8;
-  background-position: -38px 50%;
-}
 
-.action-card[data-action-kind="products"] .action-icon {
-  background-color: #eef3fb;
-  background-position: -76px 50%;
-}
 
-.action-card[data-action-kind="replacement"] .action-icon {
-  background-color: #fff6d9;
-  background-position: -114px 50%;
-}
 
-.action-card[data-action-icon] .action-icon {
-  background-image: url("data:image/svg+xml,%3Csvg width='96' height='24' viewBox='0 0 96 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230b4d4a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 8h10M5 12h14M5 16h9'/%3E%3Cpath d='M17 6l3 3M20 6l-3 3M17 18l3-3M20 18l-3-3'/%3E%3Cpath d='M36 4c-4 5-6 8-6 11a6 6 0 0 0 12 0c0-3-2-6-6-11z'/%3E%3Cpath d='M54 8c2-2 6-2 8 0M52 14c4 3 10 3 14 0M55 18c2 1 6 1 8 0'/%3E%3Cpath d='M78 6h12v12H78zM81 9h6M81 13h4'/%3E%3Cpath d='M91 8c2 2 2 6 0 8'/%3E%3C/g%3E%3C/svg%3E");
-}
 
-.action-card[data-action-icon="cooling"] .action-icon {
-  background-color: #e8f6fb;
-  background-position: 0 50%;
-}
 
-.action-card[data-action-icon="leak"] .action-icon {
-  background-color: #e7f4fb;
-  background-position: -38px 50%;
-}
 
-.action-card[data-action-icon="noise"] .action-icon {
-  background-color: #fff2e8;
-  background-position: -76px 50%;
-}
 
-.action-card[data-action-icon="remote"] .action-icon {
-  background-color: #eef3fb;
-  background-position: -114px 50%;
-}
 
 .chapter-list {
   display: grid;
@@ -3635,9 +3540,6 @@ h3 {
   box-shadow: var(--shadow);
 }
 
-.article-content .action-panel {
-  margin: 20px 0 28px;
-}
 
 .article-content h2 {
   margin-top: 36px;
@@ -4272,13 +4174,9 @@ h3 {
   .product-detail,
   .article-body,
   .diagnosis-result,
-  .action-panel,
-  .action-grid,
-  .compact-action-panel .action-grid,
   .diagnosis-mode-group,
   .diagnosis-recommendation-card,
   .mini-product-cta,
-  .article-intro-strip,
   .care-flow-grid,
   .care-sheet,
   .replacement-check,
@@ -4296,7 +4194,6 @@ h3 {
   .grid.two,
   .diagnosis-decision-table,
   .decision-steps,
-
   .home-route-card,
   .footer-grid,
   .footer-sitemap {
@@ -4348,30 +4245,9 @@ h3 {
     margin-top: 0;
   }
 
-  .action-panel {
-    grid-template-areas:
-      "media"
-      "copy"
-      "actions";
-    gap: 16px;
-    padding: 16px;
-  }
 
-  .compact-action-panel {
-    grid-template-areas:
-      "copy"
-      "actions";
-  }
 
-  .action-panel-image {
-    height: auto;
-    min-height: 220px;
-    aspect-ratio: 16 / 9;
-  }
 
-  .action-card {
-    min-height: auto;
-  }
 
   .home-route-grid {
     grid-template-columns: 1fr;
@@ -4641,6 +4517,18 @@ h3 {
 
   .mini-product-list {
     grid-template-columns: 1fr;
+    grid-row: auto;
+  }
+
+  /* スマホでは見出し・一覧・ボタンを素直に縦積みする */
+  .mini-product-cta {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .article-content .mini-product-cta h2,
+  .mini-product-cta > .button {
+    grid-column: 1;
+    grid-row: auto;
   }
 
   .mini-product-cta > .button {
