@@ -188,10 +188,18 @@
 .kazami-speech p { margin: 4px 0 0; color: var(--ink); font-weight: 700; }
 .kazami-speech-warning { border-color: #e19a61; background: #fff8f1; }
 
-/* 記事の書き出し。h1・説明・危険度と更新日だけにして、答えを早く見せる。 */
-.article-head { padding: 26px 0 18px; }
-.article-head h1 { margin: 6px 0 10px; font-size: clamp(1.6rem, 5.2vw, 2.4rem); line-height: 1.35; }
-.article-head .lead { margin: 0 0 12px; font-size: 1rem; }
+/* 記事の書き出し。h1・説明・危険度と更新日だけにして、答えを早く見せる。
+   スマホでは「先に結論」まで1画面（844px）に収まる高さを保つこと。 */
+.article-head { padding: 20px 0 14px; }
+.article-head h1 { margin: 4px 0 8px; font-size: clamp(1.5rem, 5.2vw, 2.4rem); line-height: 1.3; }
+
+/* 記事の説明文。結論のすぐ下に置いて、上部の高さを結論のために空ける。 */
+.article-summary {
+  margin: 14px 0 18px;
+  color: var(--muted);
+  font-size: .95rem;
+  line-height: 1.75;
+}
 
 .article-meta {
   display: flex;
@@ -393,7 +401,7 @@ svg {
   white-space: nowrap;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 820px) {
   .nav-links {
     display: none;
   }
@@ -401,6 +409,10 @@ svg {
   .brand-mark {
     width: 38px;
     height: 38px;
+  }
+
+  .brand-wordmark {
+    padding-bottom: 3px;
   }
 }
 
@@ -411,20 +423,37 @@ svg {
   color: var(--muted);
 }
 
+/* 折り返すと3行取られて結論が下がるので、1行に固定して横スクロールさせる */
 .breadcrumb-list {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   gap: 4px;
   list-style: none;
   margin: 0;
-  padding: 8px 0;
+  padding: 6px 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+
+.breadcrumb-list::-webkit-scrollbar {
+  display: none;
 }
 
 .breadcrumb-list li {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+/* 現在地のラベルは直下のh1と重複するので、狭い画面では省略する */
+@media (max-width: 820px) {
+  .breadcrumb-list li:last-child span[aria-current] {
+    display: block;
+    max-width: 15em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .breadcrumb-list a {
@@ -4090,7 +4119,8 @@ h3 {
   color: #c6d6dc;
 }
 
-.footer-character-note {
+.footer-character-note,
+.footer-disclosure {
   display: block;
   max-width: 46rem;
   margin-top: 10px;
@@ -4101,7 +4131,7 @@ h3 {
 
 .footer-sitemap {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 22px;
 }
 
@@ -4147,26 +4177,11 @@ h3 {
 }
 
 @media (max-width: 820px) {
+  /* ナビリンクは760px以下で非表示になるので、ロゴとCTAは1行に並べたままにする */
   .nav {
-    align-items: flex-start;
-    flex-direction: column;
     gap: 10px;
-    min-height: auto;
-    padding: 10px 0;
-  }
-
-  .nav-links {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    width: 100%;
-    overflow-x: auto;
-    gap: 12px;
-    padding-bottom: 4px;
-    scrollbar-width: thin;
-  }
-
-  .nav-links a {
-    white-space: nowrap;
+    min-height: 56px;
+    padding: 6px 0;
   }
 
   .hero,

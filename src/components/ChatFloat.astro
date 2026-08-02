@@ -272,6 +272,29 @@ import DiagnosisChat from "./DiagnosisChat.astro";
       right: 16px;
     }
 
+    /* 本文に重なる面積を減らすため、スマホではアイコンだけの丸ボタンにする */
+    .cf-trigger {
+      width: 52px;
+      height: 52px;
+      justify-content: center;
+      padding: 0;
+      gap: 0;
+    }
+
+    .cf-label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .cf-icon {
+      width: 24px;
+      height: 24px;
+    }
+
     .cf-panel {
       position: fixed;
       bottom: 72px;

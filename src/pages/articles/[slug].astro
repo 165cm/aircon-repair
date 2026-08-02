@@ -161,7 +161,6 @@ if (isProceduralArticle) {
   <section class="container article-head">
     <p class="eyebrow">{categoryLabel}</p>
     <h1>{article.data.title}</h1>
-    <p class="lead">{article.data.description}</p>
     <p class="article-meta">
       <span class:list={["article-risk", `article-risk-${article.data.risk}`]}>危険度: {riskLabel}</span>
       <span>
@@ -186,6 +185,8 @@ if (isProceduralArticle) {
           </section>
         )
       }
+      {/* 検索から来た読者は説明文をスニペットで読んでいるので、結論より下に置く */}
+      <p class="article-summary">{article.data.description}</p>
       <EmergencyAlert compact />
       {
         hasBoardImage && (
