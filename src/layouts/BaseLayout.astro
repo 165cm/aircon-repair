@@ -117,7 +117,9 @@ const footerSiteMap = [
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={ogImageUrl} />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" href={sitePath("/favicon.png")} type="image/png" />
+    <link rel="icon" href={sitePath("/favicon-kazami-v1.png")} type="image/png" sizes="512x512" />
+    <link rel="apple-touch-icon" href={sitePath("/apple-touch-icon.png")} sizes="180x180" />
+    <meta name="theme-color" content="#183e6b" />
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
     {breadcrumbJsonLd && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />}
     {analytics.ga4MeasurementId && (
@@ -133,8 +135,9 @@ const footerSiteMap = [
   <body>
     <header class="site-header">
       <div class="container nav">
-        <a class="brand" href={sitePath("/")}>
-          <img class="brand-logo" src={sitePath("/images/brand/aircon-hokenshitsu-logo.png")} alt={affiliate.siteName} width="860" height="144" />
+        <a class="brand" href={sitePath("/")} aria-label={`${affiliate.siteName} トップページ`}>
+          <img class="brand-mark" src={sitePath("/images/brand/kazami-site-icon-v1.webp")} alt="" width="512" height="512" />
+          <span class="brand-wordmark">{affiliate.siteName}</span>
         </a>
         <nav class="nav-links" aria-label="主要ナビゲーション">
           <a class="nav-consult-link" href={sitePath("/#chat-title")} data-cvr-action="three_minute_diagnosis_start" data-action-kind="safe">風見先生の3分問診</a>

@@ -266,13 +266,37 @@ svg {
 .brand {
   display: inline-flex;
   align-items: center;
+  gap: 10px;
+  color: var(--brand-dark);
   text-decoration: none;
 }
 
-.brand-logo {
+.brand-mark {
   display: block;
-  width: clamp(190px, 23vw, 252px);
-  height: auto;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgb(var(--brand-dark-rgb) / 16%);
+}
+
+.brand-wordmark {
+  position: relative;
+  padding-bottom: 5px;
+  font-size: clamp(1.08rem, 2vw, 1.35rem);
+  font-weight: 850;
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+
+.brand-wordmark::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--warm);
 }
 
 .nav-links {
