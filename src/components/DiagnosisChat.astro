@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { diagnosisChat, farewells } from "@data/diagnosisChat";
+import { diagnosisChat, farewells, symptomGuides } from "@data/diagnosisChat";
 import { diagnosisItems } from "@data/diagnosis";
 import { teachers } from "@data/teachers";
 import { productCategories, productUrl } from "@data/products";
@@ -51,6 +51,7 @@ const affiliateUrls = {
 type Props = { compact?: boolean; startClosed?: boolean; showHeader?: boolean };
 const { compact = false, startClosed = !compact, showHeader = true } = Astro.props;
 const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
+const resultStampImage = sitePath("/images/kazami/kazami-ok-stamp-v1.webp");
 ---
 
 <section
@@ -101,7 +102,7 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
   </div>
 </section>
 
-<script define:vars={{ script: diagnosisChat, farewells, symptomData, teacherData, productData, affiliateUrls, articleTitleBySlug, basePath, chatDomId, isCompact: compact }}>
+<script define:vars={{ script: diagnosisChat, farewells, symptomGuides, symptomData, teacherData, productData, affiliateUrls, articleTitleBySlug, basePath, chatDomId, isCompact: compact, resultStampImage }}>
   const rootEl = document.getElementById(chatDomId);
   const logEl = rootEl?.querySelector(".chat-log");
   const repliesEl = rootEl?.querySelector(".chat-replies");
@@ -219,6 +220,46 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
     return "";
   }
 
+  function resultGuideHTML(node) {
+    const guide = symptomGuides[node.symptom];
+    if (!guide) return "";
+    const resolvedCount = node.symptom === "cleaning" ? 2 : 1;
+    const shownPossibilities = node.recommendation === "diy-wait"
+      ? guide.possibilities.slice(0, resolvedCount)
+      : guide.possibilities;
+    const intro = node.recommendation === "diy-wait"
+      ? "今回の確認で改善したことから、まず次の可能性が高そうです。再発する場合は、別の原因も含めて相談してください。"
+      : guide.intro;
+    const possibilities = shownPossibilities
+      .map(
+        (item) => `
+          <article class="chat-possibility">
+            <h4>${esc(item.title)}</h4>
+            <p>${esc(item.mechanism)}</p>
+            <p class="chat-professional-reason"><strong>一般の方が難しい理由</strong>${esc(item.professionalReason)}</p>
+          </article>`
+      )
+      .join("");
+    return `
+      <section class="chat-result-guide" aria-label="ヒアリング時点で考えられる原因">
+        <div class="chat-result-heading">
+          <img src="${esc(resultStampImage)}" alt="親指を立てて確認完了を伝える風見先生のオリジナルスタンプ" loading="lazy" width="512" height="512" />
+          <div>
+            <span class="chat-result-eyebrow">風見先生の見立てメモ</span>
+            <h3>ヒアリング時点で考えられること</h3>
+            <p>${esc(intro)}</p>
+          </div>
+        </div>
+        <div class="chat-possibilities">${possibilities}</div>
+        <div class="chat-contact-memo">
+          <strong>問い合わせ時に伝えること</strong>
+          <p>${esc(guide.contactMemo)}</p>
+        </div>
+        <p class="chat-stamp-message">${esc(guide.stampMessage)}</p>
+        <p class="chat-result-caution">これは画面上のヒアリングから考えられる一般的な可能性です。実際の原因は、現地での測定や点検によって判断されます。</p>
+      </section>`;
+  }
+
   function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
@@ -248,7 +289,7 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
 
   async function appendNodeMessages(node) {
     const step = document.createElement("div");
-    step.className = "chat-step";
+    step.className = node.kind === "terminal" ? "chat-step terminal" : "chat-step";
     const row = document.createElement("div");
     row.className = "chat-row instructor";
     row.innerHTML = teacherHeaderHTML(node.teacher);
@@ -279,6 +320,15 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
       }
       appendBubble(bubbleGroup, html, isList);
       if (gapDelay > 0 && i < bubbles.length - 1) await sleep(gapDelay);
+    }
+
+    if (node.kind === "terminal" && !symptomGuides[node.symptom]) {
+      if (gapDelay > 0) await sleep(gapDelay * 2);
+      const guide = document.createElement("div");
+      guide.innerHTML = resultGuideHTML(node);
+      const guideSection = guide.firstElementChild;
+      if (guideSection) bubbleGroup.appendChild(guideSection);
+      scrollToLatest();
     }
 
     if (node.kind === "terminal" && node.actions.length > 0) {
@@ -615,6 +665,11 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
     padding-top: 2px;
   }
 
+  .chat-log :global(.chat-step.terminal .chat-bubble-group) {
+    width: 100%;
+    max-width: min(82%, 820px);
+  }
+
   /* 先生吹き出し */
   .chat-log :global(.chat-bubble) {
     border-radius: 8px;
@@ -675,6 +730,127 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
     border: 1px solid rgb(var(--brand-rgb) / 0.14);
     color: var(--brand-dark);
     font-size: 0.92em;
+  }
+
+  .chat-log :global(.chat-result-guide) {
+    width: 100%;
+    margin-top: 6px;
+    padding: 16px;
+    border: 2px solid rgb(var(--brand-rgb) / 0.28);
+    border-radius: 14px;
+    background: linear-gradient(145deg, #ffffff 0%, #f2fbff 100%);
+    box-shadow: 0 8px 24px rgb(var(--brand-rgb) / 0.1);
+  }
+
+  .chat-log :global(.chat-result-heading) {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr);
+    align-items: center;
+    gap: 14px;
+  }
+
+  .chat-log :global(.chat-result-heading img) {
+    width: 92px;
+    height: 92px;
+    object-fit: cover;
+    border-radius: 50%;
+    transform: rotate(-3deg);
+    filter: drop-shadow(0 4px 8px rgb(var(--brand-rgb) / 0.18));
+  }
+
+  .chat-log :global(.chat-result-eyebrow) {
+    display: inline-block;
+    margin-bottom: 2px;
+    color: var(--brand);
+    font-size: 0.74rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+  }
+
+  .chat-log :global(.chat-result-heading h3) {
+    margin: 0;
+    color: var(--brand-dark);
+    font-size: clamp(1rem, 2.4vw, 1.22rem);
+    line-height: 1.4;
+  }
+
+  .chat-log :global(.chat-result-heading p) {
+    margin: 5px 0 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  .chat-log :global(.chat-possibilities) {
+    display: grid;
+    gap: 9px;
+    margin-top: 14px;
+  }
+
+  .chat-log :global(.chat-possibility) {
+    padding: 12px 14px;
+    border: 1px solid rgb(var(--brand-rgb) / 0.16);
+    border-radius: 9px;
+    background: #ffffff;
+  }
+
+  .chat-log :global(.chat-possibility h4) {
+    margin: 0 0 4px;
+    color: var(--brand-dark);
+    font-size: 0.95rem;
+  }
+
+  .chat-log :global(.chat-possibility p) {
+    margin: 0;
+    font-size: 0.86rem;
+    line-height: 1.65;
+  }
+
+  .chat-log :global(.chat-professional-reason) {
+    margin-top: 7px !important;
+    padding-top: 7px;
+    border-top: 1px dashed rgb(var(--brand-rgb) / 0.18);
+    color: var(--muted);
+  }
+
+  .chat-log :global(.chat-professional-reason strong) {
+    display: block;
+    color: var(--brand);
+    font-size: 0.74rem;
+  }
+
+  .chat-log :global(.chat-contact-memo) {
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-left: 4px solid var(--warm);
+    border-radius: 0 8px 8px 0;
+    background: #fffaf0;
+  }
+
+  .chat-log :global(.chat-contact-memo strong) {
+    color: var(--brand-dark);
+    font-size: 0.82rem;
+  }
+
+  .chat-log :global(.chat-contact-memo p) {
+    margin: 2px 0 0;
+    font-size: 0.86rem;
+    line-height: 1.6;
+  }
+
+  .chat-log :global(.chat-stamp-message) {
+    margin: 11px 0 0;
+    color: var(--brand-dark);
+    font-size: 0.88rem;
+    font-weight: 800;
+    line-height: 1.65;
+  }
+
+  .chat-log :global(.chat-result-caution) {
+    margin: 8px 0 0;
+    color: var(--muted);
+    font-size: 0.74rem;
+    line-height: 1.55;
   }
 
   /* タイピングインジケーター */
@@ -814,6 +990,24 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
   }
 
   @media (max-width: 640px) {
+    .chat-log :global(.chat-step.terminal .chat-bubble-group) {
+      max-width: calc(100% - 76px);
+    }
+
+    .chat-log :global(.chat-result-guide) {
+      padding: 12px;
+    }
+
+    .chat-log :global(.chat-result-heading) {
+      grid-template-columns: 68px minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .chat-log :global(.chat-result-heading img) {
+      width: 68px;
+      height: 68px;
+    }
+
     .chat-replies {
       padding: 12px;
     }
@@ -838,6 +1032,7 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
   @media (prefers-reduced-motion: no-preference) {
     .chat-log :global(.chat-bubble),
     .chat-log :global(.chat-typing),
+    .chat-log :global(.chat-result-guide),
     .chat-log :global(.chat-actions),
     .chat-log :global(.chat-row.user) {
       animation: chat-bubble-in 0.22s ease;
