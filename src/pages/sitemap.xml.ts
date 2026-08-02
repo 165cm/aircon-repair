@@ -18,6 +18,7 @@ export async function GET() {
     "/privacy/",
     "/contact/",
     "/articles/",
+    "/maker-contacts/",
     "/about/"
   ];
   const articlePaths = articles.map((article) => `/articles/${article.slug}/`);
