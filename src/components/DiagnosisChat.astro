@@ -137,9 +137,9 @@ const resultStampImage = sitePath("/images/kazami/kazami-ok-stamp-v1.webp");
   // 朝・昼・夜で、風見先生らしい落ち着いたあいさつに変える
   function timeGreetingText() {
     const hour = new Date().getHours();
-    if (hour >= 5 && hour < 11) return "おはようございます。現役エアコン修理技師の風見です。";
-    if (hour >= 11 && hour < 18) return "こんにちは。現役エアコン修理技師の風見です。";
-    return "こんばんは。現役エアコン修理技師の風見です。遅い時間ですので、安全を優先して確認しましょう。";
+    if (hour >= 5 && hour < 11) return "おはようございます。エアコン保健室の案内役、風見です。";
+    if (hour >= 11 && hour < 18) return "こんにちは。エアコン保健室の案内役、風見です。";
+    return "こんばんは。エアコン保健室の案内役、風見です。遅い時間ですので、安全を優先して確認しましょう。";
   }
 
   // InstructorMessage[] -> {html, isList}[] （1メッセージ1吹き出し）

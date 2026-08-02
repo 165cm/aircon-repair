@@ -95,25 +95,6 @@
 .symptom-section { padding-block: 34px 20px; }
 .emergency-section { padding-block: 8px 38px; }
 
-.kazami-announcement {
-  display: grid;
-  grid-template-columns: 58px 1fr auto;
-  gap: 14px;
-  align-items: center;
-  margin-top: 18px;
-  border: 1px solid var(--brand-line);
-  border-radius: 12px;
-  padding: 10px 14px;
-  background: #fff;
-  box-shadow: var(--shadow);
-}
-
-.kazami-announcement img { width: 58px; height: 58px; aspect-ratio: 1; border-radius: 50%; object-fit: cover; object-position: center 18%; }
-.kazami-announcement div { display: grid; line-height: 1.45; }
-.kazami-announcement strong { color: var(--navy); }
-.kazami-announcement span { color: var(--muted); font-size: .9rem; }
-.kazami-announcement a { font-weight: 850; }
-
 .symptom-section .home-hero-symptoms {
   max-width: none;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -215,6 +196,7 @@
 
 .kazami-profile-card { display: grid; grid-template-columns: minmax(240px, .72fr) minmax(0, 1.28fr); gap: 28px; align-items: center; background: linear-gradient(135deg, #fff, var(--cool)); }
 .kazami-profile-card img { display: block; width: 100%; height: auto; aspect-ratio: 1; border-radius: 12px; object-fit: cover; object-position: center top; }
+.character-disclaimer { margin: 12px 0 0; color: var(--muted); font-size: .78rem; line-height: 1.65; }
 
 @media (max-width: 820px) {
   .kazami-hero-grid { min-height: 0; padding-block: 36px 24px; }
@@ -231,9 +213,6 @@
   .symptom-section .home-hero-symptoms a { min-height: 104px; padding: 12px; }
   .symptom-section .home-hero-symptoms strong { font-size: .95rem; }
   .emergency-alert { grid-template-columns: 1fr; padding: 18px; }
-  .kazami-announcement { grid-template-columns: 48px 1fr; }
-  .kazami-announcement img { width: 48px; height: 48px; }
-  .kazami-announcement a { grid-column: 2; }
   .emergency-alert ul { display: grid; gap: 4px; }
   .kazami-speech { grid-template-columns: 68px 1fr; padding: 12px; }
   .kazami-speech img { width: 68px; height: 68px; }
@@ -4183,6 +4162,15 @@ h3 {
 .footer-about p {
   margin: 0;
   color: #c6d6dc;
+}
+
+.footer-character-note {
+  display: block;
+  max-width: 46rem;
+  margin-top: 10px;
+  color: rgb(255 255 255 / 62%);
+  font-size: .72rem;
+  line-height: 1.6;
 }
 
 .footer-sitemap {
