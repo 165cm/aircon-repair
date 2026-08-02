@@ -169,7 +169,7 @@ const jsonLd = {
         <a class="button" href="#chat-title" data-cvr-action="three_minute_diagnosis_start" data-action-kind="safe">風見先生の3分問診を始める</a>
       </div>
       <figure class="kazami-hero-visual">
-        <img src={sitePath("/images/kazami/kazami-main-hero.png")} alt="空調服ファン付きの白衣を着て、腰道具を装備したエアコン修理技師の風見先生" width="850" height="941" loading="eager" />
+        <img src={sitePath("/images/kazami/kazami-x-avatar.png")} alt="空調服ファン付きの白衣を着て、腰道具を装備したエアコン修理技師の風見先生" width="640" height="640" loading="eager" />
         <figcaption><strong>風見 正治（45）</strong><span>現役エアコン修理技師</span></figcaption>
       </figure>
     </div>
@@ -361,7 +361,8 @@ const jsonLd = {
     width: 64px;
     height: 44px;
     border-radius: 5px;
-    object-fit: cover;
+    object-fit: contain;
+    background: var(--surface-soft);
   }
 
   .latest-articles-list a > span {
