@@ -1,0 +1,27 @@
+<aside class="emergency-alert" id="danger-signs" aria-labelledby="emergency-alert-title">
+  <div class="emergency-alert-icon" aria-hidden="true">!</div>
+  <div>
+    <p class="eyebrow">使用停止のサイン</p>
+    <h2 id="emergency-alert-title">次の症状がある場合は、確認を続けず運転を止めてください</h2>
+    <ul>
+      <li>焦げ臭い・煙・火花</li>
+      <li>ブレーカーが繰り返し落ちる</li>
+      <li>電源やコンセント付近に水がある</li>
+      <li>異常に大きな振動や金属音</li>
+    </ul>
+  </div>
+</aside>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".emergency-alert").forEach((alert) => {
+    if (alert.dataset.trackingReady) return;
+    alert.dataset.trackingReady = "true";
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: "emergency_alert_view" });
+      observer.disconnect();
+    }, { threshold: 0.5 });
+    observer.observe(alert);
+  });
+</script>

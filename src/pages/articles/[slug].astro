@@ -1,7 +1,11 @@
 ---
 import { getCollection, render } from "astro:content";
 import GlossaryBox from "@components/GlossaryBox.astro";
+import EmergencyAlert from "@components/EmergencyAlert.astro";
+import KazamiSpeech from "@components/KazamiSpeech.astro";
+import NextActionCard from "@components/NextActionCard.astro";
 import ProductCard from "@components/ProductCard.astro";
+import QuickDiagnosisCard from "@components/QuickDiagnosisCard.astro";
 import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { affiliate } from "@data/affiliate";
@@ -49,6 +53,14 @@ const riskLabel = {
 }[article.data.risk];
 const hasQuickAnswer = article.data.quickAnswer.length > 0;
 const hasBoardImage = Boolean(article.data.boardImage);
+const concernText = article.data.symptoms.length > 0
+  ? `${article.data.symptoms.slice(0, 2).join("・")}。これって故障？ 自分で確認しても大丈夫？`
+  : `${article.data.title}。まず何を確認すればいい？`;
+const quickDiagnosisOptions = [
+  { label: "自分で確認できる範囲を知りたい", href: "#article-main", description: "外側から順番に確認" },
+  { label: "危険な症状か確認したい", href: "#danger-signs", description: "使用停止のサインを見る" },
+  { label: "修理や買い替えの目安を知りたい", href: "#next-action", description: "次に取る行動を選ぶ" }
+];
 const safeCheckNotes = article.data.category === "buying"
   ? ["部屋の畳数、設置場所、コンセント形状をメモする。", "修理見積もりと新品本体、工事費を同じ紙で比べる。", "急いで買わず、標準工事に含まれない費用を確認する。"]
   : ["外側から見える範囲だけ確認する。", "型番、購入年、症状、発生した時間をメモする。", "暑さや水濡れがある時は、先に人と床を守る。"];
@@ -166,6 +178,26 @@ if (isProceduralArticle) {
   </section>
   <section class="container article-body">
     <article class="article-content">
+      <div class="article-opening">
+        <blockquote class="article-concern">{concernText}</blockquote>
+        <KazamiSpeech tone={article.data.risk === "high" ? "warning" : "normal"}>
+          この症状だけでは、まだ故障とは断定できません。危険なサインを先に見て、安全な範囲から順番に確認しましょう。
+        </KazamiSpeech>
+        <QuickDiagnosisCard options={quickDiagnosisOptions} sourceSlug={article.slug} />
+        <EmergencyAlert />
+        <section class="what-you-will-learn" aria-labelledby="what-you-will-learn-title">
+          <p class="eyebrow">この記事で分かること</p>
+          <h2 id="what-you-will-learn-title">確認できる範囲と、相談へ切り替える目安</h2>
+          <ul>
+            <li>自分で確認できる範囲</li>
+            <li>故障の可能性</li>
+            <li>修理を呼ぶ目安</li>
+            <li>使用を止める条件</li>
+            <li>買い替えを考える条件</li>
+          </ul>
+        </section>
+      </div>
+      <div id="article-main"></div>
       <div class:list={["article-intro-strip", !(hasQuickAnswer && hasBoardImage) && "article-intro-strip-single"]}>
         {
           hasQuickAnswer && (
@@ -304,22 +336,28 @@ if (isProceduralArticle) {
           <blockquote>{teacher.catchphrase}</blockquote>
           <p class="teacher-profile-summary">{teacher.profile}</p>
           <details class="teacher-details">
-            <summary>すずね先生の自己紹介を読む</summary>
+            <summary>風見先生の自己紹介を読む</summary>
             <div class="teacher-details-body">
               {teacher.detailProfile.map((detail) => <p>{detail}</p>)}
             </div>
           </details>
         </div>
       </section>
+      <div id="next-action"><NextActionCard sourceSlug={article.slug} /></div>
       <div class="school-greeting school-greeting-end" aria-label="相談メモの終わり">
         <strong>相談メモはここまで</strong>
         <span>迷う時は、使用を止めてから次の相談へ進みましょう。</span>
       </div>
     </article>
-    <aside class="sidebar">
-      <GlossaryBox title="この記事のミニ用語集" limit={4} />
-      <RevenueCta variant={ctaVariant} />
-    </aside>
+    <details class="article-sidebar-toggle">
+      <summary aria-label="補助情報を開閉" title="補助情報">
+        <span class="sidebar-toggle-icon" aria-hidden="true"></span>
+      </summary>
+      <aside class="sidebar" aria-label="記事の補助情報">
+        <GlossaryBox title="この記事のミニ用語集" limit={4} />
+        <RevenueCta variant={ctaVariant} />
+      </aside>
+    </details>
   </section>
   {
     relatedProducts.length > 0 && (

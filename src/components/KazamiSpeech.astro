@@ -1,0 +1,23 @@
+---
+import { sitePath } from "@utils/paths";
+
+type Props = {
+  tone?: "normal" | "warning" | "safe" | "thinking";
+  image?: string;
+  name?: string;
+};
+
+const {
+  tone = "normal",
+  image = "/images/kazami/kazami-x-avatar.png",
+  name = "風見先生"
+} = Astro.props;
+---
+
+<aside class:list={["kazami-speech", `kazami-speech-${tone}`]} aria-label={`${name}からの案内`}>
+  <img src={sitePath(image)} alt={`空調服ファン付きの白衣を着たエアコン修理技師の${name}`} width="640" height="640" loading="lazy" />
+  <div>
+    <strong>{name}</strong>
+    <p><slot /></p>
+  </div>
+</aside>

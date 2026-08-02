@@ -1,0 +1,19 @@
+---
+type Option = { label: string; href: string; description?: string };
+type Props = { title?: string; options: Option[]; sourceSlug?: string };
+const { title = "まず、どれに近いですか？", options, sourceSlug = "unknown" } = Astro.props;
+---
+
+<section class="quick-diagnosis-card" aria-labelledby="quick-diagnosis-title">
+  <p class="eyebrow">30秒チェック</p>
+  <h2 id="quick-diagnosis-title">{title}</h2>
+  <div class="quick-diagnosis-options">
+    {options.map((option, index) => (
+      <a href={option.href} data-cvr-action="article_quick_branch_click" data-action-kind="safe" data-source-slug={sourceSlug} data-slot-index={index + 1}>
+        <strong>{option.label}</strong>
+        {option.description && <span>{option.description}</span>}
+        <span class="quick-diagnosis-arrow" aria-hidden="true">→</span>
+      </a>
+    ))}
+  </div>
+</section>

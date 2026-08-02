@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import DiagnosisChat from "@components/DiagnosisChat.astro";
+import EmergencyAlert from "@components/EmergencyAlert.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { affiliate } from "@data/affiliate";
 import { getCanonicalArticles } from "@data/internalLinks";
@@ -87,28 +88,56 @@ const routeGroups = [
 ];
 const heroSymptoms = [
   {
-    label: "冷えない・暑い",
+    label: "冷えない・風がぬるい",
     symptom: "not-cooling",
-    body: "風がぬるい、部屋が冷えない",
-    action: "home_symptom_not_cooling_click"
+    href: "#chat-title",
+    body: "設定・風量・室外機を確認",
+    action: "hero_symptom_click"
   },
   {
-    label: "水漏れする",
+    label: "水が漏れる",
     symptom: "water-leak",
+    href: "#chat-title",
     body: "室内機や壁から水が落ちる",
-    action: "home_symptom_water_leak_click"
+    action: "hero_symptom_click"
   },
   {
-    label: "異音・振動",
+    label: "変な音がする",
     symptom: "noise",
-    body: "カタカタ、金属音、揺れがある",
-    action: "home_symptom_noise_click"
+    href: "#chat-title",
+    body: "音の種類と発生場所を確認",
+    action: "hero_symptom_click"
   },
   {
-    label: "リモコン不調",
+    label: "リモコンが効かない",
     symptom: "remote",
-    body: "反応しない、表示がおかしい",
-    action: "home_symptom_remote_click"
+    href: "#chat-title",
+    body: "電池・受光部・応急運転を確認",
+    action: "hero_symptom_click"
+  },
+  {
+    label: "電源が入らない",
+    href: "/diagnosis/#danger-signs",
+    body: "ブレーカーと危険サインを確認",
+    action: "hero_symptom_click"
+  },
+  {
+    label: "においが気になる",
+    href: "/articles/smell-odor/",
+    body: "カビ臭・焦げ臭さを切り分け",
+    action: "hero_symptom_click"
+  },
+  {
+    label: "電気代が高い",
+    href: "/articles/electric-bill-high/",
+    body: "設定・汚れ・使い方を確認",
+    action: "hero_symptom_click"
+  },
+  {
+    label: "修理か買い替えか迷う",
+    href: "/articles/call-contractor/",
+    body: "年式・費用・症状で判断",
+    action: "hero_symptom_click"
   }
 ];
 const jsonLd = {
@@ -130,41 +159,46 @@ const jsonLd = {
   description="エアコンの冷えない、水漏れ、異音、掃除の悩みを保健室の先生と安全に切り分け、修理相談か買い替え検討かを落ち着いて整理する初心者向けサイト。"
   jsonLd={jsonLd}
 >
-  <section class="home-hero-room" aria-labelledby="home-title">
-    <img
-      class="home-hero-room-image"
-      src={sitePath("/images/aircon-health-room-hero.png")}
-      alt=""
-      loading="eager"
-    />
-    <div class="home-hero-room-shade"></div>
-    <div class="container home-hero-room-inner">
-      <div class="home-hero-copy">
-        <p class="eyebrow">すずね先生の最初の質問</p>
-        <h1 id="home-title">いま、どの症状ですか？</h1>
-        <p class="lead">
-          近いものを選ぶだけで、安全確認から修理相談、買い替え検討まで同じ順番で整理します。
-        </p>
-        <div class="home-hero-symptoms" aria-label="症状を選んで相談を始める">
-          {
-            heroSymptoms.map((item) => (
-              <a
-                href="#chat-title"
-                data-diagnosis-symptom={item.symptom}
-                data-cvr-action={item.action}
-                data-action-kind="safe"
-              >
-                <strong>{item.label}</strong>
-                <span>{item.body}</span>
-              </a>
-            ))
-          }
-        </div>
-        <a class="home-danger-link" href={sitePath("/diagnosis/#danger-signs")} data-cvr-action="home_danger_signs_click" data-action-kind="contractor">
-          焦げ臭い・火花・電源近くの水は先に停止
-        </a>
+  <section class="kazami-hero" aria-labelledby="home-title">
+    <div class="container kazami-hero-grid">
+      <div class="kazami-hero-copy">
+        <p class="eyebrow">現役エアコン修理技師・風見先生が案内</p>
+        <h1 id="home-title">そのエアコン、<br />夏バテしてませんか？</h1>
+        <p class="lead">冷えない、水が漏れる、変な音がする。安全に確認できることと、修理を呼ぶ目安を整理します。</p>
+        <blockquote>「まずは症状を聞かせてください。順番に診ていきましょう。」</blockquote>
+        <a class="button" href="#chat-title" data-cvr-action="three_minute_diagnosis_start" data-action-kind="safe">風見先生の3分問診を始める</a>
+      </div>
+      <figure class="kazami-hero-visual">
+        <img src={sitePath("/images/kazami/kazami-main-hero.png")} alt="空調服ファン付きの白衣を着て、腰道具を装備したエアコン修理技師の風見先生" width="850" height="941" loading="eager" />
+        <figcaption><strong>風見 正治（45）</strong><span>現役エアコン修理技師</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <aside class="container kazami-announcement" aria-label="エアコン保健室の新しい案内役">
+    <img src={sitePath("/images/kazami/kazami-x-avatar.png")} alt="新任の風見先生" width="640" height="640" loading="lazy" />
+    <div><strong>エアコン保健室の先生が変わりました</strong><span>新しい案内役は、45歳の現役エアコン修理技師・風見正治です。</span></div>
+    <a href={sitePath("/about/")}>風見先生について</a>
+  </aside>
+
+  <section class="container symptom-section" aria-labelledby="symptom-title">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">いまの症状から選ぶ</p>
+        <h2 id="symptom-title">どの不調に近いですか？</h2>
       </div>
     </div>
+    <div class="home-hero-symptoms" aria-label="症状を選んで確認を始める">
+      {heroSymptoms.map((item) => (
+        <a href={sitePath(item.href)} data-diagnosis-symptom={item.symptom} data-cvr-action={item.action} data-action-kind="safe">
+          <strong>{item.label}</strong><span>{item.body}</span><i aria-hidden="true">→</i>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="container emergency-section">
+    <EmergencyAlert />
   </section>
 
   <section class="latest-articles" aria-labelledby="latest-articles-title">
@@ -233,7 +267,7 @@ const jsonLd = {
         <strong>まだ迷うときは、症状から相談できます。</strong>
         <span>使用停止・修理相談・買い替え比較のどれを先に見るか、チャットで絞ります。</span>
       </div>
-      <a href="#chat-title" data-cvr-action="home_route_footer_chat_click" data-action-kind="safe">3分相談へ戻る</a>
+      <a href="#chat-title" data-cvr-action="three_minute_diagnosis_start" data-action-kind="safe">風見先生の3分問診へ戻る</a>
     </div>
   </section>
 

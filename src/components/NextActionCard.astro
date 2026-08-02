@@ -1,0 +1,18 @@
+---
+import { sitePath } from "@utils/paths";
+type Props = { sourceSlug?: string };
+const { sourceSlug = "unknown" } = Astro.props;
+---
+
+<section class="next-action-card" aria-labelledby="next-action-title">
+  <div>
+    <p class="eyebrow">次にすること</p>
+    <h2 id="next-action-title">症状に合う行動を選んでください</h2>
+    <p>症状が変わったり、焦げ臭さや異常音が出たりした場合は、運転を止めて相談してください。</p>
+  </div>
+  <div class="next-action-links">
+    <a href={sitePath("/#chat-title")} data-cvr-action="article_next_action_click" data-action-kind="safe" data-source-slug={sourceSlug}>風見先生の3分問診</a>
+    <a href={sitePath("/articles/call-contractor/")} data-cvr-action="article_next_action_click" data-action-kind="contractor" data-source-slug={sourceSlug}>修理を相談する目安</a>
+    <a href={sitePath("/by-size/")} data-cvr-action="article_next_action_click" data-action-kind="replacement" data-source-slug={sourceSlug}>買い替え条件を確認</a>
+  </div>
+</section>
