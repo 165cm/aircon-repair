@@ -1,6 +1,5 @@
 ---
 import { getCollection } from "astro:content";
-import ArticleCard from "@components/ArticleCard.astro";
 import GlossaryBox from "@components/GlossaryBox.astro";
 import RevenueCta from "@components/RevenueCta.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
@@ -83,14 +82,6 @@ const chapters = [
     .map((slug) => articleBySlug.get(slug))
     .filter((article) => Boolean(article))
 }));
-
-const coreArticles = chapters
-  .map((chapter) => chapter.primaryArticle)
-  .filter((article) => Boolean(article));
-
-const deepDiveArticles = chapters
-  .flatMap((chapter) => chapter.deepDiveArticles)
-  .filter((article, index, array) => array.findIndex((entry) => entry?.slug === article?.slug) === index);
 ---
 
 <BaseLayout
@@ -99,16 +90,10 @@ const deepDiveArticles = chapters
 >
   <section class="container hero basics-hero">
     <div>
-      <p class="eyebrow">10〜15分で全体像をつかむ</p>
-      <h1>エアコンの基礎知識を、読む順番つきで学ぶ</h1>
-      <p class="lead">
-        まずはこのページを上から読めば、仕組み、安全確認、症状別判断、節電、修理・買い替えの考え方まで一通りつながります。
-        深掘りしたい章だけ、下の関連記事へ進んでください。
-      </p>
-      <div class="hero-actions">
-        <a class="button" href="#quick-course" data-cvr-action="basics_quick_course_click" data-action-kind="safe">10〜15分コースを読む</a>
-        <a class="button secondary" href="#deep-dive" data-cvr-action="basics_deep_dive_click" data-action-kind="safe">深掘り目次を見る</a>
-      </div>
+      <p class="eyebrow">読むのは10〜15分</p>
+      <h1>エアコンの基礎知識</h1>
+      <p class="lead">上から順に読むと、仕組み、見ていい場所、症状の見分け、電気代、修理と買い替えの考え方までひと通りつながります。</p>
+      <a class="button" href="#quick-course" data-cvr-action="basics_quick_course_click" data-action-kind="safe">5つの章を読む</a>
     </div>
     <div class="panel visual-panel safe-check-visual" aria-label="エアコンの安全確認を学ぶイメージ"></div>
   </section>
@@ -116,9 +101,8 @@ const deepDiveArticles = chapters
   <section id="quick-course" class="container section">
     <div class="section-header">
       <div>
-        <p class="eyebrow">書籍の目次のように読む</p>
-        <h2>ざっくり学ぶ5章</h2>
-        <p>この5章だけで、初心者が迷いやすい「どこを見て、どこから先は触らないか」を整理できます。</p>
+        <h2>まずはこの5章</h2>
+        <p>「どこを見ていいか」「どこから先は触らないか」が、この5章で分かります。</p>
       </div>
     </div>
     <div class="chapter-list">
@@ -149,6 +133,24 @@ const deepDiveArticles = chapters
                   この章を記事で読む: {chapter.primaryArticle.data.title}
                 </a>
               )}
+              {chapter.deepDiveArticles.length > 0 && (
+                <details class="chapter-more">
+                  <summary>この章をもっと読む（{chapter.deepDiveArticles.length}本）</summary>
+                  <ul>
+                    {chapter.deepDiveArticles.map((article) => (
+                      <li>
+                        <a
+                          href={sitePath(`/articles/${article.slug}/`)}
+                          data-cvr-action="basics_deep_dive_article_click"
+                          data-action-kind="safe"
+                        >
+                          {article.data.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              )}
             </div>
           </section>
         ))
@@ -157,77 +159,10 @@ const deepDiveArticles = chapters
   </section>
 
   <section class="container section">
-    <div class="notice safe">
-      <strong>この順番で読む理由:</strong>
-      仕組みを先に知ると、フィルター・室外機・ドレンホースの確認理由が分かります。
-      その後に症状別の記事へ進むと、商品購入・業者相談・買い替え比較の判断がぶれにくくなります。
-    </div>
-  </section>
-
-  <section class="container section">
     <GlossaryBox />
   </section>
 
-  <section id="deep-dive" class="container section">
-    <div class="section-header">
-      <div>
-        <p class="eyebrow">深掘り目次</p>
-        <h2>章ごとに詳しく読む</h2>
-        <p>必要な章だけ奥へ進めるように、基礎、掃除・予防、症状、節電、買い替え判断に分けています。</p>
-      </div>
-    </div>
-    <div class="learning-toc">
-      {
-        chapters.map((chapter, index) => (
-          <section class="panel toc-panel">
-            <p class="eyebrow">{chapter.number}</p>
-            <h3>{chapter.title}</h3>
-            <ol>
-              {chapter.primaryArticle && (
-                <li>
-                  <a href={sitePath(`/articles/${chapter.primaryArticle.slug}/`)}>{chapter.primaryArticle.data.title}</a>
-                </li>
-              )}
-              {chapter.deepDiveArticles.map((article) => (
-                <li>
-                  <a href={sitePath(`/articles/${article.slug}/`)}>{article.data.title}</a>
-                </li>
-              ))}
-            </ol>
-          </section>
-        ))
-      }
-    </div>
-  </section>
-
   <section class="container section">
-    <div class="section-header">
-      <div>
-        <p class="eyebrow">最初に読む記事</p>
-        <h2>基礎コースの主教材</h2>
-      </div>
-    </div>
-    <div class="grid">
-      {coreArticles.map((article) => <ArticleCard article={article} />)}
-    </div>
-  </section>
-
-  <section class="container section">
-    <div class="section-header">
-      <div>
-        <p class="eyebrow">もっと詳しく</p>
-        <h2>深掘り記事</h2>
-      </div>
-    </div>
-    <div class="grid">
-      {deepDiveArticles.map((article) => <ArticleCard article={article} />)}
-    </div>
-  </section>
-
-  <section class="container section">
-    <div class="grid two">
-      <RevenueCta variant="products" />
-      <RevenueCta variant="replacement" />
-    </div>
+    <RevenueCta variant="products" />
   </section>
 </BaseLayout>

@@ -65,8 +65,8 @@ const resultStampImage = sitePath("/images/kazami/kazami-ok-stamp-v1.webp");
     !compact && showHeader ? (
       <>
         <p class="eyebrow">風見先生の3分問診</p>
-        <h2 id="chat-title">風見先生と、次の行動を決める</h2>
-        <p class="chat-intro">危険な分解には進みません。症状を選ぶだけで、安全確認、修理相談、買い替え検討の順に整理します。</p>
+        <h2 id="chat-title">風見先生に相談する</h2>
+        <p class="chat-intro">分解や電気まわりの作業はすすめません。症状を選ぶだけで、次にやることが決まります。</p>
       </>
     ) : (
       !compact && <h2 id="chat-title" class="sr-only">症状を選んで相談する</h2>
@@ -75,7 +75,7 @@ const resultStampImage = sitePath("/images/kazami/kazami-ok-stamp-v1.webp");
 
   {!compact && startClosed && (
     <div class="chat-launch" data-chat-launch-panel>
-      <p>質問は4ステップだけです。危険サイン、外側確認、修理相談、買い替え検討の順に見ます。</p>
+      <p>質問は4つだけ。あぶないサイン → 自分で見る → 修理を呼ぶ → 買い替え、の順に見ていきます。</p>
       <button type="button" class="button" data-chat-launch data-cvr-action="diagnosis_chat_launch_click" data-action-kind="safe">
         症状を相談する
       </button>

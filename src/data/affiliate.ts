@@ -10,6 +10,9 @@ export const affiliate = {
   amazonTrackingId: "notestimatobe-22",
   disclosure:
     "当サイトには広告・アフィリエイトリンクが含まれます。エアコン保健室は、Amazonアソシエイトとして適格販売により収入を得ています。",
+  // 全ページ上部の帯用。スマホで1行に収まる長さにし、
+  // Amazonアソシエイトを含む正式表記は全ページのフッターと /disclaimer/ に置く。
+  disclosureShort: "広告・アフィリエイトリンクを含みます",
   contractorAffiliateUrl: serviceAffiliateUrls.contractor,
   cleaningAffiliateUrl: serviceAffiliateUrls.cleaning,
   jobAffiliateUrl: serviceAffiliateUrls.jobs,

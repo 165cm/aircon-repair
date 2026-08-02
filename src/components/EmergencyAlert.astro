@@ -1,16 +1,40 @@
-<aside class="emergency-alert" id="danger-signs" aria-labelledby="emergency-alert-title">
-  <div class="emergency-alert-icon" aria-hidden="true">!</div>
-  <div>
-    <p class="eyebrow">使用停止のサイン</p>
-    <h2 id="emergency-alert-title">次の症状がある場合は、確認を続けず運転を止めてください</h2>
-    <ul>
-      <li>焦げ臭い・煙・火花</li>
-      <li>ブレーカーが繰り返し落ちる</li>
-      <li>電源やコンセント付近に水がある</li>
-      <li>異常に大きな振動や金属音</li>
-    </ul>
-  </div>
-</aside>
+---
+// compact: 記事本文用。見出しだけ出して、サインの一覧は開いたときに見せる。
+// 通常: トップや診断ページ用。最初から全部見せる。
+type Props = { compact?: boolean };
+const { compact = false } = Astro.props;
+
+const signs = [
+  "焦げ臭い・煙・火花",
+  "ブレーカーが繰り返し落ちる",
+  "電源やコンセント付近に水がある",
+  "異常に大きな振動や金属音"
+];
+---
+
+{
+  compact ? (
+    <details class="emergency-alert emergency-alert-compact" id="danger-signs">
+      <summary>
+        <span class="emergency-alert-icon" aria-hidden="true">!</span>
+        <span>
+          <strong>次のときは、確認より先に運転を止めてください</strong>
+          <small>4つのサインを見る</small>
+        </span>
+      </summary>
+      <ul>{signs.map((sign) => <li>{sign}</li>)}</ul>
+    </details>
+  ) : (
+    <aside class="emergency-alert" id="danger-signs" aria-labelledby="emergency-alert-title">
+      <div class="emergency-alert-icon" aria-hidden="true">!</div>
+      <div>
+        <p class="eyebrow">使用停止のサイン</p>
+        <h2 id="emergency-alert-title">次の症状があるときは、確認を続けず運転を止めてください</h2>
+        <ul>{signs.map((sign) => <li>{sign}</li>)}</ul>
+      </div>
+    </aside>
+  )
+}
 
 <script>
   document.querySelectorAll<HTMLElement>(".emergency-alert").forEach((alert) => {
