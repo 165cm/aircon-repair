@@ -25,7 +25,7 @@ const symptomData = Object.fromEntries(
   ])
 );
 
-// 保健室の先生（名前・立ち絵・丸アイコンの顔抜き位置）
+// 風見先生（名前・立ち絵・丸アイコンの顔抜き位置）
 const teacherAvatarFocus = {
   "netsugashi-reitaro": { x: "50%", y: "50%", scale: "1" },
   "tomuro-mamoru": { x: "50%", y: "50%", scale: "1" },
@@ -82,7 +82,7 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
   )}
 
   <div class="chat-window" hidden={startClosed && !compact}>
-    <div class="chat-log" role="log" aria-live="polite" aria-label="保健室の先生との会話">
+    <div class="chat-log" role="log" aria-live="polite" aria-label="風見先生との会話">
       <!-- あいさつはJS無効時のフォールバック兼ビュー用にサーバー描画 -->
       <noscript>
         <div class="chat-row instructor">
@@ -133,12 +133,12 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
     return items[Math.floor(Math.random() * items.length)];
   }
 
-  // 朝・昼・夜であいさつを変える（保健室らしい生身の応対のため）
+  // 朝・昼・夜で、風見先生らしい落ち着いたあいさつに変える
   function timeGreetingText() {
     const hour = new Date().getHours();
-    if (hour >= 5 && hour < 11) return "おはようございます。エアコン保健室のすずねです。";
-    if (hour >= 11 && hour < 18) return "こんにちは。エアコン保健室のすずねです。";
-    return "こんばんは、遅い時間までおつかれさまです。エアコン保健室のすずねです。";
+    if (hour >= 5 && hour < 11) return "おはようございます。現役エアコン修理技師の風見です。";
+    if (hour >= 11 && hour < 18) return "こんにちは。現役エアコン修理技師の風見です。";
+    return "こんばんは。現役エアコン修理技師の風見です。遅い時間ですので、安全を優先して確認しましょう。";
   }
 
   // InstructorMessage[] -> {html, isList}[] （1メッセージ1吹き出し）
@@ -292,7 +292,7 @@ const chatDomId = compact ? "diagnosis-chat-compact" : "diagnosis-chat-inline";
       scrollToLatest();
     }
 
-    // 終端は事務的に終わらせず、保健室らしいひとことで締める
+    // 終端は、風見先生らしい具体的なひとことで締める
     if (node.kind === "terminal") {
       const farewellPool = farewells[node.recommendation] ?? [];
       if (farewellPool.length > 0) {

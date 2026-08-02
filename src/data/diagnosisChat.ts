@@ -54,43 +54,43 @@ export type DiagnosisChatScript = {
   nodes: Record<string, ChatNode>;
 };
 
-// 終端でCTAのあとに添える、保健室の先生らしい締めのひとこと（表示時にランダムで1つ選ぶ）
+// 終端でCTAのあとに添える、風見先生らしい締めのひとこと（表示時にランダムで1つ選ぶ）
 export const farewells: Record<RecommendationKind, string[]> = {
   "stop-call-pro": [
-    "連絡先のメモまでできたら、あとは無理しないで休んでくださいね。お大事に。",
-    "ここまで自分で判断できれば十分です。あとはプロに任せましょう。お大事に。",
-    "怖かったですね。でも、止める判断ができたのは満点です。お大事に。"
+    "ここから先は、無理に触らなくて大丈夫です。運転を止めたまま、修理技師に任せてください。",
+    "使用を止める判断で合っています。型番と症状を伝えられれば、相談が進みやすくなります。",
+    "安全のための確認はここまでです。暑い場合は、先に人が涼しい場所へ移動してください。"
   ],
   repair: [
-    "症状のメモまで準備できれば、相談は半分終わったようなものです。お大事に。",
-    "また様子が変わったら、いつでも保健室に来てくださいね。",
-    "電話の前に深呼吸をひとつ。メモがあれば落ち着いて話せますよ。"
+    "型番、使用年数、症状、発生した時間をメモしておくと、修理相談がスムーズです。",
+    "症状が変わったり、焦げ臭さや異常音が出たりした場合は、運転を止めて相談してください。",
+    "この症状だけでは、まだ故障とは断定できません。ここからは修理技師に切り分けてもらいましょう。"
   ],
   "diy-wait": [
-    "今日は自分でよく確認できましたね。はなまるです。",
-    "落ち着いて対処できていて、えらいです。また何かあったらいつでもどうぞ。",
-    "無理のない範囲で様子を見てあげてください。先生はいつでもここにいます。"
+    "安全に確認できる範囲はここまでです。しばらく運転の様子を見てください。",
+    "改善しても、同じ症状が繰り返す場合は修理相談へ切り替えましょう。",
+    "分解はせず、音・におい・冷え方に変化がないかだけ確認してください。"
   ],
   products: [
-    "道具は急いで買わなくて大丈夫。部屋に合うかだけ、ゆっくり確かめてくださいね。",
-    "買う前に型番とサイズの確認だけ忘れずに。それさえ合えば失敗しにくいですよ。"
+    "道具は急いで買わなくて大丈夫です。用途と本体の型番が合うかを先に確認してください。",
+    "購入前に型番とサイズを確認すると、選び間違いを減らせます。"
   ],
   replacement: [
-    "大きな買い物なので、今日は比較するだけでも一歩前進です。",
-    "焦らなくて大丈夫。迷ったらまた整理しに来てくださいね。",
-    "総額で比べる癖がつけば、あとで後悔しにくいですよ。応援しています。"
+    "修理費だけでなく、本体・工事・撤去を含む総額で比較してください。",
+    "急いで決める必要はありません。使用年数と部屋の広さも並べて検討しましょう。",
+    "10年以上使っている場合は、修理相談と買い替え比較を同時に進めると判断しやすくなります。"
   ],
   cleaning: [
-    "においの相談はよくあることなので、恥ずかしがらなくて大丈夫ですよ。",
-    "無理にスプレーしなかったのは正しい判断です。お大事に。",
-    "プロに頼むのはサボりじゃなくて、エアコンへの思いやりです。"
+    "内部洗浄は分解が必要です。市販スプレーで奥まで洗おうとせず、専門業者へ相談してください。",
+    "外側とフィルターの清掃で改善しない場合は、内部の汚れを確認してもらいましょう。",
+    "電装部品に水分がかかると故障につながります。見える範囲より奥は触らないでください。"
   ]
 };
 
 export const diagnosisChat: DiagnosisChatScript = {
   startNodeId: "greeting",
   nodes: {
-    // ===== あいさつ（受付＝熱逃先生） =====
+    // ===== あいさつ（風見先生） =====
     greeting: {
       id: "greeting",
       kind: "question",
@@ -99,12 +99,12 @@ export const diagnosisChat: DiagnosisChatScript = {
         { timeGreeting: true },
         {
           variants: [
-            "風見先生です。今日はどうしましたか？いちばん近い症状を教えてください。",
-            "風見先生です。エアコンの調子、心配ですよね。まず、いちばん近い症状はどれですか？",
-            "風見先生です。ゆっくりで大丈夫ですよ。いちばん近い症状を選んでください。"
+            "今日はどうしましたか。まず、いちばん近い症状を教えてください。",
+            "エアコンの調子が悪いと心配ですよね。まず、いちばん近い症状を選んでください。",
+            "この症状だけでは、まだ故障とは断定できません。順番に切り分けていきましょう。"
           ]
         },
-        { text: "選んだあとに、止めるサイン、安全に見られる場所、修理か買い替えかを順番に聞きます。" }
+        { text: "止めるべきサイン、安全に確認できる場所、修理や買い替えの目安を順番に整理します。" }
       ],
       quickReplies: [
         { label: "冷えない・暑い", next: "not-cooling__danger-gate" },
@@ -178,7 +178,7 @@ export const diagnosisChat: DiagnosisChatScript = {
       teacher: "tomuro-mamoru",
       messages: [
         { text: "教えてくれてありがとう。それは止めるサインです。" },
-        { text: "今は直そうとしなくて大丈夫。コンセントを抜ける範囲なら抜いて、業者に相談してください。" },
+        { text: "今は直そうとしなくて大丈夫です。安全にコンセントを抜ける場合だけ抜いて、業者に相談してください。" },
         { text: "無理に動かすと故障が広がることがあります。ここから先は、確認を続けず運転を止めてください。" }
       ],
       actions: [{ type: "contractor" }, { type: "danger-anchor" }]
@@ -334,8 +334,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "water-leak",
       teacher: "tomuro-mamoru",
       messages: [
-        { text: "壁紙が濡れる、天井から落ちる、配線の近くに水がある時のこと。" },
-        { text: "原因が外から見えない水漏れは、自分で分解しないでね。" }
+        { text: "壁紙が濡れる、天井から落ちる、配線の近くに水がある状態です。" },
+        { text: "原因が外から見えない水漏れは、自分で分解しないでください。" }
       ],
       quickReplies: [
         { label: "それっぽい", next: "water-leak__stop" },
@@ -392,8 +392,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "water-leak",
       teacher: "mizumichi-nukeru",
       messages: [
-        { text: "ドレンホースは、室内機の水を外へ出す細いホース。" },
-        { text: "先端だけ見るよ。高い場所や壁の中は触らないでね。" }
+        { text: "ドレンホースは、室内機の水を外へ出す細いホースです。" },
+        { text: "確認するのは先端だけです。高い場所や壁の中は触らないでください。" }
       ],
       quickReplies: [
         { label: "先端が詰まっていた", next: "water-leak__diy" },
@@ -429,8 +429,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "water-leak",
       teacher: "mizumichi-nukeru",
       messages: [
-        { text: "ここは年数だけで分けよう。" },
-        { text: "買ってから10年以上たっている？" }
+        { text: "ここからは、使用年数で修理と買い替えの目安を分けます。" },
+        { text: "購入してから10年以上たっていますか？" }
       ],
       quickReplies: [
         { label: "10年以上", next: "water-leak__replacement" },
@@ -445,8 +445,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "water-leak",
       teacher: "kaikae-shinji",
       messages: [
-        { text: "室内機の型番シール、保証書、購入履歴で見るよ。" },
-        { text: "年式が不明なら、まず修理相談で見てもらうのが安全。" }
+        { text: "室内機の型番シール、保証書、購入履歴を確認してみましょう。" },
+        { text: "年式が不明なら、まず修理相談で確認してもらうのが安全です。" }
       ],
       quickReplies: [
         { label: "10年以上だった", next: "water-leak__replacement" },
@@ -513,8 +513,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "noise",
       teacher: "tomuro-mamoru",
       messages: [
-        { text: "キーン、ガリガリ、ギギギのような硬い音。" },
-        { text: "大きい音が続くなら、原因を探す前に止めよう。" }
+        { text: "キーン、ガリガリ、ギギギのような、硬いものがこすれる音です。" },
+        { text: "大きな音が続く場合は、原因を探す前に運転を止めてください。" }
       ],
       quickReplies: [
         { label: "近い音がする", next: "noise__stop" },
@@ -542,8 +542,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "stop-call-pro",
       teacher: "tomuro-mamoru",
       messages: [
-        { text: "今すぐ止めて！金属音・焦げ臭さ・煙・火花は危険サインだよ ⚠️" },
-        { text: "コンセントを抜いて業者に連絡してね。" }
+        { text: "金属音、焦げ臭さ、煙、火花は使用を止めるべきサインです。確認を続けず、運転を止めてください。" },
+        { text: "安全にコンセントを抜ける場合だけ抜いて、業者へ連絡してください。" }
       ],
       actions: [{ type: "contractor" }, { type: "danger-anchor" }]
     },
@@ -553,8 +553,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "noise",
       teacher: "netsugashi-reitaro",
       messages: [
-        { text: "外から見える物だけ確認。" },
-        { text: "室外機に物が当たっている、フィルターが浮いている。どちらかある？" }
+        { text: "ここからは、外から見えるものだけ確認します。" },
+        { text: "室外機に物が当たっている、またはフィルターが浮いている状態はありますか？" }
       ],
       quickReplies: [
         { label: "音が消えた・弱まった", next: "noise__diy" },
@@ -569,8 +569,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "noise",
       teacher: "netsugashi-reitaro",
       messages: [
-        { text: "室外機は、ベランダや外に置いてある大きな箱。" },
-        { text: "ファンの中には手を入れないで、周りの物だけ見るよ。" }
+        { text: "室外機は、ベランダや建物の外に置かれている大きな箱です。" },
+        { text: "ファンの中には手を入れず、周囲に物が当たっていないかだけ確認してください。" }
       ],
       quickReplies: [
         { label: "周りの物で直った", next: "noise__diy" },
@@ -593,7 +593,7 @@ export const diagnosisChat: DiagnosisChatScript = {
           ]
         },
         { text: "物が当たっていたり、フィルターが浮いていたりすると、思ったより大きな音が出ることがあります。" },
-        { text: "今は買うものなしで大丈夫。再発した時のために、音のタイミングだけメモしておきましょう。" }
+        { text: "今は道具を買う必要はなさそうです。再発した時のために、音が出たタイミングだけメモしておきましょう。" }
       ],
       actions: [{ type: "article", slug: "strange-noise" }]
     },
@@ -603,8 +603,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "noise",
       teacher: "netsugashi-reitaro",
       messages: [
-        { text: "まだ大きい音が続くなら、中の故障かも。" },
-        { text: "買ってから10年以上たっている？" }
+        { text: "まだ大きな音が続く場合は、内部の部品に原因がある可能性があります。" },
+        { text: "購入してから10年以上たっていますか？" }
       ],
       quickReplies: [
         { label: "10年以上", next: "noise__replacement" },
@@ -620,7 +620,7 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "repair",
       teacher: "genba-minoru",
       messages: [
-        { text: "どんな音が・いつ・どのくらい続くかをメモして相談しよう。動画もあると伝わりやすいよ。" }
+        { text: "どのような音が、いつ、どのくらい続くかをメモして相談してください。短い動画があると、さらに伝わりやすくなります。" }
       ],
       actions: [{ type: "contractor" }, { type: "article", slug: "strange-noise" }]
     },
@@ -670,8 +670,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "remote",
       teacher: "tomuro-mamoru",
       messages: [
-        { text: "本体は部屋の壁についているエアコンそのもの。" },
-        { text: "本体から焦げ臭い、異音、ランプ異常がなければ次へ進もう。" }
+        { text: "本体は、部屋の壁についているエアコンそのものです。" },
+        { text: "本体からの焦げ臭さ、異音、ランプ異常がなければ次へ進みましょう。" }
       ],
       quickReplies: [
         { label: "異常ありそう", next: "remote__stop" },
@@ -699,8 +699,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "stop-call-pro",
       teacher: "tomuro-mamoru",
       messages: [
-        { text: "それはリモコンだけの問題じゃないかも ⚠️" },
-        { text: "電源・配線は触らず、使用を止めて業者に相談してね。" }
+        { text: "リモコンだけでなく、本体側に異常がある可能性があります。" },
+        { text: "電源や配線には触らず、使用を止めて業者に相談してください。" }
       ],
       actions: [{ type: "contractor" }, { type: "danger-anchor" }]
     },
@@ -727,8 +727,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "remote",
       teacher: "netsugashi-reitaro",
       messages: [
-        { text: "裏ぶたを開けて、単3や単4の電池を同じ向きで入れるだけ。" },
-        { text: "液漏れしていたら素手で触らず、無理せず交換相談でOK。" }
+        { text: "裏ぶたを開け、表示されている向きに合わせて単3または単4電池を交換します。" },
+        { text: "液漏れしている場合は素手で触らず、無理せず交換を相談してください。" }
       ],
       quickReplies: [
         { label: "交換したら直った", next: "remote__diy" },
@@ -781,8 +781,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "remote",
       teacher: "netsugashi-reitaro",
       messages: [
-        { text: "本体カバー付近にある小さな運転ボタンのこと。" },
-        { text: "場所が分からない、押すのが不安なら無理しなくてOK。" }
+        { text: "本体カバー付近にある、小さな運転ボタンのことです。" },
+        { text: "場所が分からない、または押すのが不安な場合は、無理に操作しなくて大丈夫です。" }
       ],
       quickReplies: [
         { label: "押したら動いた", next: "remote__repair" },
@@ -849,8 +849,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "cleaning",
       teacher: "tomuro-mamoru",
       messages: [
-        { text: "内部は、カバーの奥にあるファンや熱交換器のこと。" },
-        { text: "見えていても、分解やスプレーは故障リスクがあるよ。" }
+        { text: "内部とは、カバーの奥にあるファンや熱交換器のことです。" },
+        { text: "見えていても、分解やスプレーは故障につながる可能性があります。" }
       ],
       quickReplies: [
         { label: "奥を掃除したい", next: "cleaning__stop" },
@@ -878,8 +878,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       recommendation: "stop-call-pro",
       teacher: "tomuro-mamoru",
       messages: [
-        { text: "電装部品へのスプレーや分解は危険だよ ⚠️" },
-        { text: "そこはプロに任せるのが正解。" }
+        { text: "電装部品へのスプレーや、本体の分解は危険です。" },
+        { text: "分解が必要なので、ここからは修理技師や専門業者の範囲です。" }
       ],
       actions: [{ type: "cleaning" }, { type: "article", slug: "cleaning-spray-risk" }]
     },
@@ -906,8 +906,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "cleaning",
       teacher: "kazetooshi-kiyoshi",
       messages: [
-        { text: "送風運転は、冷やさず風だけ出す運転。" },
-        { text: "内部を乾かして、においを出にくくする目的だよ。" }
+        { text: "送風運転は、冷やさずに風だけを出す運転です。" },
+        { text: "内部を乾かし、においを出にくくする目的で使います。" }
       ],
       quickReplies: [
         { label: "試して減った", next: "cleaning__diy" },
@@ -921,8 +921,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "cleaning",
       teacher: "kazetooshi-kiyoshi",
       messages: [
-        { text: "フィルターは前カバーの内側にある薄い網。" },
-        { text: "外せる範囲でホコリを取るだけ。奥は触らないでね。" }
+        { text: "フィルターは、前カバーの内側にある薄い網です。" },
+        { text: "外せる範囲でホコリを取るだけにして、奥は触らないでください。" }
       ],
       quickReplies: [
         { label: "掃除して減った", next: "cleaning__diy" },
@@ -959,8 +959,8 @@ export const diagnosisChat: DiagnosisChatScript = {
       symptom: "cleaning",
       teacher: "kazetooshi-kiyoshi",
       messages: [
-        { text: "カビ臭が残るなら、奥の汚れかも。" },
-        { text: "買ってから10年以上たっている？" }
+        { text: "カビ臭が残る場合は、内部の汚れが原因の可能性があります。" },
+        { text: "購入してから10年以上たっていますか？" }
       ],
       quickReplies: [
         { label: "10年以上", next: "cleaning__replacement" },
@@ -977,7 +977,7 @@ export const diagnosisChat: DiagnosisChatScript = {
       teacher: "kazetooshi-kiyoshi",
       messages: [
         { text: "カビ臭が残るなら、奥の汚れが原因かもしれません。" },
-        { text: "ここから先は、プロの分解クリーニングが確実です。" },
+        { text: "ここから先は分解が必要なので、専門業者へクリーニングを相談してください。" },
         { text: "市販スプレーで無理に奥へ吹き込むより、電装部品を守りながら洗ってもらうほうが安心です。" }
       ],
       actions: [{ type: "cleaning" }, { type: "article", slug: "cleaning-spray-risk" }]
