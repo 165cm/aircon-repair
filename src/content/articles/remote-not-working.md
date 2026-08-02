@@ -7,6 +7,7 @@ products: ["remote-battery"]
 difficulty: "beginner"
 risk: "low"
 recommendedCta: "products"
+kazamiIntro: "押しても反応しないと、本体まで壊れたかと思いますよね。でもリモコンの不調は、電池を替えるだけで直ることが本当に多いんです。安い順に確かめましょう。"
 quickAnswer:
   - "まず新品電池に交換。リモコン不調の原因はこれが最多。"
   - "スマホカメラで送信部が光るかを見れば、リモコン側か本体側か分けられる。"

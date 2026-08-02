@@ -8,6 +8,7 @@ difficulty: "beginner"
 risk: "medium"
 recommendedCta: "contractor"
 teacher: "mizumichi-nukeru"
+kazamiIntro: "ホースが見当たらないと、どこを確かめればいいのか分からないですよね。壁の中を通っているタイプかもしれません。まず見分け方からいきましょう。"
 quickAnswer:
   - "屋外に細いホース先端があれば一般的なドレンホースの可能性が高い。"
   - "先端が見えない場合は壁内排水や隠蔽配管の可能性がある。"

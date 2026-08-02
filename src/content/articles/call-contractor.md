@@ -7,6 +7,7 @@ products: ["aircon-6tatami", "aircon-10tatami", "aircon-14tatami"]
 difficulty: "beginner"
 risk: "high"
 recommendedCta: "contractor"
+kazamiIntro: "呼ぶべきか、もう少し様子を見るか。ここがいちばん迷うところですよね。判断の線は私が引いておくので、あとはメモを用意するだけです。"
 quickAnswer:
   - "焦げ臭い・煙・繰り返すブレーカー落ちは、確認より相談を優先。"
   - "型番・年式・症状・いつからをメモしてから連絡すると話が早い。"

@@ -7,6 +7,7 @@ products: ["aircon-cleaning-cover", "filter-brush"]
 difficulty: "beginner"
 risk: "medium"
 recommendedCta: "jobs"
+kazamiIntro: "未経験歓迎と書いてあると、かえって不安になりますよね。見るべきところが分かれば、良い求人かどうかは自分で判断できます。"
 quickAnswer:
   - "仕事の核心は洗浄より「養生と電装部品の保護」。研修の質がすべて。"
   - "歩合制は単価×件数だけでなく、閑散期と移動時間の扱いを確認。"

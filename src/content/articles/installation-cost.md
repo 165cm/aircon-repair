@@ -7,6 +7,7 @@ products: ["aircon-6tatami", "aircon-10tatami", "aircon-14tatami"]
 difficulty: "beginner"
 risk: "low"
 recommendedCta: "contractor"
+kazamiIntro: "本体の値段だけで決めると、あとから工事費で驚くことがあります。何が標準で、何が追加になるのか。先に知っておけば慌てずに済みます。"
 quickAnswer:
   - "「工事費込み」でも配管延長・電源工事・撤去処分は追加になりやすい。"
   - "見積もり前に設置場所の写真を撮っておくと差額トラブルを防げる。"

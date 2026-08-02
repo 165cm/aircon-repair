@@ -7,6 +7,7 @@ products: ["aircon-14tatami", "aircon-10tatami", "circulator"]
 difficulty: "beginner"
 risk: "medium"
 recommendedCta: "products"
+kazamiIntro: "14畳あたりから、電源やスペースの条件がついてきます。買ったのに工事できない、を防ぐために先に確認しておきましょう。"
 quickAnswer:
   - "14畳用は4.0kWクラス。200V機が中心。"
   - "200V専用コンセントの有無を最初に確認。"

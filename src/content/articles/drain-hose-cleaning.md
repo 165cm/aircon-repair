@@ -8,6 +8,7 @@ difficulty: "beginner"
 risk: "medium"
 recommendedCta: "products"
 teacher: "mizumichi-nukeru"
+kazamiIntro: "自分でやっていいのか迷いますよね。ホースの掃除は、やっていい範囲とやめたほうがいい範囲がはっきり分かれます。まず、その線引きから確認しましょう。"
 quickAnswer:
   - "掃除してよいのは地面から届くホース先端だけ。"
   - "ポンプは先端が見え、無理なく密着できる時だけ使う。"

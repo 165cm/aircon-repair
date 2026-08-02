@@ -7,6 +7,7 @@ products: ["aircon-6tatami", "aircon-8tatami", "aircon-10tatami", "aircon-14tata
 difficulty: "beginner"
 risk: "low"
 recommendedCta: "products"
+kazamiIntro: "うちのはまだ使えるのかな、と思ったら、年式が手がかりになります。昔と今では、同じように運転しても電気代がかなり違うんですよ。"
 quickAnswer:
   - "エアコンの省エネ性能はインバーター化以降に大きく進化。"
   - "購入から10年以上＋不調なら、修理と買い替えの比較を同時に進める。"

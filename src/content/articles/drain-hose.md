@@ -7,6 +7,7 @@ products: ["drain-pump", "drain-insect-cap"]
 difficulty: "beginner"
 risk: "medium"
 recommendedCta: "products"
+kazamiIntro: "水漏れの原因が、外に出ているホース1本だった。これ、現場では本当によくあります。ここは自分で確かめられる数少ない場所ですよ。"
 quickAnswer:
   - "室内機からの水漏れは、まずドレンホース先端の詰まりを疑う。"
   - "確認するのは外に出ている先端だけ。壁の中や高所は触らない。"

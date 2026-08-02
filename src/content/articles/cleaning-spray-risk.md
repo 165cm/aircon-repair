@@ -7,6 +7,7 @@ products: ["aircon-cleaning-cover", "filter-brush", "sharp-air-purifier"]
 difficulty: "beginner"
 risk: "high"
 recommendedCta: "contractor"
+kazamiIntro: "棚で見かけると、つい試したくなりますよね。ただ、あれで壊れた機械を現場で何度も見ています。買う前に、どこが危ないかだけ知ってください。"
 quickAnswer:
   - "洗浄スプレーは電装部品への液入りで故障・発火の恐れ。当サイトは推奨しない。"
   - "自分でやるのはフィルター・外装・室外機まわりまで。"

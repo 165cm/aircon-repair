@@ -7,6 +7,7 @@ products: ["aircon-6tatami", "aircon-10tatami"]
 difficulty: "beginner"
 risk: "medium"
 recommendedCta: "jobs"
+kazamiIntro: "外から見ると、きつそうな仕事に見えますよね。実際の一日がどんなものか、現場の話をそのままお伝えします。"
 quickAnswer:
   - "未経験入口は「修理サービス補助」「設置工事補助」「クリーニング補助」の3つ。"
   - "電源工事は電気工事士の資格が必要。誰がやるのかを求人で確認。"

@@ -7,6 +7,7 @@ products: ["filter-brush", "aircon-cleaning-cover", "sharp-air-purifier"]
 difficulty: "beginner"
 risk: "low"
 recommendedCta: "products"
+kazamiIntro: "面倒に見えて、実は効果がいちばん大きいのがフィルター掃除です。特別な道具もいりません。今日15分で終わらせてしまいましょう。"
 quickAnswer:
   - "フィルター掃除は冷え・におい・電気代に効く、最優先のセルフメンテ。"
   - "掃除機でホコリ→汚れが強ければ水洗い→完全に乾かして戻す。"

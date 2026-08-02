@@ -7,6 +7,7 @@ products: ["filter-brush", "aircon-cleaning-cover", "sharp-air-purifier", "therm
 difficulty: "beginner"
 risk: "low"
 recommendedCta: "contractor"
+kazamiIntro: "つけた瞬間のあのニオイ、気になりますよね。多くは内側にたまった湿気とホコリが原因です。自分でできるところから試してみましょう。"
 quickAnswer:
   - "焦げ臭い・甘い化学臭は即使用停止して業者相談。"
   - "カビ・ホコリ臭はフィルター掃除と送風乾燥で改善することが多い。"

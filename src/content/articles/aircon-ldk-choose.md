@@ -7,6 +7,7 @@ products: ["aircon-14tatami", "aircon-18tatami", "circulator"]
 difficulty: "beginner"
 risk: "medium"
 recommendedCta: "products"
+kazamiIntro: "LDKは、同じ畳数でも個室より力が要ります。キッチンの熱や吹き抜けがあるなら、なおさらです。ここを外すと後悔しますよ。"
 quickAnswer:
   - "14畳以下のLDKは14畳用、16〜20畳は18畳用が基本線。"
   - "キッチンの熱・吹き抜け・西日があれば一段上の畳数を選ぶ。"
