@@ -9,13 +9,13 @@ type Props = {
 
 const {
   tone = "normal",
-  image = "/images/kazami/kazami-x-avatar.png",
+  image = "/images/kazami/kazami-face-avatar-v2.png",
   name = "風見先生"
 } = Astro.props;
 ---
 
 <aside class:list={["kazami-speech", `kazami-speech-${tone}`]} aria-label={`${name}からの案内`}>
-  <img src={sitePath(image)} alt={`空調服ファン付きの白衣を着たエアコン修理技師の${name}`} width="640" height="640" loading="lazy" />
+  <img src={sitePath(image)} alt={`空調服ファン付きの白衣を着たエアコン修理技師の${name}の顔`} width="800" height="800" loading="lazy" />
   <div>
     <strong>{name}</strong>
     <p><slot /></p>

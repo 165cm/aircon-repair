@@ -5,8 +5,8 @@
 ## プロフィール
 
 - 表示名: 風見先生｜エアコン保健室
-- アイコン: `/public/images/kazami/kazami-x-avatar.png`
-- ヘッダー: `/public/images/kazami/kazami-social-card.png`
+- アイコン: `/public/images/kazami/kazami-face-avatar-v2.png`（円形トリミング最適化済み、800×800）
+- ヘッダー: `/public/images/brand/aircon-hokenshitsu-x-header-v2.png`（X推奨比率、1500×500）
 - プロフィール文: 45歳の現役エアコン修理技師。なぜか保健室の白衣を着ています。しかもファン付き。冷えない・水漏れ・異音・修理か買い替えかを、現場目線で分かりやすく整理します。▼風見先生の3分問診
 
 ## キャラクター交代告知

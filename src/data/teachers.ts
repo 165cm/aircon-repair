@@ -28,8 +28,8 @@ export const healthRoomTeacher = {
     "得意なのは、測定と状況確認で原因を一つずつ切り分けること。分解や高所作業はすすめません。",
     "暑さに弱く、白衣を空調服に改造しました。工具の手入れには少し細かい45歳です。"
   ],
-  image: "/images/kazami/kazami-x-avatar.png",
-  avatarImage: "/images/kazami/kazami-x-avatar.png"
+  image: "/images/kazami/kazami-face-avatar-v2.png",
+  avatarImage: "/images/kazami/kazami-face-avatar-v2.png"
 } satisfies Teacher;
 
 export const teachers = {
