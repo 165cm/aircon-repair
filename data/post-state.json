@@ -259,8 +259,13 @@
       "id": "filter-cleaning__risk-warning",
       "articleSlug": "filter-cleaning",
       "postedAt": "2026-08-03T12:26:09.484Z"
+    },
+    {
+      "id": "aircon-14jou-choose__safe-check",
+      "articleSlug": "aircon-14jou-choose",
+      "postedAt": "2026-08-04T11:24:36.830Z"
     }
   ],
-  "cursor": 52,
-  "lastRunAt": "2026-08-03T12:26:09.484Z"
+  "cursor": 53,
+  "lastRunAt": "2026-08-04T11:24:36.830Z"
 }
