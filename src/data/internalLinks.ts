@@ -25,7 +25,15 @@ const roleByIndex: ArticleRecommendationRole[] = ["deep-dive", "safe-check", "de
 
 const articlePlans: Record<string, ArticlePlan> = {
   "not-cooling": {
-    articles: [["filter-cleaning", "deep-dive"], ["outdoor-unit-check", "safe-check"], ["call-contractor", "decision"]],
+    articles: [["aircon-not-cooling-fan-dirt", "deep-dive"], ["outdoor-unit-check", "safe-check"], ["call-contractor", "decision"]],
+    products: [["thermo-hygrometer", "measure"], ["filter-brush", "action"]]
+  },
+  "aircon-not-cooling-fan-dirt": {
+    articles: [["not-cooling", "deep-dive"], ["cleaning-spray-risk", "safe-check"], ["aircon-cleaning-company-guide", "decision"]],
+    products: [["thermo-hygrometer", "measure"], ["filter-brush", "action"]]
+  },
+  "aircon-cleaning-company-guide": {
+    articles: [["aircon-not-cooling-fan-dirt", "deep-dive"], ["cleaning-spray-risk", "safe-check"], ["filter-cleaning", "decision"]],
     products: [["thermo-hygrometer", "measure"], ["filter-brush", "action"]]
   },
   "water-leak": {
@@ -57,7 +65,7 @@ const articlePlans: Record<string, ArticlePlan> = {
     products: [["drain-pump", "action"], ["drain-insect-cap", "safety"]]
   },
   "smell-odor": {
-    articles: [["filter-cleaning", "deep-dive"], ["cleaning-spray-risk", "safe-check"], ["call-contractor", "decision"]],
+    articles: [["filter-cleaning", "deep-dive"], ["cleaning-spray-risk", "safe-check"], ["aircon-cleaning-company-guide", "decision"]],
     products: [["filter-brush", "action"], ["sharp-air-purifier", "comfort"]]
   },
   "remote-not-working": {
@@ -109,7 +117,7 @@ const articlePlans: Record<string, ArticlePlan> = {
     products: [["aircon-10tatami", "replacement"], ["aircon-14tatami", "replacement"]]
   },
   "cleaning-spray-risk": {
-    articles: [["filter-cleaning", "deep-dive"], ["smell-odor", "safe-check"], ["call-contractor", "decision"]],
+    articles: [["filter-cleaning", "deep-dive"], ["smell-odor", "safe-check"], ["aircon-cleaning-company-guide", "decision"]],
     products: [["aircon-cleaning-cover", "safety"], ["filter-brush", "action"]]
   },
   "hvac-career-start": {

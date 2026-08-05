@@ -5,6 +5,7 @@ import EmergencyAlert from "@components/EmergencyAlert.astro";
 import KazamiSpeech from "@components/KazamiSpeech.astro";
 import NextActionCard from "@components/NextActionCard.astro";
 import RevenueCta from "@components/RevenueCta.astro";
+import CleaningServicePicker from "@components/CleaningServicePicker.astro";
 import AmazonLink from "@components/AmazonLink.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { affiliate } from "@data/affiliate";
@@ -32,7 +33,15 @@ const breadcrumbs = [
   { label: "記事一覧", href: "/articles/" },
   { label: article.data.title }
 ];
-const ctaVariant = article.data.recommendedCta === "jobs" ? "jobs" : article.data.recommendedCta === "products" ? "products" : "contractor";
+const ctaVariant = article.data.recommendedCta === "jobs"
+  ? "jobs"
+  : article.data.recommendedCta === "products"
+    ? "products"
+    : article.data.recommendedCta === "cleaning"
+      ? "cleaning"
+      : "contractor";
+const isCleaningGuide = article.slug === "aircon-cleaning-company-guide";
+const showCleaningPicker = isCleaningGuide || article.slug === "aircon-not-cooling-fan-dirt";
 const teacher = healthRoomTeacher;
 const nextLessons = getArticleRecommendations(article.slug, article, allArticles);
 const showReplacementGuide = article.data.category === "symptom" || article.data.category === "energy-saving";
@@ -213,7 +222,9 @@ if (isProceduralArticle) {
       <KazamiSpeech tone={article.data.risk === "high" ? "warning" : "normal"}>
         {kazamiIntro}
       </KazamiSpeech>
+      {isCleaningGuide && <CleaningServicePicker sourceSlug={article.slug} showPending />}
       <Content />
+      {showCleaningPicker && !isCleaningGuide && <CleaningServicePicker sourceSlug={article.slug} />}
       <section class="care-sheet" aria-label="自分で見ていい範囲と、直らないときの連絡先">
         <div>
           <h2>ここまでは見てOK</h2>

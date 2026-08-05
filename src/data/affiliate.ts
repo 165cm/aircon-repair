@@ -1,6 +1,8 @@
+import { primaryCleaningAffiliate } from "./cleaningAffiliates";
+
 const serviceAffiliateUrls = {
   contractor: "https://curama.jp/",
-  cleaning: "https://curama.jp/",
+  cleaning: primaryCleaningAffiliate.affiliateUrl ?? "https://yourmystar.jp/cleaning/aircon/",
   jobs: "https://jp.indeed.com/jobs?q=%E3%82%A8%E3%82%A2%E3%82%B3%E3%83%B3%E4%BF%AE%E7%90%86&sc=0kf%3Aocc%28LGKPS%29%3B"
 };
 

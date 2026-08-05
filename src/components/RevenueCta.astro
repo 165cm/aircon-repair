@@ -1,9 +1,10 @@
 ---
 import { affiliate } from "@data/affiliate";
+import { primaryCleaningAffiliate } from "@data/cleaningAffiliates";
 import { sitePath } from "@utils/paths";
 
 type Props = {
-  variant?: "contractor" | "jobs" | "products" | "replacement";
+  variant?: "contractor" | "cleaning" | "jobs" | "products" | "replacement";
 };
 
 const { variant = "contractor" } = Astro.props;
@@ -15,6 +16,14 @@ const copy = {
     href: affiliate.contractorAffiliateUrl,
     label: "業者相談の候補を見る",
     action: "contractor_consult_click",
+    kind: "contractor"
+  },
+  cleaning: {
+    title: "内部の汚れなら、料金と日程を比較",
+    body: "フィルター清掃で改善せず、送風ファンの汚れや臭いが気になる時は、対応地域・作業範囲・補償を確認して依頼しましょう。",
+    href: primaryCleaningAffiliate.affiliateUrl ?? affiliate.cleaningAffiliateUrl,
+    label: "エアコンクリーニングを確認",
+    action: "cleaning_service_click",
     kind: "contractor"
   },
   jobs: {
@@ -57,6 +66,9 @@ const copy = {
   >
     {copy.label}
   </a>
+  {variant === "cleaning" && primaryCleaningAffiliate.impressionUrl && (
+    <img class="affiliate-impression" src={primaryCleaningAffiliate.impressionUrl} width="1" height="1" alt="" aria-hidden="true" />
+  )}
 </aside>
 
 <style>
@@ -66,5 +78,11 @@ const copy = {
 .revenue-cta-btn {
   width: 100%;
   margin-top: 8px;
+}
+.affiliate-impression {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 </style>

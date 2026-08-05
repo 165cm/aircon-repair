@@ -10,7 +10,7 @@ const articles = defineCollection({
     products: z.array(z.string()).default([]),
     difficulty: z.enum(["beginner", "intermediate"]).default("beginner"),
     risk: z.enum(["low", "medium", "high"]),
-    recommendedCta: z.enum(["products", "contractor", "jobs", "learn"]),
+    recommendedCta: z.enum(["products", "contractor", "cleaning", "jobs", "learn"]),
     teacher: z
       .enum(["netsugashi-reitaro", "tomuro-mamoru", "kazetooshi-kiyoshi", "mizumichi-nukeru", "kaikae-shinji", "genba-minoru"])
       .optional(),

@@ -1,0 +1,121 @@
+---
+import { cleaningAffiliateServices, pendingCleaningAffiliateServices } from "@data/cleaningAffiliates";
+
+type Props = {
+  sourceSlug: string;
+  showPending?: boolean;
+};
+
+const { sourceSlug, showPending = false } = Astro.props;
+---
+
+<section class="cleaning-picker" aria-labelledby={`cleaning-picker-title-${sourceSlug}`}>
+  <div class="cleaning-picker-head">
+    <p class="eyebrow">広告を含む比較</p>
+    <h2 id={`cleaning-picker-title-${sourceSlug}`}>迷ったら、この4タイプから選ぶ</h2>
+    <p>掲載順は「読者が選びやすいか」を基準にしています。料金・キャンペーン・対応地域は申込画面で最終確認してください。</p>
+  </div>
+  <div class="cleaning-picker-grid">
+    {cleaningAffiliateServices.map((service, index) => (
+      <article class:list={["cleaning-service-card", service.featured && "is-featured"]}>
+        {service.featured && <span class="cleaning-service-badge">全国から選びやすい</span>}
+        <p class="cleaning-service-order">選択肢 {index + 1}</p>
+        <h3>{service.name}</h3>
+        <strong>{service.bestFor}</strong>
+        <p>{service.summary}</p>
+        <ul>
+          {service.priceNote && <li>{service.priceNote}</li>}
+          {service.areaNote && <li>{service.areaNote}</li>}
+        </ul>
+        <a
+          class:list={["button", !service.featured && "secondary"]}
+          href={service.affiliateUrl}
+          rel="sponsored nofollow noopener"
+          target="_blank"
+          data-cvr-action="cleaning_affiliate_click"
+          data-action-kind="contractor"
+          data-source-slug={sourceSlug}
+          data-slot-index={index + 1}
+          data-recommendation-role={service.featured ? "primary" : "alternative"}
+          data-item-id={service.id}
+        >
+          {service.ctaLabel}
+        </a>
+        {service.impressionUrl && <img class="affiliate-impression" src={service.impressionUrl} width="1" height="1" alt="" aria-hidden="true" />}
+      </article>
+    ))}
+  </div>
+  <p class="cleaning-picker-note">清風とハウスクリーニングのオンは同じ運営会社の関連サービスです。専門店として相談したい場合は清風、ハウスクリーニング全般も見たい場合はオンが分かりやすい選択です。</p>
+
+  {showPending && (
+    <details class="pending-services">
+      <summary>今後追加予定の大手・地域サービスを見る</summary>
+      <p>以下は提携審査中のため、現時点では広告リンクを掲載していません。承認後に最新条件を確認して追加します。</p>
+      <div class="pending-service-grid">
+        {pendingCleaningAffiliateServices.map((service) => (
+          <div>
+            <strong>{service.name}</strong>
+            <span>{service.bestFor}</span>
+          </div>
+        ))}
+      </div>
+    </details>
+  )}
+</section>
+
+<style>
+  .cleaning-picker {
+    margin: 28px 0;
+    padding: clamp(18px, 3vw, 30px);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background: linear-gradient(145deg, #f5fbfb, #fffaf1);
+  }
+  .cleaning-picker-head h2 { margin: 4px 0 8px; }
+  .cleaning-picker-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 18px;
+  }
+  .cleaning-service-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: #fff;
+  }
+  .cleaning-service-card.is-featured {
+    border: 2px solid var(--brand);
+    box-shadow: 0 10px 30px rgba(27, 110, 108, 0.1);
+  }
+  .cleaning-service-card h3,
+  .cleaning-service-card p,
+  .cleaning-service-card ul { margin: 0; }
+  .cleaning-service-card ul { padding-left: 20px; }
+  .cleaning-service-card .button { margin-top: auto; text-align: center; }
+  .cleaning-service-order { color: var(--muted); font-size: 0.82rem; }
+  .cleaning-service-badge {
+    align-self: flex-start;
+    padding: 4px 9px;
+    border-radius: 999px;
+    background: var(--brand);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+  .cleaning-picker-note { margin: 16px 0 0; font-size: 0.9rem; color: var(--muted); }
+  .affiliate-impression { position: absolute; width: 1px; height: 1px; overflow: hidden; }
+  .pending-services { margin-top: 20px; padding: 14px 16px; border-radius: 14px; background: #fff; }
+  .pending-services summary { cursor: pointer; font-weight: 700; }
+  .pending-service-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .pending-service-grid div { display: grid; gap: 3px; padding: 10px; border: 1px solid var(--line); border-radius: 12px; }
+  .pending-service-grid span { color: var(--muted); font-size: 0.86rem; }
+  @media (max-width: 720px) {
+    .cleaning-picker-grid,
+    .pending-service-grid { grid-template-columns: 1fr; }
+  }
+</style>
