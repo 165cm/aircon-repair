@@ -269,8 +269,13 @@
       "id": "aircon-history__question-hook",
       "articleSlug": "aircon-history",
       "postedAt": "2026-08-05T11:21:56.591Z"
+    },
+    {
+      "id": "remote-not-working__quick-answer",
+      "articleSlug": "remote-not-working",
+      "postedAt": "2026-08-06T11:23:43.667Z"
     }
   ],
-  "cursor": 54,
-  "lastRunAt": "2026-08-05T11:21:56.591Z"
+  "cursor": 55,
+  "lastRunAt": "2026-08-06T11:23:43.667Z"
 }
