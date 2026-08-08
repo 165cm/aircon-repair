@@ -13,9 +13,25 @@ export type CleaningAffiliateService = {
   impressionUrl?: string;
   ctaLabel?: string;
   featured?: boolean;
+  badgeLabel?: string;
 };
 
 export const cleaningAffiliateServices: CleaningAffiliateService[] = [
+  {
+    id: "duskin",
+    name: "ダスキンのエアコンクリーニング",
+    status: "partnered",
+    programId: "s00000008131011",
+    bestFor: "大手の分解洗浄と窓口の安心感を重視",
+    summary: "家庭では触れないエアコン内部まで分解・洗浄したい人向けです。一般家庭用と業務用の両方を扱っています。",
+    priceNote: "料金は地域・機種で変わるため申込ページで確認",
+    areaNote: "東京・神奈川・千葉・埼玉・茨城・栃木・群馬・長野・山梨・新潟",
+    affiliateUrl: "https://px.a8.net/svt/ejp?a8mat=4B9YLG+A4H5E+1QQM+1THW9E",
+    impressionUrl: "https://www18.a8.net/0.gif?a8mat=4B9YLG+A4H5E+1QQM+1THW9E",
+    ctaLabel: "対応地域と料金を確認する",
+    featured: true,
+    badgeLabel: "まずここから"
+  },
   {
     id: "yourmystar",
     name: "ユアマイスター",
@@ -27,8 +43,7 @@ export const cleaningAffiliateServices: CleaningAffiliateService[] = [
     areaNote: "日本全国対応",
     affiliateUrl: "https://px.a8.net/svt/ejp?a8mat=4B9YLG+G2Q42+4HQS+6E71E",
     impressionUrl: "https://www14.a8.net/0.gif?a8mat=4B9YLG+G2Q42+4HQS+6E71E",
-    ctaLabel: "空き日程と料金を確認する",
-    featured: true
+    ctaLabel: "空き日程と料金を確認する"
   },
   {
     id: "r-cleaning",
@@ -79,14 +94,6 @@ export const pendingCleaningAffiliateServices: CleaningAffiliateService[] = [
     programId: "s00000022597002",
     bestFor: "大手グループと仕上がり保証を重視",
     summary: "提携承認後に、料金・保証条件・対象地域を再確認して掲載予定です。"
-  },
-  {
-    id: "duskin",
-    name: "ダスキン",
-    status: "pending",
-    programId: "s00000008131011",
-    bestFor: "大手の作業手順や窓口を重視",
-    summary: "提携承認後に、地域別料金と対象店舗を確認して掲載予定です。"
   },
   {
     id: "bears",
