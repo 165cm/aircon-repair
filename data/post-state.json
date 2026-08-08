@@ -279,8 +279,13 @@
       "id": "aircon-8jou-choose__safe-check",
       "articleSlug": "aircon-8jou-choose",
       "postedAt": "2026-08-07T10:02:28.113Z"
+    },
+    {
+      "id": "remote-not-working__risk-warning",
+      "articleSlug": "remote-not-working",
+      "postedAt": "2026-08-08T09:38:44.006Z"
     }
   ],
-  "cursor": 56,
-  "lastRunAt": "2026-08-07T10:02:28.113Z"
+  "cursor": 57,
+  "lastRunAt": "2026-08-08T09:38:44.006Z"
 }
