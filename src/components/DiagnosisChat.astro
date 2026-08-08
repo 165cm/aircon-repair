@@ -201,8 +201,11 @@ const resultStampImage = sitePath("/images/kazami/kazami-ok-stamp-v1.webp");
         data-cvr-action="contractor_consult_click" data-action-kind="contractor">業者に相談する<span class="sr-only">（新しいタブで開きます）</span></a>`;
     }
     if (action.type === "cleaning") {
+      // メインの窓口は対象地域が限られるため、対象外の地域向けに比較ページへの導線も出す。
       return `<a class="button" href="${esc(affiliateUrls.cleaning)}" rel="sponsored nofollow noopener" target="_blank"
-        data-cvr-action="cleaning_consult_click" data-action-kind="contractor">分解クリーニングを相談する<span class="sr-only">（新しいタブで開きます）</span></a>`;
+        data-cvr-action="cleaning_consult_click" data-action-kind="contractor">分解クリーニングを相談する<span class="sr-only">（新しいタブで開きます）</span></a>
+        <a class="button secondary" href="${esc(basePath)}/articles/aircon-cleaning-company-guide/"
+        data-cvr-action="cleaning_compare_guide_click" data-action-kind="safe">対応地域から業者を比較する</a>`;
     }
     if (action.type === "replacement") {
       return `<a class="button warm" href="${esc(basePath)}/by-size/"
