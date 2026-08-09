@@ -12,13 +12,13 @@ const { sourceSlug, showPending = false } = Astro.props;
 <section class="cleaning-picker" aria-labelledby={`cleaning-picker-title-${sourceSlug}`}>
   <div class="cleaning-picker-head">
     <p class="eyebrow">広告を含む比較</p>
-    <h2 id={`cleaning-picker-title-${sourceSlug}`}>迷ったら、この4タイプから選ぶ</h2>
+    <h2 id={`cleaning-picker-title-${sourceSlug}`}>迷ったら、この{cleaningAffiliateServices.length}タイプから選ぶ</h2>
     <p>掲載順は「読者が選びやすいか」を基準にしています。料金・キャンペーン・対応地域は申込画面で最終確認してください。</p>
   </div>
   <div class="cleaning-picker-grid">
     {cleaningAffiliateServices.map((service, index) => (
       <article class:list={["cleaning-service-card", service.featured && "is-featured"]}>
-        {service.featured && <span class="cleaning-service-badge">全国から選びやすい</span>}
+        {service.featured && <span class="cleaning-service-badge">{service.badgeLabel ?? "まずここから"}</span>}
         <p class="cleaning-service-order">選択肢 {index + 1}</p>
         <h3>{service.name}</h3>
         <strong>{service.bestFor}</strong>

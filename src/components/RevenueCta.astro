@@ -9,6 +9,14 @@ type Props = {
 
 const { variant = "contractor" } = Astro.props;
 
+// メインのクリーニング窓口は対象地域が限られるため、
+// 地域を聞かずに出すCTAでは対象地域と比較ページへの逃げ道を必ず添える。
+const cleaningGuidePath = sitePath("/articles/aircon-cleaning-company-guide/");
+const isOnCleaningGuide = Astro.url.pathname.replace(/\/?$/, "/") === cleaningGuidePath;
+const cleaningAreaNote = primaryCleaningAffiliate.areaNote
+  ? `${primaryCleaningAffiliate.name}の対象地域は${primaryCleaningAffiliate.areaNote}です。対象外の地域は、全国対応を含む比較から選べます。`
+  : "";
+
 const copy = {
   contractor: {
     title: "ここから先は、プロの出番です",
@@ -66,6 +74,20 @@ const copy = {
   >
     {copy.label}
   </a>
+  {variant === "cleaning" && cleaningAreaNote && (
+    <p class="revenue-cta-note">
+      {cleaningAreaNote}
+      {!isOnCleaningGuide && (
+        <a
+          href={cleaningGuidePath}
+          data-cvr-action="cleaning_compare_guide_click"
+          data-action-kind="safe"
+        >
+          対応地域から業者を比較する
+        </a>
+      )}
+    </p>
+  )}
   {variant === "cleaning" && primaryCleaningAffiliate.impressionUrl && (
     <img class="affiliate-impression" src={primaryCleaningAffiliate.impressionUrl} width="1" height="1" alt="" aria-hidden="true" />
   )}
@@ -78,6 +100,15 @@ const copy = {
 .revenue-cta-btn {
   width: 100%;
   margin-top: 8px;
+}
+.revenue-cta-note {
+  margin: 10px 0 0;
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+.revenue-cta-note a {
+  margin-left: 4px;
+  white-space: nowrap;
 }
 .affiliate-impression {
   position: absolute;
