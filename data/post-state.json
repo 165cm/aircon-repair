@@ -284,8 +284,13 @@
       "id": "remote-not-working__risk-warning",
       "articleSlug": "remote-not-working",
       "postedAt": "2026-08-08T09:38:44.006Z"
+    },
+    {
+      "id": "strange-noise__risk-warning",
+      "articleSlug": "strange-noise",
+      "postedAt": "2026-08-09T09:40:37.224Z"
     }
   ],
-  "cursor": 57,
-  "lastRunAt": "2026-08-08T09:38:44.006Z"
+  "cursor": 58,
+  "lastRunAt": "2026-08-09T09:40:37.224Z"
 }
