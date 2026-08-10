@@ -1,80 +1,80 @@
 {
   "meta": {
     "siteUrl": "sc-domain:aircon-hokenshitsu.com",
-    "startDate": "2026-07-05",
-    "endDate": "2026-08-01",
-    "fetchedAt": "2026-08-03T22:09:13.554Z",
-    "generatedAt": "2026-08-03T22:09:13.623Z",
+    "startDate": "2026-07-12",
+    "endDate": "2026-08-08",
+    "fetchedAt": "2026-08-10T21:41:21.629Z",
+    "generatedAt": "2026-08-10T21:41:21.700Z",
     "minImpressions": 20,
-    "articleCount": 29,
+    "articleCount": 31,
     "ideaCount": 6
   },
   "ideas": [
     {
       "type": "new",
-      "query": "ドレンホースクリーナー",
-      "impressions": 36,
+      "query": "エアコンから水が出る",
+      "impressions": 40,
       "clicks": 0,
       "ctr": 0,
-      "position": 3,
+      "position": 2.65,
       "suggestedCategory": "symptom",
-      "score": 54
+      "score": 60
     },
     {
       "type": "rewrite",
       "query": "エアコン ベッド 位置 6畳",
-      "impressions": 48,
+      "impressions": 56,
       "clicks": 2,
-      "ctr": 0.0417,
-      "position": 9.1,
+      "ctr": 0.0357,
+      "position": 9.05,
       "matchedSlug": "aircon-6jou-choose",
       "matchedUrl": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
       "suggestedCategory": "buying",
-      "score": 46
+      "score": 54
     },
     {
       "type": "new",
-      "query": "エアコンから水が出る",
-      "impressions": 28,
-      "clicks": 0,
-      "ctr": 0,
-      "position": 2.93,
-      "suggestedCategory": "symptom",
-      "score": 42
-    },
-    {
-      "type": "rewrite",
-      "query": "排水管付きエアコン 見分け方",
-      "impressions": 43,
-      "clicks": 2,
-      "ctr": 0.0465,
-      "position": 7.81,
-      "matchedSlug": "aircon-drain-pipe-identify",
-      "matchedUrl": "https://aircon-hokenshitsu.com/articles/aircon-drain-pipe-identify/",
-      "suggestedCategory": "basics",
-      "score": 41
-    },
-    {
-      "type": "rewrite",
-      "query": "6畳 寝室 エアコン 位置",
-      "impressions": 36,
-      "clicks": 0,
-      "ctr": 0,
-      "position": 9.31,
-      "matchedSlug": "aircon-6jou-choose",
-      "matchedUrl": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
-      "suggestedCategory": "buying",
-      "score": 36
-    },
-    {
-      "type": "new",
-      "query": "エアコン ドレンホース",
-      "impressions": 21,
+      "query": "ドレンホースクリーナー",
+      "impressions": 30,
       "clicks": 0,
       "ctr": 0,
       "position": 3,
       "suggestedCategory": "symptom",
-      "score": 32
+      "score": 45
+    },
+    {
+      "type": "rewrite",
+      "query": "排水管付きエアコン 見分け方",
+      "impressions": 44,
+      "clicks": 2,
+      "ctr": 0.0455,
+      "position": 8.02,
+      "matchedSlug": "aircon-drain-pipe-identify",
+      "matchedUrl": "https://aircon-hokenshitsu.com/articles/aircon-drain-pipe-identify/",
+      "suggestedCategory": "basics",
+      "score": 42
+    },
+    {
+      "type": "new",
+      "query": "エアコン ドレンホース",
+      "impressions": 20,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 3,
+      "suggestedCategory": "symptom",
+      "score": 30
+    },
+    {
+      "type": "rewrite",
+      "query": "6畳 寝室 エアコン 位置",
+      "impressions": 28,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 8.96,
+      "matchedSlug": "aircon-6jou-choose",
+      "matchedUrl": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
+      "suggestedCategory": "buying",
+      "score": 28
     }
   ]
 }
