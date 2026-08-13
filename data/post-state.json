@@ -304,8 +304,13 @@
       "id": "filter-cleaning__question-hook",
       "articleSlug": "filter-cleaning",
       "postedAt": "2026-08-12T10:06:56.518Z"
+    },
+    {
+      "id": "strange-noise__quick-answer",
+      "articleSlug": "strange-noise",
+      "postedAt": "2026-08-13T10:07:48.049Z"
     }
   ],
-  "cursor": 61,
-  "lastRunAt": "2026-08-12T10:06:56.518Z"
+  "cursor": 62,
+  "lastRunAt": "2026-08-13T10:07:48.049Z"
 }
