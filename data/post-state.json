@@ -314,8 +314,13 @@
       "id": "cleaning-spray-risk__quick-answer",
       "articleSlug": "cleaning-spray-risk",
       "postedAt": "2026-08-14T10:03:46.357Z"
+    },
+    {
+      "id": "not-cooling__risk-warning",
+      "articleSlug": "not-cooling",
+      "postedAt": "2026-08-15T09:27:04.032Z"
     }
   ],
-  "cursor": 63,
-  "lastRunAt": "2026-08-14T10:03:46.357Z"
+  "cursor": 64,
+  "lastRunAt": "2026-08-15T09:27:04.032Z"
 }
