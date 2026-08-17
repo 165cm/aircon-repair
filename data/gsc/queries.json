@@ -1,176 +1,239 @@
 {
   "meta": {
     "siteUrl": "sc-domain:aircon-hokenshitsu.com",
-    "startDate": "2026-07-12",
-    "endDate": "2026-08-08",
-    "fetchedAt": "2026-08-10T21:41:21.629Z"
+    "startDate": "2026-07-19",
+    "endDate": "2026-08-15",
+    "fetchedAt": "2026-08-17T21:26:14.788Z"
   },
   "rows": [
     {
       "query": "エアコン 水漏れ",
       "clicks": 0,
-      "impressions": 69,
+      "impressions": 101,
       "ctr": 0,
       "position": 3
-    },
-    {
-      "query": "エアコン ベッド 位置 6畳",
-      "clicks": 2,
-      "impressions": 56,
-      "ctr": 0.0357,
-      "position": 9.05
-    },
-    {
-      "query": "排水管付きエアコン 見分け方",
-      "clicks": 2,
-      "impressions": 44,
-      "ctr": 0.0455,
-      "position": 8.02
     },
     {
       "query": "エアコンから水が出る",
       "clicks": 0,
-      "impressions": 40,
+      "impressions": 53,
       "ctr": 0,
-      "position": 2.65
+      "position": 2.51
     },
     {
-      "query": "ドレンホース 掃除",
-      "clicks": 0,
-      "impressions": 32,
-      "ctr": 0,
-      "position": 2.59
+      "query": "エアコン ベッド 位置 6畳",
+      "clicks": 2,
+      "impressions": 46,
+      "ctr": 0.0435,
+      "position": 9.2
     },
     {
       "query": "ドレンホースクリーナー",
       "clicks": 0,
-      "impressions": 30,
+      "impressions": 34,
       "ctr": 0,
       "position": 3
     },
     {
-      "query": "6畳 寝室 エアコン 位置",
+      "query": "排水管付きエアコン 見分け方",
       "clicks": 0,
-      "impressions": 28,
+      "impressions": 32,
       "ctr": 0,
-      "position": 8.96
-    },
-    {
-      "query": "エアコン ドレンホース",
-      "clicks": 0,
-      "impressions": 20,
-      "ctr": 0,
-      "position": 3
+      "position": 9.09
     },
     {
       "query": "エアコン水漏れ 右側",
       "clicks": 0,
-      "impressions": 18,
+      "impressions": 28,
       "ctr": 0,
-      "position": 2.72
+      "position": 2.68
     },
     {
-      "query": "エアコン室外機から水が出ない",
+      "query": "ドレンホース 掃除",
       "clicks": 0,
-      "impressions": 16,
+      "impressions": 25,
       "ctr": 0,
-      "position": 2.75
+      "position": 2.88
     },
     {
-      "query": "ドレンホースから水が出 ない と どうなる",
+      "query": "ドレンホース",
       "clicks": 0,
-      "impressions": 15,
+      "impressions": 19,
       "ctr": 0,
       "position": 3
     },
     {
-      "query": "エアコン ドレンホース どっち",
+      "query": "エアコン 水が出る",
+      "clicks": 0,
+      "impressions": 16,
+      "ctr": 0,
+      "position": 2.88
+    },
+    {
+      "query": "エアコンから水漏れ",
+      "clicks": 0,
+      "impressions": 16,
+      "ctr": 0,
+      "position": 2.38
+    },
+    {
+      "query": "6畳 寝室 エアコン 位置",
+      "clicks": 0,
+      "impressions": 15,
+      "ctr": 0,
+      "position": 9.07
+    },
+    {
+      "query": "elpa エアコンリモコン 反応 しない",
+      "clicks": 0,
+      "impressions": 15,
+      "ctr": 0,
+      "position": 9.53
+    },
+    {
+      "query": "エアコン 消費電力 推移",
       "clicks": 0,
       "impressions": 14,
       "ctr": 0,
-      "position": 7.79
+      "position": 7
     },
     {
-      "query": "msz gv2825 w 口コミ",
+      "query": "室外機 水が出ない",
+      "clicks": 0,
+      "impressions": 14,
+      "ctr": 0,
+      "position": 2.79
+    },
+    {
+      "query": "エアコン 水漏れ 原因",
       "clicks": 0,
       "impressions": 13,
       "ctr": 0,
-      "position": 8.31
+      "position": 2.08
     },
     {
-      "query": "エアコン 水が出る",
+      "query": "ドレンホースから水が出 ない と どうなる",
+      "clicks": 0,
+      "impressions": 13,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "6畳 ベッド 配置 エアコン",
       "clicks": 0,
       "impressions": 12,
       "ctr": 0,
-      "position": 2.92
+      "position": 8.25
     },
     {
-      "query": "ドレンホース",
+      "query": "ドレンホース 詰まり",
       "clicks": 0,
       "impressions": 12,
       "ctr": 0,
       "position": 3.08
     },
     {
-      "query": "室外機 水が出ない",
-      "clicks": 0,
-      "impressions": 12,
-      "ctr": 0,
-      "position": 2.92
-    },
-    {
-      "query": "6畳 ベッド 配置 エアコン",
+      "query": "エアコンから水",
       "clicks": 0,
       "impressions": 11,
       "ctr": 0,
-      "position": 8.09
+      "position": 2.45
     },
     {
-      "query": "クーラー室外機から水が出ない",
+      "query": "エアコンから水が垂れる",
       "clicks": 0,
       "impressions": 11,
       "ctr": 0,
-      "position": 2.55
-    },
-    {
-      "query": "msz gv2825 w 電気代",
-      "clicks": 2,
-      "impressions": 10,
-      "ctr": 0.2,
-      "position": 2.6
-    },
-    {
-      "query": "エアコン 消費電力 推移",
-      "clicks": 0,
-      "impressions": 10,
-      "ctr": 0,
-      "position": 5.8
-    },
-    {
-      "query": "エアコンから水漏れ",
-      "clicks": 0,
-      "impressions": 10,
-      "ctr": 0,
-      "position": 2.4
+      "position": 2.27
     },
     {
       "query": "室外機から水が出ない",
+      "clicks": 0,
+      "impressions": 11,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン ドレンホース",
+      "clicks": 0,
+      "impressions": 10,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン水漏れ 原因",
+      "clicks": 0,
+      "impressions": 10,
+      "ctr": 0,
+      "position": 2.1
+    },
+    {
+      "query": "6畳寝室 エアコン 位置",
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "query": "エアコン 吹き出し口から水",
       "clicks": 0,
       "impressions": 9,
       "ctr": 0,
       "position": 3
     },
     {
-      "query": "排水管付きエアコンとは",
-      "clicks": 1,
-      "impressions": 8,
-      "ctr": 0.125,
-      "position": 2.75
-    },
-    {
       "query": "エアコン 室外機 水が出ない",
       "clicks": 0,
-      "impressions": 8,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン 水が垂れる",
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 2.89
+    },
+    {
+      "query": "エアコンの吹き出し口から水が出る",
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 2.56
+    },
+    {
+      "query": "エアコン室外機から水が出ない",
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 2.89
+    },
+    {
+      "query": "エアコン水漏れ",
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "ドレンホース 太い",
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 10.67
+    },
+    {
+      "query": "エアコン ドレンホース どこ",
+      "clicks": 0,
+      "impressions": 7,
+      "ctr": 0,
+      "position": 3.14
+    },
+    {
+      "query": "エアコン ホースから水が出ない",
+      "clicks": 0,
+      "impressions": 7,
       "ctr": 0,
       "position": 3
     },
@@ -182,102 +245,81 @@
       "position": 3
     },
     {
-      "query": "エアコン 暖房 効かない",
+      "query": "エアコン 水漏れ 右側",
       "clicks": 0,
       "impressions": 7,
       "ctr": 0,
-      "position": 68.57
+      "position": 2.71
     },
     {
-      "query": "ドレンホース 太い",
+      "query": "エアコン 水漏れ 室内",
       "clicks": 0,
       "impressions": 7,
       "ctr": 0,
-      "position": 10.43
+      "position": 3.14
     },
     {
-      "query": "6畳寝室 エアコン 位置",
+      "query": "エアコンから水が飛んでくる",
       "clicks": 0,
-      "impressions": 6,
+      "impressions": 7,
       "ctr": 0,
-      "position": 8
+      "position": 2.43
     },
     {
-      "query": "エアコン ドレンホース どこ",
+      "query": "ドレンホースから水が出ない",
       "clicks": 0,
-      "impressions": 6,
+      "impressions": 7,
       "ctr": 0,
-      "position": 3.17
+      "position": 3.57
     },
     {
-      "query": "エアコン 吹き出し口から水",
-      "clicks": 0,
-      "impressions": 6,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "query": "エアコン 室外機から水が出ない",
+      "query": "エアコン ドレン 詰まり",
       "clicks": 0,
       "impressions": 6,
       "ctr": 0,
       "position": 2.83
     },
     {
-      "query": "エアコン 水漏れ 室内",
-      "clicks": 0,
-      "impressions": 6,
-      "ctr": 0,
-      "position": 3.17
-    },
-    {
-      "query": "エアコンから水が飛んでくる",
+      "query": "エアコン ホース 掃除",
       "clicks": 0,
       "impressions": 6,
       "ctr": 0,
       "position": 2.5
     },
     {
-      "query": "エアコンドレンホース",
+      "query": "エアコン 消費電力 グラフ",
       "clicks": 0,
       "impressions": 6,
       "ctr": 0,
-      "position": 3.17
+      "position": 5
     },
     {
-      "query": "エアコン水漏れ ドレンホース どこ",
+      "query": "エアコン取り付け費用",
       "clicks": 0,
       "impressions": 6,
       "ctr": 0,
-      "position": 3
+      "position": 77.33
     },
     {
-      "query": "ドレンホース 詰まり",
+      "query": "クーラー室外機から水が出ない",
       "clicks": 0,
       "impressions": 6,
       "ctr": 0,
-      "position": 3.17
+      "position": 2.5
     },
     {
-      "query": "ドレンホースから水が出ない",
+      "query": "室外機 水漏れ",
       "clicks": 0,
       "impressions": 6,
       "ctr": 0,
-      "position": 3.5
+      "position": 2.5
     },
     {
-      "query": "エアコン ドレン 詰まり",
+      "query": "6畳 ベッド配置 エアコン",
       "clicks": 0,
       "impressions": 5,
       "ctr": 0,
-      "position": 2.8
-    },
-    {
-      "query": "エアコン ドレンホース詰まり 確認",
-      "clicks": 0,
-      "impressions": 5,
-      "ctr": 0,
-      "position": 12.4
+      "position": 10
     },
     {
       "query": "エアコン ポコポコ音",
@@ -287,28 +329,35 @@
       "position": 3
     },
     {
-      "query": "エアコン 消費電力 グラフ",
+      "query": "エアコン 効率 推移",
       "clicks": 0,
       "impressions": 5,
       "ctr": 0,
-      "position": 5
+      "position": 8.8
     },
     {
-      "query": "エアコンから水",
+      "query": "エアコン 暖房 効かない",
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 68.4
+    },
+    {
+      "query": "エアコンの室外機から水が出ない",
       "clicks": 0,
       "impressions": 5,
       "ctr": 0,
       "position": 2.8
     },
     {
-      "query": "エアコンのホースから水が出ない",
+      "query": "エアコンの水が出ない",
       "clicks": 0,
       "impressions": 5,
       "ctr": 0,
       "position": 3
     },
     {
-      "query": "エアコンの室外機から水が出ない",
+      "query": "エアコン室外機 水が出ない",
       "clicks": 0,
       "impressions": 5,
       "ctr": 0,
@@ -322,18 +371,25 @@
       "position": 2.8
     },
     {
-      "query": "エアコン水漏れ",
+      "query": "エアコン本体から水漏れ",
       "clicks": 0,
       "impressions": 5,
       "ctr": 0,
-      "position": 3
+      "position": 2.8
     },
     {
-      "query": "6畳 ベッド配置 エアコン",
+      "query": "クーラーから水漏れ",
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 2.6
+    },
+    {
+      "query": "elpa エアコンリモコン 反応しない",
       "clicks": 0,
       "impressions": 4,
       "ctr": 0,
-      "position": 9.5
+      "position": 15.5
     },
     {
       "query": "エアコン ドレンから水が出ない",
@@ -343,18 +399,18 @@
       "position": 2.75
     },
     {
+      "query": "エアコン ドレンホース どっち",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 1
+    },
+    {
       "query": "エアコン 冷えない 応急処置",
       "clicks": 0,
       "impressions": 4,
       "ctr": 0,
       "position": 3
-    },
-    {
-      "query": "エアコン 効率 推移",
-      "clicks": 0,
-      "impressions": 4,
-      "ctr": 0,
-      "position": 9
     },
     {
       "query": "エアコン 暖房きかない",
@@ -364,11 +420,39 @@
       "position": 68.75
     },
     {
+      "query": "エアコンのホースから水が出ない",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン吹き出し口から水",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 3
+    },
+    {
       "query": "エアコン水漏れ ポタポタ",
       "clicks": 0,
       "impressions": 4,
       "ctr": 0,
       "position": 3.5
+    },
+    {
+      "query": "エアコン水漏れ 一時的",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン水漏れ 直し方",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 3
     },
     {
       "query": "クーラー 室外機 水が出ない",
@@ -378,7 +462,7 @@
       "position": 3.25
     },
     {
-      "query": "クーラーの室外機から水が出ない",
+      "query": "ドレンホース 詰まり解消",
       "clicks": 0,
       "impressions": 4,
       "ctr": 0,
@@ -392,11 +476,11 @@
       "position": 3
     },
     {
-      "query": "室外機 防 振 ゴム ホームセンター",
+      "query": "室外機",
       "clicks": 0,
       "impressions": 4,
       "ctr": 0,
-      "position": 6
+      "position": 3
     },
     {
       "query": "室外機水が出ない",
@@ -406,25 +490,11 @@
       "position": 2.75
     },
     {
-      "query": "排水 管 付き エアコン 見分け 方",
-      "clicks": 0,
-      "impressions": 4,
-      "ctr": 0,
-      "position": 8
-    },
-    {
       "query": "20年前のエアコンと今のエアコンの電気代の差",
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
       "position": 42
-    },
-    {
-      "query": "6 畳 ベッド 配置 エアコン",
-      "clicks": 0,
-      "impressions": 3,
-      "ctr": 0,
-      "position": 9
     },
     {
       "query": "エアコン ドレンホース 詰まり",
@@ -434,11 +504,11 @@
       "position": 4
     },
     {
-      "query": "エアコン ホースから水が出ない",
+      "query": "エアコン ドレンホース 詰まると どうなる",
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
-      "position": 3
+      "position": 2.33
     },
     {
       "query": "エアコン 冷えない ドレンホース",
@@ -448,39 +518,32 @@
       "position": 3
     },
     {
-      "query": "エアコン 排水してない",
+      "query": "エアコン 室外機から水が出ない",
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
       "position": 3
     },
     {
-      "query": "エアコン 暖房 暖かい風が出ない",
-      "clicks": 0,
-      "impressions": 3,
-      "ctr": 0,
-      "position": 68.33
-    },
-    {
-      "query": "エアコン 水が垂れる",
+      "query": "エアコン 水",
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
       "position": 3
     },
     {
-      "query": "エアコン 水漏れ 右側",
+      "query": "エアコン 水滴が落ちる",
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
-      "position": 2.67
+      "position": 2.33
     },
     {
-      "query": "エアコンのドレンから水が出ない",
+      "query": "エアコンが壊れました。買い替えるなら信頼できるメーカーはどこですか？",
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
-      "position": 3
+      "position": 10.33
     },
     {
       "query": "エアコンの排水ホースから水が出ない",
@@ -490,6 +553,20 @@
       "position": 2
     },
     {
+      "query": "エアコンの水漏れの原因",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 2.33
+    },
+    {
+      "query": "エアコンドレンホース",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 3
+    },
+    {
       "query": "エアコンホースから水が出ない",
       "clicks": 0,
       "impressions": 3,
@@ -497,11 +574,11 @@
       "position": 3
     },
     {
-      "query": "エアコン室外機 水が出ない",
+      "query": "エアコン室外機ドレンホースから水が出ない",
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
-      "position": 3
+      "position": 2
     },
     {
       "query": "エアコン暖房効かない",
@@ -511,7 +588,7 @@
       "position": 72
     },
     {
-      "query": "エアコン本体から水漏れ",
+      "query": "エアコン水が 垂れる ドレンホース",
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
@@ -525,11 +602,11 @@
       "position": 2.67
     },
     {
-      "query": "エアコン水漏れ 原因",
+      "query": "エアコン水漏れ右側",
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
-      "position": 2.33
+      "position": 2.67
     },
     {
       "query": "クーラー ドレンホースから水が出ない",
@@ -539,14 +616,28 @@
       "position": 3
     },
     {
-      "query": "クーラーから水漏れ",
+      "query": "クーラーから水",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 2.33
+    },
+    {
+      "query": "クーラーの室外機から水が出ない",
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
       "position": 3
     },
     {
-      "query": "クーラー水が出ない",
+      "query": "クーラー水垂れる",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "スポットクーラー 水が出ない",
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
@@ -560,7 +651,14 @@
       "position": 3
     },
     {
-      "query": "ドレンホース 詰まり解消",
+      "query": "ドレンホースとは",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "ドレンホースの詰まり",
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
@@ -581,34 +679,6 @@
       "position": 93.33
     },
     {
-      "query": "冷房 室外機 水が出ない",
-      "clicks": 0,
-      "impressions": 3,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "query": "冷房室外機から水が出ない",
-      "clicks": 0,
-      "impressions": 3,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "query": "室外機",
-      "clicks": 0,
-      "impressions": 3,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "query": "室外機 水漏れ",
-      "clicks": 0,
-      "impressions": 3,
-      "ctr": 0,
-      "position": 3
-    },
-    {
       "query": "室外機 水漏れ 原因",
       "clicks": 0,
       "impressions": 3,
@@ -616,11 +686,18 @@
       "position": 2.67
     },
     {
-      "query": "防振ゴム",
+      "query": "室外機 防 振 ゴム ホームセンター",
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
-      "position": 4.67
+      "position": 6
+    },
+    {
+      "query": "富士通 エアコン 水漏れ 右側",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 4
     },
     {
       "query": "6畳",
@@ -637,25 +714,11 @@
       "position": 41
     },
     {
-      "query": "ldk 20畳 吹き抜け エアコン",
+      "query": "6 畳 ベッド 配置 エアコン",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
       "position": 8
-    },
-    {
-      "query": "ldk エアコン おすすめ",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 11
-    },
-    {
-      "query": "エアコン 6 畳 寝室 おすすめ",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 26
     },
     {
       "query": "エアコン ドレン 水が出ない",
@@ -665,21 +728,7 @@
       "position": 3.5
     },
     {
-      "query": "エアコン ドレンホース どこに繋がってる",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 17
-    },
-    {
-      "query": "エアコン ベッド 位置",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 41
-    },
-    {
-      "query": "エアコン ホース 掃除",
+      "query": "エアコン ドレンホース詰まるとどうなる",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
@@ -707,13 +756,6 @@
       "position": 75
     },
     {
-      "query": "エアコン 外に水が出ない",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 3
-    },
-    {
       "query": "エアコン 外のホースから水が出ない",
       "clicks": 0,
       "impressions": 2,
@@ -728,18 +770,18 @@
       "position": 2
     },
     {
-      "query": "エアコン 排水しない",
+      "query": "エアコン 排水ホース 掃除",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 3
+      "position": 3.5
     },
     {
-      "query": "エアコン 水",
+      "query": "エアコン 歴史",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 3
+      "position": 35.5
     },
     {
       "query": "エアコン 水が出ない 冷えない",
@@ -756,11 +798,39 @@
       "position": 5
     },
     {
-      "query": "エアコン 水滴が落ちる",
+      "query": "エアコン 水が飛んでくる",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
       "position": 2.5
+    },
+    {
+      "query": "エアコン 水でない",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン 水の音",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "query": "エアコン 水排出",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3.5
+    },
+    {
+      "query": "エアコン 水漏れ 対策",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
     },
     {
       "query": "エアコン 結露 水漏れ",
@@ -777,6 +847,13 @@
       "position": 2
     },
     {
+      "query": "エアコンからドレンが出ない",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
+    },
+    {
       "query": "エアコンから大量の水",
       "clicks": 0,
       "impressions": 2,
@@ -784,7 +861,35 @@
       "position": 3
     },
     {
+      "query": "エアコンから水が 垂れる 応急処置",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコンから水が垂れてくる",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
       "query": "エアコンから水漏れ ドレンホース",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコンのドレンから水が出ない",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコンのドレンが出ない",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
@@ -798,13 +903,6 @@
       "position": 3
     },
     {
-      "query": "エアコンの吹き出し口から水が出る",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 3
-    },
-    {
       "query": "エアコンの室外機から水が出る",
       "clicks": 0,
       "impressions": 2,
@@ -812,21 +910,14 @@
       "position": 2
     },
     {
-      "query": "エアコンの水が出てこない",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "query": "エアコンの水が出ない",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 3
-    },
-    {
       "query": "エアコンの水が出ないのはなぜ",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "query": "エアコンの水漏れ 対処法",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
@@ -847,32 +938,32 @@
       "position": 3
     },
     {
-      "query": "エアコン取り付け費用",
+      "query": "エアコン取り付け 費用相場",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 85.5
+      "position": 65.5
     },
     {
-      "query": "エアコン吹き出し口から水",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 3.5
-    },
-    {
-      "query": "エアコン室外機から水が出てない",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 2.5
-    },
-    {
-      "query": "エアコン室外機ドレンホースから水が出ない",
+      "query": "エアコン吹き出し口から水滴",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
       "position": 2
+    },
+    {
+      "query": "エアコン室外機 水出てない",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン室外機ホースから水が出ない",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
     },
     {
       "query": "エアコン排水出ない",
@@ -882,25 +973,25 @@
       "position": 3
     },
     {
-      "query": "エアコン水漏れ 一時的",
+      "query": "エアコン水垂れる 原因",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "query": "エアコン水漏れ ドレンホース どこ",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
       "position": 3
     },
     {
-      "query": "エアコン水漏れ 直し方",
+      "query": "エアコン水漏れ直し方",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
       "position": 3
-    },
-    {
-      "query": "エアコン水漏れ右側",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 2.5
     },
     {
       "query": "エアコン結露対策",
@@ -910,18 +1001,39 @@
       "position": 2
     },
     {
-      "query": "クーラー 水が出ない",
+      "query": "クーラー 水が出ない 原因",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "query": "クーラー 水漏れ",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
       "position": 3
     },
     {
-      "query": "クーラー 水が出ない 原因",
+      "query": "クーラー 水漏れ 原因",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
       "position": 2
+    },
+    {
+      "query": "クーラーから水が垂れる",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "query": "クーラーから水が落ちる",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
     },
     {
       "query": "クーラーから水が飛んでくる",
@@ -945,6 +1057,13 @@
       "position": 3
     },
     {
+      "query": "クーラー水が出ない",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
+    },
+    {
       "query": "クーラー水漏れ原因",
       "clicks": 0,
       "impressions": 2,
@@ -952,7 +1071,14 @@
       "position": 2.5
     },
     {
-      "query": "スポットクーラー 水が出ない",
+      "query": "サクションポンプ",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "query": "ダイキン エアコン 水漏れ",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
@@ -973,6 +1099,20 @@
       "position": 4
     },
     {
+      "query": "ドレンホース 正常な状態",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "ドレンホース 水が出ない",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
+    },
+    {
       "query": "ドレンホースから水が出る までの 時間",
       "clicks": 0,
       "impressions": 2,
@@ -980,53 +1120,53 @@
       "position": 3
     },
     {
-      "query": "ドレンホースとは",
+      "query": "ドレンホースが詰まるとどうなる",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2.5
+    },
+    {
+      "query": "ドレンホースの掃除の仕方",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
       "position": 3
-    },
-    {
-      "query": "ドレンホースの詰まり",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "query": "ドレンホースクリーナー 100 均",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 5.5
     },
     {
       "query": "ドレンホースクリーナー おすすめ",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 4
+      "position": 3
     },
     {
-      "query": "ドレンホースクリーナー 使い方",
+      "query": "ルームエアコン 水漏れ 原因",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 3.5
+      "position": 2
     },
     {
-      "query": "ドレーンホースクリーナー",
+      "query": "冷房室外機から水が出ない",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
       "position": 3
     },
     {
-      "query": "冷蔵庫エアコン 14畳",
+      "query": "室外機 ドレンホース 掃除",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 25
+      "position": 2
+    },
+    {
+      "query": "室外機 ドレンホース 詰まり",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
     },
     {
       "query": "室外機 水が出る",
@@ -1071,11 +1211,18 @@
       "position": 2
     },
     {
-      "query": "富士通 エアコン 水漏れ 右側",
+      "query": "室外機水出ない",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
       "position": 3
+    },
+    {
+      "query": "エアコン ドレンホース 詰まり 確認",
+      "clicks": 1,
+      "impressions": 1,
+      "ctr": 1,
+      "position": 13
     },
     {
       "query": "エアコン ドレーン 詰まり",
@@ -1106,6 +1253,13 @@
       "position": 19
     },
     {
+      "query": "1972",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 1
+    },
+    {
       "query": "6畳 寝室",
       "clicks": 0,
       "impressions": 1,
@@ -1127,32 +1281,11 @@
       "position": 77
     },
     {
-      "query": "amazon エアコン ランキング",
+      "query": "ldk エアコン おすすめ",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 11
-    },
-    {
-      "query": "amazon エアコン取り付け 評判",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 10
-    },
-    {
-      "query": "ldk 18畳 吹き抜け エアコン",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "query": "ldk エアコン 何畳用",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 10
     },
     {
       "query": "ldk14",
@@ -1169,18 +1302,11 @@
       "position": 5
     },
     {
-      "query": "msz-gv2225-w",
+      "query": "いつからかわった",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 4
-    },
-    {
-      "query": "s225ates",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 4
+      "position": 2
     },
     {
       "query": "すずね エアコン",
@@ -1188,13 +1314,6 @@
       "impressions": 1,
       "ctr": 0,
       "position": 10
-    },
-    {
-      "query": "アイリスです",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 2
     },
     {
       "query": "エアコン #ドレンホース掃除 ペットボトル",
@@ -1211,14 +1330,14 @@
       "position": 13
     },
     {
-      "query": "エアコン 6畳 寝室 おすすめ",
+      "query": "エアコン から水が垂れる",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 23
+      "position": 3
     },
     {
-      "query": "エアコン から水が垂れる",
+      "query": "エアコン すぐ 止まる 点滅",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -1230,6 +1349,13 @@
       "impressions": 1,
       "ctr": 0,
       "position": 3
+    },
+    {
+      "query": "エアコン たまに水が飛んでくる",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
     },
     {
       "query": "エアコン ついたり消えたり",
@@ -1253,6 +1379,20 @@
       "position": 3
     },
     {
+      "query": "エアコン の 水 が 出 ない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン オレンジランプ 点滅",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
       "query": "エアコン ガス漏れ",
       "clicks": 0,
       "impressions": 1,
@@ -1274,6 +1414,13 @@
       "position": 2
     },
     {
+      "query": "エアコン ゴロゴロ音がする",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
       "query": "エアコン ドライ 水漏れ",
       "clicks": 0,
       "impressions": 1,
@@ -1281,7 +1428,21 @@
       "position": 3
     },
     {
+      "query": "エアコン ドレン つまり",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
       "query": "エアコン ドレン 掃除",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン ドレンパン",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -1309,6 +1470,20 @@
       "position": 4
     },
     {
+      "query": "エアコン ドレンホース 掃除",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン ドレンホース 掃除 コーナン",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
       "query": "エアコン ドレンホース 掃除 料金",
       "clicks": 0,
       "impressions": 1,
@@ -1330,11 +1505,11 @@
       "position": 3
     },
     {
-      "query": "エアコン ドレンホース 詰まると どうなる",
+      "query": "エアコン ドレンホース 詰まり 症状",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 3
+      "position": 2
     },
     {
       "query": "エアコン ドレンホースから水",
@@ -1358,6 +1533,13 @@
       "position": 3
     },
     {
+      "query": "エアコン ドレンホースクリーナー ホームセンター",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
+    },
+    {
       "query": "エアコン ドレンホース詰まり",
       "clicks": 0,
       "impressions": 1,
@@ -1365,11 +1547,11 @@
       "position": 3
     },
     {
-      "query": "エアコン ドレンホース詰まるとどうなる",
+      "query": "エアコン ドレンホース詰まり 確認",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 3
+      "position": 12
     },
     {
       "query": "エアコン ドレン水が出ない",
@@ -1386,11 +1568,11 @@
       "position": 3
     },
     {
-      "query": "エアコン ベッド 位置関係",
+      "query": "エアコン ピチャピチャ 音",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 46
+      "position": 3
     },
     {
       "query": "エアコン ホース 水が出ない",
@@ -1407,6 +1589,13 @@
       "position": 3
     },
     {
+      "query": "エアコン ホース 詰まり 掃除",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
       "query": "エアコン ホースから水漏れ",
       "clicks": 0,
       "impressions": 1,
@@ -1414,11 +1603,39 @@
       "position": 3
     },
     {
+      "query": "エアコン ホースの途中から水漏れ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン リモコン 反応しない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 86
+    },
+    {
+      "query": "エアコン リモコン 壊れた",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 66
+    },
+    {
       "query": "エアコン ルーバーから水滴",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 3
+    },
+    {
+      "query": "エアコン 下から水漏れ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
     },
     {
       "query": "エアコン 冷えない ガス 確認方法",
@@ -1477,6 +1694,34 @@
       "position": 3
     },
     {
+      "query": "エアコン 勝手に切れる 原因",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン 勝手に動く",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン 取り付け 費用 相場",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 64
+    },
+    {
+      "query": "エアコン 取り付け費用",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 73
+    },
+    {
       "query": "エアコン 吹き出し口 水が垂れる",
       "clicks": 0,
       "impressions": 1,
@@ -1491,11 +1736,25 @@
       "position": 2
     },
     {
+      "query": "エアコン 外に水が出ない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
       "query": "エアコン 室内 水漏れ",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 3
+    },
+    {
+      "query": "エアコン 室内 水漏れ 原因",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
     },
     {
       "query": "エアコン 室外機 ドレンホース 水が出ない",
@@ -1513,13 +1772,6 @@
     },
     {
       "query": "エアコン 室外機 動かない",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "query": "エアコン 室外機 排水されない",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -1561,6 +1813,13 @@
       "position": 3
     },
     {
+      "query": "エアコン 室外機 水漏れ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
       "query": "エアコン 室外機 詰まり",
       "clicks": 0,
       "impressions": 1,
@@ -1596,13 +1855,6 @@
       "position": 4
     },
     {
-      "query": "エアコン 寝室 6畳",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 13
-    },
-    {
       "query": "エアコン 強制冷房",
       "clicks": 0,
       "impressions": 1,
@@ -1617,6 +1869,20 @@
       "position": 3
     },
     {
+      "query": "エアコン 排水 詰まり 直し 方",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン 排水しない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
       "query": "エアコン 排水しない 原因",
       "clicks": 0,
       "impressions": 1,
@@ -1624,7 +1890,14 @@
       "position": 3
     },
     {
-      "query": "エアコン 排水ホース 掃除",
+      "query": "エアコン 排水できてない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン 排水ホース 詰まり",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -1643,6 +1916,13 @@
       "impressions": 1,
       "ctr": 0,
       "position": 10
+    },
+    {
+      "query": "エアコン 暖かい風が出ない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 98
     },
     {
       "query": "エアコン 暖房 効か ない",
@@ -1666,11 +1946,25 @@
       "position": 40
     },
     {
+      "query": "エアコン 暖房 暖かい風が出ない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 71
+    },
+    {
       "query": "エアコン 暖房効くけど冷房効かない",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 4
+    },
+    {
+      "query": "エアコン 本体から水漏れ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
     },
     {
       "query": "エアコン 止まったり動いたり",
@@ -1687,13 +1981,6 @@
       "position": 29
     },
     {
-      "query": "エアコン 歴史",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 30
-    },
-    {
       "query": "エアコン 毎年水漏れ",
       "clicks": 0,
       "impressions": 1,
@@ -1701,11 +1988,32 @@
       "position": 7
     },
     {
+      "query": "エアコン 水 出ない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン 水 垂れてくる",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
       "query": "エアコン 水 漏れ 修理 業者",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 5
+    },
+    {
+      "query": "エアコン 水 漏れ 左右",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
     },
     {
       "query": "エアコン 水 飛んでくる",
@@ -1722,11 +2030,18 @@
       "position": 3
     },
     {
-      "query": "エアコン 水が出てこない",
+      "query": "エアコン 水がポタポタ落ちる",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 3
+      "position": 2
+    },
+    {
+      "query": "エアコン 水が出てきた",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
     },
     {
       "query": "エアコン 水が出ない 日立",
@@ -1736,14 +2051,14 @@
       "position": 4
     },
     {
-      "query": "エアコン 水が漏れる",
+      "query": "エアコン 水が垂れる 対処法",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 3
+      "position": 2
     },
     {
-      "query": "エアコン 水が飛んでくる",
+      "query": "エアコン 水が漏れる",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -1757,14 +2072,7 @@
       "position": 3
     },
     {
-      "query": "エアコン 水でない",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "query": "エアコン 水の音",
+      "query": "エアコン 水でない 原因",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -1799,11 +2107,39 @@
       "position": 2
     },
     {
-      "query": "エアコン 水排出",
+      "query": "エアコン 水垂れる 対処法",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 4
+      "position": 2
+    },
+    {
+      "query": "エアコン 水抜き",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン 水抜きポンプ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン 水没 使える",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン 水滴",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
     },
     {
       "query": "エアコン 水滴 原因",
@@ -1827,6 +2163,13 @@
       "position": 3
     },
     {
+      "query": "エアコン 水漏れ 位置",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
       "query": "エアコン 水漏れ 修理",
       "clicks": 0,
       "impressions": 1,
@@ -1834,7 +2177,21 @@
       "position": 3
     },
     {
-      "query": "エアコン 水漏れ 原因",
+      "query": "エアコン 水漏れ 内部クリーン",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン 水漏れ 原因 ドレンホース",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "query": "エアコン 水漏れ 吹き出し口",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -1849,13 +2206,6 @@
     },
     {
       "query": "エアコン 水漏れ 夜だけ",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "query": "エアコン 水漏れ 対策",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -1877,6 +2227,20 @@
     },
     {
       "query": "エアコン 水漏れ 真ん中",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン 水漏れ 詰まり",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "query": "エアコン 水漏れ 送風",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -1918,7 +2282,21 @@
       "position": 3
     },
     {
+      "query": "エアコン 突然水漏れ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
       "query": "エアコン 結露",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン 結露 飛んでくる",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -1960,6 +2338,13 @@
       "position": 6
     },
     {
+      "query": "エアコン 開発 歴史",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 18
+    },
+    {
       "query": "エアコンから、水が出る",
       "clicks": 0,
       "impressions": 1,
@@ -1967,11 +2352,11 @@
       "position": 2
     },
     {
-      "query": "エアコンからドレンが出ない",
+      "query": "エアコンからポタポタ音がする",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 3
+      "position": 2
     },
     {
       "query": "エアコンから大量に水",
@@ -1988,7 +2373,21 @@
       "position": 3
     },
     {
-      "query": "エアコンから水が 垂れる 応急処置",
+      "query": "エアコンから水がたくさん出る",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "query": "エアコンから水が出てくるのはなぜ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "query": "エアコンから水が出てこない",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -2003,20 +2402,6 @@
     },
     {
       "query": "エアコンから水が出る 対処法",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "query": "エアコンから水が垂れてくる",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "query": "エアコンから水が垂れる",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -2044,6 +2429,13 @@
       "position": 2
     },
     {
+      "query": "エアコンから水の流れる音",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
       "query": "エアコンから水の音 ちょろちょろ",
       "clicks": 0,
       "impressions": 1,
@@ -2058,7 +2450,21 @@
       "position": 3
     },
     {
+      "query": "エアコンから水滴が落ちてくる",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
       "query": "エアコンから水滴が飛んでくる",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "query": "エアコンから水漏れ 原因",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -2072,11 +2478,11 @@
       "position": 2
     },
     {
-      "query": "エアコンが冷えない",
+      "query": "エアコンが冷えない 室外機",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 79
+      "position": 3
     },
     {
       "query": "エアコンが効かない",
@@ -2093,6 +2499,13 @@
       "position": 3
     },
     {
+      "query": "エアコンつけっぱなし 水が出る",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
       "query": "エアコンと壁の間から水",
       "clicks": 0,
       "impressions": 1,
@@ -2100,7 +2513,28 @@
       "position": 2
     },
     {
+      "query": "エアコンなら水",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコンのドレイン",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
       "query": "エアコンのドレンホース",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコンのドレンホース どこ",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -2112,13 +2546,6 @@
       "impressions": 1,
       "ctr": 0,
       "position": 3
-    },
-    {
-      "query": "エアコンのドレンホースの掃除の仕方",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 5
     },
     {
       "query": "エアコンのドレン掃除",
@@ -2135,18 +2562,18 @@
       "position": 3
     },
     {
-      "query": "エアコンの室外機 から水が出ない",
+      "query": "エアコンの室外機から水",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 3
     },
     {
-      "query": "エアコンの室外機から水",
+      "query": "エアコンの室外機から水が出ない の は なぜ",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 3
+      "position": 2
     },
     {
       "query": "エアコンの室外機から水が出ないのはなぜ",
@@ -2170,7 +2597,28 @@
       "position": 3
     },
     {
+      "query": "エアコンの排水が出ない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
       "query": "エアコンの本体から水が出る",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコンの歴史",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 34
+    },
+    {
+      "query": "エアコンの水が出てこない",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -2184,11 +2632,11 @@
       "position": 3
     },
     {
-      "query": "エアコンの水漏れ 対処法",
+      "query": "エアコンの真ん中から水",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 2
+      "position": 3
     },
     {
       "query": "エアコンの羽に水滴",
@@ -2196,6 +2644,13 @@
       "impressions": 1,
       "ctr": 0,
       "position": 3
+    },
+    {
+      "query": "エアコンの進化",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 18
     },
     {
       "query": "エアコンガスがないとどうなる",
@@ -2247,11 +2702,39 @@
       "position": 3
     },
     {
+      "query": "エアコンドレンホース 掃除",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコンドレンホース 洗浄",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
+    },
+    {
       "query": "エアコンドレンホース詰まり",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 3
+    },
+    {
+      "query": "エアコンドレンホース詰まり解消",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコンドレン掃除",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8
     },
     {
       "query": "エアコンドレン水が出ない",
@@ -2275,6 +2758,13 @@
       "position": 3
     },
     {
+      "query": "エアコンホース 水が出ない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
       "query": "エアコンホースから水出ない",
       "clicks": 0,
       "impressions": 1,
@@ -2287,6 +2777,13 @@
       "impressions": 1,
       "ctr": 0,
       "position": 5
+    },
+    {
+      "query": "エアコンホース詰まり",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
     },
     {
       "query": "エアコン下から水漏れ",
@@ -2317,11 +2814,18 @@
       "position": 3
     },
     {
-      "query": "エアコン取り付け 費用相場",
+      "query": "エアコン効きが悪い",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 61
+      "position": 3
+    },
+    {
+      "query": "エアコン取り付け費用 相場",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 66
     },
     {
       "query": "エアコン吹き出し口から水が垂れる",
@@ -2329,13 +2833,6 @@
       "impressions": 1,
       "ctr": 0,
       "position": 3
-    },
-    {
-      "query": "エアコン吹き出し口から水滴",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 2
     },
     {
       "query": "エアコン吹き出し口から水漏れ",
@@ -2353,6 +2850,34 @@
     },
     {
       "query": "エアコン室内から水漏れ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン室内機 ドレンホース",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "query": "エアコン室内機から水",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン室内機から水が出る",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン室内機異音",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -2380,7 +2905,7 @@
       "position": 3
     },
     {
-      "query": "エアコン室外機 水出てない",
+      "query": "エアコン室外機 水が出てない",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -2422,7 +2947,7 @@
       "position": 3
     },
     {
-      "query": "エアコン室外機ホースから水が出ない",
+      "query": "エアコン室外機ドレンホース",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -2436,14 +2961,7 @@
       "position": 3
     },
     {
-      "query": "エアコン室外機水出てない",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "query": "エアコン室外機水出ない",
+      "query": "エアコン室外機水が出ない",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -2499,7 +3017,28 @@
       "position": 11
     },
     {
-      "query": "エアコン水が 垂れる ドレンホース",
+      "query": "エアコン本体から水が垂れる",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "query": "エアコン止めても水漏れ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン水が出ない理由",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "query": "エアコン水が出る",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -2520,11 +3059,25 @@
       "position": 2
     },
     {
-      "query": "エアコン水垂れる 原因",
+      "query": "エアコン水でない",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 2
+      "position": 3
+    },
+    {
+      "query": "エアコン水抜き",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン水排出",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
     },
     {
       "query": "エアコン水滴飛ぶ",
@@ -2541,7 +3094,21 @@
       "position": 3
     },
     {
+      "query": "エアコン水漏れ ドレンパン",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
+    },
+    {
       "query": "エアコン水漏れ ドレンパン掃除 自分で",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン水漏れ ドレンホース 掃除",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -2553,6 +3120,20 @@
       "impressions": 1,
       "ctr": 0,
       "position": 4
+    },
+    {
+      "query": "エアコン水漏れ 使い続ける",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン水漏れ 左側",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
     },
     {
       "query": "エアコン水漏れ 放置",
@@ -2570,6 +3151,13 @@
     },
     {
       "query": "エアコン水漏れ修理",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン水漏れ修理 自分で",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -2597,11 +3185,11 @@
       "position": 2
     },
     {
-      "query": "エアコン真下 ベッド",
+      "query": "エアコン途中で止まる",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 53
+      "position": 3
     },
     {
       "query": "エアコン配管詰まり",
@@ -2612,6 +3200,13 @@
     },
     {
       "query": "エコキュート 室外機 水漏れ 自分で",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "query": "カインズ ドレンホースクリーナー",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -2639,6 +3234,13 @@
       "position": 3
     },
     {
+      "query": "クーラー ホースから水が出ない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
       "query": "クーラー 室外 機 ホース から 水 が 出 ない",
       "clicks": 0,
       "impressions": 1,
@@ -2646,18 +3248,11 @@
       "position": 3
     },
     {
-      "query": "クーラー 室外機から水が出ない",
+      "query": "クーラー 排水されない",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 3
-    },
-    {
-      "query": "クーラー 排水しない",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
+      "position": 4
     },
     {
       "query": "クーラー 歴史",
@@ -2674,18 +3269,18 @@
       "position": 3
     },
     {
-      "query": "クーラー 水漏れ",
+      "query": "クーラー 水が出ない",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 3
     },
     {
-      "query": "クーラーから水",
+      "query": "クーラー 水出てくる",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 3
+      "position": 2
     },
     {
       "query": "クーラーから水が出ない",
@@ -2696,20 +3291,6 @@
     },
     {
       "query": "クーラーから水が出る理由",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "query": "クーラーから水が垂れる",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "query": "クーラーから水が落ちる",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -2730,7 +3311,21 @@
       "position": 3
     },
     {
-      "query": "クーラーのホースから水が出ない",
+      "query": "クーラーのドレンから水が出ない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "query": "クーラーのドレン詰まり",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "クーラーの排水が出ない",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -2758,6 +3353,13 @@
       "position": 3
     },
     {
+      "query": "クーラー室外機 水が出ない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
       "query": "クーラー排水",
       "clicks": 0,
       "impressions": 1,
@@ -2772,7 +3374,7 @@
       "position": 3
     },
     {
-      "query": "クーラー水垂れる",
+      "query": "クーラー水漏れ対処法",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -2793,13 +3395,6 @@
       "position": 5
     },
     {
-      "query": "サクションポンプ",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 4
-    },
-    {
       "query": "サクションポンプ エアコン",
       "clicks": 0,
       "impressions": 1,
@@ -2815,6 +3410,13 @@
     },
     {
       "query": "シャープ エアコン 水漏れ 右側",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "シャープエアコン水漏れ修理",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -2856,21 +3458,28 @@
       "position": 3
     },
     {
-      "query": "ダイキン エアコン 水漏れ",
+      "query": "ダイキン エアコン 水漏れ リコール",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 3
+      "position": 5
     },
     {
-      "query": "ダイキンエアコン ドレンホース",
+      "query": "ダイキンエアコン a3",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 3
+      "position": 2
     },
     {
       "query": "ダイキンエアコン 室内機 水漏れ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "ダイキンエアコン 室外機 動かない",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -2891,6 +3500,13 @@
       "position": 3
     },
     {
+      "query": "ダイキンエアコン 水漏れ 右側",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
       "query": "ダイキンエアコン吹き出し口 掃除の仕方",
       "clicks": 0,
       "impressions": 1,
@@ -2905,14 +3521,14 @@
       "position": 3
     },
     {
-      "query": "ドレインホース 掃除",
+      "query": "ダスキン エアコンクリーニング ドレンホース",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 3
     },
     {
-      "query": "ドレインホースクリーナー",
+      "query": "ドレインホース 掃除",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -2926,14 +3542,42 @@
       "position": 3
     },
     {
-      "query": "ドレン ホース クリーナー",
+      "query": "ドレンクリーナー",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 3
     },
     {
+      "query": "ドレンスライム抑制剤",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "ドレンパンとは 冷蔵庫",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
       "query": "ドレンパン掃除",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "ドレンホース から水が出ない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "ドレンホース つまり",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -2947,6 +3591,13 @@
       "position": 2
     },
     {
+      "query": "ドレンホース クリーナー",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
       "query": "ドレンホース 掃除 業者",
       "clicks": 0,
       "impressions": 1,
@@ -2954,11 +3605,11 @@
       "position": 3
     },
     {
-      "query": "ドレンホース 掃除業者",
+      "query": "ドレンホース 掃除の仕方",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 25
+      "position": 2
     },
     {
       "query": "ドレンホース 掃除機で吸う",
@@ -2968,25 +3619,18 @@
       "position": 4
     },
     {
-      "query": "ドレンホース 正常な状態",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "query": "ドレンホース 水が出ない",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
       "query": "ドレンホース 水の量",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 3
+    },
+    {
+      "query": "ドレンホース 画像",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
     },
     {
       "query": "ドレンホース 詰まり 確認",
@@ -3003,6 +3647,13 @@
       "position": 9
     },
     {
+      "query": "ドレンホース 詰まるとどうなる",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
       "query": "ドレンホースからの水の量",
       "clicks": 0,
       "impressions": 1,
@@ -3010,32 +3661,25 @@
       "position": 3
     },
     {
-      "query": "ドレンホースが見当たらない",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 17
-    },
-    {
-      "query": "ドレンホースが詰まるとどうなる",
+      "query": "ドレンホースから水が出る",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 2
     },
     {
-      "query": "ドレンホースの掃除の仕方",
+      "query": "ドレンホースつまり",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 3
     },
     {
-      "query": "ドレンホースの詰まりを解消",
+      "query": "ドレンホースクリーナー 100 均",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 3
+      "position": 5
     },
     {
       "query": "ドレンホースクリーナー どこに 売ってる",
@@ -3066,6 +3710,13 @@
       "position": 3
     },
     {
+      "query": "ドレンホースクリーナー 使い方",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
+    },
+    {
       "query": "ドレンホース専用クリーナー",
       "clicks": 0,
       "impressions": 1,
@@ -3073,11 +3724,25 @@
       "position": 3
     },
     {
-      "query": "ドレンホース用クリーナー",
+      "query": "ドレンホース洗浄とは",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 4
+      "position": 3
+    },
+    {
+      "query": "ドレンホース詰まってないのに水漏れ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "ドレン水 出ない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
     },
     {
       "query": "ドレン用サクションポンプ ホームセンター",
@@ -3094,21 +3759,42 @@
       "position": 4
     },
     {
-      "query": "ドレーンから水が出ない",
+      "query": "ドレーンホース",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 4
+      "position": 3
     },
     {
-      "query": "ナフコ ドレンホースクリーナー",
+      "query": "ドレーンホースとは",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 5
+      "position": 3
+    },
+    {
+      "query": "ドレーンホースクリーナー",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "ドレーン詰まり",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
     },
     {
       "query": "ノクリア エアコン 水が垂れる",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "パナソニック エアコン 排水 しない",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -3129,25 +3815,18 @@
       "position": 3
     },
     {
-      "query": "マンション",
+      "query": "リビング",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "query": "ルームエアコン ドレン詰まり",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 3
-    },
-    {
-      "query": "三菱 霧ヶ峰 gvシリーズ msz-gv2825-w () reviews",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 10
-    },
-    {
-      "query": "三菱 霧ヶ峰 msz-gv2825-w () reviews",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 10
     },
     {
       "query": "三菱 霧ヶ峰 エアコン 水漏れ",
@@ -3164,13 +3843,6 @@
       "position": 3
     },
     {
-      "query": "三菱電機 霧ヶ峰 gvシリーズ msz-gv2825-w () reviews",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 10
-    },
-    {
       "query": "冷えないエアコン",
       "clicks": 0,
       "impressions": 1,
@@ -3178,7 +3850,7 @@
       "position": 93
     },
     {
-      "query": "冷房 排水されない",
+      "query": "冷房 室外機 水が出ない",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -3190,6 +3862,20 @@
       "impressions": 1,
       "ctr": 0,
       "position": 3
+    },
+    {
+      "query": "冷蔵庫 水漏れ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "冷蔵庫 水漏れ 原因",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
     },
     {
       "query": "冷蔵庫から水が漏れる",
@@ -3227,20 +3913,6 @@
       "position": 3
     },
     {
-      "query": "室外機 ドレンホース 掃除",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "query": "室外機 ドレンホース 詰まり",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
       "query": "室外機 ホース キャップ",
       "clicks": 0,
       "impressions": 1,
@@ -3260,6 +3932,13 @@
       "impressions": 1,
       "ctr": 0,
       "position": 18
+    },
+    {
+      "query": "室外機 吸い込み口",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
     },
     {
       "query": "室外機 打ち水",
@@ -3284,6 +3963,13 @@
     },
     {
       "query": "室外機 水漏れ 大量",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "室外機 浸水 どこまで大丈夫",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -3325,7 +4011,28 @@
       "position": 3
     },
     {
+      "query": "室外機から水が出る",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "query": "室外機が動かない 原因",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
       "query": "室外機のドレンホースから水が出ない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "室外機の音がしない",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -3353,11 +4060,25 @@
       "position": 3
     },
     {
-      "query": "室外機振動防止",
+      "query": "室外機下から水漏れ",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 5
+      "position": 3
+    },
+    {
+      "query": "室外機回らない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "query": "室外機掃除 しない と どうなる",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
     },
     {
       "query": "室外機排水",
@@ -3365,13 +4086,6 @@
       "impressions": 1,
       "ctr": 0,
       "position": 3
-    },
-    {
-      "query": "室外機水出ない",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 2
     },
     {
       "query": "室外機水漏れ",
@@ -3395,13 +4109,6 @@
       "position": 3
     },
     {
-      "query": "寝室用エアコン 6畳 おすすめ",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 44
-    },
-    {
       "query": "日立 白くまくん 冷えない",
       "clicks": 0,
       "impressions": 1,
@@ -3423,11 +4130,46 @@
       "position": 62
     },
     {
+      "query": "東芝 エアコン 水漏れ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "東芝エアコン 点滅",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "業務用エアコン 水滴が落ちる",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
       "query": "業務用エアコン水漏れ",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 3
+    },
+    {
+      "query": "白くまくん エアコン掃除 外し方",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "query": "白くまくん 水が垂れる",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
     },
     {
       "query": "白くまくん 水漏れ 左側",
@@ -3437,14 +4179,7 @@
       "position": 5
     },
     {
-      "query": "車 エアコン 水が出ない",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "query": "防振ゴム 室外機",
+      "query": "車 エアコンドレン 詰まり",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
