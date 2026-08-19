@@ -334,8 +334,13 @@
       "id": "strange-noise__question-hook",
       "articleSlug": "strange-noise",
       "postedAt": "2026-08-18T09:34:34.685Z"
+    },
+    {
+      "id": "cleaning-staff-career__question-hook",
+      "articleSlug": "cleaning-staff-career",
+      "postedAt": "2026-08-19T09:35:01.809Z"
     }
   ],
-  "cursor": 67,
-  "lastRunAt": "2026-08-18T09:34:34.685Z"
+  "cursor": 68,
+  "lastRunAt": "2026-08-19T09:35:01.809Z"
 }
