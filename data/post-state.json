@@ -339,8 +339,13 @@
       "id": "cleaning-staff-career__question-hook",
       "articleSlug": "cleaning-staff-career",
       "postedAt": "2026-08-19T09:35:01.809Z"
+    },
+    {
+      "id": "heating-not-working__question-hook",
+      "articleSlug": "heating-not-working",
+      "postedAt": "2026-08-20T09:35:26.473Z"
     }
   ],
-  "cursor": 68,
-  "lastRunAt": "2026-08-19T09:35:01.809Z"
+  "cursor": 69,
+  "lastRunAt": "2026-08-20T09:35:26.473Z"
 }
