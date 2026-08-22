@@ -349,8 +349,13 @@
       "id": "filter-cleaning__quick-answer",
       "articleSlug": "filter-cleaning",
       "postedAt": "2026-08-21T09:37:28.673Z"
+    },
+    {
+      "id": "heating-not-working__safe-check",
+      "articleSlug": "heating-not-working",
+      "postedAt": "2026-08-22T09:27:24.828Z"
     }
   ],
-  "cursor": 70,
-  "lastRunAt": "2026-08-21T09:37:28.673Z"
+  "cursor": 71,
+  "lastRunAt": "2026-08-22T09:27:24.828Z"
 }
