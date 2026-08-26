@@ -369,8 +369,13 @@
       "id": "aircon-history__safe-check",
       "articleSlug": "aircon-history",
       "postedAt": "2026-08-25T09:36:13.401Z"
+    },
+    {
+      "id": "aircon-10jou-choose__quick-answer",
+      "articleSlug": "aircon-10jou-choose",
+      "postedAt": "2026-08-26T09:42:32.698Z"
     }
   ],
-  "cursor": 74,
-  "lastRunAt": "2026-08-25T09:36:13.401Z"
+  "cursor": 75,
+  "lastRunAt": "2026-08-26T09:42:32.698Z"
 }
