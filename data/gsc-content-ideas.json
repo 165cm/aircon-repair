@@ -1,58 +1,46 @@
 {
   "meta": {
     "siteUrl": "sc-domain:aircon-hokenshitsu.com",
-    "startDate": "2026-07-26",
-    "endDate": "2026-08-22",
-    "fetchedAt": "2026-08-24T21:29:17.726Z",
-    "generatedAt": "2026-08-24T21:29:17.795Z",
+    "startDate": "2026-08-03",
+    "endDate": "2026-08-30",
+    "fetchedAt": "2026-09-01T00:24:40.643Z",
+    "generatedAt": "2026-09-01T00:24:40.708Z",
     "minImpressions": 20,
     "articleCount": 31,
-    "ideaCount": 4
+    "ideaCount": 3
   },
   "ideas": [
     {
       "type": "new",
-      "query": "エアコンから水が出る",
-      "impressions": 38,
-      "clicks": 0,
-      "ctr": 0,
-      "position": 2.34,
-      "suggestedCategory": "symptom",
-      "score": 57
-    },
-    {
-      "type": "new",
       "query": "ドレンホースクリーナー",
-      "impressions": 23,
+      "impressions": 26,
       "clicks": 0,
       "ctr": 0,
       "position": 3,
       "suggestedCategory": "symptom",
-      "score": 35
+      "score": 39
     },
     {
-      "type": "rewrite",
-      "query": "エアコン ベッド 位置 6畳",
-      "impressions": 32,
-      "clicks": 1,
-      "ctr": 0.0313,
-      "position": 9.31,
-      "matchedSlug": "aircon-6jou-choose",
-      "matchedUrl": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
-      "suggestedCategory": "buying",
-      "score": 31
-    },
-    {
-      "type": "rewrite",
-      "query": "排水管付きエアコン 見分け方",
+      "type": "new",
+      "query": "エアコンから水が出る",
       "impressions": 25,
       "clicks": 0,
       "ctr": 0,
-      "position": 9.2,
-      "matchedSlug": "aircon-drain-pipe-identify",
-      "matchedUrl": "https://aircon-hokenshitsu.com/articles/aircon-drain-pipe-identify/",
-      "suggestedCategory": "basics",
-      "score": 25
+      "position": 2.04,
+      "suggestedCategory": "symptom",
+      "score": 38
+    },
+    {
+      "type": "rewrite",
+      "query": "elpa エアコンリモコン 反応 しない",
+      "impressions": 23,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 8.52,
+      "matchedSlug": "remote-not-working",
+      "matchedUrl": "https://aircon-hokenshitsu.com/articles/remote-not-working/",
+      "suggestedCategory": "symptom",
+      "score": 23
     }
   ]
 }
