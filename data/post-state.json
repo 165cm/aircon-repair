@@ -39,8 +39,13 @@
       "id": "cleaning-spray-risk__risk-warning",
       "articleSlug": "cleaning-spray-risk",
       "postedAt": "2026-09-04T13:13:30.044Z"
+    },
+    {
+      "id": "aircon-18jou-choose__safe-check",
+      "articleSlug": "aircon-18jou-choose",
+      "postedAt": "2026-09-05T12:27:49.387Z"
     }
   ],
-  "cursor": 84,
-  "lastRunAt": "2026-09-04T13:13:30.044Z"
+  "cursor": 85,
+  "lastRunAt": "2026-09-05T12:27:49.387Z"
 }
