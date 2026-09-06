@@ -44,8 +44,13 @@
       "id": "aircon-18jou-choose__safe-check",
       "articleSlug": "aircon-18jou-choose",
       "postedAt": "2026-09-05T12:27:49.387Z"
+    },
+    {
+      "id": "filter-cleaning__safe-check",
+      "articleSlug": "filter-cleaning",
+      "postedAt": "2026-09-06T12:40:45.033Z"
     }
   ],
-  "cursor": 85,
-  "lastRunAt": "2026-09-05T12:27:49.387Z"
+  "cursor": 86,
+  "lastRunAt": "2026-09-06T12:40:45.033Z"
 }
