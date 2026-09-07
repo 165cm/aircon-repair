@@ -1,46 +1,36 @@
 {
   "meta": {
     "siteUrl": "sc-domain:aircon-hokenshitsu.com",
-    "startDate": "2026-08-03",
-    "endDate": "2026-08-30",
-    "fetchedAt": "2026-09-01T00:24:40.643Z",
-    "generatedAt": "2026-09-01T00:24:40.708Z",
+    "startDate": "2026-08-09",
+    "endDate": "2026-09-05",
+    "fetchedAt": "2026-09-07T23:18:11.440Z",
+    "generatedAt": "2026-09-07T23:18:11.514Z",
     "minImpressions": 20,
     "articleCount": 31,
-    "ideaCount": 3
+    "ideaCount": 2
   },
   "ideas": [
     {
+      "type": "rewrite",
+      "query": "elpa エアコンリモコン 反応 しない",
+      "impressions": 59,
+      "clicks": 1,
+      "ctr": 0.0169,
+      "position": 7.86,
+      "matchedSlug": "remote-not-working",
+      "matchedUrl": "https://aircon-hokenshitsu.com/articles/remote-not-working/",
+      "suggestedCategory": "symptom",
+      "score": 58
+    },
+    {
       "type": "new",
       "query": "ドレンホースクリーナー",
-      "impressions": 26,
+      "impressions": 24,
       "clicks": 0,
       "ctr": 0,
       "position": 3,
       "suggestedCategory": "symptom",
-      "score": 39
-    },
-    {
-      "type": "new",
-      "query": "エアコンから水が出る",
-      "impressions": 25,
-      "clicks": 0,
-      "ctr": 0,
-      "position": 2.04,
-      "suggestedCategory": "symptom",
-      "score": 38
-    },
-    {
-      "type": "rewrite",
-      "query": "elpa エアコンリモコン 反応 しない",
-      "impressions": 23,
-      "clicks": 0,
-      "ctr": 0,
-      "position": 8.52,
-      "matchedSlug": "remote-not-working",
-      "matchedUrl": "https://aircon-hokenshitsu.com/articles/remote-not-working/",
-      "suggestedCategory": "symptom",
-      "score": 23
+      "score": 36
     }
   ]
 }
