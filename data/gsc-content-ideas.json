@@ -1,36 +1,26 @@
 {
   "meta": {
     "siteUrl": "sc-domain:aircon-hokenshitsu.com",
-    "startDate": "2026-08-09",
-    "endDate": "2026-09-05",
-    "fetchedAt": "2026-09-07T23:18:11.440Z",
-    "generatedAt": "2026-09-07T23:18:11.514Z",
+    "startDate": "2026-08-16",
+    "endDate": "2026-09-12",
+    "fetchedAt": "2026-09-14T23:42:09.507Z",
+    "generatedAt": "2026-09-14T23:42:09.573Z",
     "minImpressions": 20,
     "articleCount": 31,
-    "ideaCount": 2
+    "ideaCount": 1
   },
   "ideas": [
     {
       "type": "rewrite",
       "query": "elpa エアコンリモコン 反応 しない",
-      "impressions": 59,
+      "impressions": 61,
       "clicks": 1,
-      "ctr": 0.0169,
-      "position": 7.86,
+      "ctr": 0.0164,
+      "position": 7.82,
       "matchedSlug": "remote-not-working",
       "matchedUrl": "https://aircon-hokenshitsu.com/articles/remote-not-working/",
       "suggestedCategory": "symptom",
-      "score": 58
-    },
-    {
-      "type": "new",
-      "query": "ドレンホースクリーナー",
-      "impressions": 24,
-      "clicks": 0,
-      "ctr": 0,
-      "position": 3,
-      "suggestedCategory": "symptom",
-      "score": 36
+      "score": 60
     }
   ]
 }
