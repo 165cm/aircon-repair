@@ -89,8 +89,13 @@
       "id": "not-cooling__quick-answer",
       "articleSlug": "not-cooling",
       "postedAt": "2026-09-14T15:43:50.983Z"
+    },
+    {
+      "id": "aircon-10jou-choose__safe-check",
+      "articleSlug": "aircon-10jou-choose",
+      "postedAt": "2026-09-15T14:12:29.759Z"
     }
   ],
-  "cursor": 94,
-  "lastRunAt": "2026-09-14T15:43:50.983Z"
+  "cursor": 95,
+  "lastRunAt": "2026-09-15T14:12:29.759Z"
 }
