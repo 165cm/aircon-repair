@@ -99,8 +99,13 @@
       "id": "water-leak__risk-warning",
       "articleSlug": "water-leak",
       "postedAt": "2026-09-16T14:04:38.508Z"
+    },
+    {
+      "id": "strange-noise__safe-check",
+      "articleSlug": "strange-noise",
+      "postedAt": "2026-09-17T14:09:16.070Z"
     }
   ],
-  "cursor": 96,
-  "lastRunAt": "2026-09-16T14:04:38.508Z"
+  "cursor": 97,
+  "lastRunAt": "2026-09-17T14:09:16.070Z"
 }
