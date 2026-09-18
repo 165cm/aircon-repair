@@ -104,8 +104,13 @@
       "id": "strange-noise__safe-check",
       "articleSlug": "strange-noise",
       "postedAt": "2026-09-17T14:09:16.070Z"
+    },
+    {
+      "id": "call-contractor__quick-answer",
+      "articleSlug": "call-contractor",
+      "postedAt": "2026-09-18T13:28:12.562Z"
     }
   ],
-  "cursor": 97,
-  "lastRunAt": "2026-09-17T14:09:16.070Z"
+  "cursor": 98,
+  "lastRunAt": "2026-09-18T13:28:12.562Z"
 }
