@@ -1,10 +1,10 @@
 {
   "meta": {
     "siteUrl": "sc-domain:aircon-hokenshitsu.com",
-    "startDate": "2026-08-16",
-    "endDate": "2026-09-12",
-    "fetchedAt": "2026-09-14T23:42:09.507Z",
-    "generatedAt": "2026-09-14T23:42:09.573Z",
+    "startDate": "2026-08-23",
+    "endDate": "2026-09-19",
+    "fetchedAt": "2026-09-21T23:51:39.364Z",
+    "generatedAt": "2026-09-21T23:51:39.410Z",
     "minImpressions": 20,
     "articleCount": 31,
     "ideaCount": 1
@@ -13,14 +13,14 @@
     {
       "type": "rewrite",
       "query": "elpa エアコンリモコン 反応 しない",
-      "impressions": 61,
+      "impressions": 78,
       "clicks": 1,
-      "ctr": 0.0164,
-      "position": 7.82,
+      "ctr": 0.0128,
+      "position": 7.45,
       "matchedSlug": "remote-not-working",
       "matchedUrl": "https://aircon-hokenshitsu.com/articles/remote-not-working/",
       "suggestedCategory": "symptom",
-      "score": 60
+      "score": 77
     }
   ]
 }
