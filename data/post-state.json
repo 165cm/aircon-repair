@@ -159,8 +159,13 @@
       "id": "drain-hose__quick-answer",
       "articleSlug": "drain-hose",
       "postedAt": "2026-09-28T17:25:57.464Z"
+    },
+    {
+      "id": "call-contractor__risk-warning",
+      "articleSlug": "call-contractor",
+      "postedAt": "2026-09-29T15:26:13.652Z"
     }
   ],
-  "cursor": 108,
-  "lastRunAt": "2026-09-28T17:25:57.464Z"
+  "cursor": 109,
+  "lastRunAt": "2026-09-29T15:26:13.652Z"
 }
