@@ -1,50 +1,90 @@
 {
   "meta": {
     "siteUrl": "sc-domain:aircon-hokenshitsu.com",
-    "startDate": "2026-08-23",
-    "endDate": "2026-09-19",
-    "fetchedAt": "2026-09-21T23:51:39.364Z"
+    "startDate": "2026-08-31",
+    "endDate": "2026-09-27",
+    "fetchedAt": "2026-09-29T00:50:33.950Z"
   },
   "rows": [
     {
       "page": "https://aircon-hokenshitsu.com/articles/remote-not-working/",
       "query": "elpa エアコンリモコン 反応 しない",
-      "clicks": 1,
-      "impressions": 78,
-      "ctr": 0.0128,
-      "position": 7.45
+      "clicks": 2,
+      "impressions": 100,
+      "ctr": 0.02,
+      "position": 7.76
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン 水漏れ",
+      "clicks": 0,
+      "impressions": 19,
+      "ctr": 0,
+      "position": 2.95
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/remote-not-working/",
       "query": "elpa エアコンリモコン 反応しない",
       "clicks": 0,
-      "impressions": 18,
+      "impressions": 19,
       "ctr": 0,
-      "position": 8
+      "position": 8.16
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-choose/",
       "query": "エアコン ldk",
       "clicks": 0,
-      "impressions": 11,
+      "impressions": 15,
       "ctr": 0,
-      "position": 10.91
+      "position": 9.87
     },
     {
-      "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-choose/",
-      "query": "エアコン ldk おすすめ",
-      "clicks": 1,
-      "impressions": 10,
-      "ctr": 0.1,
-      "position": 10.5
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン ドレンホース 掃除",
+      "clicks": 0,
+      "impressions": 13,
+      "ctr": 0,
+      "position": 3.15
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/",
       "query": "排水管付きエアコン 見分け方",
       "clicks": 0,
+      "impressions": 12,
+      "ctr": 0,
+      "position": 9.58
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
+      "query": "エアコン ベッド 位置 6畳",
+      "clicks": 0,
+      "impressions": 12,
+      "ctr": 0,
+      "position": 10.58
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "ドレンホース",
+      "clicks": 0,
+      "impressions": 12,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン水漏れ 右側",
+      "clicks": 0,
       "impressions": 10,
       "ctr": 0,
-      "position": 9.7
+      "position": 3.3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-choose/",
+      "query": "エアコン ldk おすすめ",
+      "clicks": 1,
+      "impressions": 9,
+      "ctr": 0.1111,
+      "position": 10.44
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/not-cooling/",
@@ -55,68 +95,12 @@
       "position": 1
     },
     {
-      "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
-      "query": "エアコン 消費電力 推移",
-      "clicks": 0,
-      "impressions": 8,
-      "ctr": 0,
-      "position": 5.5
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-size-guide/",
-      "query": "ldk 18畳 吹き抜け エアコン",
-      "clicks": 0,
-      "impressions": 8,
-      "ctr": 0,
-      "position": 11.88
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-size-guide/",
-      "query": "吹き抜け エアコン 何畳用",
-      "clicks": 0,
-      "impressions": 8,
-      "ctr": 0,
-      "position": 8
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/products/drain-pump/",
-      "query": "ドレンホースクリーナー",
-      "clicks": 0,
-      "impressions": 8,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
-      "query": "エアコン ベッド 位置 6畳",
-      "clicks": 0,
-      "impressions": 7,
-      "ctr": 0,
-      "position": 12.29
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
-      "query": "エアコン 歴史 年表",
-      "clicks": 0,
-      "impressions": 7,
-      "ctr": 0,
-      "position": 10.14
-    },
-    {
       "page": "https://aircon-hokenshitsu.com/articles/not-cooling/",
       "query": "エアコン 冷えない",
       "clicks": 0,
-      "impressions": 7,
+      "impressions": 8,
       "ctr": 0,
-      "position": 95.14
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/articles/remote-not-working/",
-      "query": "elpa エアコンリモコン リセット",
-      "clicks": 0,
-      "impressions": 7,
-      "ctr": 0,
-      "position": 8
+      "position": 93.25
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
@@ -124,7 +108,7 @@
       "clicks": 1,
       "impressions": 6,
       "ctr": 0.1667,
-      "position": 9.67
+      "position": 9.5
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
@@ -136,43 +120,75 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
-      "query": "エアコン インバーター いつから",
+      "query": "エアコン 消費電力 推移",
       "clicks": 0,
-      "impressions": 5,
+      "impressions": 6,
       "ctr": 0,
-      "position": 9
+      "position": 6
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-size-guide/",
+      "query": "ldk 18畳 吹き抜け エアコン",
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 11.67
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
-      "query": "エアコン ドレンホース 掃除",
+      "query": "エアコン水漏れ",
       "clicks": 0,
-      "impressions": 5,
+      "impressions": 6,
       "ctr": 0,
-      "position": 3.4
+      "position": 3
     },
     {
-      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
-      "query": "エアコン 水漏れ",
+      "page": "https://aircon-hokenshitsu.com/articles/remote-not-working/",
+      "query": "elpa エアコンリモコン リセット",
       "clicks": 0,
-      "impressions": 5,
+      "impressions": 6,
       "ctr": 0,
-      "position": 2.8
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
-      "query": "ドレンホース どこにある",
-      "clicks": 0,
-      "impressions": 5,
-      "ctr": 0,
-      "position": 10.2
+      "position": 8.33
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/remote-not-working/",
       "query": "elpa リモコン 反応 しない",
       "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 9.33
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
+      "query": "6畳 ベッド 配置 エアコン",
+      "clicks": 0,
       "impressions": 5,
       "ctr": 0,
-      "position": 9.8
+      "position": 11.2
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-size-guide/",
+      "query": "吹き抜け エアコン 何畳用",
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 8.6
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコンドレンホース 掃除",
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/not-cooling/",
+      "query": "冷房 冷えない",
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 75.4
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
@@ -180,15 +196,15 @@
       "clicks": 0,
       "impressions": 4,
       "ctr": 0,
-      "position": 3.25
+      "position": 5.75
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
-      "query": "エアコン 効率 推移",
+      "query": "エアコン 歴史 年表",
       "clicks": 0,
       "impressions": 4,
       "ctr": 0,
-      "position": 2.75
+      "position": 10.5
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-choose/",
@@ -199,12 +215,12 @@
       "position": 21.75
     },
     {
-      "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-choose/",
-      "query": "ldk エアコン おすすめ",
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "排水管付きエアコン 見分け方",
       "clicks": 0,
       "impressions": 4,
       "ctr": 0,
-      "position": 7.25
+      "position": 9.5
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/not-cooling/",
@@ -223,12 +239,36 @@
       "position": 12
     },
     {
+      "page": "https://aircon-hokenshitsu.com/articles/remote-not-working/",
+      "query": "エアコン リモコン 効かない",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 3.5
+    },
+    {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
-      "query": "6畳 ベッド 配置 エアコン",
+      "query": "エアコン 6 畳 おすすめ",
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
-      "position": 12.33
+      "position": 2.67
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
+      "query": "エアコン おすすめ 6 畳",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
+      "query": "エアコン インバーター いつから",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 7.67
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-choose/",
@@ -240,6 +280,14 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-choose/",
+      "query": "ldk エアコン おすすめ",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-choose/",
       "query": "エアコン 選び方 畳 数",
       "clicks": 0,
       "impressions": 3,
@@ -248,7 +296,15 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
-      "query": "エアコン水漏れ 右側",
+      "query": "エアコン ドレンホース 詰まり 確認",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 3.33
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコンから水",
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
@@ -256,7 +312,15 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
-      "query": "ドレンホース",
+      "query": "エアコンから水が垂れる",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "ドレンホースクリーナー",
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
@@ -284,31 +348,39 @@
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
-      "position": 8.33
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
-      "query": "6畳 寝室 エアコン 位置",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
       "position": 8
     },
     {
-      "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
-      "query": "エアコン 消費電力 グラフ",
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
+      "query": "6 畳 ベッド 配置 エアコン",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 8.5
+      "position": 7
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
-      "query": "昔のエアコン",
+      "query": "エアコン 効率 推移",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 23.5
+      "position": 2.5
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
+      "query": "エアコン 昔",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 19
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
+      "query": "クーラー 歴史",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 25.5
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-choose/",
@@ -319,24 +391,16 @@
       "position": 11
     },
     {
-      "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-size-guide/",
-      "query": "ldk 20畳 吹き抜け エアコン",
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-choose/",
+      "query": "リビング 広さ 目安",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 17.5
+      "position": 19.5
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
-      "query": "エアコン ドレンホース 詰まり 確認",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 19
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
-      "query": "エアコンドレンホース 掃除",
+      "query": "エアコン ドレンホース どこ",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
@@ -344,7 +408,7 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
-      "query": "エアコン水漏れ",
+      "query": "エアコン ドレンホース 詰まり",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
@@ -352,19 +416,83 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
-      "query": "ドレンホースクリーナー",
+      "query": "エアコン ホース 詰まり",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
       "position": 3
     },
     {
-      "page": "https://aircon-hokenshitsu.com/articles/not-cooling/",
-      "query": "エアコン 冷えない 原因",
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン 吹き出し口から水",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 98.5
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン 室外機 浸水 どこまで",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン 水が出る",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン水が出ない",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "クーラー 水漏れ",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "クーラーから水が落ちる",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "ドレンホース どこにある",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 10
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "ドレンホース 詰まり 確認",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 12
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "室外機",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3.5
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/not-cooling/",
@@ -373,14 +501,6 @@
       "impressions": 2,
       "ctr": 0,
       "position": 94.5
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/articles/not-cooling/",
-      "query": "冷えないエアコン",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 89
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/remote-not-working/",
@@ -392,19 +512,27 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/remote-not-working/",
-      "query": "エアコン リモコン 壊れた",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 71
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/articles/remote-not-working/",
       "query": "エアコンリモコン 反応しない",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
       "position": 77.5
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/jobs/",
+      "query": "エアコン修理 仕事",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 18.5
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン ドレンホース 水が出ない",
+      "clicks": 1,
+      "impressions": 1,
+      "ctr": 1,
+      "position": 3
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
@@ -432,6 +560,14 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
+      "query": "6畳",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
       "query": "6畳 ベッド配置 エアコン",
       "clicks": 0,
       "impressions": 1,
@@ -440,11 +576,43 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
+      "query": "エアコン 6畳 おすすめ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
+      "query": "エアコン ～6畳 おすすめ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
+      "query": "エアコン位置 失敗 寝室",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
       "query": "ベッド サイズ 6 畳",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 14
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
+      "query": "ベッド置き方",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
@@ -464,27 +632,11 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
-      "query": "40年前のエアコン 電気代",
+      "query": "1980 年代 エアコン",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 1
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
-      "query": "40年前のクーラー 電気代",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 1
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
-      "query": "インバーターエアコン いつから",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 11
+      "position": 8
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
@@ -504,22 +656,6 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
-      "query": "エアコン 昔",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 30
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
-      "query": "エアコン 昔 と 今の違い",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 17
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
       "query": "エアコン 昔 と今の違い",
       "clicks": 0,
       "impressions": 1,
@@ -533,6 +669,14 @@
       "impressions": 1,
       "ctr": 0,
       "position": 38
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
+      "query": "エアコン 消費電力 グラフ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
@@ -576,35 +720,11 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
-      "query": "クーラー 開発者",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
-      "query": "価格",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 2
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
       "query": "値段",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 7
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
-      "query": "日本 最初のエアコン",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 9
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
@@ -616,11 +736,19 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
-      "query": "昔 の エアコン",
+      "query": "昔のエアコン",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 33
+      "position": 18
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
+      "query": "昭和 エアコン 値段",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-history/",
@@ -664,6 +792,14 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-choose/",
+      "query": "エアコン 何畳用",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-choose/",
       "query": "エアコン 畳 数 選び方",
       "clicks": 0,
       "impressions": 1,
@@ -688,11 +824,19 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-size-guide/",
-      "query": "ldk エアコン 何畳用",
+      "query": "ldk 20畳 吹き抜け エアコン",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 7
+      "position": 18
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-ldk-size-guide/",
+      "query": "エアコン 吹き抜け 畳数",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 19
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-maker-compare/",
@@ -712,11 +856,27 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-maker-compare/",
+      "query": "コンフィー",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-maker-compare/",
       "query": "コンフィー どこのメーカー",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-maker-compare/",
+      "query": "コンフィー 冷蔵庫",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-maker-compare/",
@@ -728,7 +888,47 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/aircon-maker-compare/",
+      "query": "コンフィー 東芝",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/aircon-maker-compare/",
       "query": "コンフィー 電子レンジ どこの国",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/call-contractor/",
+      "query": "エアコン 焦げ臭い 修理 代",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 34
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "sharp エアコン 水漏れ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン ダイキン 水垂れ 室内",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン ダイキン 水漏れ",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -752,27 +952,19 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
-      "query": "エアコン ドレンホース どこ",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
-      "query": "エアコン ドレンホース 詰まり",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
       "query": "エアコン ドレンホース 詰まり 原因",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 64
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン ドレンホース 音",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
@@ -784,15 +976,7 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
-      "query": "エアコン ドレンホース詰まり 確認",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 22
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
-      "query": "エアコン ホース 詰まり",
+      "query": "エアコン ホースから水が出ない",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -800,7 +984,23 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
-      "query": "エアコン ホースから水が出ない",
+      "query": "エアコン ホースつまり",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン ポコポコ 直らない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン ポコポコ音",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -817,6 +1017,14 @@
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
       "query": "エアコン 吹き出し口から水が垂れる",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン 室内機 水漏れ 原因",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -856,7 +1064,23 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
-      "query": "エアコン 水が出る",
+      "query": "エアコン 水の音",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン 水出てない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン 水滴",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -888,7 +1112,7 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
-      "query": "エアコンから水が垂れる",
+      "query": "エアコン 水漏れ 吹き出し口",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -896,7 +1120,119 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン 水漏れ 室内",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン 白くまくん 水漏れ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン 除湿 水漏れ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン 霧ヶ峰 水漏れ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコンから水が漏れる 原因",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコンから水が飛んでくる 知恵袋",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
       "query": "エアコンから水漏れ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコンのドレンホースから水が出ない原因は 何 ですか",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコンの吹き出し口の掃除",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコンの水漏れ 対処法",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコンドレンホースから水が出ない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコンドレン詰まり",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコンドレン詰まり 直し方",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン室外機 水に浸かる",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン室外機のホースから水が出ない",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -912,7 +1248,79 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
-      "query": "クーラー 水漏れ",
+      "query": "エアコン本体から水漏れ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン止めても水漏れ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン水漏れ 原因",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン水漏れ 暖房",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "エアコン水漏れ 直し方",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "クーラーから水滴が飛んでくる",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "クーラーから水漏れ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "クーラーから音がする",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "クーラー水滴が落ちてくる",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "サクションポンプ",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -936,6 +1344,46 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "ダイキン エアコン 水漏れ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "ダイキン エアコン 水漏れ ドレンホース",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "ダイキン エアコン 水漏れ 左側",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "ダイキン エアコンから水漏れ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "ダイキンエアコン水漏れ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
       "query": "ドレンホース 詰まり 確認 方法 エアコン メーカー",
       "clicks": 0,
       "impressions": 1,
@@ -952,6 +1400,46 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "ドレンパイプ 詰まり",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "ドレンホース つまり",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "ドレンホース 掃除",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "ドレンホース 掃除 やり方",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "ドレンホース 掃除 ペットボトル",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
       "query": "ドレンホース 確認方法",
       "clicks": 0,
       "impressions": 1,
@@ -960,11 +1448,19 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
-      "query": "ドレンホース 詰まり 確認",
+      "query": "ドレンホースから水が出ない",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 11
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "ドレンホース掃除 やり方",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
@@ -984,11 +1480,115 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
-      "query": "排水管付きエアコン 見分け方",
+      "query": "冷蔵庫 水漏れ 原因",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 8
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "冷蔵庫下から水が出る",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "冷蔵庫入れ替え",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "冷蔵庫水漏れ 原因",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "出ていない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 1
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "室内機から水が漏れる",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "室外機 ドレンホース 掃除",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "室外機 水漏れ 大量",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "室外機の下から水",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "室外機ホースから水が出ない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "室外機ホース詰まり",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "室外機水が出ない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "富士通 エアコン 水漏れ 右側",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "排水口 ドレン",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
@@ -999,12 +1599,60 @@
       "position": 4
     },
     {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "日立白くまくん水漏れ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "白くまくん ドレンパン 掃除",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "霧ヶ峰 エアコン 水が垂れる",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/drain-hose/",
+      "query": "霧ヶ峰 水漏れ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
       "page": "https://aircon-hokenshitsu.com/articles/not-cooling/",
       "query": "エアコン 冷えなくなったら",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 1
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/not-cooling/",
+      "query": "エアコン 急に冷え なくなっ た",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 68
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/not-cooling/",
+      "query": "エアコン 急に冷えなくなった",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 69
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/not-cooling/",
@@ -1024,11 +1672,11 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/not-cooling/",
-      "query": "冷房 冷えない",
+      "query": "冷えないエアコン",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 90
+      "position": 81
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/remote-not-working/",
@@ -1056,6 +1704,14 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/remote-not-working/",
+      "query": "エアコン リモコン 反応 しない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 83
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/remote-not-working/",
       "query": "エアコン リモコン 反応しない",
       "clicks": 0,
       "impressions": 1,
@@ -1072,11 +1728,35 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/remote-not-working/",
+      "query": "エアコン リモコン 壊れた",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 80
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/remote-not-working/",
       "query": "エアコン リモコン故障",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 92
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/remote-not-working/",
+      "query": "エアコン 応急運転 動かない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "page": "https://aircon-hokenshitsu.com/articles/remote-not-working/",
+      "query": "エアコンのリモコンが効かない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
     },
     {
       "page": "https://aircon-hokenshitsu.com/articles/remote-not-working/",
@@ -1120,23 +1800,7 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/products/drain-pump/",
-      "query": "sanei ドレンホースクリーナー",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/products/drain-pump/",
-      "query": "エアコン ドレンホース 掃除",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/products/drain-pump/",
-      "query": "エアコンドレンホース 掃除",
+      "query": "カインズ ドレンホースクリーナー",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -1152,35 +1816,19 @@
     },
     {
       "page": "https://aircon-hokenshitsu.com/products/drain-pump/",
-      "query": "ドレンホース 掃除",
+      "query": "ドレンホースクリーナー",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 3
     },
     {
-      "page": "https://aircon-hokenshitsu.com/products/drain-pump/",
-      "query": "ドレンホースクリーナー ホームセンター",
+      "page": "https://aircon-hokenshitsu.com/products/filter-brush/",
+      "query": "エアコンブラシ 100均",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 3
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/products/drain-pump/",
-      "query": "ポンプ式ドレンホースクリーナー",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "page": "https://aircon-hokenshitsu.com/products/drain-pump/",
-      "query": "室外機ドレンホース",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
+      "position": 4
     }
   ]
 }
