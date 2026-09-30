@@ -164,8 +164,13 @@
       "id": "call-contractor__risk-warning",
       "articleSlug": "call-contractor",
       "postedAt": "2026-09-29T15:26:13.652Z"
+    },
+    {
+      "id": "smell-odor__quick-answer",
+      "articleSlug": "smell-odor",
+      "postedAt": "2026-09-30T15:42:36.693Z"
     }
   ],
-  "cursor": 109,
-  "lastRunAt": "2026-09-29T15:26:13.652Z"
+  "cursor": 110,
+  "lastRunAt": "2026-09-30T15:42:36.694Z"
 }
