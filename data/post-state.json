@@ -174,8 +174,13 @@
       "id": "aircon-history__quick-answer",
       "articleSlug": "aircon-history",
       "postedAt": "2026-10-01T16:04:48.835Z"
+    },
+    {
+      "id": "cleaning-staff-career__quick-answer",
+      "articleSlug": "cleaning-staff-career",
+      "postedAt": "2026-10-02T15:28:23.059Z"
     }
   ],
-  "cursor": 111,
-  "lastRunAt": "2026-10-01T16:04:48.835Z"
+  "cursor": 112,
+  "lastRunAt": "2026-10-02T15:28:23.059Z"
 }
