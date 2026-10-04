@@ -184,8 +184,13 @@
       "id": "aircon-8jou-choose__quick-answer",
       "articleSlug": "aircon-8jou-choose",
       "postedAt": "2026-10-03T14:10:04.183Z"
+    },
+    {
+      "id": "not-cooling__question-hook",
+      "articleSlug": "not-cooling",
+      "postedAt": "2026-10-04T14:40:16.896Z"
     }
   ],
-  "cursor": 113,
-  "lastRunAt": "2026-10-03T14:10:04.183Z"
+  "cursor": 114,
+  "lastRunAt": "2026-10-04T14:40:16.896Z"
 }
