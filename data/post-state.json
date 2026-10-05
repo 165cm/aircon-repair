@@ -189,8 +189,13 @@
       "id": "not-cooling__question-hook",
       "articleSlug": "not-cooling",
       "postedAt": "2026-10-04T14:40:16.896Z"
+    },
+    {
+      "id": "outdoor-unit-check__question-hook",
+      "articleSlug": "outdoor-unit-check",
+      "postedAt": "2026-10-05T18:02:35.655Z"
     }
   ],
-  "cursor": 114,
-  "lastRunAt": "2026-10-04T14:40:16.896Z"
+  "cursor": 115,
+  "lastRunAt": "2026-10-05T18:02:35.655Z"
 }
