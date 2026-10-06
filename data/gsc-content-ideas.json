@@ -1,26 +1,36 @@
 {
   "meta": {
     "siteUrl": "sc-domain:aircon-hokenshitsu.com",
-    "startDate": "2026-08-31",
-    "endDate": "2026-09-27",
-    "fetchedAt": "2026-09-29T00:50:33.950Z",
-    "generatedAt": "2026-09-29T00:50:34.022Z",
+    "startDate": "2026-09-07",
+    "endDate": "2026-10-04",
+    "fetchedAt": "2026-10-06T01:40:25.634Z",
+    "generatedAt": "2026-10-06T01:40:25.693Z",
     "minImpressions": 20,
     "articleCount": 31,
-    "ideaCount": 1
+    "ideaCount": 2
   },
   "ideas": [
     {
       "type": "rewrite",
       "query": "elpa エアコンリモコン 反応 しない",
-      "impressions": 100,
-      "clicks": 2,
-      "ctr": 0.02,
-      "position": 7.76,
+      "impressions": 72,
+      "clicks": 1,
+      "ctr": 0.0139,
+      "position": 8.01,
       "matchedSlug": "remote-not-working",
       "matchedUrl": "https://aircon-hokenshitsu.com/articles/remote-not-working/",
       "suggestedCategory": "symptom",
-      "score": 98
+      "score": 71
+    },
+    {
+      "type": "new",
+      "query": "エアコン ldk",
+      "impressions": 23,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 9.87,
+      "suggestedCategory": "symptom",
+      "score": 35
     }
   ]
 }
