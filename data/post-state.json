@@ -214,8 +214,13 @@
       "id": "aircon-14jou-choose__question-hook",
       "articleSlug": "aircon-14jou-choose",
       "postedAt": "2026-10-09T15:52:49.647Z"
+    },
+    {
+      "id": "aircon-6jou-choose__quick-answer",
+      "articleSlug": "aircon-6jou-choose",
+      "postedAt": "2026-10-10T15:05:35.112Z"
     }
   ],
-  "cursor": 119,
-  "lastRunAt": "2026-10-09T15:52:49.648Z"
+  "cursor": 120,
+  "lastRunAt": "2026-10-10T15:05:35.112Z"
 }
