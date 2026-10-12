@@ -224,8 +224,13 @@
       "id": "call-contractor__question-hook",
       "articleSlug": "call-contractor",
       "postedAt": "2026-10-11T15:23:07.101Z"
+    },
+    {
+      "id": "drain-hose__question-hook",
+      "articleSlug": "drain-hose",
+      "postedAt": "2026-10-12T18:41:56.898Z"
     }
   ],
-  "cursor": 121,
-  "lastRunAt": "2026-10-11T15:23:07.101Z"
+  "cursor": 122,
+  "lastRunAt": "2026-10-12T18:41:56.898Z"
 }
