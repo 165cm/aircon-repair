@@ -1,36 +1,48 @@
 {
   "meta": {
     "siteUrl": "sc-domain:aircon-hokenshitsu.com",
-    "startDate": "2026-09-07",
-    "endDate": "2026-10-04",
-    "fetchedAt": "2026-10-06T01:40:25.634Z",
-    "generatedAt": "2026-10-06T01:40:25.693Z",
+    "startDate": "2026-09-14",
+    "endDate": "2026-10-11",
+    "fetchedAt": "2026-10-13T02:26:30.905Z",
+    "generatedAt": "2026-10-13T02:26:30.976Z",
     "minImpressions": 20,
     "articleCount": 31,
-    "ideaCount": 2
+    "ideaCount": 3
   },
   "ideas": [
     {
       "type": "rewrite",
       "query": "elpa エアコンリモコン 反応 しない",
-      "impressions": 72,
+      "impressions": 65,
       "clicks": 1,
-      "ctr": 0.0139,
-      "position": 8.01,
+      "ctr": 0.0154,
+      "position": 7.86,
       "matchedSlug": "remote-not-working",
       "matchedUrl": "https://aircon-hokenshitsu.com/articles/remote-not-working/",
       "suggestedCategory": "symptom",
-      "score": 71
+      "score": 64
     },
     {
       "type": "new",
       "query": "エアコン ldk",
-      "impressions": 23,
+      "impressions": 21,
       "clicks": 0,
       "ctr": 0,
-      "position": 9.87,
+      "position": 9.43,
       "suggestedCategory": "symptom",
-      "score": 35
+      "score": 32
+    },
+    {
+      "type": "rewrite",
+      "query": "エアコン ベッド 位置 6畳",
+      "impressions": 21,
+      "clicks": 0,
+      "ctr": 0,
+      "position": 8.48,
+      "matchedSlug": "aircon-6jou-choose",
+      "matchedUrl": "https://aircon-hokenshitsu.com/articles/aircon-6jou-choose/",
+      "suggestedCategory": "buying",
+      "score": 21
     }
   ]
 }
