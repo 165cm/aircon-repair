@@ -264,8 +264,13 @@
       "id": "aircon-14jou-choose__safe-check",
       "articleSlug": "aircon-14jou-choose",
       "postedAt": "2026-10-19T16:16:06.501Z"
+    },
+    {
+      "id": "aircon-history__question-hook",
+      "articleSlug": "aircon-history",
+      "postedAt": "2026-10-20T14:09:20.040Z"
     }
   ],
-  "cursor": 129,
-  "lastRunAt": "2026-10-19T16:16:06.501Z"
+  "cursor": 130,
+  "lastRunAt": "2026-10-20T14:09:20.040Z"
 }
