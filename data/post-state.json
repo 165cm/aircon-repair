@@ -274,8 +274,13 @@
       "id": "remote-not-working__quick-answer",
       "articleSlug": "remote-not-working",
       "postedAt": "2026-10-21T14:22:24.119Z"
+    },
+    {
+      "id": "aircon-8jou-choose__safe-check",
+      "articleSlug": "aircon-8jou-choose",
+      "postedAt": "2026-10-22T14:23:38.001Z"
     }
   ],
-  "cursor": 131,
-  "lastRunAt": "2026-10-21T14:22:24.119Z"
+  "cursor": 132,
+  "lastRunAt": "2026-10-22T14:23:38.001Z"
 }
