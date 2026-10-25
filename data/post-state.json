@@ -289,8 +289,13 @@
       "id": "strange-noise__risk-warning",
       "articleSlug": "strange-noise",
       "postedAt": "2026-10-24T13:09:10.013Z"
+    },
+    {
+      "id": "electric-bill-high__safe-check",
+      "articleSlug": "electric-bill-high",
+      "postedAt": "2026-10-25T13:36:13.399Z"
     }
   ],
-  "cursor": 134,
-  "lastRunAt": "2026-10-24T13:09:10.013Z"
+  "cursor": 135,
+  "lastRunAt": "2026-10-25T13:36:13.399Z"
 }
