@@ -294,8 +294,13 @@
       "id": "electric-bill-high__safe-check",
       "articleSlug": "electric-bill-high",
       "postedAt": "2026-10-25T13:36:13.399Z"
+    },
+    {
+      "id": "hvac-career-start__quick-answer",
+      "articleSlug": "hvac-career-start",
+      "postedAt": "2026-10-26T15:55:17.993Z"
     }
   ],
-  "cursor": 135,
-  "lastRunAt": "2026-10-25T13:36:13.399Z"
+  "cursor": 136,
+  "lastRunAt": "2026-10-26T15:55:17.993Z"
 }
