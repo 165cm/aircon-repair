@@ -78,6 +78,9 @@
 ## ビルドと確認
 
 - 通常は `npm run build` を使います。
+- ビルド後に `npm run check:structured-data` で全HTMLのJSON-LDを検証します。デプロイ前のActionsでも実行します。
+- `/products/[id]/` は商品比較・購入ガイドなので `WebPage` を使用し、`FAQPage` とパンくずを維持します。当サイトは販売者ではなく、価格帯は参考情報のため、`Product` / `Offer` や未確認の在庫・評価・配送・返品情報を出力しません。商品リッチリザルトの対象から外すことで、Search Consoleの商品スニペット・販売者リスティングの誤検出を解消します。
+- 公開後は代表的な商品ガイドURLをリッチリザルトテストとSearch ConsoleのURL検査で確認し、両レポートに「修正を検証」が表示される場合は実行します。レポートの反映にはGoogleによる再クロールが必要です。
 - 環境によって `npm` が使えない場合は、利用可能な Node.js で `node node_modules/astro/astro.js build` を実行します。
 - CSS内で画像を参照する場合は `/images/...` を使います。画像が `public/images/` と生成後の `dist/images/` に存在するかを確認してください。
 - 変更後は少なくとも対象ページ、ホーム、診断、商品導線、畳数導線の主要CTAが崩れていないか確認します。
