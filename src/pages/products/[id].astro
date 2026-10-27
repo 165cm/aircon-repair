@@ -125,19 +125,17 @@ const faqs = [
     answer: stopChecks[0]
   }
 ];
+// 商品比較・購入ガイドであり、当サイトで販売する単一商品のページではない。
+// 実売価格・在庫・評価・配送/返品条件を保証できないため Product/Offer は出力しない。
 const jsonLd = [{
   "@context": "https://schema.org",
-  "@type": "Product",
+  "@type": "WebPage",
+  "@id": canonical,
+  url: canonical,
   name: pageTitle,
-  brand: product.brand,
-  category: categoryLabel,
-  description: product.description,
+  description: pageDescription,
+  inLanguage: "ja",
   image: product.image ? absoluteUrl(product.image) : undefined,
-  offers: {
-    "@type": "Offer",
-    url: canonical,
-    availability: "https://schema.org/InStock"
-  }
 }, {
   "@context": "https://schema.org",
   "@type": "FAQPage",

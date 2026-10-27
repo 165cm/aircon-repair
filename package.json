@@ -8,6 +8,7 @@
     "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
     "postinstall": "node scripts/patch-rollup-wasm.mjs",
     "check:amazon": "node scripts/check-amazon-links.mjs",
+    "check:structured-data": "node scripts/check-structured-data.mjs",
     "generate:social": "node scripts/generate-social.mjs",
     "check:social": "node scripts/generate-social.mjs --check",
     "gsc:fetch": "node scripts/fetch-gsc.mjs",
