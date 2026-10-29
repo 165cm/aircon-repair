@@ -309,8 +309,13 @@
       "id": "strange-noise__quick-answer",
       "articleSlug": "strange-noise",
       "postedAt": "2026-10-28T15:46:40.107Z"
+    },
+    {
+      "id": "cleaning-spray-risk__quick-answer",
+      "articleSlug": "cleaning-spray-risk",
+      "postedAt": "2026-10-29T15:54:38.998Z"
     }
   ],
-  "cursor": 138,
-  "lastRunAt": "2026-10-28T15:46:40.107Z"
+  "cursor": 139,
+  "lastRunAt": "2026-10-29T15:54:38.998Z"
 }
