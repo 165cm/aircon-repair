@@ -319,8 +319,13 @@
       "id": "not-cooling__risk-warning",
       "articleSlug": "not-cooling",
       "postedAt": "2026-10-30T15:39:04.411Z"
+    },
+    {
+      "id": "aircon-18jou-choose__quick-answer",
+      "articleSlug": "aircon-18jou-choose",
+      "postedAt": "2026-10-31T15:08:28.495Z"
     }
   ],
-  "cursor": 140,
-  "lastRunAt": "2026-10-30T15:39:04.411Z"
+  "cursor": 141,
+  "lastRunAt": "2026-10-31T15:08:28.495Z"
 }
