@@ -354,8 +354,13 @@
       "id": "heating-not-working__safe-check",
       "articleSlug": "heating-not-working",
       "postedAt": "2026-11-06T16:37:42.887Z"
+    },
+    {
+      "id": "drain-hose__safe-check",
+      "articleSlug": "drain-hose",
+      "postedAt": "2026-11-07T15:29:53.348Z"
     }
   ],
-  "cursor": 147,
-  "lastRunAt": "2026-11-06T16:37:42.887Z"
+  "cursor": 148,
+  "lastRunAt": "2026-11-07T15:29:53.348Z"
 }
