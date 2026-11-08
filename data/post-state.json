@@ -359,8 +359,13 @@
       "id": "drain-hose__safe-check",
       "articleSlug": "drain-hose",
       "postedAt": "2026-11-07T15:29:53.348Z"
+    },
+    {
+      "id": "aircon-6jou-choose__safe-check",
+      "articleSlug": "aircon-6jou-choose",
+      "postedAt": "2026-11-08T15:50:01.048Z"
     }
   ],
-  "cursor": 148,
-  "lastRunAt": "2026-11-07T15:29:53.348Z"
+  "cursor": 149,
+  "lastRunAt": "2026-11-08T15:50:01.048Z"
 }
