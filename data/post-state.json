@@ -364,8 +364,13 @@
       "id": "aircon-6jou-choose__safe-check",
       "articleSlug": "aircon-6jou-choose",
       "postedAt": "2026-11-08T15:50:01.048Z"
+    },
+    {
+      "id": "aircon-history__safe-check",
+      "articleSlug": "aircon-history",
+      "postedAt": "2026-11-09T19:34:15.049Z"
     }
   ],
-  "cursor": 149,
-  "lastRunAt": "2026-11-08T15:50:01.048Z"
+  "cursor": 150,
+  "lastRunAt": "2026-11-09T19:34:15.049Z"
 }
