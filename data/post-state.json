@@ -4,8 +4,13 @@
       "id": "electric-bill-high__question-hook",
       "articleSlug": "electric-bill-high",
       "postedAt": "2026-11-13T16:59:11.899Z"
+    },
+    {
+      "id": "outdoor-unit-check__quick-answer",
+      "articleSlug": "outdoor-unit-check",
+      "postedAt": "2026-11-14T15:37:54.945Z"
     }
   ],
-  "cursor": 153,
-  "lastRunAt": "2026-11-13T16:59:11.899Z"
+  "cursor": 154,
+  "lastRunAt": "2026-11-14T15:37:54.945Z"
 }
