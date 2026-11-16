@@ -14,8 +14,13 @@
       "id": "aircon-14jou-choose__quick-answer",
       "articleSlug": "aircon-14jou-choose",
       "postedAt": "2026-11-15T16:07:20.533Z"
+    },
+    {
+      "id": "outdoor-unit-check__safe-check",
+      "articleSlug": "outdoor-unit-check",
+      "postedAt": "2026-11-16T19:20:55.419Z"
     }
   ],
-  "cursor": 155,
-  "lastRunAt": "2026-11-15T16:07:20.533Z"
+  "cursor": 156,
+  "lastRunAt": "2026-11-16T19:20:55.419Z"
 }
