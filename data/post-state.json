@@ -19,8 +19,13 @@
       "id": "outdoor-unit-check__safe-check",
       "articleSlug": "outdoor-unit-check",
       "postedAt": "2026-11-16T19:20:55.419Z"
+    },
+    {
+      "id": "remote-not-working__safe-check",
+      "articleSlug": "remote-not-working",
+      "postedAt": "2026-11-17T18:14:54.902Z"
     }
   ],
-  "cursor": 156,
-  "lastRunAt": "2026-11-16T19:20:55.419Z"
+  "cursor": 157,
+  "lastRunAt": "2026-11-17T18:14:54.902Z"
 }
