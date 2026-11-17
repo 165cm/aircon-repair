@@ -1,59 +1,59 @@
 {
   "meta": {
     "siteUrl": "sc-domain:aircon-hokenshitsu.com",
-    "startDate": "2026-10-12",
-    "endDate": "2026-11-08",
-    "fetchedAt": "2026-11-10T03:13:46.461Z"
+    "startDate": "2026-10-19",
+    "endDate": "2026-11-15",
+    "fetchedAt": "2026-11-17T03:26:40.011Z"
   },
   "rows": [
     {
       "query": "エアコン ベッド 位置 6畳",
-      "clicks": 1,
-      "impressions": 29,
-      "ctr": 0.0345,
-      "position": 9.07
+      "clicks": 0,
+      "impressions": 23,
+      "ctr": 0,
+      "position": 9.22
     },
     {
       "query": "elpa エアコンリモコン 反応 しない",
       "clicks": 1,
-      "impressions": 25,
-      "ctr": 0.04,
-      "position": 6.92
+      "impressions": 21,
+      "ctr": 0.0476,
+      "position": 6.52
     },
     {
       "query": "ldk エアコン",
       "clicks": 1,
-      "impressions": 13,
-      "ctr": 0.0769,
-      "position": 9.08
+      "impressions": 18,
+      "ctr": 0.0556,
+      "position": 11.56
     },
     {
       "query": "ダイキン s225ates w 口コミ",
       "clicks": 0,
-      "impressions": 11,
+      "impressions": 14,
       "ctr": 0,
-      "position": 8.27
+      "position": 8.43
+    },
+    {
+      "query": "排水管付きエアコン 見分け方",
+      "clicks": 1,
+      "impressions": 9,
+      "ctr": 0.1111,
+      "position": 5.11
     },
     {
       "query": "エアコン ldk",
       "clicks": 0,
-      "impressions": 10,
+      "impressions": 9,
       "ctr": 0,
-      "position": 8.6
+      "position": 9
     },
     {
       "query": "床下エアコン ldk",
       "clicks": 0,
-      "impressions": 10,
+      "impressions": 9,
       "ctr": 0,
-      "position": 24.9
-    },
-    {
-      "query": "エアコン 消費電力 推移",
-      "clicks": 2,
-      "impressions": 8,
-      "ctr": 0.25,
-      "position": 4.13
+      "position": 25.89
     },
     {
       "query": "エアコン 各社 比較",
@@ -63,60 +63,53 @@
       "position": 71.29
     },
     {
-      "query": "ドレンホース どこにある",
-      "clicks": 0,
-      "impressions": 7,
-      "ctr": 0,
-      "position": 9
+      "query": "エアコン 消費電力 推移",
+      "clicks": 1,
+      "impressions": 6,
+      "ctr": 0.1667,
+      "position": 3.83
     },
     {
-      "query": "排水管付きエアコン 見分け方",
+      "query": "ドレンホース どこにある",
       "clicks": 0,
       "impressions": 6,
       "ctr": 0,
-      "position": 7
+      "position": 8
+    },
+    {
+      "query": "エアコン 仕組み",
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 46.6
     },
     {
       "query": "エアコン 吹き出し口から水",
       "clicks": 1,
-      "impressions": 5,
-      "ctr": 0.2,
-      "position": 3.2
+      "impressions": 4,
+      "ctr": 0.25,
+      "position": 3.25
     },
     {
-      "query": "インバーターエアコン いつから",
-      "clicks": 0,
-      "impressions": 5,
-      "ctr": 0,
-      "position": 10.2
-    },
-    {
-      "query": "エアコン ドレンホース 詰まり 確認",
-      "clicks": 0,
-      "impressions": 5,
-      "ctr": 0,
-      "position": 2.2
-    },
-    {
-      "query": "elpa エアコンリモコン 反応しない",
+      "query": "6畳 ベッド 配置 エアコン",
       "clicks": 0,
       "impressions": 4,
       "ctr": 0,
-      "position": 9
+      "position": 9.25
     },
     {
-      "query": "エアコン 水漏れ",
+      "query": "ldk 20畳 吹き抜け エアコン",
       "clicks": 0,
       "impressions": 4,
       "ctr": 0,
-      "position": 3
+      "position": 10.75
     },
     {
-      "query": "エアコンから水漏れ",
+      "query": "エアコン 昔",
       "clicks": 0,
       "impressions": 4,
       "ctr": 0,
-      "position": 3
+      "position": 18.25
     },
     {
       "query": "ドレンホースクリーナー",
@@ -126,18 +119,11 @@
       "position": 3
     },
     {
-      "query": "1980年代 エアコン",
-      "clicks": 0,
+      "query": "ドレンホースクリーナー おすすめ",
+      "clicks": 1,
       "impressions": 3,
-      "ctr": 0,
-      "position": 10.67
-    },
-    {
-      "query": "エアコン ldk おすすめ",
-      "clicks": 0,
-      "impressions": 3,
-      "ctr": 0,
-      "position": 9.67
+      "ctr": 0.3333,
+      "position": 8.67
     },
     {
       "query": "エアコン ドレンホース どっち",
@@ -147,25 +133,11 @@
       "position": 7
     },
     {
-      "query": "エアコン ドレンホース 掃除",
-      "clicks": 0,
-      "impressions": 3,
-      "ctr": 0,
-      "position": 3
-    },
-    {
       "query": "エアコン 吹き抜け 畳数",
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
       "position": 11.67
-    },
-    {
-      "query": "エアコン 昔",
-      "clicks": 0,
-      "impressions": 3,
-      "ctr": 0,
-      "position": 20.33
     },
     {
       "query": "エアコン 昔 と今の違い",
@@ -175,25 +147,18 @@
       "position": 10.33
     },
     {
-      "query": "エアコンドレンホース 掃除",
+      "query": "エアコン 歴史",
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
-      "position": 3.33
+      "position": 21.67
     },
     {
-      "query": "ドレンホース 詰まり 確認",
+      "query": "1980年代 エアコン",
       "clicks": 0,
-      "impressions": 3,
-      "ctr": 0,
-      "position": 4.67
-    },
-    {
-      "query": "ドレンホースクリーナー おすすめ",
-      "clicks": 1,
       "impressions": 2,
-      "ctr": 0.5,
-      "position": 9
+      "ctr": 0,
+      "position": 11
     },
     {
       "query": "1990年代 エアコン",
@@ -203,25 +168,46 @@
       "position": 5.5
     },
     {
-      "query": "6畳 ベッド 配置 エアコン",
+      "query": "インバーターエアコン いつから",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 8
+      "position": 7
     },
     {
-      "query": "ldk 20畳 吹き抜け エアコン",
+      "query": "エアコン ldk おすすめ",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 11
+      "position": 10
     },
     {
-      "query": "エアコン 歴史",
+      "query": "エアコン ドレンホース 掃除",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 17
+      "position": 3
+    },
+    {
+      "query": "エアコン ドレンホース 詰まり 確認",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 1
+    },
+    {
+      "query": "エアコン リモコン 壊れた",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 76.5
+    },
+    {
+      "query": "エアコン 寝室",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 84.5
     },
     {
       "query": "エアコン 歴史 年表",
@@ -238,32 +224,11 @@
       "position": 2.5
     },
     {
-      "query": "エアコン 水漏れ 原因",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 2.5
-    },
-    {
-      "query": "エアコン 茶色い水",
+      "query": "エアコンから水漏れ",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
       "position": 3
-    },
-    {
-      "query": "エアコンから水が垂れる",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "query": "エアコンから氷が出てきた",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 3.5
     },
     {
       "query": "エアコンドレンホース",
@@ -271,6 +236,13 @@
       "impressions": 2,
       "ctr": 0,
       "position": 3.5
+    },
+    {
+      "query": "エアコンドレンホース 掃除",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
     },
     {
       "query": "エアコン昔",
@@ -287,11 +259,25 @@
       "position": 10
     },
     {
+      "query": "ドレンホース 掃除",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3
+    },
+    {
       "query": "ドレンホース 詰まり",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
       "position": 3
+    },
+    {
+      "query": "ドレンホース 詰まり 確認",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6.5
     },
     {
       "query": "ドレン配管 詰まり",
@@ -301,11 +287,11 @@
       "position": 3
     },
     {
-      "query": "吹き抜け エアコン 畳数",
+      "query": "昔のエアコン",
       "clicks": 0,
       "impressions": 2,
       "ctr": 0,
-      "position": 24.5
+      "position": 24
     },
     {
       "query": "1",
@@ -315,18 +301,18 @@
       "position": 4
     },
     {
-      "query": "6畳 寝室 エアコン 位置",
+      "query": "50年ぐらい前",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 1
+    },
+    {
+      "query": "amazon エアコン",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 6
-    },
-    {
-      "query": "6畳寝室 エアコン 位置",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 8
     },
     {
       "query": "ldk エアコン 何畳用",
@@ -341,6 +327,13 @@
       "impressions": 1,
       "ctr": 0,
       "position": 4
+    },
+    {
+      "query": "お願い",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 1
     },
     {
       "query": "もう少し細かく",
@@ -392,6 +385,13 @@
       "position": 5
     },
     {
+      "query": "エアコン ドレンホース掃除 業者",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
       "query": "エアコン プロが選ぶ メーカー",
       "clicks": 0,
       "impressions": 1,
@@ -399,67 +399,25 @@
       "position": 78
     },
     {
-      "query": "エアコン ホースから水が出ない",
+      "query": "エアコン メーカー 比較",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 3
+      "position": 61
     },
     {
       "query": "エアコン リモコン 効かない",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 83
+      "position": 85
     },
     {
-      "query": "エアコン リモコン 反応 しない",
+      "query": "エアコン リモコンが効かない",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 87
-    },
-    {
-      "query": "エアコン リモコン 反応しない",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 83
-    },
-    {
-      "query": "エアコン リモコン 壊れ た",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 87
-    },
-    {
-      "query": "エアコン リモコン 液晶 映らない",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 75
-    },
-    {
-      "query": "エアコン リモコン反応しない",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 82
-    },
-    {
-      "query": "エアコン 冷えない ドレンホース",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "query": "エアコン 冷房 水が飛んでくる",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
+      "position": 80
     },
     {
       "query": "エアコン 室内機 水漏れ",
@@ -474,6 +432,13 @@
       "impressions": 1,
       "ctr": 0,
       "position": 3
+    },
+    {
+      "query": "エアコン 換気扇 冷えない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
     },
     {
       "query": "エアコン 日本 いつから",
@@ -497,14 +462,21 @@
       "position": 3
     },
     {
-      "query": "エアコン 水が出ない 冷えない",
+      "query": "エアコン 構造",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 36
+    },
+    {
+      "query": "エアコン 水が出ない",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 3
     },
     {
-      "query": "エアコン 水滴 飛んでくる",
+      "query": "エアコン 水漏れ",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -518,6 +490,13 @@
       "position": 3
     },
     {
+      "query": "エアコン 水漏れ 原因",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
       "query": "エアコン 水漏れ 大量",
       "clicks": 0,
       "impressions": 1,
@@ -525,14 +504,7 @@
       "position": 3
     },
     {
-      "query": "エアコン 羽から水漏れ",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "query": "エアコン 送風口から水",
+      "query": "エアコン 茶色い水",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -546,13 +518,6 @@
       "position": 3
     },
     {
-      "query": "エアコンからポコポコ音がする",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
       "query": "エアコンから水",
       "clicks": 0,
       "impressions": 1,
@@ -560,7 +525,7 @@
       "position": 3
     },
     {
-      "query": "エアコンから水が飛んでくる",
+      "query": "エアコンから水が垂れる",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -595,11 +560,18 @@
       "position": 3
     },
     {
-      "query": "エアコンの隙間から水漏れ",
+      "query": "エアコンのリモコン 壊れた",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 3
+      "position": 86
+    },
+    {
+      "query": "エアコンのリモコン壊れた",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 84
     },
     {
       "query": "エアコンドレンホースクリーナー",
@@ -616,7 +588,14 @@
       "position": 7
     },
     {
-      "query": "エアコン室内に水漏れ",
+      "query": "エアコン室外機から水が出る",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "エアコン暖房 ドレン水",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -630,28 +609,7 @@
       "position": 3
     },
     {
-      "query": "エアコン水漏れ ポタポタ ドレンホース",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 4
-    },
-    {
-      "query": "エアコン水漏れ 右側",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
       "query": "エアコン水漏れ 直った",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "query": "エアコン臭い原因",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
@@ -679,53 +637,11 @@
       "position": 3
     },
     {
-      "query": "クーラー 水漏れ",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "query": "クーラーから水が垂れる",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "query": "クーラーの下から水漏れ",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
       "query": "クーラーの歴史",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 21
-    },
-    {
-      "query": "クーラーの水が出てこない",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "query": "クーラー水漏れ原因",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "query": "ダイキンエアコンから水が出る",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
     },
     {
       "query": "ドレン ホース ない",
@@ -735,6 +651,13 @@
       "position": 43
     },
     {
+      "query": "ドレン 管 排水管 違い",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9
+    },
+    {
       "query": "ドレンクリーナー",
       "clicks": 0,
       "impressions": 1,
@@ -742,32 +665,11 @@
       "position": 3
     },
     {
-      "query": "ドレンパン",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
-    },
-    {
-      "query": "ドレンホース",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 5
-    },
-    {
       "query": "ドレンホース おすすめ",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
       "position": 25
-    },
-    {
-      "query": "ドレンホース 掃除",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 3
     },
     {
       "query": "ドレンホース 水が出ない",
@@ -789,13 +691,6 @@
       "impressions": 1,
       "ctr": 0,
       "position": 10
-    },
-    {
-      "query": "ドレンホースの掃除の仕方",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 4
     },
     {
       "query": "ドレンホースクリーナー ホームセンター",
@@ -826,11 +721,18 @@
       "position": 7
     },
     {
-      "query": "リモコンが効かない",
+      "query": "何ldk？",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 4
+      "position": 1
+    },
+    {
+      "query": "冷房 冷えない",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 95
     },
     {
       "query": "冷蔵庫 ドレンホース 詰まり",
@@ -854,11 +756,25 @@
       "position": 3
     },
     {
-      "query": "室内機から水漏れ",
+      "query": "吹き抜け エアコン 畳数",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 4
+      "position": 21
+    },
+    {
+      "query": "室外機 から水が出る",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3
+    },
+    {
+      "query": "室外機 水平 ゴム",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 11
     },
     {
       "query": "室外機ドレンホース 掃除",
@@ -866,13 +782,6 @@
       "impressions": 1,
       "ctr": 0,
       "position": 4
-    },
-    {
-      "query": "家庭用は？",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 2
     },
     {
       "query": "富士通 エアコン 水漏れ",
@@ -910,11 +819,11 @@
       "position": 8
     },
     {
-      "query": "業務用冷蔵庫 水が溜まる",
+      "query": "業務用エアコン リモコン 故障",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 3
+      "position": 26
     },
     {
       "query": "消費電力は",
@@ -931,11 +840,18 @@
       "position": 3
     },
     {
-      "query": "車 エアコン ドレン 詰まり",
+      "query": "空調 機 仕組み",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 3
+      "position": 45
+    },
+    {
+      "query": "空調機 仕組み",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 70
     },
     {
       "query": "車 エアコン排水 多い",
@@ -943,20 +859,6 @@
       "impressions": 1,
       "ctr": 0,
       "position": 3
-    },
-    {
-      "query": "１９９０",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 1
-    },
-    {
-      "query": "２０００",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 4
     }
   ]
 }
