@@ -24,8 +24,13 @@
       "id": "remote-not-working__safe-check",
       "articleSlug": "remote-not-working",
       "postedAt": "2026-11-17T18:14:54.902Z"
+    },
+    {
+      "id": "cleaning-spray-risk__safe-check",
+      "articleSlug": "cleaning-spray-risk",
+      "postedAt": "2026-11-18T17:51:30.310Z"
     }
   ],
-  "cursor": 157,
-  "lastRunAt": "2026-11-17T18:14:54.902Z"
+  "cursor": 158,
+  "lastRunAt": "2026-11-18T17:51:30.310Z"
 }
