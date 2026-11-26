@@ -64,8 +64,13 @@
       "id": "smell-odor__question-hook",
       "articleSlug": "smell-odor",
       "postedAt": "2026-11-25T18:59:52.137Z"
+    },
+    {
+      "id": "hvac-career-start__question-hook",
+      "articleSlug": "hvac-career-start",
+      "postedAt": "2026-11-26T18:52:01.534Z"
     }
   ],
-  "cursor": 165,
-  "lastRunAt": "2026-11-25T18:59:52.137Z"
+  "cursor": 166,
+  "lastRunAt": "2026-11-26T18:52:01.534Z"
 }
