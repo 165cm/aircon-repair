@@ -69,8 +69,13 @@
       "id": "hvac-career-start__question-hook",
       "articleSlug": "hvac-career-start",
       "postedAt": "2026-11-26T18:52:01.534Z"
+    },
+    {
+      "id": "aircon-6jou-choose__question-hook",
+      "articleSlug": "aircon-6jou-choose",
+      "postedAt": "2026-11-27T18:43:34.746Z"
     }
   ],
-  "cursor": 166,
-  "lastRunAt": "2026-11-26T18:52:01.534Z"
+  "cursor": 167,
+  "lastRunAt": "2026-11-27T18:43:34.746Z"
 }
